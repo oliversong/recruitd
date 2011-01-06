@@ -1,0 +1,21 @@
+- title "Course Student"
+
+%p
+  %strong Student:
+  =h @course_student.student_id
+%p
+  %strong Course:
+  =h @course_student.course_id
+%p
+  %strong Period:
+  =h @course_student.period_id
+%p
+  %strong Comments:
+  =h @course_student.comments
+
+%p
+  = link_to "Edit", edit_course_student_path(@course_student)
+  |
+  = link_to "Destroy", @course_student, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", course_students_path

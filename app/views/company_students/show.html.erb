@@ -1,0 +1,43 @@
+<p>
+  <b>Company:</b>
+  <%= link_to @company_student.company.name, @company_student.company %>
+</p>
+
+<p>
+  <b>Student:</b>
+  <%= link_to @company_student.student.name, @company_student.student %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%=h @company_student.comments %>
+</p>
+
+<p>
+  <b>Student follows company:</b>
+  <%=h @company_student.student_follows_company %>
+</p>
+
+<p>
+  <b>Company follows student:</b>
+  <%=h @company_student.company_follows_student %>
+</p>
+
+<p>
+  <b>Recruiter id for follow:</b>
+  <%=h @company_student.recruiter_id_for_follow %>
+</p>
+
+<p>
+  <b>Student score:</b>
+  <%=h @company_student.student_score %>
+</p>
+
+<p>
+  <b>Student dismissed until:</b>
+  <%=h @company_student.student_dismissed_until %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_student_path(@company_student) %> |
+<%= link_to 'Back', company_students_path %>

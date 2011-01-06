@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%=h @tag_description.person.name %>
+</p>
+
+<p>
+  <b>Term:</b>
+  <%=h @tag_description.tag_id %>
+</p>
+
+<p>
+  <b>Update of tag:</b>
+  <%=h @tag_description.update_of_tag_id %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @tag_description.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_tag_description_path(@tag_description) %> |
+<%= link_to 'Back', tag_descriptions_path %>

@@ -5,11 +5,16 @@ gem 'rails', '3.0.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-#gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'omniauth'
+#gem 'pg'
+gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
 #gem 'devise'
 gem 'omniauth'
+
+
+gem 'factory_girl'
+gem 'haml'
+#gem 'formtastic'
 
 # Use unicorn as the web server
 # gem 'unicorn'

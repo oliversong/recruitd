@@ -1,0 +1,4 @@
+- data = []
+- @companies.each do |p|
+  - data << {:label => "#{h(p.name)}", :id => "#{h(p.id)}" }
+= data.to_json

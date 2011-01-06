@@ -1,0 +1,29 @@
+- form_for @student_file_company, :url => { :action => :rate, :id => @company, :method => :put } do |f|
+	= f.error_messages
+	/ TODO: might need to make some of these hidden fields...
+	/ %p
+	/	 = f.label :student_id
+	/	 %br
+	/	 = f.text_field :student_id
+	/ %p
+	/	 = f.label :company_id
+	/	 %br
+	/	 = f.text_field :company_id
+	/ %p
+	/	 = f.label :job_id
+	/	 %br
+	/	 = f.text_field :job_id
+	%p
+		= f.label :rating
+		%br
+		= f.text_field :rating
+	%p
+		= f.label :notes
+		%br
+		= f.text_area :notes
+	%p
+		= f.label :starred
+		%br
+		= f.check_box :starred
+	%p
+		= f.submit

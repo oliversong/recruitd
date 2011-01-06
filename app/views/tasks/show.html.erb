@@ -1,0 +1,33 @@
+<p>
+  <b>Name:</b>
+  <%=h @task.name %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%=h @task.text %>
+</p>
+
+<p>
+  <b>Reference:</b>
+  <%=h @task.reference_id %>
+</p>
+
+<p>
+  <b>Reference type:</b>
+  <%=h @task.reference_type %>
+</p>
+
+<p>
+  <b>Is reused:</b>
+  <%=h @task.is_reused %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @task.person_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

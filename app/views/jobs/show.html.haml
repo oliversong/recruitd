@@ -1,0 +1,38 @@
+- title "Job"
+
+%p
+	%strong Company:
+	= link_to @job.company.name, @job.company
+%p
+	%strong Title:
+	=h @job.title
+%p
+	%strong Responsibilities:
+	=h @job.responsibilities
+%p
+	%strong Basic Qualifications:
+	=h @job.basic_qualifications
+%p
+	%strong Desired Qualifications:
+	=h @job.desired_qualifications
+%p
+	%strong Other Information:
+	=h @job.other_information
+%p
+	%strong Description:
+	=h @job.description
+%p
+	%strong Careers
+	%ul
+	-@job.careers.each do |career|
+		%li= link_to career.name, career
+		
+%h3 Your relationship:
+= render :partial => 'student_file'
+
+%p
+	= link_to "Edit", edit_job_path(@job)
+	|
+	= link_to "Destroy", @job, :confirm => 'Are you sure?', :method => :delete
+	|
+	= link_to "View All", jobs_path

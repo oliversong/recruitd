@@ -1,0 +1,25 @@
+%p
+	%b Companies:
+	%ul
+		- @student_files_companies.each do |sf|
+			%li
+				= link_to sf.company.name, sf.company
+				%br
+					%b> Rating
+					\: #{sf.rating}
+					%br
+						%b> Starred
+						\: #{sf.starred ? "yes" : "no"}
+						
+%p
+	%b Jobs:
+	%ul
+		- @student_files_jobs.each do |sf|
+			%li
+				= link_to sf.job.title, sf.job
+				%br
+					%b> Rating
+					\: #{sf.rating}
+					%br
+						%b> Starred
+						\: #{sf.starred ? "yes" : "no"}

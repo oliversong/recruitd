@@ -1,0 +1,23 @@
+<p>
+  <b>User:</b>
+  <%= link_to @rep_transaction.person.name, @rep_transaction.person %>
+</p>
+
+<p>
+  <b>Rep change:</b>
+  <%=h @rep_transaction.rep_change %>
+</p>
+
+<p>
+  <b>Transaction type:</b>
+  <%=h @rep_transaction.transaction_type %>
+</p>
+
+<p>
+  <b>Reference:</b>
+  <%=h @rep_transaction.reference_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_rep_transaction_path(@rep_transaction) %> |
+<%= link_to 'Back', rep_transactions_path %>

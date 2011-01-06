@@ -1,0 +1,28 @@
+<p>
+  <b>Job:</b>
+  <%=h @job_student.job_id %>
+</p>
+
+<p>
+  <b>Student:</b>
+  <%=h @job_student.student_id %>
+</p>
+
+<p>
+  <b>Student follows job:</b>
+  <%=h @job_student.student_follows_job %>
+</p>
+
+<p>
+  <b>Job score:</b>
+  <%=h @job_student.job_score %>
+</p>
+
+<p>
+  <b>Job dismissed until:</b>
+  <%=h @job_student.job_dismissed_until %>
+</p>
+
+
+<%= link_to 'Edit', edit_job_student_path(@job_student) %> |
+<%= link_to 'Back', job_students_path %>

@@ -1,0 +1,99 @@
+:javascript
+	$(function() {
+			$( "#tags" ).autocomplete({
+				source: "/autocomplete_searches"
+			});
+		});
+
+%h2= h @student.person.name
+%h3= h @student.subtitle
+%p
+	%b Address:
+	= h address_block(@student)
+%p
+	%b Gpa:
+	= h @student.gpa
+%p
+	%b Hometown:
+	= h @student.hometown
+%p
+	%b Phone:
+	= h @student.phone
+%p
+	%b Gender is male:
+	= h @student.person.gender_is_male
+%p
+	%b Education:
+	%ul
+		- for school_map in @student.school_students
+			%li= school_block_for_student(school_map)
+%p
+	%b Relevant Coursework:
+	%ul
+		- for course in @student.courses
+			%li
+				= link_to course.name, course
+				%br
+		/ = text_field_with_auto_complete :course, :name, { :size => 15 }, { :url => formatted_categories_path(:js), :method => :get, :param_name => 'search' }
+		.ui-widget
+			- form_tag '/search', :method => 'get', :id => 'search_form', :class => 'search' do
+				%p
+					= text_field_tag :term, params[:term], :class => "auto_search_complete", :id => "tags"
+					= submit_tag "add", :name => nil, :class => 'button', :id => "add_btn"
+		
+%p
+	%b Experiences:
+	%ul
+		- for experience in @student.work_experiences
+			%li= work_experience_block(experience)
+		%li=link_to "Add an experience", new_experience_path
+%p
+	%b Activities and Leadership:
+	%ul
+		- for experience in @student.club_experiences
+			%li= club_experience_block(experience)
+		%li=link_to "Add an experience", new_experience_path
+%p
+	%b Awards:
+	%ul
+		- for award in @student.awards
+			%li
+				= link_to award.name, award.becomes(Term)
+				%br
+%p
+	%b Updates:
+	%ul
+		- for update in @updates
+			%li= print_update_block(update, :show_name => false)
+%p
+	%b Career Interests:
+	%ul
+		- for career in @student.careers
+			%li= career_block(career)
+%p
+	%b Other Interests:
+	%ul
+		- for interest in @student.interests
+			%li= interest_block(interest)
+%p
+	%b Fun facts:
+	= h @student.fun_facts
+= link_to 'Edit', edit_student_path(@student)
+|
+\#{link_to 'Back', students_path}
+
+%p
+	%b Company feeds:
+	%ul
+		- @student.student_feeds.each do |sf|
+			%li
+				- if(sf.company)
+					= link_to sf.company.name, sf.company
+				- else
+					= link_to sf.job.title, sf.job
+				%br
+					%b> Score
+					\: #{sf.score}
+					%br
+						%b> Dismissed until
+						\: #{sf.dismissed_until}

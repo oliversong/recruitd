@@ -1,0 +1,26 @@
+<h1>Listing rep_transactions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Rep change</th>
+    <th>Transaction type</th>
+    <th>Reference</th>
+  </tr>
+
+<% @rep_transactions.each do |rep_transaction| %>
+  <tr>
+    <td><%=h rep_transaction.person_id %></td>
+    <td><%=h rep_transaction.rep_change %></td>
+    <td><%=h rep_transaction.transaction_type %></td>
+    <td><%=h rep_transaction.reference_id %></td>
+    <td><%= link_to 'Show', rep_transaction %></td>
+    <td><%= link_to 'Edit', edit_rep_transaction_path(rep_transaction) %></td>
+    <td><%= link_to 'Destroy', rep_transaction, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New rep_transaction', new_rep_transaction_path %>

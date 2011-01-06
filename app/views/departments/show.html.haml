@@ -1,0 +1,21 @@
+- title @department.name
+
+%p
+	%strong School:
+	=link_to @department.school.name, @department.school
+%p
+	%strong Term:
+	=h @department.term_id
+%p
+	%strong Courses:
+	-@department.courses.each do |course|
+		%br
+		=link_to "#{course.abbrev} - #{course.name}", course
+
+
+%p
+	= link_to "Edit", edit_department_path(@department)
+	|
+	= link_to "Destroy", @department, :confirm => 'Are you sure?', :method => :delete
+	|
+	= link_to "View All", departments_path

@@ -1,0 +1,28 @@
+<h1>Listing job_students</h1>
+
+<table>
+  <tr>
+    <th>Job</th>
+    <th>Student</th>
+    <th>Student follows job</th>
+    <th>Job score</th>
+    <th>Job dismissed until</th>
+  </tr>
+
+<% @job_students.each do |job_student| %>
+  <tr>
+    <td><%=h job_student.job_id %></td>
+    <td><%=h job_student.student_id %></td>
+    <td><%=h job_student.student_follows_job %></td>
+    <td><%=h job_student.job_score %></td>
+    <td><%=h job_student.job_dismissed_until %></td>
+    <td><%= link_to 'Show', job_student %></td>
+    <td><%= link_to 'Edit', edit_job_student_path(job_student) %></td>
+    <td><%= link_to 'Destroy', job_student, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New job_student', new_job_student_path %>

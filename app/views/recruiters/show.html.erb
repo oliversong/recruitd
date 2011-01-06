@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @recruiter.person.name %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @recruiter.phone %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= link_to @recruiter.company.name, @recruiter.company %>
+</p>
+
+
+<%= link_to 'Edit', edit_recruiter_path(@recruiter) %> |
+<%= link_to 'Back', recruiters_path %>

@@ -1,0 +1,28 @@
+<h1>Editing tag_description</h1>
+
+<% form_for(@tag_description) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :person_id %><br />
+    <%= f.text_field :person_id %>
+  </p>
+  <p>
+    <%= f.label :term_id %><br />
+    <%= f.text_field :term_id %>
+  </p>
+  <p>
+    <%= f.label :update_of_tag_id %><br />
+    <%= f.text_field :update_of_tag_id %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tag_description %> |
+<%= link_to 'Back', tag_descriptions_path %>

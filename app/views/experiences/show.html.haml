@@ -1,0 +1,36 @@
+- title "Experience"
+
+%p
+  %strong Student:
+  =link_to @experience.student.name, @experience.student
+%p
+  %strong Startdate:
+  =h @experience.startdate
+%p
+  %strong Enddate:
+  =h @experience.enddate
+%p
+  %strong Job Title:
+  =h @experience.job_title
+%p
+  %strong Description:
+  =h @experience.description
+%p
+  %strong Location:
+  =h @experience.location
+%p
+  %strong Type:
+  =h @experience.type
+%p
+  %strong Company:
+  =h @experience.company_id
+%p
+  %strong Club:
+  =h @experience.club_id
+
+%p
+  = link_to "Edit", edit_experience_path(@experience)
+  |
+  = link_to "Destroy", @experience.becomes(Experience), :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", experiences_path

@@ -1,0 +1,20 @@
+- form_for @course_student do |f|
+  = f.error_messages
+  %p
+    = f.label :student_id
+    %br
+    = f.text_field :student_id
+  %p
+    = f.label :course_id
+    %br
+    = f.text_field :course_id
+  %p
+    = f.label :period_id
+    %br
+    = f.text_field :period_id
+  %p
+    = f.label :comments
+    %br
+    = f.text_area :comments
+  %p
+    = f.submit

@@ -1,0 +1,25 @@
+- title "Schools"
+
+%table
+  %tr
+    %th Name
+    %th Term
+    %th Address line1
+    %th Address line2
+    %th City
+    %th State
+    %th Zip
+  - for school in @schools
+    %tr
+      %td= h school.name
+      %td= h school.term_id
+      %td= h school.address_line1
+      %td= h school.address_line2
+      %td= h school.city
+      %td= h school.state
+      %td= h school.zip
+      %td= link_to 'Show', school
+      %td= link_to 'Edit', edit_school_path(school)
+      %td= link_to 'Destroy', school, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New School", new_school_path

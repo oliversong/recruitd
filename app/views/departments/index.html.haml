@@ -1,0 +1,17 @@
+- title "Departments"
+
+%table
+  %tr
+    %th Name
+    %th School
+    %th Term
+  - for department in @departments
+    %tr
+      %td= h department.name
+      %td= h department.school_id
+      %td= h department.term_id
+      %td= link_to 'Show', department
+      %td= link_to 'Edit', edit_department_path(department)
+      %td= link_to 'Destroy', department, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Department", new_department_path

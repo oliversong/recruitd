@@ -1,0 +1,6 @@
+MIT	Cambridge	MA
+Princeton University	Princeton	NJ
+Stanford University	Stanford	CA
+Harvard College	Cambridge	MA
+Boston University	Boston	MA
+Boston College	Boston	MA

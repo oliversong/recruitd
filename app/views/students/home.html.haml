@@ -1,0 +1,47 @@
+%h1 #{current_person.name}'s home
+
+%h2 Recommended to you
+
+(mix of jobs to apply for, companies to research, and tasks to complete)
+
+%h3 Companies
+
+- current_person.student.company_students.each do |cs|
+	.company
+		= link_to cs.company.name, cs.company
+		(score: #{cs.company_score})
+		%br
+
+
+%h3 Jobs
+
+- current_person.student.job_students.each do |js|
+	.job
+		= link_to "#{js.job.title} at #{js.job.company.name}" , js.job
+		(score: #{js.job_score})
+		%br
+
+%h3 Tasks
+
+- current_person.all_tasks.each do |task|
+	.task
+		%b= task.name
+		%br
+		=task.text
+		%br 
+		%br
+
+%h2 Reputation score
+
+%h3 All-time: #{current_person.rep_alltime}
+%h3 This month: #{current_person.rep_month}
+
+= link_to "Reputation log", :person
+
+%h2 Updates
+
+- current_person.all_updates.each do |update|
+	.update
+		= update_block(update,:show_name => true)
+		%br
+		%br

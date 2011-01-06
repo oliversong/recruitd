@@ -1,0 +1,26 @@
+<h1>Listing tag_descriptions</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Term</th>
+    <th>Update of tag</th>
+    <th>Description</th>
+  </tr>
+
+<% @tag_descriptions.each do |tag_description| %>
+  <tr>
+    <td><%=h tag_description.person_id %></td>
+    <td><%=h tag_description.tag_id %></td>
+    <td><%=h tag_description.update_of_tag_id %></td>
+    <td><%=h tag_description.description %></td>
+    <td><%= link_to 'Show', tag_description %></td>
+    <td><%= link_to 'Edit', edit_tag_description_path(tag_description) %></td>
+    <td><%= link_to 'Destroy', tag_description, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New tag_description', new_tag_description_path %>

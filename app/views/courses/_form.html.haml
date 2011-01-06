@@ -1,0 +1,40 @@
+- form_for @course do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :abbrev
+    %br
+    = f.text_field :abbrev
+  %p
+    = f.label :department_id
+    %br
+    = f.text_field :department_id
+  %p
+    = f.label :description
+    %br
+    = f.text_field :description
+  %p
+    = f.label :term_id
+    %br
+    = f.text_field :term_id
+  %p
+    = f.label :difficulty_sum_cache
+    %br
+    = f.text_field :difficulty_sum_cache
+  %p
+    = f.label :difficulty_count_cache
+    %br
+    = f.text_field :difficulty_count_cache
+  %p
+    = f.label :usefulness_sum_cache
+    %br
+    = f.text_field :usefulness_sum_cache
+  %p
+    = f.label :usefulness_count_cache
+    %br
+    = f.text_field :usefulness_count_cache
+  %p
+    = f.submit

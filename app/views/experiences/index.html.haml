@@ -1,0 +1,29 @@
+- title "Experiences"
+
+%table
+  %tr
+    %th Student
+    %th Startdate
+    %th Enddate
+    %th Job title
+    %th Description
+    %th Location
+    %th Type
+    %th Company
+    %th Club
+  - for experience in @experiences
+    %tr
+      %td= h experience.student_id
+      %td= h experience.startdate
+      %td= h experience.enddate
+      %td= h experience.job_title
+      %td= h experience.description
+      %td= h experience.location
+      %td= h experience.type
+      %td= h experience.company_id
+      %td= h experience.club_id
+      %td= link_to 'Show', experience
+      %td= link_to 'Edit', edit_experience_path(experience)
+      %td= link_to 'Destroy', experience, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Experience", new_experience_path

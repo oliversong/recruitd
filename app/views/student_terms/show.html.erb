@@ -1,0 +1,18 @@
+<p>
+  <b>Details:</b>
+  <%=h @student_term.details %>
+</p>
+
+<p>
+  <b>Student:</b>
+  <%=h @student_term.student_id %>
+</p>
+
+<p>
+  <b>Term:</b>
+  <%=h @student_term.term_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_student_term_path(@student_term) %> |
+<%= link_to 'Back', student_terms_path %>

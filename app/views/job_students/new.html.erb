@@ -1,0 +1,31 @@
+<h1>New job_student</h1>
+
+<% form_for(@job_student) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :job_id %><br />
+    <%= f.text_field :job_id %>
+  </p>
+  <p>
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id %>
+  </p>
+  <p>
+    <%= f.label :student_follows_job %><br />
+    <%= f.check_box :student_follows_job %>
+  </p>
+  <p>
+    <%= f.label :job_score %><br />
+    <%= f.text_field :job_score %>
+  </p>
+  <p>
+    <%= f.label :job_dismissed_until %><br />
+    <%= f.datetime_select :job_dismissed_until %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', job_students_path %>

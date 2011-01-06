@@ -1,0 +1,29 @@
+- title "Courses"
+
+%table
+  %tr
+    %th Name
+    %th Abbrev
+    %th Department
+    %th Description
+    %th Term
+    %th Difficulty sum cache
+    %th Difficulty count cache
+    %th Usefulness sum cache
+    %th Usefulness count cache
+  - for course in @courses
+    %tr
+      %td= h course.name
+      %td= h course.abbrev
+      %td= h course.department_id
+      %td= h course.description
+      %td= h course.term_id
+      %td= h course.difficulty_sum_cache
+      %td= h course.difficulty_count_cache
+      %td= h course.usefulness_sum_cache
+      %td= h course.usefulness_count_cache
+      %td= link_to 'Show', course
+      %td= link_to 'Edit', edit_course_path(course)
+      %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Course", new_course_path

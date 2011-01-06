@@ -1,0 +1,28 @@
+<p>
+  <b>School:</b>
+  <%=h @school_student.school_id %>
+</p>
+
+<p>
+  <b>Student:</b>
+  <%=h @school_student.student_id %>
+</p>
+
+<p>
+  <b>Startdate:</b>
+  <%=h @school_student.startdate %>
+</p>
+
+<p>
+  <b>Enddate:</b>
+  <%=h @school_student.enddate %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%=h @school_student.details %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_student_path(@school_student) %> |
+<%= link_to 'Back', school_students_path %>

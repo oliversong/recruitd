@@ -1,0 +1,34 @@
+<h1>Listing company_students</h1>
+
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Student</th>
+    <th>Comments</th>
+    <th>Student follows company</th>
+    <th>Company follows student</th>
+    <th>Recruiter id for follow</th>
+    <th>Student score</th>
+    <th>Student dismissed until</th>
+  </tr>
+
+<% @company_students.each do |company_student| %>
+  <tr>
+    <td><%=h company_student.company_id %></td>
+    <td><%=h company_student.student_id %></td>
+    <td><%=h company_student.comments %></td>
+    <td><%=h company_student.student_follows_company %></td>
+    <td><%=h company_student.company_follows_student %></td>
+    <td><%=h company_student.recruiter_id_for_follow %></td>
+    <td><%=h company_student.student_score %></td>
+    <td><%=h company_student.student_dismissed_until %></td>
+    <td><%= link_to 'Show', company_student %></td>
+    <td><%= link_to 'Edit', edit_company_student_path(company_student) %></td>
+    <td><%= link_to 'Destroy', company_student, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New company_student', new_company_student_path %>

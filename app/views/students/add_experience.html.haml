@@ -1,0 +1,31 @@
+%h1 Add an experience
+- form_for(@work_experience) do |f|
+	= f.error_messages
+	%p
+		= f.label :gpa
+		%br/
+		= f.text_field :gpa
+	%p
+		= f.label :hometown
+		%br/
+		= f.text_field :hometown
+	%p
+		= f.label :subtitle
+		%br/
+		= f.text_field :subtitle
+	%p
+		= f.label :phone
+		%br/
+		= f.text_field :phone
+	%p
+		= f.label :fun_facts
+		%br/
+		= f.text_area :fun_facts
+	%p
+		= f.submit 'Update'
+
+%p
+	Last updated at #{@student.updated_at.to_s}
+= link_to 'Show', @student
+|
+\#{link_to 'View All', students_path}

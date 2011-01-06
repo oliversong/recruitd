@@ -1,0 +1,19 @@
+- title "Course Students"
+
+%table
+  %tr
+    %th Student
+    %th Course
+    %th Period
+    %th Comments
+  - for course_student in @course_students
+    %tr
+      %td= h course_student.student_id
+      %td= h course_student.course_id
+      %td= h course_student.period_id
+      %td= h course_student.comments
+      %td= link_to 'Show', course_student
+      %td= link_to 'Edit', edit_course_student_path(course_student)
+      %td= link_to 'Destroy', course_student, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Course Student", new_course_student_path

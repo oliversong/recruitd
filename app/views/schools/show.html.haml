@@ -1,0 +1,30 @@
+- title "School"
+
+%p
+  %strong Name:
+  =h @school.name
+%p
+  %strong Term:
+  =h @school.term_id
+%p
+  %strong Address Line1:
+  =h @school.address_line1
+%p
+  %strong Address Line2:
+  =h @school.address_line2
+%p
+  %strong City:
+  =h @school.address_city
+%p
+  %strong State:
+  =h @school.address_state
+%p
+  %strong Zip:
+  =h @school.address_zip
+
+%p
+  = link_to "Edit", edit_school_path(@school)
+  |
+  = link_to "Destroy", @school, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", schools_path

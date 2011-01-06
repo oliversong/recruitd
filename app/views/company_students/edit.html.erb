@@ -1,0 +1,44 @@
+<h1>Editing company_student</h1>
+
+<% form_for(@company_student) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :company_id %><br />
+    <%= f.text_field :company_id %>
+  </p>
+  <p>
+    <%= f.label :student_id %><br />
+    <%= f.text_field :student_id %>
+  </p>
+  <p>
+    <%= f.label :comments %><br />
+    <%= f.text_area :comments %>
+  </p>
+  <p>
+    <%= f.label :student_follows_company %><br />
+    <%= f.check_box :student_follows_company %>
+  </p>
+  <p>
+    <%= f.label :company_follows_student %><br />
+    <%= f.check_box :company_follows_student %>
+  </p>
+  <p>
+    <%= f.label :recruiter_id_for_follow %><br />
+    <%= f.text_field :recruiter_id_for_follow %>
+  </p>
+  <p>
+    <%= f.label :student_score %><br />
+    <%= f.text_field :student_score %>
+  </p>
+  <p>
+    <%= f.label :student_dismissed_until %><br />
+    <%= f.datetime_select :student_dismissed_until %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @company_student %> |
+<%= link_to 'Back', company_students_path %>
