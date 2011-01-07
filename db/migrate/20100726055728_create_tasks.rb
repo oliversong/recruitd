@@ -6,7 +6,7 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :reference_id
       t.integer :reference_type
       t.boolean :is_reused
-      t.integer :person_id
+      t.integer :user_id
 
       t.timestamps
     end

@@ -4,7 +4,7 @@ class CreateCompanyTerms < ActiveRecord::Migration
       t.integer :company_id
       t.integer :term_id
       t.integer :weight
-      t.integer :last_updated_by_person_id
+      t.integer :last_updated_by_user_id
       t.text :notes
 
       t.timestamps

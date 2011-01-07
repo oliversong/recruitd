@@ -5,7 +5,7 @@
 			});
 		});
 
-%h2= h @student.person.name
+%h2= h @student.user.name
 %h3= h @student.subtitle
 %p
 	%b Address:
@@ -21,7 +21,7 @@
 	= h @student.phone
 %p
 	%b Gender is male:
-	= h @student.person.gender_is_male
+	= h @student.user.gender_is_male
 %p
 	%b Education:
 	%ul

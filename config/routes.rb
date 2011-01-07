@@ -1,5 +1,55 @@
-OmniauthDeviseExample::Application.routes.draw do
-  resources :monkeys
+Recruitd::Application.routes.draw do
+  resources :monkeys #TODO remove
+  
+  resources :experiences
+
+
+  resources :autocomplete_searches, :only => [:club_names, :course_names]
+  
+  resources :jobs
+  resources :careers
+  resources :awards
+  resources :schools
+  
+  resources :departments
+
+  resources :course_students
+
+  resources :courses
+
+  resources :clubs
+
+  resources :rep_transactions
+  resources :tasks
+  resources :clubs
+  resources :followings
+  resources :job_students
+  resources :company_students
+  resources :updates
+  resources :school_students
+  resources :student_terms
+  resources :experiences
+  resources :term_descriptions
+  resources :terms    
+  resources :recruiters
+  
+  resources :companies do
+    member do 
+      put 'rate'
+    end
+  end
+  
+  resources :students do
+    collection do
+      get 'home'
+      get 'auto_complete_for_course_name'
+      get 'my_companies'
+    end
+  end
+  
+  
+  resources :categories
+  
 
   #devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }

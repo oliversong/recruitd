@@ -4,7 +4,7 @@ class CreateClubs < ActiveRecord::Migration
       t.integer :term_id
       t.string :name
       t.text :description
-      t.integer :added_by_person_id
+      t.integer :added_by_user_id
 
       t.timestamps
     end

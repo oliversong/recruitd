@@ -8,7 +8,7 @@ class PeopleController < ApplicationController
   before_filter :setup
   
   def index
-    @people = Person.mostly_active(params[:page])
+    @users = User.mostly_active(params[:page])
 
     respond_to do |format|
       format.html
@@ -16,22 +16,22 @@ class PeopleController < ApplicationController
   end
   
   def show
-    @person = Person.find(params[:id])
-    unless @person.active? or current_person.admin?
-      flash[:error] = "That person is not active"
+    @user = User.find(params[:id])
+    unless @user.active? or current_user.admin?
+      flash[:error] = "That user is not active"
       redirect_to home_url and return
     end
     if logged_in?
-      @some_contacts = @person.some_contacts
+      @some_contacts = @user.some_contacts
       page = params[:page]
-      @common_contacts = current_person.common_contacts_with(@person,
+      @common_contacts = current_user.common_contacts_with(@user,
                                                              :page => page)
       # Use the same max number as in basic contacts list.
-      num_contacts = Person::MAX_DEFAULT_CONTACTS
+      num_contacts = User::MAX_DEFAULT_CONTACTS
       @some_common_contacts = @common_contacts[0...num_contacts]
-      @blog = @person.blog
-      @posts = @person.blog.posts.paginate(:page => params[:page])
-      @galleries = @person.galleries.paginate(:page => params[:page])
+      @blog = @user.blog
+      @posts = @user.blog.posts.paginate(:page => params[:page])
+      @galleries = @user.galleries.paginate(:page => params[:page])
     end
     respond_to do |format|
       format.html
@@ -40,7 +40,7 @@ class PeopleController < ApplicationController
 
   def new
     @body = "register single-col"
-    @person = Person.new
+    @user = User.new
 
     respond_to do |format|
       format.html
@@ -49,29 +49,29 @@ class PeopleController < ApplicationController
 
   def create
     cookies.delete :auth_token
-    @person = Person.new(params[:person])
+    @user = User.new(params[:user])
     respond_to do |format|
-      @person.email_verified = false if global_prefs.email_verifications?
-      @person.identity_url = session[:verified_identity_url]
-      @person.save
-      if @person.errors.empty?
+      @user.email_verified = false if global_prefs.email_verifications?
+      @user.identity_url = session[:verified_identity_url]
+      @user.save
+      if @user.errors.empty?
         session[:verified_identity_url] = nil
         if global_prefs.email_verifications?
-          @person.email_verifications.create
+          @user.email_verifications.create
           flash[:notice] = %(Thanks for signing up! Check your email
                              to activate your account.)
           format.html { redirect_to(home_url) }
         else
-          self.current_person = @person
+          self.current_user = @user
           flash[:notice] = "Thanks for signing up!"
           format.html { redirect_back_or_default(home_url) }
         end
       else
         @body = "register single-col"
-        format.html { if @person.identity_url.blank? 
+        format.html { if @user.identity_url.blank? 
                         render :action => 'new'
                       else
-                        render :partial => "shared/personal_details.html.erb", :object => @person, :layout => 'application'
+                        render :partial => "shared/useral_details.html.erb", :object => @user, :layout => 'application'
                       end
                     }
       end
@@ -94,16 +94,16 @@ class PeopleController < ApplicationController
       redirect_to home_url
     else
       cookies.delete :auth_token
-      person = verification.person
-      person.email_verified = true; person.save!
-      self.current_person = person
+      user = verification.user
+      user.email_verified = true; user.save!
+      self.current_user = user
       flash[:success] = "Email verified. Your profile is active!"
-      redirect_to person
+      redirect_to user
     end
   end
 
   def edit
-    @person = Person.find(params[:id])
+    @user = User.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -111,23 +111,23 @@ class PeopleController < ApplicationController
   end
 
   def update
-    @person = Person.find(params[:id])
+    @user = User.find(params[:id])
     respond_to do |format|
       case params[:type]
       when 'info_edit'
-        if !preview? and @person.update_attributes(params[:person])
+        if !preview? and @user.update_attributes(params[:user])
           flash[:success] = 'Profile updated!'
-          format.html { redirect_to(@person) }
+          format.html { redirect_to(@user) }
         else
           if preview?
-            @preview = @person.description = params[:person][:description]
+            @preview = @user.description = params[:user][:description]
           end
           format.html { render :action => "edit" }
         end
       when 'password_edit'
-        if @person.change_password?(params[:person])
+        if @user.change_password?(params[:user])
           flash[:success] = 'Password changed.'
-          format.html { redirect_to(@person) }
+          format.html { redirect_to(@user) }
         else
           format.html { render :action => "edit" }
         end
@@ -136,8 +136,8 @@ class PeopleController < ApplicationController
   end
   
   def common_contacts
-    @person = Person.find(params[:id])
-    @common_contacts = @person.common_contacts_with(current_person,
+    @user = User.find(params[:id])
+    @common_contacts = @user.common_contacts_with(current_user,
                                                     :page => params[:page])
     respond_to do |format|
       format.html
@@ -147,11 +147,11 @@ class PeopleController < ApplicationController
   private
 
     def setup
-      @body = "person"
+      @body = "user"
     end
   
     def correct_user_required
-      redirect_to home_url unless Person.find(params[:id]) == current_person
+      redirect_to home_url unless User.find(params[:id]) == current_user
     end
     
     def preview?

@@ -14,9 +14,9 @@ class CompaniesController < ApplicationController
   end
   
   def rate
-    @student = current_person.student
+    @student = current_user.student
     @company = Company.find(params[:id])
-    student_file = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    student_file = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
     student_file.update_attributes(params[:student_file_student_file_company])
     redirect_to :action => :show, :id => @company
   end
@@ -25,8 +25,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1.xml
   def show
     @company = Company.find(params[:id])
-    @student = current_person.student
-    @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    @student = current_user.student
+    @student_file_company = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
 
     respond_to do |format|
       format.html # show.html.erb

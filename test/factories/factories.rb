@@ -1,6 +1,6 @@
 ###### SEQUENCES ######
 
-FACTORY_DATA_DIRECTORY = File.join(RAILS_ROOT, "test", "factories", "data")
+FACTORY_DATA_DIRECTORY = File.join(::Rails.root.to_s, "test", "factories", "data")
 
 LIPSUM_FULL = File.open(File.join(FACTORY_DATA_DIRECTORY, "lipsum.txt")).read
 
@@ -81,7 +81,7 @@ end
 ###### DEFINITIONS ######
 
 
-Factory.define :person do |p|
+Factory.define :user do |p|
   gender = (rand(2) == 1)
   p.gender_is_male gender
   p.first_name do
@@ -107,28 +107,27 @@ Factory.define :person do |p|
   # names.each_with_index do |name, i|
   # name.strip!
   # #full_name = "#{name} #{last_names.pick.capitalize}"
-  # person = Person.create!(:email => "#{name.downcase}@example.com",
+  # user = User.create!(:email => "#{name.downcase}@example.com",
   #                         :password => password, 
   #                         :password_confirmation => password,
   #                         :first_name => name,
   #                         :middle_name => "D",
   #                         :last_name => last_names.pick.capitalize,
   #                         :description => @lipsum)
-  # person.last_logged_in_at = Time.now
-  # person.save
-  # gallery = Gallery.unsafe_create(:person => person, :title => 'Primary',
+  # user.last_logged_in_at = Time.now
+  # user.save
+  # gallery = Gallery.unsafe_create(:user => user, :title => 'Primary',
   #                                 :description => 'My first gallery')
   # 
-  # Photo.unsafe_create!(:uploaded_data => photo, :person => person,
+  # Photo.unsafe_create!(:uploaded_data => photo, :user => user,
   #                      :primary => true, :avatar => true,
   #                      :gallery => gallery)
   # 
-  p.admin false
 end
 
 Factory.define :photo do |f|
   f.association :gallery
-  f.association :person
+  f.association :user
   f.primary true
   f.avatar true
   f.uploaded_data do 
@@ -137,16 +136,16 @@ Factory.define :photo do |f|
   end
 end
 
-# This will use the User class (Admin would have been guessed)
-Factory.define :admin, :class => Person do |p|
-  p.first_name 'Admin'
-  p.last_name  'User'
-  p.admin true
-end
+# # This will use the User class (Admin would have been guessed)
+# Factory.define :admin, :class => user do |p|
+#   p.first_name 'Admin'
+#   p.last_name  'User'
+#   p.admin true
+# end
 
 Factory.define :company do |f|
   f.name { "#{Factory.next(:company_name).capitalize} Technologies"}
-  f.person { |u| Factory.create(:person, :last_name => u.name) }
+  f.user { |u| Factory.create(:user, :last_name => u.name) }
   
 end
 
@@ -184,8 +183,8 @@ Factory.define :student do |f|
   #   f.default_schools.sort_by{rand}.slice(0...rand(3))
   # end
   
-  f.person do |s|
-    Factory(:person, :entity_type => "Student") #TODO: fix entity_id => s.id
+  f.user do |s|
+    Factory(:user, :entity_type => "Student") #TODO: fix entity_id => s.id
   end
   #f.hometown "Boston, MA"
   f.gpa { rand(500)/100.0 }
@@ -313,7 +312,7 @@ Factory.define :career_student do |f|
   f.career { Career.all.count > 0 ? Career.all.sort_by{rand}.first : Factory.create(:career) }
 end
 
-Factory.define :interest, :class => Term::Interest do |f|
+Factory.define :interest, :class => "Term::Interest" do |f|
   f.name {"#{Factory.next(:lipsum_word)}ing"}
 end
 
@@ -323,7 +322,7 @@ Factory.define :student_term do |f|
   f.type "None"
 end
 
-Factory.define :student_award, :class => StudentTerm::StudentAward do |f|
+Factory.define :student_award, :class => :student_award do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.term { Award.all.count > 0 ? Award.all.sort_by{rand}.first : Factory.create(:award) }
   f.type "StudentAward"
@@ -345,11 +344,11 @@ end
 Factory.define :recruiter do |f|
   f.phone { rand(9999999999) }
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
-  f.person { Factory.create(:person) }
+  f.user { Factory.create(:user) }
 end
 
 Factory.define :update do |f|
-  f.person { Person.all.count > 0 ? Person.all.sort_by{rand}.first : Factory.create(:person) }
+  f.user { User.all.count > 0 ? User.all.sort_by{rand}.first : Factory.create(:user) }
   f.text LIPSUM_FULL
 end
 
@@ -367,7 +366,7 @@ Factory.define :company_feed do |f|
   f.score { rand(100) + 1 }
 end
 
-Factory.define :student_file_company, :class => StudentFile::StudentFileCompany do |f|
+Factory.define :student_file_company do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
   f.notes LIPSUM_FULL
@@ -375,7 +374,7 @@ Factory.define :student_file_company, :class => StudentFile::StudentFileCompany 
   f.starred { (rand > 0.5) }
 end
 
-Factory.define :student_file_job, :class => StudentFile::StudentFileJob do |f|
+Factory.define :student_file_job do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.job { Job.all.count > 0 ? Job.all.sort_by{rand}.first : Factory.create(:job) }
   f.notes LIPSUM_FULL
@@ -393,12 +392,12 @@ Factory.define :company_term do |f|
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
   f.term { Term.all.count > 0 ? Term.all.sort_by{rand}.first : Factory.create(:term) }
   f.weight { rand(100) + 1 }
-  f.last_updated_by_person_id do |s|
+  f.last_updated_by_user_id do |s|
     if (s.company.recruiters.count > 0)
-      i = s.company.recruiters.first.person_id
+      i = s.company.recruiters.first.user_id
     else 
       r = Factory.create(:recruiter, :company => s.company)
-      i = r.person_id
+      i = r.user_id
     end
     i
   end

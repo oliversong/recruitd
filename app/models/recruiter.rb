@@ -1,8 +1,8 @@
 class Recruiter < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :user
   belongs_to :company
   
   def name
-    return person.name
+    return user.name
   end
 end

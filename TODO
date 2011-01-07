@@ -1,0 +1,35 @@
+PROCESS: pick one and work on it, try to divide into very concrete substeps
+
+student factory: set person equal to student
+company listing
+	make update of rating submit to companies/1/rating instead of to student_files
+job listing
+	same as company listing
+improve recommendation list for students
+improve recommendation list for companies
+clean interface for adding experiences, etc.
+preferences for companies
+engine for updating recommendations based on preferences
+twitter-like update timeline
+mechanism for applying to jobs
+messaging system
+	maybe set up email addresses
+when logged in as recruiter, should be able to find company easily
+
+
+students view
+	view/edit my resume
+	view my companies and jobs (already selected)
+	view recommended companies and jobs
+companies (recruiters) view
+	view students' resumes
+	view my students (already selected)
+	view recommended students
+	view/edit preferences (weights)
+both
+	view company information
+	view course/activity information
+	
+	
+mina hsiang (general catalyst)
+	don't distract from initial goal; give them an action item (explain exactly what you need to do)

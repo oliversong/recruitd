@@ -9,9 +9,9 @@
     </ul>
     <p class="welcome">
       <%- if logged_in? -%>
-        Welcome, <%= h current_person.name %>!
+        Welcome, <%= h current_user.name %>!
         (<%= link_to "Sign out", logout_path %>)
-        <%- if current_person.admin? -%>
+        <%- if current_user.admin? -%>
           <br />
           <%- if admin_view? -%>
             <%= link_to("Standard view", home_path) %>

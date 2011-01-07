@@ -1,3 +1,6 @@
+require 'factory_girl'
+require File.expand_path("test/factories/factories.rb")
+
 namespace :db do
   namespace :data do 
   
@@ -23,8 +26,9 @@ namespace :db do
     
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
-      create_student_files_and_feeds
-      create_company_terms
+      create_interests
+      #create_student_files_and_feeds
+      #create_company_terms
       
       puts "Completed adding new sample data"
     end
@@ -43,11 +47,11 @@ end
 
 def create_companies
   jpm = Factory(:company, :name => "JPMorgan")
-  jpm.person.entity = jpm
-  jpm.person.save
+  jpm.user.entity = jpm
+  jpm.user.save
   gs = Factory(:company, :name => "Goldman Sachs")
-  gs.person.entity = gs
-  gs.person.save
+  gs.user.entity = gs
+  gs.user.save
   puts "Created factory companies"
 end
 
@@ -57,20 +61,20 @@ def create_students
                   :hometown => "Bellevue, WA",
                   :subtitle => "MIT student who loves to study.",
                   :phone => 6172532226,
-                  :person => Factory(:person, :first_name => "Alice", :last_name => "Carroll", :gender_is_male => false)
+                  :user => Factory(:user, :first_name => "Alice", :last_name => "Carroll", :gender_is_male => false)
                   )
-  alice.person.entity = alice
-  alice.person.save
+  alice.user.entity = alice
+  alice.user.save
 
   bob = Factory(:student, 
                 :gpa => 3.6, 
                 :hometown => "Houston, TX",
                 :subtitle => "UNIX hacker and nightowl",
                 :phone => 6172532223,
-                :person => Factory(:person, :first_name => "Bob", :last_name => "Smith", :gender_is_male => true)
+                :user => Factory(:user, :first_name => "Bob", :last_name => "Smith", :gender_is_male => true)
                 )
-  bob.person.entity = bob
-  bob.person.save
+  bob.user.entity = bob
+  bob.user.save
   
   puts "Created factory students"
 end
@@ -156,7 +160,7 @@ def create_interests
   end
   
   Student.all.each do |student|
-    Interest.all.sort_by{rand}[0..2].each do |interest|
+    Term::Interest.all.sort_by{rand}[0..2].each do |interest|
       Factory(:student_term, :student => student, :term => interest, :type => "StudentInterest")
     end
   end
@@ -180,8 +184,8 @@ def create_recruiters
   Company.all.each do |company|
     2.times do
       r = Factory(:recruiter, :company => company)
-      r.person.entity = r
-      r.person.save
+      r.user.entity = r
+      r.user.save
     end
   end
 end
@@ -189,13 +193,13 @@ end
 def create_updates
   Student.all.each do |student|
     3.times do
-      Factory(:update, :person => student.person)
+      Factory(:update, :user => student.user)
     end
   end
   
   Company.all.each do |company|
     3.times do
-      Factory(:update, :person => company.person)
+      Factory(:update, :user => company.user)
     end
   end
 end

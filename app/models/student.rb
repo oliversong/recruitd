@@ -1,9 +1,10 @@
 require_dependency 'experience'
 require_dependency 'term'
 require_dependency 'student_term'
+require_dependency 'student_file'
 
 class Student < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :user
   has_many :experiences
   
   has_many :work_experiences
@@ -49,7 +50,7 @@ class Student < ActiveRecord::Base
   end
   
   def name
-    return person.name
+    return user.name
   end
   
   

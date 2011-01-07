@@ -5,12 +5,12 @@ class JobsController < ApplicationController
   
   def show
     @job = Job.find(params[:id])
-    @student = current_person.student
+    @student = current_user.student
     @student_file_job = StudentFile.find_or_initialize_by_student_id_and_job_id(@student.id, @job.id)
   end
   
   def rate
-    @student = current_person.student
+    @student = current_user.student
     student_file = StudentFile::StudentFileJob.find_or_initialize_by_student_id_and_job_id(@student.id, params[:id])
     student_file.update_attributes(params[:student_file_student_file_job])
     redirect_to :action => :show, :id => params[:id]

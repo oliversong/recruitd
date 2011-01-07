@@ -10,10 +10,10 @@
 
 <% @recruiters.each do |recruiter| %>
   <tr>
-		<td><%= link_to recruiter.person.name, recruiter %></td>
+		<td><%= link_to recruiter.user.name, recruiter %></td>
     <td><%=h recruiter.phone %></td>
     <td><%=h link_to recruiter.company.name, recruiter.company %></td>
-    <td><%=h recruiter.person_id %></td>
+    <td><%=h recruiter.user_id %></td>
     <td><%= link_to 'Edit', edit_recruiter_path(recruiter) %></td>
     <td><%= link_to 'Destroy', recruiter, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

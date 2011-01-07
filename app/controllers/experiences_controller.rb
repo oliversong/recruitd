@@ -10,7 +10,7 @@ class ExperiencesController < ApplicationController
   end
   
   def new
-    @student = current_person.student
+    @student = current_user.student
     @experience = Experience.new
   end
   
@@ -31,7 +31,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = ClubExperience.new(params[:experience])
-      @experience.student_id = current_person.student.id
+      @experience.student_id = current_user.student.id
       @experience.club = @club
     else
       
@@ -45,7 +45,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = WorkExperience.new(params[:experience])
-      @experience.student_id = current_person.student.id
+      @experience.student_id = current_user.student.id
       @experience.company = @company
     end
     

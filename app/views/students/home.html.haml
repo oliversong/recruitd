@@ -1,4 +1,4 @@
-%h1 #{current_person.name}'s home
+%h1 #{current_user.name}'s home
 
 %h2 Recommended to you
 
@@ -6,7 +6,7 @@
 
 %h3 Companies
 
-- current_person.student.company_students.each do |cs|
+- current_user.student.company_students.each do |cs|
 	.company
 		= link_to cs.company.name, cs.company
 		(score: #{cs.company_score})
@@ -15,7 +15,7 @@
 
 %h3 Jobs
 
-- current_person.student.job_students.each do |js|
+- current_user.student.job_students.each do |js|
 	.job
 		= link_to "#{js.job.title} at #{js.job.company.name}" , js.job
 		(score: #{js.job_score})
@@ -23,7 +23,7 @@
 
 %h3 Tasks
 
-- current_person.all_tasks.each do |task|
+- current_user.all_tasks.each do |task|
 	.task
 		%b= task.name
 		%br
@@ -33,14 +33,14 @@
 
 %h2 Reputation score
 
-%h3 All-time: #{current_person.rep_alltime}
-%h3 This month: #{current_person.rep_month}
+%h3 All-time: #{current_user.rep_alltime}
+%h3 This month: #{current_user.rep_month}
 
-= link_to "Reputation log", :person
+= link_to "Reputation log", :user
 
 %h2 Updates
 
-- current_person.all_updates.each do |update|
+- current_user.all_updates.each do |update|
 	.update
 		= update_block(update,:show_name => true)
 		%br

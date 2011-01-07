@@ -1,5 +1,5 @@
 class Company < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :user
   has_many :jobs
   has_many :recruiters
   has_many :company_files

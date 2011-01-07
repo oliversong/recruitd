@@ -4,8 +4,8 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :person_id %><br />
-    <%= f.collection_select(:person_id, User.all, :id, :name, {:prompt => true})%>
+    <%= f.label :user_id %><br />
+    <%= f.collection_select(:user_id, User.all, :id, :name, {:prompt => true})%>
   </p>
   <p>
     <%= f.label :rep_change %><br />

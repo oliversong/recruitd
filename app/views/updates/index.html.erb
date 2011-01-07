@@ -8,7 +8,7 @@
 
 <% @updates.each do |update| %>
   <tr>
-    <td><%=h update.person.name %></td>
+    <td><%=h update.user.name %></td>
     <td><%=h update.text %></td>
     <td><%= link_to 'Show', update %></td>
     <td><%= link_to 'Edit', edit_update_path(update) %></td>

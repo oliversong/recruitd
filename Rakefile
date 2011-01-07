@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-OmniauthDeviseExample::Application.load_tasks
+Recruitd::Application.load_tasks

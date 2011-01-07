@@ -2,16 +2,16 @@ module ActivitiesHelper
 
   # Given an activity, return a message for the feed for the activity's class.
   def feed_message(activity, recent = false)
-    person = activity.person
+    user = activity.user
     case activity_type(activity)
     when "BlogPost"
       post = activity.item
       blog = post.blog
-      view_blog = blog_link("#{h person.name}'s blog", blog)
+      view_blog = blog_link("#{h user.name}'s blog", blog)
       if recent
         %(new blog post  #{post_link(blog, post)})
       else
-        %(#{person_link_with_image(person)} posted
+        %(#{user_link_with_image(user)} posted
           #{post_link(blog, post)} &mdash; #{view_blog})
       end
     when "Comment"
@@ -22,18 +22,18 @@ module ActivitiesHelper
         post = activity.item.commentable
         blog = post.blog
         if recent
-          %(made a comment to #{someones(blog.person, person)} blog post
+          %(made a comment to #{someones(blog.user, user)} blog post
             #{post_link(blog, post)})
         else
-          %(#{person_link_with_image(person)} made a comment to
-            #{someones(blog.person, person)} blog post
+          %(#{user_link_with_image(user)} made a comment to
+            #{someones(blog.user, user)} blog post
             #{post_link(blog, post)})
         end
-      when "Person"
+      when "User"
         if recent
           %(commented on #{wall(activity)})
         else
-          %(#{person_link_with_image(activity.item.commenter)}
+          %(#{user_link_with_image(activity.item.commenter)}
             commented on #{wall(activity)})
         end
       end
@@ -41,23 +41,23 @@ module ActivitiesHelper
       # TODO: make recent/long versions for this
       event = activity.item.commentable
       commenter = activity.item.commenter
-      %(#{person_link_with_image(commenter)} commented on 
-        #{someones(event.person, commenter)} event: 
+      %(#{user_link_with_image(commenter)} commented on 
+        #{someones(event.user, commenter)} event: 
         #{event_link(event.title, event)}.)
     when "Connection"
       if activity.item.contact.admin?
         if recent
           %(joined the system)
         else
-          %(#{person_link_with_image(activity.item.person)}
+          %(#{user_link_with_image(activity.item.user)}
             has joined the system)
         end
       else
         if recent
-          %(connected with #{person_link_with_image(activity.item.contact)})
+          %(connected with #{user_link_with_image(activity.item.contact)})
         else
-          %(#{person_link_with_image(activity.item.person)} and
-            #{person_link_with_image(activity.item.contact)} have connected)
+          %(#{user_link_with_image(activity.item.user)} and
+            #{user_link_with_image(activity.item.contact)} have connected)
         end
       end
     when "ForumPost"
@@ -65,27 +65,27 @@ module ActivitiesHelper
       if recent
         %(new post to forum topic #{topic_link(post.topic)})
       else
-        %(#{person_link_with_image(person)} made a post to forum topic
+        %(#{user_link_with_image(user)} made a post to forum topic
           #{topic_link(post.topic)})
       end
     when "Topic"
       if recent
         %(new discussion topic #{topic_link(activity.item)})
       else
-        %(#{person_link_with_image(person)} created the new discussion topic
+        %(#{user_link_with_image(user)} created the new discussion topic
           #{topic_link(activity.item)})
       end
-    when "Person"
+    when "User"
       if recent
         %(description changed)
       else
-        %(#{person_link_with_image(person)}'s description changed)
+        %(#{user_link_with_image(user)}'s description changed)
       end
     when "Gallery"
       if recent
         %(new gallery #{gallery_link(activity.item)})
       else
-        %(#{person_link_with_image(person)} added a new gallery
+        %(#{user_link_with_image(user)} added a new gallery
           #{gallery_link(activity.item)})
       end
     when "Photo"
@@ -93,18 +93,18 @@ module ActivitiesHelper
         %(added new #{photo_link(activity.item)}
           #{to_gallery_link(activity.item.gallery)})
       else
-        %(#{person_link_with_image(person)} added a new
+        %(#{user_link_with_image(user)} added a new
           #{photo_link(activity.item)}
           #{to_gallery_link(activity.item.gallery)})
       end
     when "Event"
       event = activity.item
-      %(#{person_link_with_image(person)} has created a new event:
+      %(#{user_link_with_image(user)} has created a new event:
         #{event_link(event.title, event)}.)
     when "EventAttendee"
       event = activity.item.event
-      %(#{person_link_with_image(person)} is attending
-        #{someones(event.person, person)} event: 
+      %(#{user_link_with_image(user)} is attending
+        #{someones(event.user, user)} event: 
         #{event_link(event.title, event)}.) 
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
@@ -112,12 +112,12 @@ module ActivitiesHelper
   end
   
   def minifeed_message(activity)
-    person = activity.person
+    user = activity.user
     case activity_type(activity)
     when "BlogPost"
       post = activity.item
       blog = post.blog
-      %(#{person_link(person)} made a
+      %(#{user_link(user)} made a
         #{post_link("new blog post", blog, post)})
     when "Comment"
       parent = activity.item.commentable
@@ -126,47 +126,47 @@ module ActivitiesHelper
       when "BlogPost"
         post = activity.item.commentable
         blog = post.blog
-        %(#{person_link(person)} made a comment on
-          #{someones(blog.person, person)} 
+        %(#{user_link(user)} made a comment on
+          #{someones(blog.user, user)} 
           #{post_link("blog post", post.blog, post)})
-      when "Person"
-        %(#{person_link(activity.item.commenter)} commented on 
+      when "User"
+        %(#{user_link(activity.item.commenter)} commented on 
           #{wall(activity)}.)
       when "Event"
         event = activity.item.commentable
-        %(#{person_link(activity.item.commenter)} commented on 
-          #{someones(event.person, activity.item.commenter)} #{event_link("event", event)}.)
+        %(#{user_link(activity.item.commenter)} commented on 
+          #{someones(event.user, activity.item.commenter)} #{event_link("event", event)}.)
       end
     when "Connection"
       if activity.item.contact.admin?
-        %(#{person_link(person)} has joined the system)
+        %(#{user_link(user)} has joined the system)
       else
-        %(#{person_link(person)} and
-          #{person_link(activity.item.contact)} have connected)
+        %(#{user_link(user)} and
+          #{user_link(activity.item.contact)} have connected)
       end
     when "ForumPost"
       topic = activity.item.topic
-      %(#{person_link(person)} made a
+      %(#{user_link(user)} made a
         #{topic_link("forum post", topic)})
     when "Topic"
-      %(#{person_link(person)} created a 
+      %(#{user_link(user)} created a 
         #{topic_link("new discussion topic", activity.item)})
-    when "Person"
-      %(#{person_link(person)}'s description changed)
+    when "User"
+      %(#{user_link(user)}'s description changed)
     when "Gallery"
-      %(#{person_link(person)} added a new gallery
+      %(#{user_link(user)} added a new gallery
         #{gallery_link(activity.item)})
     when "Photo"
-      %(#{person_link(person)} added new
+      %(#{user_link(user)} added new
         #{photo_link(activity.item)} #{to_gallery_link(activity.item.gallery)})
-      %(#{person_link(person)}'s description has changed.)
+      %(#{user_link(user)}'s description has changed.)
     when "Event"
-      %(#{person_link(person)}'s has created a new
+      %(#{user_link(user)}'s has created a new
         #{event_link("event", activity.item)}.)
     when "EventAttendee"
       event = activity.item.event
-      %(#{person_link(person)} is attending
-        #{someones(event.person, person)} #{event_link("event", event)}.)
+      %(#{user_link(user)} is attending
+        #{someones(event.user, user)} #{event_link("event", event)}.)
     else
       raise "Invalid activity type #{activity_type(activity).inspect}"
     end
@@ -184,7 +184,7 @@ module ActivitiesHelper
                 "comment.png"
               when "Event"
                 "comment.png"
-              when "Person"
+              when "User"
                 "sound.png"
               end
             when "Connection"
@@ -197,7 +197,7 @@ module ActivitiesHelper
               "asterisk_yellow.png"
             when "Topic"
               "note.png"
-            when "Person"
+            when "User"
                 "user_edit.png"
             when "Gallery"
               "photos.png"
@@ -215,8 +215,8 @@ module ActivitiesHelper
     image_tag("icons/#{img}", :class => "icon")
   end
   
-  def someones(person, commenter, link = true)
-    link ? "#{person_link_with_image(person)}'s" : "#{h person.name}'s"
+  def someones(user, commenter, link = true)
+    link ? "#{user_link_with_image(user)}'s" : "#{h user.name}'s"
   end
   
   def blog_link(text, blog)
@@ -271,10 +271,10 @@ module ActivitiesHelper
 
   # Return a link to the wall.
   def wall(activity)
-    commenter = activity.person
-    person = activity.item.commentable
-    link_to("#{someones(person, commenter, false)} wall",
-            person_path(person, :anchor => "tWall"))
+    commenter = activity.user
+    user = activity.item.commentable
+    link_to("#{someones(user, commenter, false)} wall",
+            user_path(user, :anchor => "tWall"))
   end
   
   # Only show member photo for certain types of activity
@@ -288,7 +288,7 @@ module ActivitiesHelper
       false
     end
     if shouldShow
-      image_link(activity.person, :image => :thumbnail)
+      image_link(activity.user, :image => :thumbnail)
     end
   end
   

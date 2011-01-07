@@ -4,9 +4,9 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :person_id %> (description author)<br />
-	<%= f.collection_select(:person_id, User.all, :id, :name, {:prompt => true}) %>
-    <%#= f.text_field :person_id %>
+    <%= f.label :user_id %> (description author)<br />
+	<%= f.collection_select(:user_id, User.all, :id, :name, {:prompt => true}) %>
+    <%#= f.text_field :user_id %>
   </p>
   <p>
     <%= f.label :term_id %><br />

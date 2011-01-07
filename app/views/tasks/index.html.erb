@@ -17,7 +17,7 @@
     <td><%=h task.reference_id %></td>
     <td><%=h task.reference_type %></td>
     <td><%=h task.is_reused %></td>
-    <td><%=h task.person_id %></td>
+    <td><%=h task.user_id %></td>
     <td><%= link_to 'Show', task %></td>
     <td><%= link_to 'Edit', edit_task_path(task) %></td>
     <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>

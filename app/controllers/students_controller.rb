@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_filter :require_person, :only => [:home]
+  before_filter :require_user, :only => [:home]
   
   #auto_complete_for :course, :name
   
@@ -15,19 +15,19 @@ class StudentsController < ApplicationController
   end
   
   def home
-    @student = current_person.student
-    @person = current_person
+    @student = current_user.student
+    @user = current_user
   end
   
   def my_companies
-    @student = current_person.student
+    @student = current_user.student
     @student_files = @student.student_files
     @student_files_companies = @student_files.find_all_by_type("StudentFileCompany")
     @student_files_jobs = @student_files.find_all_by_type("StudentFileJob")
   end
   
   def add_experience
-    @student = current_person.student
+    @student = current_user.student
     @work_experience = WorkExperience.new
   end
 
@@ -35,7 +35,7 @@ class StudentsController < ApplicationController
   # GET /students/1.xml
   def show
     @student = Student.find(params[:id])
-    @updates = @student.person.updates
+    @updates = @student.user.updates
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,7 +1,7 @@
-class CreatePersonTasks < ActiveRecord::Migration
+class CreateUserTasks < ActiveRecord::Migration
   def self.up
-    create_table :person_tasks do |t|
-      t.integer :person_id
+    create_table :user_tasks do |t|
+      t.integer :user_id
       t.integer :task_id
       t.integer :task_type
       t.integer :reference_id
@@ -11,6 +11,6 @@ class CreatePersonTasks < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :task_persons
+    drop_table :task_users
   end
 end

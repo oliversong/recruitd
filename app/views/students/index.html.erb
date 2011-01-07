@@ -12,8 +12,8 @@
 
 <% @students.each do |student| %>
   <tr>
-    <td><%=h student.person.first_name %></td>
-    <td><%=h student.person.last_name %></td>
+    <td><%=h student.user.first_name %></td>
+    <td><%=h student.user.last_name %></td>
     <td><%=h student.gpa %></td>
     <td><%=h student.hometown %></td>
     <td><%=h student.subtitle %></td>

@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
     flash[:success] = "Activity deleted"
 
     respond_to do |format|
-      format.html { redirect_to(person_url(current_person)) }
+      format.html { redirect_to(user_url(current_user)) }
       format.xml  { head :ok }
     end
   end
@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
 
     def authorize_user
       @activity = Activity.find(params[:id])
-      unless current_person?(@activity.person)
+      unless current_user?(@activity.user)
         redirect_to home_url
       end
     end

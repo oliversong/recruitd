@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :address_city
       t.string :address_state
       t.string :address_zip
-      t.string :person_id
+      t.string :user_id
 
       t.timestamps
     end
