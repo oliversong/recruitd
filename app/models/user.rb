@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   belongs_to :entity, :polymorphic => true
+  has_many :updates
+  
+  def name
+    "#{first_name} #{last_name}"
+  end
   
   def self.new_with_session(params, session)
     super.tap do |user|

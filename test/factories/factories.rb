@@ -294,7 +294,7 @@ Factory.define :category do |f|
   f.name {"#{Factory.next(:lipsum_word)} category"}
 end
 
-Factory.define :award, :class => :award do |f|
+Factory.define :award, :class => "Term::Award" do |f|
   f.name {"National award for excellence in #{Factory.next(:lipsum_word)}"}
   f.category { Category.all.count > 0 ? Category.all.sort_by{rand}.first : Factory.create(:category) }
   f.url "http://www.google.com"
