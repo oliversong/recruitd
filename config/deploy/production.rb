@@ -52,17 +52,22 @@ namespace :deploy do
   
   desc "Create the database yaml file"
   task :write_db_yaml do
-    # db_config = <<-EOF
-    # production:    
-    #   adapter: mysql
-    #   encoding: utf8
-    #   username: root
-    #   password: 
-    #   database: bort_production
-    #   host: localhost
-    # EOF
-    # 
-    # put db_config, "#{release_path}/config/database.yml"
+    db_config = <<-EOF
+    development:
+      adapter: sqlite3
+      database: db/link/development.sqlite3
+      pool: 5
+      timeout: 5000
+      
+    production:
+      adapter: sqlite3
+      database: db/link/production.sqlite3
+      pool: 5
+      timeout: 5000
+    EOF
+    
+    put db_config, "#{release_path}/config/database.yml"
+    run "ln -s #{shared_path}/db #{release_path}/db/link"
     
     # authlogic_config = <<-EOF
     # connect:
