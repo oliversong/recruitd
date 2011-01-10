@@ -4,6 +4,8 @@ gem 'rails', '3.0.0'
 gem 'rails3-generators'
 gem "factory_girl_rails"
 
+gem "nifty-generators", :group => :development
+
 # Bundle edge Rails instead:
 
 gem 'mechanize'
@@ -41,3 +43,4 @@ gem 'haml'
 #   gem 'webrat'
 # end
 
+gem "mocha", :group => :test

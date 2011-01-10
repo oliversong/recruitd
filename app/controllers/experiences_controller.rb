@@ -18,7 +18,10 @@ class ExperiencesController < ApplicationController
   end
   
   def create
-    puts params.to_yaml
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
     if(params[:experience_type] == "club")
       
       #START BY CREATING/MODIFYING CLUB
@@ -48,7 +51,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = WorkExperience.new(params[:experience])
-      @experience.student_id = current_user.student.id
+      @experience.student_id = current_user.entity_id
       @experience.company = @company
     end
     
@@ -66,6 +69,10 @@ class ExperiencesController < ApplicationController
   end
   
   def update
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
     @experience = Experience.find(params[:id])
     if @experience.update_attributes(params[:experience])
       flash[:notice] = "Successfully updated experience."
