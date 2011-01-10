@@ -8,6 +8,7 @@ namespace :db do
     task :load => :environment do |t|
       #Rake::Task["install"].invoke
       create_students
+      create_many_students
       create_companies
       create_clubs
       create_schools_departments_courses
@@ -29,6 +30,13 @@ namespace :db do
       create_interests
       #create_student_files_and_feeds
       #create_company_terms
+      
+      puts "Completed adding new sample data"
+    end
+    
+    desc "Load 1000 users"
+    task :load_many_students => :environment do |t|
+      create_many_students
       
       puts "Completed adding new sample data"
     end
@@ -77,6 +85,16 @@ def create_students
   bob.user.save
   
   puts "Created factory students"
+end
+
+def create_many_students
+  1000.times do
+    student = Factory(:student)
+    student.user.entity = student
+    student.user.save
+  end
+  
+  puts "Created 1000 factory students"
 end
                                 
 def create_work_experiences

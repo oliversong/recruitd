@@ -13,16 +13,6 @@ Factory.sequence :lipsum_word do |n|
   @lipsum[n % @lipsum.count]
 end
 
-Factory.sequence :male_first_name do |n|
-  @male_names = @male_names ? @male_names : File.open(File.join(FACTORY_DATA_DIRECTORY,"male_names.txt")).readlines
-  @male_names[n % @male_names.count].strip
-end
-
-Factory.sequence :female_first_name do |n|
-  @female_names = @female_names ? @female_names : File.open(File.join(FACTORY_DATA_DIRECTORY,"female_names.txt")).readlines
-  @female_names[n % @female_names.count].strip
-end
-
 Factory.sequence :female_description do |n|
   @female_descriptions = @female_descriptions ? @female_descriptions : File.open(File.join(FACTORY_DATA_DIRECTORY,"female_descriptions.txt")).readlines
   @female_descriptions[n % @female_descriptions.count].strip
@@ -56,12 +46,16 @@ end
 
 
 def single_unique_fetch(name, n)
-  names = data_fetch(name)
-  if n / names.count > 0
-    return_str = "#{names[n].strip}#{loops}"
-  else
-    return_str = names[n].strip
+  if !@data_store[name] 
+    @data_store[name] = data_fetch(name)
   end
+  #names = data_fetch(name)
+  
+  # if n / names.count > 0
+  #   return_str = "#{names[n%names.length].strip}#{loops}"
+  # else
+    return_str = @data_store[name][n % @data_store[name].length].strip
+  # end
   return_str
 end
 
@@ -73,6 +67,14 @@ Factory.sequence :female_first_name do |n|
   single_unique_fetch('female_names',n)
 end
 
+Factory.sequence :last_name do |n|
+  single_unique_fetch('last_names',n).capitalize
+end
+
+Factory.sequence :city do |n|
+  single_unique_fetch('cities',n)
+end
+
 Factory.sequence :phone do |n|
   rand(9999999999)
 end
@@ -82,19 +84,22 @@ end
 
 
 Factory.define :user do |p|
-  gender = (rand(2) == 1)
-  p.gender_is_male gender
-  p.first_name do
-    if gender
+  p.gender_is_male do
+    (rand(2) == 1)
+  end
+  p.first_name do |me|
+    if me.gender_is_male
       name = Factory.next(:male_first_name)
     else
       name = Factory.next(:female_first_name)
     end
     name
   end
-  p.last_name  'Doe'
-  #p.email { |u| "#{u.first_name}.#{u.last_name}@example.com".downcase }
-  p.email {|u| "#{Factory.next(:simple)}@example.com"}
+  p.last_name do
+    Factory.next(:last_name)
+  end
+  p.email { |u| "#{u.first_name}#{Factory.next(:simple)}@example.com".downcase }
+  #p.email {|u| "#{Factory.next(:simple)}@example.com"}
   p.password 'foobar'
   p.password_confirmation 'foobar'
   
@@ -189,8 +194,15 @@ Factory.define :student do |f|
   #f.hometown "Boston, MA"
   f.gpa { rand(500)/100.0 }
   f.terms { |terms| [terms.association(:term)]}
+  f.phone { rand(9999999999) }
   #f.student_terms { |student_terms| [student_terms.association(:student_term)]}
   
+  f.hometown do
+     Factory.next(:city)
+   end
+  f.subtitle do
+    "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}"
+  end  
   f.address_line1 { "#{rand(1000)} Main St" }
   f.address_line2 ""
   f.address_city "Boston"
