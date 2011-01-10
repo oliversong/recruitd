@@ -19,28 +19,39 @@ set :rails_env, "production"
 #	Servers
 #############################################################
 
+set :user, "capistrano"
+set :password, "capdev123"
+set :domain, "rails.mit.edu"
+set :port, "22"
 server domain, :app, :web
 role :db, domain, :primary => true
+
+
+# role :web, "your web-server here"                          # Your HTTP server, Apache/etc
+# role :app, "your app-server here"                          # This may be the same as your `Web` server
+# role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
+# role :db,  "your slave db-server here"
 
 #############################################################
 #	Git
 #############################################################
 
-
 set :scm, :git
-set :user, "deployer"
-set :scm_passphrase, "p@ssw0rd"
-set :repository, "git@github.com:6470/keone.git"
 set :branch, "master"
-set :deploy_via, :remote_cache
+set :scm_user, 'deployer'
+set :scm_password, 'p@ssw0rd'
+set :repository, "git@github.com:mit6470/keone.git"
+#set :deploy_via, :remote_cache
 
 #############################################################
 #	Passenger
 #############################################################
 
 namespace :deploy do
+  after :update_code, :write_db_yaml
+  
   desc "Create the database yaml file"
-  task :after_update_code do
+  task :write_db_yaml do
     # db_config = <<-EOF
     # production:    
     #   adapter: mysql
@@ -98,5 +109,13 @@ namespace :deploy do
     desc "#{t} task is a no-op with mod_rails"
     task t, :roles => :app do ; end
   end
+  
+  # namespace :deploy do
+  #     task :start do ; end
+  #     task :stop do ; end
+  #     task :restart, :roles => :app, :except => { :no_release => true } do
+  #       run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  #     end
+  #   end
   
 end
