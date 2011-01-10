@@ -89,14 +89,14 @@ def create_students
 end
 
 def create_many_students
-  1000.times{ |i|
+  100.times{ |i|
     student = Factory(:student)
     student.user.entity = student
     student.user.save
     puts "added student #{i} named #{student.name}" 
   }
   
-  puts "Created 1000 factory students"
+  puts "Created 100 factory students"
 end
                                 
 def create_work_experiences
@@ -120,12 +120,12 @@ def create_clubs
 end
 
 def create_schools_departments_courses
-  # 2.times{
-  #   school = Factory(:school)
-  #   3.times { 
-  #     department = Factory(:department, :school => school)
-  #   }
-  # }  
+  2.times{
+    school = Factory(:school)
+    3.times { 
+      department = Factory(:department, :school => school)
+    }
+  }  
   
   puts "adding courses"
   
