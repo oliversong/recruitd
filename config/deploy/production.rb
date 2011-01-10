@@ -47,8 +47,9 @@ set :repository, "git@github.com:mit6470/keone.git"
 #	Passenger
 #############################################################
 
+after "deploy:update_code", "deploy:write_db_yaml"
+
 namespace :deploy do
-  after :update_code, :write_db_yaml
   
   desc "Create the database yaml file"
   task :write_db_yaml do
