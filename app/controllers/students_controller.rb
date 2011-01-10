@@ -56,6 +56,33 @@ class StudentsController < ApplicationController
     redirect_to @student
   end
 
+
+  def add_course
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
+    
+    if(params[:course][:id]) #existing club
+      if(params[:course][:description_changed]) #amend the description
+        @course = Course.find(params[:course][:id])
+        @course.description = params[:course][:description]
+        @course.save
+      end
+    else #new club
+      @course = Course.new(params[:course])
+      @course.save
+    end
+    
+    @course_student = CourseStudent.new(:student_id => @student.id, :course_id => params[:course][:id])
+    if @course_student.save
+      flash[:notice] = "Successfully created career student."
+    end
+    redirect_to @student
+  end
+
+
   # GET /students/1
   # GET /students/1.xml
   def show
