@@ -33,17 +33,6 @@ module ApplicationHelper
     return_str
   end
   
-  ## Identification helpers
-  def is_student(person)
-    person.entity_type == "Student"
-  end
-  
-  def is_company(person)
-    person.entity_type == "Company"
-  end
-  
-  def is_recruiter(person)
-    person.entity_type == "Recruiter"
-  end
+
   
 end

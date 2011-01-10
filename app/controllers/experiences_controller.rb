@@ -10,7 +10,10 @@ class ExperiencesController < ApplicationController
   end
   
   def new
-    @student = current_user.student
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @student = current_user.entity
     @experience = Experience.new
   end
   

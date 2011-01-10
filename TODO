@@ -1,6 +1,5 @@
 PROCESS: pick one and work on it, try to divide into very concrete substeps
 
-student factory: set person equal to student
 company listing
 	make update of rating submit to companies/1/rating instead of to student_files
 job listing
@@ -33,3 +32,7 @@ both
 	
 mina hsiang (general catalyst)
 	don't distract from initial goal; give them an action item (explain exactly what you need to do)
+	
+
+linkedin integration
+facebook integration (read jobs component)

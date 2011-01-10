@@ -135,7 +135,8 @@ Devise.setup do |config|
   # allows you to setup OAuth, using http://github.com/roman/warden_oauth
   
   #config.omniauth :facebook, "APP_ID", "APP_SECRET"
-  config.omniauth :facebook, "147749211905466", "b682557c3bc08512d09ebc4b848d8d93"
+  #config.omniauth :facebook, "129963327027314", "b496e5b2ee1a763ab13aa83e037b0f3f" #real
+  config.omniauth :facebook, "135062956528724", "e8e44775af31ef5512b2bcbb37056128" #localhost
   config.omniauth :twitter, "fno1nY6Vx8G80mNFXKPukg", "UnTQrcu2nPG5bqTS3KYdRPkQ2wKgSZz4uBC1RRpRD0"
   config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
   #

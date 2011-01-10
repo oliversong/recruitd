@@ -43,4 +43,17 @@ class User < ActiveRecord::Base
   def password_required?
     (user_tokens.empty? || !password.blank?) && super  
   end
+  
+    ## Identification helpers
+  def is_student?
+    entity_type == "Student"
+  end
+  
+  def is_company?
+    entity_type == "Company"
+  end
+  
+  def is_recruiter?
+    entity_type == "Recruiter"
+  end
 end

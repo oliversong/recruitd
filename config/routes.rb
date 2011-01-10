@@ -4,7 +4,12 @@ Recruitd::Application.routes.draw do
   resources :experiences
 
 
-  resources :autocomplete_searches, :only => [:club_names, :course_names]
+  resources :autocomplete_searches, :only => [:club_names, :course_names] do
+    collection do
+      get 'club_names'
+      get 'course_names'
+    end
+  end
   
   resources :jobs
   resources :careers
