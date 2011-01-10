@@ -47,7 +47,7 @@ set :repository, "git@github.com:mit6470/keone.git"
 #	Passenger
 #############################################################
 
-after "deploy:update_code", "deploy:write_db_yaml"
+#after "deploy:update_code", "deploy:write_db_yaml"
 
 namespace :deploy do
   
