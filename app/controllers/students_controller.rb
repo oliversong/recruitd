@@ -30,6 +30,31 @@ class StudentsController < ApplicationController
     @student = current_user.student
     @work_experience = WorkExperience.new
   end
+  
+  def add_career
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
+    
+    if(params[:career][:id]) #existing club
+      if(params[:career][:description_changed]) #amend the description
+        @career = Career.find(params[:career][:id])
+        @career.description = params[:career][:description]
+        @career.save
+      end
+    else #new club
+      @career = Career.new(params[:career])
+      @career.save
+    end
+    
+    @career_student = CareerStudent.new(:student_id => @student.id, :career_id => params[:career][:id])
+    if @career_student.save
+      flash[:notice] = "Successfully created career student."
+    end
+    redirect_to @student
+  end
 
   # GET /students/1
   # GET /students/1.xml

@@ -20,6 +20,13 @@ class AutocompleteSearchesController < ApplicationController
       format.js { render :layout => false }
     end
   end
+    
+  def career_names
+    @careers = Career.limit(10).search_for_name(params[:term])
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
   
   # #for sphinx
   # def index

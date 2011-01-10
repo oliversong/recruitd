@@ -4,10 +4,12 @@ Recruitd::Application.routes.draw do
   resources :experiences
 
 
-  resources :autocomplete_searches, :only => [:club_names, :course_names] do
+  resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names] do
     collection do
       get 'club_names'
       get 'course_names'
+      get 'company_names'
+      get 'career_names'
     end
   end
   
@@ -49,6 +51,8 @@ Recruitd::Application.routes.draw do
       get 'home'
       get 'auto_complete_for_course_name'
       get 'my_companies'
+      post 'add_career'
+      post 'add_course'
     end
   end
   

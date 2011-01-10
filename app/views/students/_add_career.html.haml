@@ -1,0 +1,30 @@
+:javascript
+  $(document).ready(function(){
+    $( "#add_career" ).autocomplete({
+      source: "/autocomplete_searches/career_names",
+      focus: function(event, ui) { 
+        $("#id_box").val(ui.item.id);
+        $("#detail_box").show();
+        $("#description_label").html("Description in our database; modify below if you feel this needs amendment:");
+        $("#description_box").val(ui.item.description);
+      }
+    });
+  });
+  
+  $(function() {
+    $("#description_box").change( function() {
+      $("#description_changed").val(true);
+    })
+  });
+  
+=form_tag(add_career_students_path, :method => "post") do
+  = text_field_tag "career[name]", params[:term], :class => "auto_search_complete", :id => "add_career", :size => 30
+  = submit_tag "add", :name => nil, :class => 'button', :id => "add_btn"
+  %br
+  = hidden_field_tag "career[id]", nil, :id => "id_box"
+  = hidden_field_tag "career[description_changed]", nil, :id => "description_changed", :value => false
+  %div.detail#detail_box{:style => "display:none" }
+    %em
+      %span#description_label Description
+    %br
+    = text_area_tag "career[description]", nil, :id => "description_box", :cols => 50, :rows => 4
