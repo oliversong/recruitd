@@ -22,12 +22,13 @@ namespace :db do
       create_company_files_and_feeds
       create_student_files_and_feeds
       create_company_terms
+      create_interests
       puts "Completed loading recruitd sample data."
     end
     
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
-      create_interests
+      create_schools_departments_courses
       #create_student_files_and_feeds
       #create_company_terms
       
@@ -88,11 +89,12 @@ def create_students
 end
 
 def create_many_students
-  1000.times do
+  1000.times{ |i|
     student = Factory(:student)
     student.user.entity = student
     student.user.save
-  end
+    puts "added student #{i} named #{student.name}" 
+  }
   
   puts "Created 1000 factory students"
 end
@@ -118,15 +120,24 @@ def create_clubs
 end
 
 def create_schools_departments_courses
-  2.times{
-    school = Factory(:school)
-    3.times { 
-      department = Factory(:department, :school => school)
-      5.times {
-        Factory(:course, :department => department)
-      }
-    }
-  }
+  # 2.times{
+  #   school = Factory(:school)
+  #   3.times { 
+  #     department = Factory(:department, :school => school)
+  #   }
+  # }  
+  
+  puts "adding courses"
+  
+  data_fetch('courses').each_with_index do |line, index|
+    line = line.split("\t")
+    course = Factory(:course, :abbrev => line[0], :name => line[1], :department => Department.all.sort_by{rand}.first)
+    puts "#{index}: #{course.abbrev}"
+    if(index > 100) #for now
+      break
+    end
+  end
+  
   Student.all.each do |student|
     department = Department.all.sort_by{rand}.first
     Factory(:school_student, :student => student, :department => department, :school => department.school)

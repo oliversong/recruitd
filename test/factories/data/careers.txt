@@ -6,3 +6,12 @@ research
 marketing
 retail
 consulting
+finance
+biotech
+management
+legal
+medical
+sales
+education
+design
+banking

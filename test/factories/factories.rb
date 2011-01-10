@@ -43,10 +43,13 @@ def rand_in_range(from, to)
   rand * (to - from) + from
 end
 
-
-
 def single_unique_fetch(name, n)
-  if !@data_store[name] 
+  if(!@data_store)
+    @data_store = {}
+  end
+  
+  if(!@data_store[name])
+    puts "\nloading #{name} into data_store!\n"
     @data_store[name] = data_fetch(name)
   end
   #names = data_fetch(name)
@@ -168,7 +171,7 @@ end
 # end
 
 Factory.define :term do |f|
-  f.name "Proud to be a Recruitd user"
+  f.name "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}"
 end
 
 Factory.define :student do |f|
@@ -281,8 +284,8 @@ Factory.define :school_student do |f|
 end
 
 Factory.define :course do |f|
-  f.name "Operating System Engineering"
-  f.abbrev { "6.#{rand(999)}" }
+  f.name { "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}" }
+  f.abbrev { "#{rand(24)+1}.#{rand(999)}" }
   f.department_id 1
   f.term do |s| 
     Factory.create(:term, :name => s.name)
