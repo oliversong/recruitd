@@ -13,8 +13,8 @@ gem 'mechanize'
 
 #gem 'pg'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
-#gem 'devise'
+#gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
+gem 'devise', '1.2.rc'
 gem 'omniauth'
 gem 'rspec-rails'
 
