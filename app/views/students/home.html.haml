@@ -6,11 +6,14 @@
 
 %h3 Companies
 
-- @student.student_feeds.each do |feed|
+- @student.showable_student_feeds.each do |feed|
 	- if feed.company_id
 		.company
 			= link_to feed.company.name, feed.company
 			(score: #{feed.score})
+			= link_to "star", star_company_path(feed.company)
+			| 
+			= link_to "dismiss", dismiss_company_path(feed.company)
 			%br
 	- if feed.job_id
 		.job

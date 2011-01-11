@@ -5,7 +5,8 @@ class CreateCompanyFiles < ActiveRecord::Migration
       t.integer :student_id
       t.integer :rating
       t.text :notes
-      t.boolean :starred
+      t.boolean :starred, :null => false, :default => false
+      t.dismissed :starred, :null => false, :default => false
 
       t.timestamps
     end

@@ -6,7 +6,8 @@ class CreateStudentFiles < ActiveRecord::Migration
       t.integer :job_id
       t.integer :rating
       t.text :notes
-      t.boolean :starred
+      t.boolean :starred, :null => false, :default => false
+      t.boolean :dismissed, :null => false, :default => false
       t.string :type
 
       t.timestamps

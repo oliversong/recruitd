@@ -53,6 +53,10 @@ class Student < ActiveRecord::Base
     return user.name
   end
   
+  def showable_student_feeds
+    return student_feeds.showable
+  end
+  
   
   
 end

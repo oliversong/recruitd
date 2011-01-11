@@ -52,6 +52,8 @@ Recruitd::Application.routes.draw do
   resources :companies do
     member do 
       put 'rate'
+      get 'star'
+      get 'dismiss'
     end
   end
   

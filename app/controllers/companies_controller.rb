@@ -9,17 +9,6 @@ class CompaniesController < ApplicationController
       format.xml  { render :xml => @companies }
     end
   end
-  
-  def my_students
-  end
-  
-  def rate
-    @student = current_user.student
-    @company = Company.find(params[:id])
-    student_file = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
-    student_file.update_attributes(params[:student_file_student_file_company])
-    redirect_to :action => :show, :id => @company
-  end
 
   # GET /companies/1
   # GET /companies/1.xml
@@ -92,5 +81,56 @@ class CompaniesController < ApplicationController
       format.html { redirect_to(companies_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  def my_students
+  end
+  
+  def rate
+    @student = current_user.entity
+    @company = Company.find(params[:id])
+    student_file = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    student_file.update_attributes(params[:student_file_student_file_company])
+    redirect_to :action => :show, :id => @company
+  end
+  
+  def star
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @student = current_user.entity
+    @company = Company.find(params[:id])
+    
+    student_feed = StudentFeed.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(student_feed)
+      student_feed.deleted = true
+      student_feed.save
+    end
+    
+    student_file = StudentFile.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(!student_file)
+      student_file = StudentFile.new(:student_id => @student.id, :company_id => @company.id)
+    end
+    
+    student_file.starred = true
+    student_file.save
+    
+    redirect_to home_students_path
+  end
+  
+  def dismiss
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @student = current_user.entity
+    @company = Company.find(params[:id])
+    
+    student_feed = StudentFeed.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(student_feed)
+      student_feed.dismissed = true
+      student_feed.save
+    end
+    redirect_to home_students_path
+    
   end
 end
