@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111045446) do
+ActiveRecord::Schema.define(:version => 20110111072042) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -78,7 +78,8 @@ ActiveRecord::Schema.define(:version => 20110111045446) do
     t.integer  "student_id"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred"
+    t.boolean  "starred",    :default => false, :null => false
+    t.boolean  "dismissed",  :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -117,10 +118,10 @@ ActiveRecord::Schema.define(:version => 20110111045446) do
     t.integer  "department_id"
     t.string   "description"
     t.integer  "term_id"
-    t.integer  "difficulty_sum_cache"
-    t.integer  "difficulty_count_cache"
-    t.integer  "usefulness_sum_cache"
-    t.integer  "usefulness_count_cache"
+    t.integer  "difficulty_sum_cache",   :default => 0, :null => false
+    t.integer  "difficulty_count_cache", :default => 0, :null => false
+    t.integer  "usefulness_sum_cache",   :default => 0, :null => false
+    t.integer  "usefulness_count_cache", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -172,6 +173,14 @@ ActiveRecord::Schema.define(:version => 20110111045446) do
     t.text     "desired_qualifications"
     t.text     "other_information"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "labels", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -262,8 +271,18 @@ ActiveRecord::Schema.define(:version => 20110111045446) do
     t.integer  "job_id"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred"
+    t.boolean  "starred",    :default => false, :null => false
+    t.boolean  "dismissed",  :default => false, :null => false
     t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_labelings", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "label_id"
+    t.integer  "company_id"
+    t.integer  "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

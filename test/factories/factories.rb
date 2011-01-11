@@ -18,11 +18,6 @@ Factory.sequence :female_description do |n|
   @female_descriptions[n % @female_descriptions.count].strip
 end
 
-Factory.sequence :company_name do |n|
-  @company_names = @company_names ? @company_names : File.open(File.join( FACTORY_DATA_DIRECTORY, "company_names.txt")).readlines
-  @company_names[n % @company_names.count].strip
-end
-
 def data_fetch(name)
   File.open(File.join(FACTORY_DATA_DIRECTORY, "#{name}.txt")).readlines
 end
@@ -60,6 +55,10 @@ def single_unique_fetch(name, n)
     return_str = @data_store[name][n % @data_store[name].length].strip
   # end
   return_str
+end
+
+Factory.sequence :company_name do |n|
+  single_unique_fetch('companies',n)
 end
 
 Factory.sequence :male_first_name do |n|
@@ -152,8 +151,8 @@ end
 # end
 
 Factory.define :company do |f|
-  f.name { "#{Factory.next(:company_name).capitalize} Technologies"}
-  f.user { |u| Factory.create(:user, :last_name => u.name) }
+  f.name { Factory.next(:company_name) }
+  f.user { |u| Factory.create(:user, :first_name => "", :last_name => u.name) }
   
 end
 
@@ -415,5 +414,16 @@ Factory.define :company_term do |f|
       i = r.user_id
     end
     i
+  end
+end
+
+Factory.define :label do |f|
+  f.name {"#{Factory.next(:lipsum_word)}"}
+end
+
+Factory.define :student_labeling do |f|
+  f.label { Label.all.count > 0 ? Label.all.sort_by{rand}.first : Factory.create(:label) }
+  f.student do |s|
+    s.label.owner
   end
 end

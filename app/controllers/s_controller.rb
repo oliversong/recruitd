@@ -18,6 +18,7 @@ class SController < ApplicationController
     end
     
     @student = current_user.entity
+
   end
   
   def add_career

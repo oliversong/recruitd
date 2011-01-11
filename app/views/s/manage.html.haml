@@ -1,25 +1,39 @@
 %p
-	%b Companies:
+	%b Labels:
 	%ul
-		- @student_files_companies.each do |sf|
+		-@student.labels.each do |lbl|
 			%li
-				= link_to sf.company.name, sf.company
-				%br
-					%b> Rating
-					\: #{sf.rating}
-					%br
-						%b> Starred
-						\: #{sf.starred ? "yes" : "no"}
-						
-%p
-	%b Jobs:
-	%ul
-		- @student_files_jobs.each do |sf|
-			%li
-				= link_to sf.job.title, sf.job
-				%br
-					%b> Rating
-					\: #{sf.rating}
-					%br
-						%b> Starred
-						\: #{sf.starred ? "yes" : "no"}
+				= link_to lbl.name, "\##{lbl.id}"
+				
+-@student.labels.each do |lbl|
+	%a{:name => "#{lbl.id}"}
+	%p
+		%b= lbl.name
+		%ul
+			- lbl.student_labelings.each do |labeling|
+				- if labeling.company_id
+					%li
+						= link_to labeling.company.name, labeling.company
+						%br
+						Labels:
+						- labeling.company.student_labelings.where(:student_id => @student.id).each do |other_lbl|
+							= other_lbl.label.name
+							|
+						- sf = @student_files_companies.find{|item| item.company_id == labeling.company_id }
+						- if sf
+							%br/
+							rating: #{sf.rating}
+							-if sf.starred
+								| starred
+
+				- elsif labeling.job_id
+					%li
+						= link_to labeling.job.title, labeling.job
+						- sf = @student_files_jobs.find{|item| item.job_id == labeling.job_id }
+						- if sf
+							%br/
+							rating: #{sf.rating}
+							-if sf.starred
+								| starred
+
+			

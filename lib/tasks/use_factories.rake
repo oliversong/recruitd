@@ -22,15 +22,13 @@ namespace :db do
       create_company_files_and_feeds
       create_student_files_and_feeds
       create_company_terms
-      create_interests
+      create_labels
       puts "Completed loading recruitd sample data."
     end
     
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
-      create_schools_departments_courses
-      #create_student_files_and_feeds
-      #create_company_terms
+      create_labels
       
       puts "Completed adding new sample data"
     end
@@ -55,12 +53,12 @@ namespace :db do
 end
 
 def create_companies
-  jpm = Factory(:company, :name => "JPMorgan")
-  jpm.user.entity = jpm
-  jpm.user.save
-  gs = Factory(:company, :name => "Goldman Sachs")
-  gs.user.entity = gs
-  gs.user.save
+  20.times do
+    c = Factory(:company)
+    c.user.entity = c
+    c.user.save
+  end
+  
   puts "Created factory companies"
 end
 
@@ -261,4 +259,22 @@ def create_company_terms
       Factory(:company_term, :company => company, :term => term)
     end
   end
+  puts "Created company weights on terms"
+end
+
+def create_labels
+  Student.all.each do |student|
+    3.times do
+      label = Factory(:label, :owner_id => student.id, :owner_type => "Student")
+      
+      Company.all.sort_by{rand}[1..2].each do |company|
+        Factory(:student_labeling, :student => student, :label => label, :company => company)
+      end
+      
+      Job.all.sort_by{rand}[1..3].each do |job|
+        Factory(:student_labeling, :student => student, :label => label, :job => job)
+      end
+    end
+  end
+  puts "Created labels"
 end
