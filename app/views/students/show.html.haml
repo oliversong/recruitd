@@ -23,9 +23,12 @@
 %p
 	%b Relevant Coursework:
 	%ul
-		- for course in @student.courses
+		- for course_student in @student.course_students
 			%li
-				= link_to course.name, course
+				= link_to course_student.course.name, course_student.course
+				%br/
+				.hidden_detail
+					= course_student.comments
 				%br
 		= render "add_course"
 		

@@ -59,7 +59,7 @@ class StudentsController < ApplicationController
     
     @career_student = CareerStudent.new(:student_id => @student.id, :career_id => params[:career][:id])
     if @career_student.save
-      flash[:notice] = "Successfully created career student."
+      flash[:notice] = "Successfully added career."
     end
     redirect_to @student
   end
@@ -73,19 +73,19 @@ class StudentsController < ApplicationController
     @student = current_user.entity
     
     if(params[:course][:id]) #existing club
-      if(params[:course][:description_changed]) #amend the description
-        @course = Course.find(params[:course][:id])
-        @course.description = params[:course][:description]
-        @course.save
-      end
+      # if(params[:course][:description_changed]) #amend the description
+      #   @course = Course.find(params[:course][:id])
+      #   @course.description = params[:course][:description]
+      #   @course.save
+      # end
     else #new club
       @course = Course.new(params[:course])
       @course.save
     end
     
-    @course_student = CourseStudent.new(:student_id => @student.id, :course_id => params[:course][:id])
+    @course_student = CourseStudent.new(:student_id => @student.id, :course_id => params[:course][:id], :comments => params[:course][:comments])
     if @course_student.save
-      flash[:notice] = "Successfully created career student."
+      flash[:notice] = "Successfully added course."
     end
     redirect_to @student
   end

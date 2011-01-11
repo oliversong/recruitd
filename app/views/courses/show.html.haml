@@ -29,10 +29,12 @@
 	=h @course.usefulness_count_cache
 %p
 	%strong Students who have taken #{@course.abbrev}:
-	%br
-	-@course.students.each do |student|
-		=print_student_block(student, :link => true)
-		%br
+	%ul
+	-@course.course_students.each do |course_student|
+		%li
+			=print_student_block(course_student.student, :link => true)
+			%br/
+			=course_student.comments
 
 %p
 	= link_to "Edit", edit_course_path(@course)
