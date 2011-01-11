@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.0'
-gem 'rails3-generators'
+#gem 'rails3-generators'
 gem "factory_girl_rails"
 
 gem "nifty-generators", :group => :development
@@ -16,7 +16,7 @@ gem 'mysql'
 #gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
 gem 'devise', '1.2.rc'
 gem 'omniauth'
-gem 'rspec-rails'
+#gem 'rspec-rails'
 
 gem 'haml'
 #gem 'formtastic'

@@ -5,6 +5,9 @@ class CoursesController < ApplicationController
   
   def show
     @course = Course.find(params[:id])
+    if current_user.is_student?
+      @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.entity_id, params[:id])
+    end
   end
   
   def new
@@ -40,5 +43,29 @@ class CoursesController < ApplicationController
     @course.destroy
     flash[:notice] = "Successfully destroyed course."
     redirect_to courses_url
+  end
+  
+  #method: PUT
+  def rate
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @course = Course.find(params[:id])
+    @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.entity_id, params[:id])
+    if !@course_rating
+      @course_rating = CourseRating.new(:student_id => current_user.entity_id, :course_id => params[:id])
+    end
+    
+    if params[:course_rating][:difficulty] && !params[:course_rating][:difficulty].empty?
+      @course_rating.difficulty = params[:course_rating][:difficulty]
+    end
+    
+    if params[:course_rating][:usefulness] && !params[:course_rating][:usefulness].empty?
+      @course_rating.usefulness = params[:course_rating][:usefulness]
+    end
+    
+    @course_rating.save
+    redirect_to @course
   end
 end

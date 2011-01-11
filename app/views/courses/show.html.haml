@@ -15,18 +15,33 @@
 %p
 	%strong Term:
 	=h @course.term_id
-%p
-	%strong Difficulty Sum Cache:
-	=h @course.difficulty_sum_cache
-%p
-	%strong Difficulty Count Cache:
-	=h @course.difficulty_count_cache
-%p
-	%strong Usefulness Sum Cache:
-	=h @course.usefulness_sum_cache
-%p
-	%strong Usefulness Count Cache:
-	=h @course.usefulness_count_cache
+
+=form_tag(rate_course_path(@course), :method => "put") do
+	%p
+		%strong Difficulty:
+		%br/
+		- if @course_rating && @course_rating.difficulty
+			Your rating:
+			= @course_rating.difficulty
+		- else
+			Rate:
+			= select("course_rating", "difficulty", CourseRating::RATINGS, {:include_blank => true})
+		%br/
+		Average difficulty: #{@course.display_difficulty}
+	%p
+		%strong Usefulness:
+		%br/
+		- if @course_rating && @course_rating.usefulness
+			Your rating:
+			= @course_rating.usefulness
+		- else
+			Rate:
+			= select("course_rating", "usefulness", CourseRating::RATINGS, {:include_blank => true})
+		%br/
+		Average usefulness: #{@course.display_usefulness}
+	%p
+		=submit_tag "submit ratings"
+	
 %p
 	%strong Students who have taken #{@course.abbrev}:
 	%ul

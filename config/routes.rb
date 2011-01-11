@@ -26,7 +26,11 @@ Recruitd::Application.routes.draw do
 
   resources :course_students
 
-  resources :courses
+  resources :courses do
+    member do
+      put 'rate'
+    end
+  end
 
   resources :clubs
 

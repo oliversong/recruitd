@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101223014832) do
+ActiveRecord::Schema.define(:version => 20110111045446) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -89,6 +89,15 @@ ActiveRecord::Schema.define(:version => 20101223014832) do
     t.integer  "weight"
     t.integer  "last_updated_by_user_id"
     t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "course_ratings", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "course_id"
+    t.integer  "difficulty"
+    t.integer  "usefulness"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
