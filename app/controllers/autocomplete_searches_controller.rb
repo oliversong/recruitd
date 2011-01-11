@@ -1,5 +1,12 @@
 class AutocompleteSearchesController < ApplicationController
 
+  def award_names
+    @awards = Term::Award.limit(10).search_for_name(params[:term])
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
   def course_names
     @courses = Course.limit(10).search_for_name(params[:term])
     respond_to do |format|

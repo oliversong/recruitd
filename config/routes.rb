@@ -10,6 +10,7 @@ Recruitd::Application.routes.draw do
       get 'course_names'
       get 'company_names'
       get 'career_names'
+      get 'award_names'
     end
   end
   
@@ -57,10 +58,10 @@ Recruitd::Application.routes.draw do
   resources :students do
     collection do
       get 'home'
-      get 'auto_complete_for_course_name'
       get 'my_companies'
       post 'add_career'
       post 'add_course'
+      post 'add_award'
     end
   end
   

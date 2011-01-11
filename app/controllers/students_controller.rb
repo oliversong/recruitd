@@ -1,8 +1,6 @@
 class StudentsController < ApplicationController
   #before_filter :require_user, :only => [:home]
   
-  #auto_complete_for :course, :name
-  
   # GET /students
   # GET /students.xml
   def index
@@ -86,6 +84,32 @@ class StudentsController < ApplicationController
     @course_student = CourseStudent.new(:student_id => @student.id, :course_id => params[:course][:id], :comments => params[:course][:comments])
     if @course_student.save
       flash[:notice] = "Successfully added course."
+    end
+    redirect_to @student
+  end
+  
+  def add_award
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
+    
+    if(params[:award][:id] && !params[:award][:id].empty?) #existing club
+      # if(params[:course][:description_changed]) #amend the description
+      #   @course = Course.find(params[:course][:id])
+      #   @course.description = params[:course][:description]
+      #   @course.save
+      # end
+      @award = Term::Award.find(params[:award][:id])
+    else #new club
+      @award = Term::Award.new(params[:award])
+      @award.save
+    end
+    
+    @student_award = StudentAward.new(:student_id => @student.id, :term_id => @award.id, :details => params[:comments])
+    if @student_award.save
+      flash[:notice] = "Successfully added award."
     end
     redirect_to @student
   end

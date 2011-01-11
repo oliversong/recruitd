@@ -1,0 +1,4 @@
+- data = []
+- @awards.each do |p|
+  - data << {:label => "#{h(p.name)}", :id => "#{h(p.id)}", :description => "#{p.description}" }
+= data.to_json.html_safe
