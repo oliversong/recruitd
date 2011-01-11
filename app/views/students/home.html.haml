@@ -6,42 +6,40 @@
 
 %h3 Companies
 
-- current_user.student.company_students.each do |cs|
-	.company
-		= link_to cs.company.name, cs.company
-		(score: #{cs.company_score})
-		%br
+- @student.student_feeds.each do |feed|
+	- if feed.company_id
+		.company
+			= link_to feed.company.name, feed.company
+			(score: #{feed.score})
+			%br
+	- if feed.job_id
+		.job
+			= link_to feed.job.title, feed.job
+			(score: #{feed.score})
+			%br
 
 
-%h3 Jobs
-
-- current_user.student.job_students.each do |js|
-	.job
-		= link_to "#{js.job.title} at #{js.job.company.name}" , js.job
-		(score: #{js.job_score})
-		%br
-
-%h3 Tasks
-
-- current_user.all_tasks.each do |task|
-	.task
-		%b= task.name
-		%br
-		=task.text
-		%br 
-		%br
+/ %h3 Tasks
+/ 
+/ - current_user.all_tasks.each do |task|
+/ 	.task
+/ 		%b= task.name
+/ 		%br
+/ 		=task.text
+/ 		%br 
+/ 		%br
 
 %h2 Reputation score
 
 %h3 All-time: #{current_user.rep_alltime}
 %h3 This month: #{current_user.rep_month}
 
-= link_to "Reputation log", :user
+/ = link_to "Reputation log", :user
 
 %h2 Updates
 
-- current_user.all_updates.each do |update|
+- current_user.updates.each do |update|
 	.update
-		= update_block(update,:show_name => true)
+		= print_update_block(update,:show_name => true)
 		%br
 		%br

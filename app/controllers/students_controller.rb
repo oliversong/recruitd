@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_filter :require_user, :only => [:home]
+  #before_filter :require_user, :only => [:home]
   
   #auto_complete_for :course, :name
   
@@ -15,12 +15,20 @@ class StudentsController < ApplicationController
   end
   
   def home
-    @student = current_user.student
-    @user = current_user
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
   end
   
   def my_companies
-    @student = current_user.student
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
+    
     @student_files = @student.student_files
     @student_files_companies = @student_files.find_all_by_type("StudentFileCompany")
     @student_files_jobs = @student_files.find_all_by_type("StudentFileJob")

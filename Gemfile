@@ -11,7 +11,7 @@ gem 'mechanize'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'pg'
-#gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql'
 #gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
 gem 'devise', '1.2.rc'

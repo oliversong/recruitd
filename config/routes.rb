@@ -13,7 +13,11 @@ Recruitd::Application.routes.draw do
     end
   end
   
-  resources :jobs
+  resources :jobs do
+    member do
+      put 'rate'
+    end
+  end
   resources :careers
   resources :awards
   resources :schools

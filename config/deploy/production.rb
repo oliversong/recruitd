@@ -47,7 +47,7 @@ set :repository, "git@github.com:mit6470/keone.git"
 #	Passenger
 #############################################################
 
-#after "deploy:update_code", "deploy:write_db_yaml"
+after "deploy:update_code", "deploy:write_db_yaml"
 
 namespace :deploy do
   
@@ -55,16 +55,26 @@ namespace :deploy do
   task :write_db_yaml do
     db_config = <<-EOF
     development:
-      adapter: sqlite3
-      database: db/link/development.sqlite3
-      pool: 5
-      timeout: 5000
-      
+      adapter: mysql
+      encoding: utf8
+      database: recruitd_development
+      username: recruitd
+      password: recruitd89dev!
+    #   adapter: sqlite3
+    #   database: db/link/development.sqlite3
+    #   pool: 5
+    #   timeout: 5000
+    #   
     production:
-      adapter: sqlite3
-      database: db/link/production.sqlite3
-      pool: 5
-      timeout: 5000
+      adapter: mysql
+      encoding: utf8
+      database: recruitd_production
+      username: recruitd
+      password: recruitd89dev!
+    #   adapter: sqlite3
+    #   database: db/link/production.sqlite3
+    #   pool: 5
+    #   timeout: 5000
     EOF
     
     put db_config, "#{release_path}/config/database.yml"
