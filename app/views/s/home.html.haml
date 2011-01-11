@@ -19,6 +19,9 @@
 		.job
 			= link_to feed.job.title, feed.job
 			(score: #{feed.score})
+			= link_to "star", star_job_path(feed.job)
+			| 
+			= link_to "dismiss", dismiss_job_path(feed.job)
 			%br
 
 

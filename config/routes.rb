@@ -1,4 +1,13 @@
 Recruitd::Application.routes.draw do
+  resource :s, :only => [:manage, :home, :add_career, :add_course, :add_award] do
+    get 'manage'
+    get 'home'
+    post 'add_career'
+    post 'add_course'
+    post 'add_award'
+    post 'add_interest'
+  end
+
   resources :monkeys #TODO remove
   
   resources :experiences
@@ -11,12 +20,15 @@ Recruitd::Application.routes.draw do
       get 'company_names'
       get 'career_names'
       get 'award_names'
+      get 'interest_names'
     end
   end
   
   resources :jobs do
     member do
       put 'rate'
+      get 'star'
+      get 'dismiss'
     end
   end
   resources :careers
@@ -58,13 +70,6 @@ Recruitd::Application.routes.draw do
   end
   
   resources :students do
-    collection do
-      get 'home'
-      get 'my_companies'
-      post 'add_career'
-      post 'add_course'
-      post 'add_award'
-    end
   end
   
   

@@ -16,7 +16,7 @@
     })
   });
   
-=form_tag(add_award_students_path, :method => "post") do
+=form_tag(add_award_s_path, :method => "post") do
   = text_field_tag "award[name]", params[:term], :class => "auto_search_complete", :size => 30
   = submit_tag "add", :name => nil, :class => 'button', :id => "award_add"
   %br

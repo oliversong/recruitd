@@ -9,13 +9,6 @@ class JobsController < ApplicationController
     @student_file_job = StudentFile.find_or_initialize_by_student_id_and_job_id(@student.id, @job.id)
   end
   
-  def rate
-    @student = current_user.entity
-    student_file = StudentFile::StudentFileJob.find_or_initialize_by_student_id_and_job_id(@student.id, params[:id])
-    student_file.update_attributes(params[:student_file_student_file_job])
-    redirect_to :action => :show, :id => params[:id]
-  end
-  
   def new
     @job = Job.new
   end
@@ -49,5 +42,52 @@ class JobsController < ApplicationController
     @job.destroy
     flash[:notice] = "Successfully destroyed job."
     redirect_to jobs_url
+  end
+  
+  def rate
+    @student = current_user.entity
+    student_file = StudentFile::StudentFileJob.find_or_initialize_by_student_id_and_job_id(@student.id, params[:id])
+    student_file.update_attributes(params[:student_file_student_file_job])
+    redirect_to :action => :show, :id => params[:id]
+  end
+  
+  def star
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @student = current_user.entity
+    @job = Job.find(params[:id])
+    
+    student_feed = StudentFeed.find_by_student_id_and_job_id(@student.id, @job.id)
+    if(student_feed)
+      student_feed.deleted = true
+      student_feed.save
+    end
+    
+    student_file = StudentFile.find_by_student_id_and_job_id(@student.id, @job.id)
+    if(!student_file)
+      student_file = StudentFile.new(:student_id => @student.id, :company_id => @job.id)
+    end
+    
+    student_file.starred = true
+    student_file.save
+    
+    redirect_to home_s_path
+  end
+  
+  def dismiss
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @student = current_user.entity
+    @job = Job.find(params[:id])
+
+    student_feed = StudentFeed.find_by_student_id_and_job_id(@student.id, @job.id)
+    if(student_feed)
+      student_feed.dismissed = true
+      student_feed.save
+    end
+    redirect_to home_s_path
+
   end
 end

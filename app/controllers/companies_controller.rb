@@ -115,7 +115,7 @@ class CompaniesController < ApplicationController
     student_file.starred = true
     student_file.save
     
-    redirect_to home_students_path
+    redirect_to home_s_path
   end
   
   def dismiss
@@ -130,7 +130,7 @@ class CompaniesController < ApplicationController
       student_feed.dismissed = true
       student_feed.save
     end
-    redirect_to home_students_path
+    redirect_to home_s_path
     
   end
 end

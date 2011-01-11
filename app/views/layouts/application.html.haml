@@ -24,14 +24,15 @@
 				= content_tag :div, msg, :id => "flash_#{name}"
 			
 			- if user_signed_in?
-				Signed in as #{current_user.email}. 
+				Signed in as #{current_user.email}
 				|
-				= link_to "Home", home_students_path
+				= link_to "Home", home_s_path
 				|
 				= link_to "Public", current_user.entity
 				|
+				= link_to "Manage", manage_s_path
+				|
 				= link_to "Sign out", destroy_user_session_path
-				| 
 
 			- else
 				= link_to "Sign up", new_user_registration_path

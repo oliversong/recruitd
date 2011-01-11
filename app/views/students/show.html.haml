@@ -71,25 +71,10 @@
 	%ul
 		- for interest in @student.interests
 			%li= interest_block(interest)
+		%li= render "add_interest"
 %p
 	%b Fun facts:
 	= h @student.fun_facts
 = link_to 'Edit', edit_student_path(@student)
 |
 \#{link_to 'Back', students_path}
-
-%p
-	%b Company feeds:
-	%ul
-		- @student.student_feeds.each do |sf|
-			%li
-				- if(sf.company)
-					= link_to sf.company.name, sf.company
-				- else
-					= link_to sf.job.title, sf.job
-				%br
-					%b> Score
-					\: #{sf.score}
-					%br
-						%b> Dismissed until
-						\: #{sf.dismissed_until}

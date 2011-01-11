@@ -17,7 +17,7 @@
     })
   });
   
-=form_tag(add_career_students_path, :method => "post") do
+=form_tag(add_career_s_path, :method => "post") do
   = text_field_tag "career[name]", params[:term], :class => "auto_search_complete", :size => 30
   = submit_tag "add", :name => nil, :class => 'button', :id => "career_add"
   %br
