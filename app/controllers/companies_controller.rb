@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
   def show
     @company = Company.find(params[:id])
     @student = current_user.entity
-    @student_file_company = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
 
     respond_to do |format|
       format.html # show.html.erb

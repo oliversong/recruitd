@@ -3,9 +3,9 @@ class StudentFile < ActiveRecord::Base
 end
 
 class StudentFileCompany < StudentFile
-   belongs_to :company
- end
+  belongs_to :company
+end
 
- class StudentFileJob < StudentFile
-   belongs_to :job
- end
+class StudentFileJob < StudentFile
+  belongs_to :job
+end

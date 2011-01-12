@@ -6,6 +6,7 @@ class CController < ApplicationController
     
     @company = current_user.entity.company
     @company_files = @company.company_files
+    
   end
   
 

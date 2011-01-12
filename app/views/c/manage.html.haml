@@ -17,9 +17,10 @@
 				- labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
 					= other_lbl.label.name
 					|
-				- sf = @company_files.find{|item| item.student_id == labeling.student_id }
-				- if sf
+				- idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+				- if idx
+					- cf = @company_files[idx]
 					%br/
-					rating: #{sf.rating}
-					-if sf.starred
+					rating: #{cf.rating}
+					-if cf.starred
 						| starred
