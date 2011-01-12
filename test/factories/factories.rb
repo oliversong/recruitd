@@ -427,3 +427,10 @@ Factory.define :student_labeling do |f|
     s.label.owner
   end
 end
+
+Factory.define :company_labeling do |f|
+  f.label { Label.all.count > 0 ? Label.all.sort_by{rand}.first : Factory.create(:label) }
+  f.company do |s|
+    s.label.owner
+  end
+end

@@ -7,6 +7,11 @@ Recruitd::Application.routes.draw do
     post 'add_award'
     post 'add_interest'
   end
+  
+  resource :c, :only => [:manage, :home], :controller => "c" do
+    get 'manage'
+    get 'home'
+  end
 
   resources :monkeys #TODO remove
   

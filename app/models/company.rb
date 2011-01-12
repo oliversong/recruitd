@@ -10,4 +10,8 @@ class Company < ActiveRecord::Base
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
+  
+  def company
+    return this
+  end
 end

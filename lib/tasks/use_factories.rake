@@ -22,13 +22,14 @@ namespace :db do
       create_company_files_and_feeds
       create_student_files_and_feeds
       create_company_terms
-      create_labels
+      create_student_labels
       puts "Completed loading recruitd sample data."
     end
     
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
-      create_labels
+      
+      create_company_labels
       
       puts "Completed adding new sample data"
     end
@@ -205,6 +206,7 @@ def create_jobs
       end
     end
   end
+  puts "Created jobs"
 end
 
 def create_recruiters
@@ -215,6 +217,7 @@ def create_recruiters
       r.user.save
     end
   end
+  puts "Created recruiters"
 end
 
 def create_updates
@@ -229,6 +232,7 @@ def create_updates
       Factory(:update, :user => company.user)
     end
   end
+  puts "Created updates"
 end
 
 def create_company_files_and_feeds
@@ -238,6 +242,7 @@ def create_company_files_and_feeds
       Factory(:company_feed, :student => student, :company => company)
     end
   end
+  puts "Create company files and feeds"
 end
 
 def create_student_files_and_feeds
@@ -251,6 +256,7 @@ def create_student_files_and_feeds
       Factory(:student_feed, :student => student, :job => job)
     end
   end
+  puts "Created student files/feeds"
 end
 
 def create_company_terms
@@ -262,7 +268,7 @@ def create_company_terms
   puts "Created company weights on terms"
 end
 
-def create_labels
+def create_student_labels
   Student.all.each do |student|
     3.times do
       label = Factory(:label, :owner_id => student.id, :owner_type => "Student")
@@ -276,5 +282,18 @@ def create_labels
       end
     end
   end
-  puts "Created labels"
+  puts "Created students' labels"
+end
+
+def create_company_labels
+  Company.all.each do |company|
+    3.times do
+      label = Factory(:label, :owner_id => company.id, :owner_type => "Company")
+      
+      Student.all.sort_by{rand}[0..3].each do |student|
+        Factory(:company_labeling, :student => student, :label => label, :company => company)
+      end
+    end
+  end
+  puts "Created companies' labels"
 end

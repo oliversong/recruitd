@@ -29,7 +29,7 @@ class Student < ActiveRecord::Base
   has_many :student_feeds, :order => "score DESC"
   
   has_many :labels, :as => :owner
-  has_many :labelings
+  has_many :company_labelings
   
   # has_many :student_awards, :class_name => "StudentTerm::StudentAward"
   # has_many :awards, :through => :student_awards
