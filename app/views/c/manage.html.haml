@@ -11,16 +11,17 @@
 		%b= lbl.name
 		%ul
 			- lbl.company_labelings.each do |labeling|
-				= link_to labeling.company.name, labeling.company
-				%br
-				Labels:
-				- labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
-					= other_lbl.label.name
-					|
-				- idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
-				- if idx
-					- cf = @company_files[idx]
-					%br/
-					rating: #{cf.rating}
-					-if cf.starred
-						| starred
+				%li
+					= link_to labeling.student.name, labeling.student
+					%br
+					Labels:
+					- labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
+						= other_lbl.label.name
+						|
+					- idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+					- if idx
+						- cf = @company_files[idx]
+						%br/
+						rating: #{cf.rating}
+						-if cf.starred
+							| starred

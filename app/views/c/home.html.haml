@@ -1,5 +1,5 @@
 %h1 #{current_user.name}'s home
-%h2 Company: #{@company}
+%h2 Company: #{link_to @company.name, @company}
 
 %h2 Recommended to you
 
@@ -7,13 +7,13 @@
 
 %h3 Students
 
-- @company.company_feeds.each do |feed|
+- @company.company_feeds.showable.each do |feed|
 	.student
-		= link_to feed.company.name, feed.company
+		= link_to feed.student.name, feed.student
 		(score: #{feed.score})
-		= link_to "star", star_company_path(feed.company)
+		= link_to "star", star_student_path(feed.student)
 		| 
-		= link_to "dismiss", dismiss_company_path(feed.company)
+		= link_to "dismiss", dismiss_student_path(feed.student)
 		%br
 
 

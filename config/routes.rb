@@ -75,6 +75,10 @@ Recruitd::Application.routes.draw do
   end
   
   resources :students do
+    member do
+      get 'star'
+      get 'dismiss'
+    end
   end
   
   

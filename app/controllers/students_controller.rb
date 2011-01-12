@@ -83,4 +83,45 @@ class StudentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def star
+    if !current_user.is_company_entity?
+      redirect_to :new_user_session
+    end
+    @company = current_user.entity.company
+    @student = Student.find(params[:id])
+    
+    company_feed = CompanyFeed.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(company_feed)
+      company_feed.deleted = true
+      company_feed.save
+    end
+    
+    company_file = CompanyFile.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(!company_file)
+      company_file = CompanyFile.new(:student_id => @student.id, :company_id => @company.id)
+    end
+    
+    company_file.starred = true
+    company_file.save
+    
+    redirect_to home_c_path
+  end
+  
+  def dismiss
+    if !current_user.is_company_entity?
+      redirect_to :new_user_session
+    end
+    @company = current_user.entity.company
+    @student = Student.find(params[:id])
+    
+    company_feed = CompanyFeed.find_by_student_id_and_company_id(@student.id, @company.id)
+    if(company_feed)
+      company_feed.dismissed = true
+      company_feed.save
+    end
+    
+    redirect_to home_c_path  
+  end
+  
 end
