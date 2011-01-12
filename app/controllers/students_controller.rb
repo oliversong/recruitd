@@ -84,6 +84,18 @@ class StudentsController < ApplicationController
     end
   end
   
+  def rate
+    if !current_user.is_company_entity?
+      redirect_to :new_user_session
+    end
+    @company = current_user.entity.company
+    @student = Student.find(params[:id])
+    
+    company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    company_file.update_attributes(:rating => params[:company_file][:rating])
+    redirect_to manage_c_path
+  end
+  
   def star
     if !current_user.is_company_entity?
       redirect_to :new_user_session

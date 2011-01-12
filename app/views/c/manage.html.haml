@@ -23,5 +23,7 @@
 						- cf = @company_files[idx]
 						%br/
 						rating: #{cf.rating}
+						|
+						= render :partial => "update_rating", :locals => {:student => labeling.student }
 						-if cf.starred
 							| starred
