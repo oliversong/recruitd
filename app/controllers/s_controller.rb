@@ -124,6 +124,18 @@ class SController < ApplicationController
     redirect_to @student
   end
   
+  def browse
+    if !current_user.is_student
+      redirect_to :new_user_session
+    end
+    
+    idx = params[:id] ? params[:index] : 0
+    
+    @student = current_user.entity
+    
+    @student_feed = StudentFeed.by_student_id(@student.id).offset(idx).limit(1).find(:first)
+  end
+  
   def settings
   end
 end

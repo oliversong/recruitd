@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113025816) do
+ActiveRecord::Schema.define(:version => 20110113095352) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -59,6 +59,10 @@ ActiveRecord::Schema.define(:version => 20110113025816) do
     t.string   "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
+    t.string   "founded"
+    t.string   "website"
+    t.integer  "size_category"
   end
 
   create_table "company_feeds", :force => true do |t|

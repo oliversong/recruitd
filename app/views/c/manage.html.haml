@@ -1,28 +1,33 @@
 %p
-	%b Labels:
-	-@company.labels.each do |lbl|
-		= link_to lbl.name, "\##{lbl.id}"
-		|
-				
+  %b Labels:
+  -@company.labels.each do |lbl|
+    = link_to lbl.name, "\##{lbl.id}"
+    |
+        
 -@company.labels.each do |lbl|
-	%a{:name => "#{lbl.id}"}
-	%p
-		%b= lbl.name
-		%ul
-			- lbl.company_labelings.each do |labeling|
-				%li
-					= link_to labeling.student.name, labeling.student
-					%br
-					Labels:
-					- labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
-						= other_lbl.label.name
-						|
-					- idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
-					- if idx
-						- cf = @company_files[idx]
-						%br/
-						rating: #{cf.rating}
-						|
-						= render :partial => "update_rating", :locals => {:student => labeling.student }
-						-if cf.starred
-							| starred
+  %a{:name => "#{lbl.id}"}
+  %p
+    %b= lbl.name
+    %ul
+      - lbl.company_labelings.each do |labeling|
+        %li
+          = link_to labeling.student.name, labeling.student
+          | 
+          Labels:
+          - labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
+            = other_lbl.label.name
+            |
+          - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+          - if idx
+            - cf = @company_files[idx]
+            |
+            rating: #{cf.rating}
+            -if cf.starred
+              | starred
+            |
+            = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
+            = render :partial => "update_rating", :locals => {:student => labeling.student }
+            .hidden_detail{:id => "company_file_#{cf.id}", :style => "display:none" }
+              = cf.notes
+              %br/
+            %br/
