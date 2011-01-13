@@ -28,13 +28,8 @@
 %p
   %b Relevant Coursework:
   %ul
-    - for course_student in @student.course_students
-      %li
-        = link_to course_student.course.name, course_student.course
-        %br/
-        .hidden_detail
-          = course_student.comments
-        %br
+    = render :partial => "course_student", :collection => @student.course_students
+    %br
     = render "add_course"
     
 %p
