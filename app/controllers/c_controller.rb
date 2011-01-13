@@ -49,4 +49,16 @@ class CController < ApplicationController
     redirect_to settings_c_path
   end
   
+  def browse
+    if !current_user.is_company_entity?
+      redirect_to :new_user_session
+    end
+    
+    idx = params[:id] ? params[:index] : 0
+    
+    @recruiter = current_user.entity
+    
+    @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(idx).limit(1).find(:first)
+  end
+  
 end

@@ -37,6 +37,8 @@
         - elsif current_user.is_company_entity?
           = link_to "Home", home_c_path
           |
+          = link_to "Browse", browse_c_path
+          |
           = link_to "Public", current_user.entity
           |
           = link_to "Manage", manage_c_path

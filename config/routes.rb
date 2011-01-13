@@ -1,5 +1,5 @@
 Recruitd::Application.routes.draw do
-  resource :s, :only => [:manage, :home, :add_career, :add_course, :add_award] do
+  resource :s, :only => [:manage, :home, :settings, :add_career, :add_course, :add_award, :add_interest] do
     get 'manage'
     get 'home'
     get 'settings'
@@ -9,12 +9,15 @@ Recruitd::Application.routes.draw do
     post 'add_interest'
   end
   
-  resource :c, :only => [:manage, :home], :controller => "c" do
+  resource :c, :only => [:manage, :home, :settings, :update_settings], :controller => "c" do
     get 'manage'
     get 'home'
     get 'settings'
+    get 'browse'
     post 'update_settings'
   end
+  
+  match "c/browse/:id" => "c#browse"
 
   resources :monkeys #TODO remove
   

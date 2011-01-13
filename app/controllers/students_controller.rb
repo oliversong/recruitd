@@ -125,7 +125,7 @@ class StudentsController < ApplicationController
     company_file.starred = true
     company_file.save
     
-    redirect_to home_c_path
+    redirect_to :back
   end
   
   def dismiss
@@ -141,7 +141,7 @@ class StudentsController < ApplicationController
       company_feed.save
     end
     
-    redirect_to home_c_path  
+    redirect_to :back  
   end
   
 end
