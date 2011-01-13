@@ -124,5 +124,6 @@ class SController < ApplicationController
     redirect_to @student
   end
   
-
+  def settings
+  end
 end

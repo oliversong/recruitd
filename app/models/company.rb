@@ -14,4 +14,8 @@ class Company < ActiveRecord::Base
   def company
     return this
   end
+  
+  def company_id
+    return id
+  end
 end

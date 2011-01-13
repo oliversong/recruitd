@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110111105948) do
+ActiveRecord::Schema.define(:version => 20110113025816) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -352,6 +352,8 @@ ActiveRecord::Schema.define(:version => 20110111105948) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "entity_id"
+    t.string   "entity_type"
   end
 
   create_table "updates", :force => true do |t|

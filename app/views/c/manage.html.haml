@@ -1,9 +1,8 @@
 %p
 	%b Labels:
-	%ul
-		-@company.labels.each do |lbl|
-			%li
-				= link_to lbl.name, "\##{lbl.id}"
+	-@company.labels.each do |lbl|
+		= link_to lbl.name, "\##{lbl.id}"
+		|
 				
 -@company.labels.each do |lbl|
 	%a{:name => "#{lbl.id}"}

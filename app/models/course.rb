@@ -1,6 +1,6 @@
 class Course < ActiveRecord::Base
   belongs_to :department
-  belongs_to :term
+  belongs_to :term, :as => :entity
   has_many :course_students
   has_many :students, :through => :course_students
   has_many :course_ratings

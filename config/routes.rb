@@ -2,6 +2,7 @@ Recruitd::Application.routes.draw do
   resource :s, :only => [:manage, :home, :add_career, :add_course, :add_award] do
     get 'manage'
     get 'home'
+    get 'settings'
     post 'add_career'
     post 'add_course'
     post 'add_award'
@@ -11,6 +12,8 @@ Recruitd::Application.routes.draw do
   resource :c, :only => [:manage, :home], :controller => "c" do
     get 'manage'
     get 'home'
+    get 'settings'
+    post 'update_settings'
   end
 
   resources :monkeys #TODO remove

@@ -1,0 +1,16 @@
+%h1 Settings
+
+= form_tag update_settings_c_path, :method => :post do
+  -@company.company_terms.each do |company_term|
+    %b= link_to company_term.term.name, company_term.term.entity
+    |
+    weight: #{company_term.weight}; change to 
+    = text_field "settings", company_term.term_id, :size => 3
+    = link_to "(+)", "#", {:onClick => "$('\#company_term_#{company_term.id}').toggle()"}
+    %br/
+    .hidden_detail{:id => "company_term_#{company_term.id}", :style => "display:none" }
+      = company_term.notes
+      foo
+    
+    %br
+  =submit_tag "submit"
