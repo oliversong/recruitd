@@ -1,0 +1,30 @@
+%h2{:style => "text-align:center"}
+  = link_to company.name, company
+  
+%p
+  %b Website:
+  = link_to company.website, @company.website
+%p
+  %b Founded:
+  = h company.founded
+%p
+  %b Size:
+  = h company.size_category_text  
+%p
+  =h company.description
+
+%h3 Jobs
+
+%table
+  %tr
+    %th Title
+    %th Description
+
+  - company.jobs.each do |job|
+    %tr
+      %td= link_to job.title, job
+      %td= job.description  
+
+%b Recruiters
+- company.recruiters.each do |recruiter|
+  = link_to recruiter.user.name, recruiter

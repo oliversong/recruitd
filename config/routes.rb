@@ -2,6 +2,7 @@ Recruitd::Application.routes.draw do
   resource :s, :only => [:manage, :home, :settings, :add_career, :add_course, :add_award, :add_interest] do
     get 'manage'
     get 'home'
+    get 'browse'
     get 'settings'
     post 'add_career'
     post 'add_course'
@@ -17,6 +18,7 @@ Recruitd::Application.routes.draw do
     post 'update_settings'
   end
   
+  match "s/browse/:id" => "s#browse"
   match "c/browse/:id" => "c#browse"
 
   resources :monkeys #TODO remove

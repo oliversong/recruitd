@@ -72,7 +72,7 @@ class JobsController < ApplicationController
     student_file.starred = true
     student_file.save
     
-    redirect_to home_s_path
+    redirect_to :back
   end
   
   def dismiss
@@ -87,7 +87,7 @@ class JobsController < ApplicationController
       student_feed.dismissed = true
       student_feed.save
     end
-    redirect_to home_s_path
+    redirect_to :back
 
   end
 end
