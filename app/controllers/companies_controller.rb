@@ -14,8 +14,10 @@ class CompaniesController < ApplicationController
   # GET /companies/1.xml
   def show
     @company = Company.find(params[:id])
-    @student = current_user.entity
-    @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+
+    if current_user.is_student?
+      @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, @company.id)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -133,4 +135,17 @@ class CompaniesController < ApplicationController
     redirect_to home_s_path
     
   end
+  
+    def update_file
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    @company = Company.find(params[:id])
+    @student = current_user.entity
+    
+    student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    student_file.update_attributes(params[:student_file_company])
+    redirect_to :back
+  end
+  
 end

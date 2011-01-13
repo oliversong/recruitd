@@ -1,3 +1,6 @@
+-if current_user.is_student?
+  = render :partial => "student_file", :locals => { :company => @company, :student_file_company => @student_file_company }
+
 %p
   %h1= @company.name
   
@@ -24,50 +27,12 @@
     %tr
       %td= link_to job.title, job
       %td= job.description  
-      %td= link_to 'Edit', edit_job_path(job)
-      %td= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
 
 %h3 Recruiters
 - @company.recruiters.each do |recruiter|
   = link_to recruiter.user.name, recruiter
   %br
-  
-%h3 Your relationship:
-= render :partial => 'student_file'
-
-%h3 Relationships with students
-- @company.company_files.each do |cf|
-  .student
-    Name: #{cf.student.name}
-    %br Score: #{cf.rating}
-    %br Comments: #{cf.notes}
-    / %br= link_to 'Edit this relationship', edit_company_student_path(cf)
-    %br
-    %br
     
-%h3 Company feed:
-- @company.company_feeds.each do |cf|
-  .student
-    Name: #{cf.student.name}
-    %br/
-    Score: #{cf.score}
-    %br/
-    Dismissed until: #{cf.dismissed_until}
-    %br/
-    Last seen: #{cf.last_seen}
-    %br
-    %br
-    
-%h3 Terms I care about:
-- @company.company_terms.each do |ct|
-  Name: #{ct.term.name}
-  %br/
-  Score: #{ct.weight}
-  %br/
-  Notes: #{ct.notes}
+-if current_user.entity_id == @company.id
   %br
-  %br
-    
-= link_to 'Edit', edit_company_path(@company)
-|
-= link_to 'Back', companies_path
+  = link_to 'Edit', edit_company_path(@company)

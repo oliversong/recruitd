@@ -40,6 +40,7 @@ Recruitd::Application.routes.draw do
       put 'rate'
       get 'star'
       get 'dismiss'
+      get 'update_file'
     end
   end
   resources :careers
@@ -77,6 +78,7 @@ Recruitd::Application.routes.draw do
       put 'rate'
       get 'star'
       get 'dismiss'
+      get 'update_file'
     end
   end
   

@@ -1,5 +1,8 @@
 class StudentFile < ActiveRecord::Base
   belongs_to :student
+  
+  RATINGS = [1,2,3,4,5]
+  
 end
 
 class StudentFileCompany < StudentFile
