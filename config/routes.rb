@@ -91,6 +91,12 @@ Recruitd::Application.routes.draw do
   
   resources :categories
   
+  resource :info do
+    member do
+      get 'home'
+    end
+  end
+  
 
   #devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -146,7 +152,7 @@ Recruitd::Application.routes.draw do
   # just remember to delete public/index.html.
   #root :to => ""
   authenticate :user do
-    root :to => "c#home"
+    root :to => "info#home"
   end
   
   root :to => "devise/sessions#new"
