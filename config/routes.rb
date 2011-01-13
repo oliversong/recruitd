@@ -78,7 +78,7 @@ Recruitd::Application.routes.draw do
     member do
       get 'star'
       get 'dismiss'
-      get 'rate'
+      get 'update_file'
     end
   end
   

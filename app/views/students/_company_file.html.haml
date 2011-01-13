@@ -1,0 +1,28 @@
+:javascript
+  function toggleFileBox(){
+    $("#company_file_box").toggle()
+    if( $("#toggle_text").html() == "show company file"){
+      $("#toggle_text").html("hide company file")
+    }
+    else{
+      $("#toggle_text").html("show company file")
+    }
+  }
+
+= form_for company_file, :url => update_file_student_path(student), :html => {:method => :get, :style=> "width: 80%; background: #99CCFF; margin: 1em; padding: 1em;" } do |f|
+  =link_to "show company file", "#", {:onClick => "toggleFileBox()", :id => "toggle_text" }
+  #company_file_box{:style => "display:none"}
+    %p
+      = f.hidden_field :student_id
+      = f.hidden_field :company_id
+      rating: 
+      = f.select :rating, CompanyFile::RATINGS, {:include_blank => true}
+    %p
+      notes:
+      %br
+      = f.text_area :notes, :rows => 10, :cols => 50
+    %p
+      starred:
+      = f.check_box :starred
+    %p
+      = f.submit "update record"

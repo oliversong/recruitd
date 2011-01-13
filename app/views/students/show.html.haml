@@ -1,80 +1,82 @@
+-if current_user.is_company_entity?
+  = render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
 %h2= h @student.user.name
 %h3= h @student.subtitle
 %p
-	%b Address:
-	= h address_block(@student)
+  %b Address:
+  = h address_block(@student)
 %p
-	%b Gpa:
-	= h @student.gpa
+  %b Gpa:
+  = h @student.gpa
 %p
-	%b Hometown:
-	= h @student.hometown
+  %b Hometown:
+  = h @student.hometown
 %p
-	%b Phone:
-	= h @student.phone
+  %b Phone:
+  = h @student.phone
 %p
-	%b Email:
-	= h @student.user.email
+  %b Email:
+  = h @student.user.email
 %p
-	%b Gender is male:
-	= h @student.user.gender_is_male
+  %b Gender is male:
+  = h @student.user.gender_is_male
 %p
-	%b Education:
-	%ul
-		- for school_map in @student.school_students
-			%li= school_block_for_student(school_map)
+  %b Education:
+  %ul
+    - for school_map in @student.school_students
+      %li= school_block_for_student(school_map)
 %p
-	%b Relevant Coursework:
-	%ul
-		- for course_student in @student.course_students
-			%li
-				= link_to course_student.course.name, course_student.course
-				%br/
-				.hidden_detail
-					= course_student.comments
-				%br
-		= render "add_course"
-		
+  %b Relevant Coursework:
+  %ul
+    - for course_student in @student.course_students
+      %li
+        = link_to course_student.course.name, course_student.course
+        %br/
+        .hidden_detail
+          = course_student.comments
+        %br
+    = render "add_course"
+    
 %p
-	%b Experiences:
-	%ul
-		- for experience in @student.work_experiences
-			%li= work_experience_block(experience)
-		%li=link_to "Add an experience", new_experience_path
+  %b Experiences:
+  %ul
+    - for experience in @student.work_experiences
+      %li= work_experience_block(experience)
+    %li=link_to "Add an experience", new_experience_path
 %p
-	%b Activities and Leadership:
-	%ul
-		- for experience in @student.club_experiences
-			%li= club_experience_block(experience)
-		%li=link_to "Add an experience", new_experience_path
+  %b Activities and Leadership:
+  %ul
+    - for experience in @student.club_experiences
+      %li= club_experience_block(experience)
+    %li=link_to "Add an experience", new_experience_path
 %p
-	%b Awards:
-	%ul
-		- for award in @student.awards
-			%li
-				= link_to award.name, award.becomes(Term)
-				%br
-		%li= render "add_award"
+  %b Awards:
+  %ul
+    - for award in @student.awards
+      %li
+        = link_to award.name, award.becomes(Term)
+        %br
+    %li= render "add_award"
 %p
-	%b Updates:
-	%ul
-		- for update in @updates
-			%li= print_update_block(update, :show_name => false)
+  %b Updates:
+  %ul
+    - for update in @updates
+      %li= print_update_block(update, :show_name => false)
 %p
-	%b Career Interests:
-	%ul
-		- for career in @student.careers
-			%li= career_block(career)
-		= render "add_career"
+  %b Career Interests:
+  %ul
+    - for career in @student.careers
+      %li= career_block(career)
+    = render "add_career"
 %p
-	%b Other Interests:
-	%ul
-		- for interest in @student.interests
-			%li= interest_block(interest)
-		%li= render "add_interest"
+  %b Other Interests:
+  %ul
+    - for interest in @student.interests
+      %li= interest_block(interest)
+    %li= render "add_interest"
 %p
-	%b Fun facts:
-	= h @student.fun_facts
+  %b Fun facts:
+  = h @student.fun_facts
 = link_to 'Edit', edit_student_path(@student)
 |
 \#{link_to 'Back', students_path}

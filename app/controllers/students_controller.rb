@@ -17,6 +17,14 @@ class StudentsController < ApplicationController
   def show
     @student = Student.find(params[:id])
     @updates = @student.user.updates
+    
+    if current_user.is_company_entity?
+      @company_file = CompanyFile.find_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
+      if(!@company_file)
+        @company_file = CompanyFile.new(:student_id => params[:id], 
+          :company_id => current_user.entity.company_id)
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -84,7 +92,7 @@ class StudentsController < ApplicationController
     end
   end
   
-  def rate
+  def update_file
     if !current_user.is_company_entity?
       redirect_to :new_user_session
     end
@@ -92,8 +100,8 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     
     company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
-    company_file.update_attributes(:rating => params[:company_file][:rating])
-    redirect_to manage_c_path
+    company_file.update_attributes(params[:company_file])
+    redirect_to :back
   end
   
   def star
