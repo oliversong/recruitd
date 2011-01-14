@@ -4,7 +4,6 @@
 %p
   %h1
     = @company.name
-    -if current_user.is_student?
     =render :partial => "shared/follow", :locals => {:user_id => @company.user_id, :followed => @followed}
   
 %p
