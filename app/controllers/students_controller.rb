@@ -25,6 +25,8 @@ class StudentsController < ApplicationController
           :company_id => current_user.entity.company_id)
       end
     end
+    
+    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)
 
     respond_to do |format|
       format.html # show.html.erb

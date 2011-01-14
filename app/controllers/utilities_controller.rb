@@ -28,4 +28,32 @@ class UtilitiesController < ApplicationController
     #       end
     #     end
   end
+  
+  def star
+    if current_user.is_student? 
+      if (params[:entity_type] == "Company")
+        
+      elsif (params[:entity_type] == "Job")
+        
+      else
+        #TODO render error
+        render :nothing => true
+      end
+      
+      
+    elsif current_user.is_company_entity?
+    end
+    
+    following = Following.find_by_follower_id_and_followed_id(current_user.id, params[:user_id])
+    if following
+      following.destroy
+    else
+    end
+    @user_id = params[:user_id]
+    @followed = false
+    render "shared/follow"
+  end
+  
+  def unstar
+  end
 end

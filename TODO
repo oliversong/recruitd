@@ -44,6 +44,10 @@ apply/follow button
 new label
 add to label
 
+number of people following/bookmarking
+
+on recommendation interface: three links: down, up, bookmark
+on profile page: bookmark, follow(students,recruiters)/apply(companies,jobs)
 
 DONE
 add an award

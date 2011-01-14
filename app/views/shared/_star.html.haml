@@ -1,0 +1,9 @@
+%span{:id => "star#{user_id}", :class => "starbox"}
+	- if followed
+		- star_file = "/images/star_full.png"
+		- title = "Click to unfollow."
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), unstar_path(:entity_id => entity_id, :entity_type => entity_type, :format => :js), :remote => true
+	- else
+		- star_file = "/images/star_empty.png"
+		- title = "Click to follow."
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), star_path(:entity_id => entity_id, :entity_type => entity_type, :format => :js), :remote => true

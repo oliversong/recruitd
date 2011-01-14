@@ -14,6 +14,8 @@ class RecruitersController < ApplicationController
   # GET /recruiters/1.xml
   def show
     @recruiter = Recruiter.find(params[:id])
+    
+    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.user_id)
 
     respond_to do |format|
       format.html # show.html.erb
