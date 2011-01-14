@@ -1,6 +1,6 @@
 -if @student_feed.company_id
   .biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
-    = render :partial => "companies/summary_card", :locals => {:company => @student_feed.company}
+    = render :partial => "companies/summary_card", :locals => {:company => @student_feed.company, :followed => @followed}
   .buttons{ :style => "text-align:center"}
     = link_to "star", star_company_path(@student_feed.company)
     | 

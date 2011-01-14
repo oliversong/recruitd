@@ -1,1 +1,1 @@
-$("\#follow#{@user_id}").update("<%= escape_javascript(render('shared/follow', :locals=>{:user_id=>@user_id, :followed => @followed})) %>");
+$("#follow<%=@user_id%>").html("<%= escape_javascript(render :partial => 'shared/follow', :locals => {:user_id => @user_id, :followed => @followed}) %>");

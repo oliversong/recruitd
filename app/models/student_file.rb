@@ -3,12 +3,14 @@ class StudentFile < ActiveRecord::Base
   
   RATINGS = [1,2,3,4,5]
   
+  class StudentFileCompany < StudentFile
+    belongs_to :company
+  end
+
+  class StudentFileJob < StudentFile
+    belongs_to :job
+  end
+  
 end
 
-class StudentFileCompany < StudentFile
-  belongs_to :company
-end
 
-class StudentFileJob < StudentFile
-  belongs_to :job
-end

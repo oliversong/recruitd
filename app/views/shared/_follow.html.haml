@@ -1,8 +1,9 @@
-%div{:id => "follow#{user_id}", :class => "starbox"}
+%span{:id => "follow#{user_id}", :class => "starbox"}
 	- if followed
-		- star_file = "/images/star_full.png"
+		- star_file = "/images/delete.png"
 		- title = "Click to unfollow."
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), unfollow_path(:user_id=>user_id, :format => :js), :remote => true
 	- else
-		- star_file = "/images/star_empty.png"
+		- star_file = "/images/add.png"
 		- title = "Click to follow."
-	= link_to image_tag(star_file, :width => 50, :height => 50, :class => "star-image", :title => title), follow_path(:user_id=>user_id, :format => :js), :remote => true
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), follow_path(:user_id=>user_id, :format => :js), :remote => true

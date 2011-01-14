@@ -1,9 +1,11 @@
 -if current_user.is_student?
   = render :partial => "student_file", :locals => { :company => @company, :student_file_company => @student_file_company }
-  =render :partial => "shared/follow", :locals => {:user_id => @company.user_id, :followed => @followed}
 
 %p
-  %h1= @company.name
+  %h1
+    = @company.name
+    -if current_user.is_student?
+    =render :partial => "shared/follow", :locals => {:user_id => @company.user_id, :followed => @followed}
   
 %p
   %b Website:
