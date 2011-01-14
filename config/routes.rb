@@ -20,8 +20,9 @@ Recruitd::Application.routes.draw do
   
   match "s/browse/:id" => "s#browse"
   match "c/browse/:id" => "c#browse"
-
-  resources :monkeys #TODO remove
+  
+  match "follow/:user_id" => "utilities#follow", :as => "follow"
+  match "unfollow/:user_id" => "utilities#unfollow", :as => "unfollow"
   
   resources :experiences
 
@@ -63,8 +64,7 @@ Recruitd::Application.routes.draw do
 
   resources :rep_transactions
   resources :tasks
-  resources :clubs
-  resources :followings
+  resources :clubs  
   resources :job_students
   resources :company_students
   resources :updates
@@ -95,11 +95,14 @@ Recruitd::Application.routes.draw do
   
   resources :categories
   
-  resource :info do
+  resource :info, :controller => 'info' do
     member do
       get 'home'
+      get 'updates'
     end
   end
+  
+
   
 
   #devise_for :users

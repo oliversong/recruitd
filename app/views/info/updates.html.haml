@@ -1,0 +1,16 @@
+%h1 Newsfeed
+
+%h2 Users followed:
+- current_user.users_followed.each do |user|
+	=link_to user.name, user.entity
+	%br
+
+%h2 Newsfeed items:
+- current_user.newsfeed_items.each do |item|
+	%p
+		=item.update_time.strftime("On %m/%d/%Y at %I:%M%p,")
+		=link_to item.entity.name, item.entity
+		wrote:
+		%br
+		=item.text
+		%br

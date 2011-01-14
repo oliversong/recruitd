@@ -10,4 +10,7 @@ class InfoController < ApplicationController
       redirect_to "devise/sessions#new"
     end
   end
+  
+  def updates
+  end
 end

@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  update_id: 1
+  update_text: 1
+  reference_id: 1
+  reference_type: MyString
+  user_id: 1
+  entity_id: 1
+  entity_type: MyString
+  update_time: 2011-01-13 22:34:20
+
+two:
+  update_id: 1
+  update_text: 1
+  reference_id: 1
+  reference_type: MyString
+  user_id: 1
+  entity_id: 1
+  entity_type: MyString
+  update_time: 2011-01-13 22:34:20

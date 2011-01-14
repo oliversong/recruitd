@@ -17,6 +17,7 @@ class CompaniesController < ApplicationController
 
     if current_user.is_student?
       @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, @company.id)
+      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @company.user_id)
     end
 
     respond_to do |format|

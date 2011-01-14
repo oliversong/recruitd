@@ -23,13 +23,16 @@ namespace :db do
       create_student_files_and_feeds
       create_company_terms
       create_student_labels
+      create_company_labels
+      create_followings
+      
       puts "Completed loading recruitd sample data."
     end
     
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
-      
-      create_company_labels
+
+      create_newsfeed_items
       
       puts "Completed adding new sample data"
     end
@@ -220,21 +223,6 @@ def create_recruiters
   puts "Created recruiters"
 end
 
-def create_updates
-  Student.all.each do |student|
-    3.times do
-      Factory(:update, :user => student.user)
-    end
-  end
-  
-  Company.all.each do |company|
-    3.times do
-      Factory(:update, :user => company.user)
-    end
-  end
-  puts "Created updates"
-end
-
 def create_company_files_and_feeds
   Company.all.each do |company|
     Student.all.each do |student|
@@ -296,4 +284,43 @@ def create_company_labels
     end
   end
   puts "Created companies' labels"
+end
+
+def create_followings
+  Student.all.each do |student|
+    Company.all.sort_by{rand}[0..2].each do |company|
+      Factory(:following, :follower => student.user, :followed => company.user)
+    end
+  end
+  
+  Company.all.each do |company|
+    Student.all.sort_by{rand}[0..2].each do |student|
+      Factory(:following, :follower => company.user, :followed => student.user)
+    end
+  end
+end
+
+def create_updates
+  Student.all.each do |student|
+    3.times do
+      Factory(:update, :user => student.user)
+    end
+  end
+  
+  Company.all.each do |company|
+    3.times do
+      Factory(:update, :user => company.user)
+    end
+  end
+  puts "Created updates"
+end
+
+def create_newsfeed_items
+  Update.all.each do |update|
+    update.user.followers.each do |follower|
+      Factory(:newsfeed_item_update, :reference => update, :user => follower, :text => update.text, :update_time => update.updated_at, :entity => update.user.entity)
+    end
+  end
+  
+  puts "Created newsfeed items"
 end

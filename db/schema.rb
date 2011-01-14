@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113095352) do
+ActiveRecord::Schema.define(:version => 20110114033420) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -200,6 +200,19 @@ ActiveRecord::Schema.define(:version => 20110113095352) do
   create_table "monkeys", :force => true do |t|
     t.string   "name"
     t.text     "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "newsfeed_items", :force => true do |t|
+    t.text     "text"
+    t.string   "type"
+    t.integer  "reference_id"
+    t.string   "reference_type"
+    t.integer  "user_id"
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.datetime "update_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

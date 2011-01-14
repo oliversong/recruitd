@@ -9,7 +9,15 @@ class User < ActiveRecord::Base
     attr_accessible :email, :password, :password_confirmation, :remember_me
 
     belongs_to :entity, :polymorphic => true
+    
     has_many :updates
+    has_many :followings_as_follower, :class_name => "Following", :foreign_key => "follower_id"
+    has_many :users_followed, :through => :followings_as_follower, :source => :followed
+    
+    has_many :followings_as_followed, :class_name => "Following", :foreign_key => "followed_id"
+    has_many :followers, :through => :followings_as_followed, :source => :follower
+    has_many :newsfeed_items
+    
     def name
         "#{first_name} #{last_name}"
     end

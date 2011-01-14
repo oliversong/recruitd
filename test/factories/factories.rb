@@ -361,11 +361,6 @@ Factory.define :recruiter do |f|
   f.user { Factory.create(:user) }
 end
 
-Factory.define :update do |f|
-  f.user { User.all.count > 0 ? User.all.sort_by{rand}.first : Factory.create(:user) }
-  f.text LIPSUM_FULL
-end
-
 Factory.define :company_file do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
@@ -433,4 +428,17 @@ Factory.define :company_labeling do |f|
   f.company do |s|
     s.label.owner
   end
+end
+
+Factory.define :update do |f|
+  f.user { User.all.count > 0 ? User.all.sort_by{rand}.first : Factory.create(:user) }
+  f.text LIPSUM_FULL
+end
+
+
+Factory.define :following do |f|
+end
+
+Factory.define :newsfeed_item_update, :class => "NewsfeedItem" do |f|
+  f.update_time { rand_time(2.weeks.ago, Time.now ) }
 end
