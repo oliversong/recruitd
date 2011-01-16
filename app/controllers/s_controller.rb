@@ -131,11 +131,11 @@ class SController < ApplicationController
       redirect_to :new_user_session
     end
     
-    idx = params[:id] ? params[:id] : 0
+    @page = params[:page] ? [Integer(params[:page]), 0].max : 0
     
     #@student = current_user.entity
     
-    @student_feed = StudentFeed.by_student_id(current_user.entity_id).offset(idx).limit(1).find(:first)
+    @student_feed = StudentFeed.by_student_id(current_user.entity_id).offset(@page).limit(1).find(:first)
     
     if @student_feed.company_id
       @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)

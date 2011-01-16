@@ -18,8 +18,8 @@ Recruitd::Application.routes.draw do
     post 'update_settings'
   end
   
-  match "s/browse/:id" => "s#browse"
-  match "c/browse/:id" => "c#browse"
+  match "s/browse/:page" => "s#browse"
+  match "c/browse/:page" => "c#browse"
   
   match "follow/:user_id" => "utilities#follow", :as => "follow"
   match "unfollow/:user_id" => "utilities#unfollow", :as => "unfollow"

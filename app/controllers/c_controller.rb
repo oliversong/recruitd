@@ -56,11 +56,11 @@ class CController < ApplicationController
       redirect_to :new_user_session
     end
     
-    idx = params[:id] ? params[:index] : 0
+    @page = params[:page] ? [Integer(params[:page]), 0].max : 0
     
     @recruiter = current_user.entity
     
-    @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(idx).limit(1).find(:first)
+    @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
     
     @company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
     
