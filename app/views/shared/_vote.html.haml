@@ -1,11 +1,11 @@
 %div{:id => "votes-#{voteable.class}-#{voteable.id}", :class => "votebox"}
 	- up_img_file = "/images/up-gray.png"
 	- down_img_file = "/images/down-gray.png"
-	- if current_user && current_user.voted_for?(voteable)
+	- if vote && (vote==1)
 		- up_img_file = "/images/up.png"
 		- up_title = "You voted for this item."
 		- down_title = "Click to cancel upvote for this item."
-	-elsif current_user && current_user.voted_against?(voteable)
+	-elsif vote && (vote==-1)
 		- down_img_file = "/images/down.png"
 		- up_title = "Click to cancel downvote for this item."
 		- down_title = "You voted against this item."

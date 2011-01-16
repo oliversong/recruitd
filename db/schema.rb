@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116062055) do
+ActiveRecord::Schema.define(:version => 20110116082432) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(:version => 20110116062055) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "vote",       :default => 0,     :null => false
   end
 
   create_table "student_labelings", :force => true do |t|
