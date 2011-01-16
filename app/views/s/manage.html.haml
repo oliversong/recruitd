@@ -20,11 +20,7 @@
 
         - elsif labeling.job_id
           %li
-            = link_to labeling.job.title, labeling.job
-            - sf = @student_files_jobs.find{|item| item.job_id == labeling.job_id }
-            - if sf
-              %br/
-              rating: #{sf.rating}
-              -if sf.starred
-                | starred
-    
+            - idx = @student_files_jobs.find_index{|item| item.job_id == labeling.job_id }
+            - if idx
+              - student_file = @student_files[idx]
+              = render :partial => 'jobs/manage_card', :locals => {:job => labeling.job, :student_file => student_file }

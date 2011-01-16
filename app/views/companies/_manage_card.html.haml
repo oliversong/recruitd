@@ -12,7 +12,7 @@ rating: #{student_file.rating}
 =render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => student_file.company_id, :starred => student_file.starred}
 |
 = link_to "(+)", "#", {:onClick => "$('\#student_file_#{student_file.id}').toggle()"}
-= render :partial => "update_rating", :locals => {:company => company }
+= render :partial => "companies/update_rating", :locals => {:company => company }
 .hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
   = student_file.notes
   %br/
