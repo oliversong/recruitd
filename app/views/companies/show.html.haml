@@ -4,7 +4,9 @@
 %p
   %h1
     = @company.name
-    =render :partial => "shared/follow", :locals => {:user_id => @company.user_id, :followed => @followed}
+    -if current_user.is_student?
+      =render :partial => "shared/follow", :locals => {:user_id => @company.user_id, :followed => @followed}
+      =render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => @company.id, :starred => @student_file_company.starred}
   
 %p
   %b Website:

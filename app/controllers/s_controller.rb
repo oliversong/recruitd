@@ -136,7 +136,10 @@ class SController < ApplicationController
     #@student = current_user.entity
     
     @student_feed = StudentFeed.by_student_id(current_user.entity_id).offset(idx).limit(1).find(:first)
-    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
+    
+    if @student_feed.company_id
+      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
+    end
   end
   
   def settings
