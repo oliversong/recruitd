@@ -62,14 +62,7 @@ class CController < ApplicationController
     
     @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(idx).limit(1).find(:first)
     
-    @company_file = CompanyFile.find_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
-    if(@company_file)
-      @starred = @company_file.starred
-      @vote = @company_file.vote
-    else
-      @starred = false
-      @vote = 0
-    end
+    @company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
     
   end
   

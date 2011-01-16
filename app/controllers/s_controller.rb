@@ -142,8 +142,6 @@ class SController < ApplicationController
     end
     
     @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.entity_id, @student_feed.company_id)
-    # @starred = @student_file.starred
-    # @vote = @student_file.vote
     
   end
   

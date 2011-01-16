@@ -108,12 +108,12 @@ class UtilitiesController < ApplicationController
     
     if current_user.is_student?
       if (params[:voteable_type] == "Company")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:voteable_id])
+        student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, params[:voteable_id])
         student_file.vote = params[:vote]
         student_file.save
         @vote = student_file.vote
       elsif (params[:voteable_type] == "Job")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.id, params[:voteable_id])
+        student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.entity_id, params[:voteable_id])
         student_file.vote = params[:vote]
         student_file.save
         @vote = student_file.vote
@@ -121,12 +121,12 @@ class UtilitiesController < ApplicationController
         #TODO render error
         render :nothing => true and return
       end
-    elsif current_user.is_company_voteable?
+    elsif current_user.is_company_entity?
       if (params[:voteable_type] == "Student")
-        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.voteable.company_id, params[:voteable_id])
-        company_file = params[:vote]
+        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.entity.company_id, params[:voteable_id])
+        company_file.vote = params[:vote]
         company_file.save
-        @vote = student_file.vote
+        @vote = company_file.vote
       else
         #TODO render error
         render :nothing => true and return
