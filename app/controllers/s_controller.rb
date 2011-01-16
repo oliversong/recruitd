@@ -141,12 +141,9 @@ class SController < ApplicationController
       @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
     end
     
-    @company_file = CompanyFile.find_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
-    if(@company_file)
-      @starred = @company_file.starred
-    else
-      @starred = false
-    end
+    @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.entity_id, @student_feed.company_id)
+    # @starred = @student_file.starred
+    # @vote = @student_file.vote
     
   end
   

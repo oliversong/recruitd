@@ -6,7 +6,7 @@ class VotesController < ApplicationController
   
   before_filter :check_if_admin, :except => [:vote]
   
-  def vote  
+  def vote
     if !current_user
       render :nothing => true and return
     end

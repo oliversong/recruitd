@@ -65,8 +65,10 @@ class CController < ApplicationController
     @company_file = CompanyFile.find_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
     if(@company_file)
       @starred = @company_file.starred
+      @vote = @company_file.vote
     else
       @starred = false
+      @vote = 0
     end
     
   end
