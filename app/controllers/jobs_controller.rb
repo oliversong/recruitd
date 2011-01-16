@@ -7,7 +7,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     
     if current_user.is_student?
-      @student_file_job = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.entity_id, params[:id])
+      @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.entity_id, params[:id])
     end
     
     
@@ -46,13 +46,6 @@ class JobsController < ApplicationController
     @job.destroy
     flash[:notice] = "Successfully destroyed job."
     redirect_to jobs_url
-  end
-  
-  def rate
-    @student = current_user.entity
-    student_file = StudentFile::StudentFileJob.find_or_initialize_by_student_id_and_job_id(@student.id, params[:id])
-    student_file.update_attributes(params[:student_file_student_file_job])
-    redirect_to :action => :show, :id => params[:id]
   end
   
   def star
@@ -94,4 +87,18 @@ class JobsController < ApplicationController
     redirect_to :back
 
   end
+  
+  def update_file
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    @student = current_user.entity
+    @job = Job.find(params[:id])
+    
+    student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(@student.id, @job.id)
+    student_file.update_attributes(params[:student_file_student_file_job])
+    redirect_to :back
+  end
+  
 end

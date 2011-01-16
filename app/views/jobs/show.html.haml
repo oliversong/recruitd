@@ -1,12 +1,15 @@
 - title "Job"
 
+-if current_user.is_student?
+  = render :partial => "student_file", :locals => { :job => @job, :student_file => @student_file }
+
 %p
   %strong Company:
   = link_to @job.company.name, @job.company
 %h1
   =h @job.title
   -if current_user.is_student?
-    =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @job.id, :starred => @student_file_job.starred}
+    =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @job.id, :starred => @student_file.starred}
 %p
   %strong Responsibilities:
   =h @job.responsibilities
@@ -27,9 +30,6 @@
   %ul
   -@job.careers.each do |career|
     %li= link_to career.name, career
-    
-%h3 Your relationship:
-= render :partial => 'student_file'
 
 %p
   = link_to "Edit", edit_job_path(@job)

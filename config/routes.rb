@@ -43,10 +43,9 @@ Recruitd::Application.routes.draw do
   
   resources :jobs do
     member do
-      put 'rate'
       get 'star'
       get 'dismiss'
-      get 'update_file'
+      put 'update_file'
     end
   end
   resources :careers

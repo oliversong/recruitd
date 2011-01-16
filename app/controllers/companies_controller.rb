@@ -139,7 +139,7 @@ class CompaniesController < ApplicationController
     
   end
   
-    def update_file
+  def update_file
     if !current_user.is_student?
       redirect_to :new_user_session
     end
@@ -147,7 +147,7 @@ class CompaniesController < ApplicationController
     @student = current_user.entity
     
     student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
-    student_file.update_attributes(params[:student_file_company])
+    student_file.update_attributes(params[:student_file_student_file_company])
     redirect_to :back
   end
   

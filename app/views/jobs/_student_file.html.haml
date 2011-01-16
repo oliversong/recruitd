@@ -1,29 +1,25 @@
-- form_for @student_file_job, :url => { :action => :rate, :id => @job, :method => :put } do |f|
-	= f.error_messages
-	/ TODO: might need to make these hidden fields...
-	/ %p
-	/	 = f.label :student_id
-	/	 %br
-	/	 = f.text_field :student_id
-	/ %p
-	/	 = f.label :company_id
-	/	 %br
-	/	 = f.text_field :company_id
-	/ %p
-	/	 = f.label :job_id
-	/	 %br
-	/	 = f.text_field :job_id
-	%p
-		= f.label :rating
-		%br
-		= f.text_field :rating
-	%p
-		= f.label :notes
-		%br
-		= f.text_area :notes
-	%p
-		= f.label :starred
-		%br
-		= f.check_box :starred
-	%p
-		= f.submit
+:javascript
+  function toggleFileBox(){
+    $("#student_file_box").toggle()
+    if( $("#toggle_text").html() == "show student file"){
+      $("#toggle_text").html("hide student file")
+    }
+    else{
+      $("#toggle_text").html("show student file")
+    }
+  }
+
+= form_for student_file, :url => update_file_job_path(job), :html => {:method => :put, :style=> "width: 80%; background: #99CCFF; margin: 1em; padding: 1em;" } do |f|
+  =link_to "show student file", "#", {:onClick => "toggleFileBox()", :id => "toggle_text" }
+  #student_file_box{:style => "display:none"}
+    %p
+      = f.hidden_field :job_id
+      = f.hidden_field :student_id
+      rating: 
+      = f.select :rating, StudentFile::RATINGS, {:include_blank => true}
+    %p
+      notes:
+      %br
+      = f.text_area :notes, :rows => 10, :cols => 50
+    %p
+      = f.submit "update record"
