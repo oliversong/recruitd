@@ -11,39 +11,15 @@
     %b= lbl.name
     %ul
       - lbl.company_labelings.each do |labeling|
-        %li
-          = link_to labeling.student.name, labeling.student
-          | 
-          Labels:
-          - labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
-            = other_lbl.label.name
-            |
-          - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
-          - if idx
-            - cf = @company_files[idx]
-            |
-            rating: #{cf.rating}
-            =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => cf.student_id, :starred => cf.starred}
-            |
-            = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
-            = render :partial => "update_rating", :locals => {:student => labeling.student }
-            .hidden_detail{:id => "company_file_#{cf.id}", :style => "display:none" }
-              = cf.notes
-              %br/
-            %br/
+        - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+        - if idx
+          %li
+            - company_file = @company_files[idx]
+            = render :partial => 'students/manage_card', :locals => {:student => labeling.student, :company_file => company_file }
             
 %a{:name => "starred"}
 %b Starred
 %ul
   -@starred_company_files.each do |cf|
     %li
-      =link_to cf.student.name, cf.student
-      rating: #{cf.rating}
-      =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => cf.student_id, :starred => cf.starred}
-      |
-      = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
-      = render :partial => "update_rating", :locals => {:student => cf.student }
-      .hidden_detail{:id => "company_file_#{cf.id}", :style => "display:none" }
-        = cf.notes
-        %br/
-      %br/
+      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }    
