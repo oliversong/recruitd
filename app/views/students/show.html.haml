@@ -18,8 +18,8 @@
   %b Email:
   = h @student.user.email
 %p
-  %b Gender is male:
-  = h @student.user.gender_is_male
+  %b Gender:
+  = @student.user.gender_is_male ? "male" : "female"
 %p
   %b Education:
   %ul
@@ -53,11 +53,6 @@
         %br
     %li= render "add_award"
 %p
-  %b Updates:
-  %ul
-    - for update in @updates
-      %li= print_update_block(update, :show_name => false)
-%p
   %b Career Interests:
   %ul
     - for career in @student.careers
@@ -72,6 +67,12 @@
 %p
   %b Fun facts:
   = h @student.fun_facts
+%p
+  %b Updates:
+  %ul
+    - for update in @updates
+      %li= print_update_block(update, :show_name => false)
+
 = link_to 'Edit', edit_student_path(@student)
 |
 \#{link_to 'Back', students_path}

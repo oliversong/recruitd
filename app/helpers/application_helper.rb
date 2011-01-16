@@ -16,7 +16,7 @@ module ApplicationHelper
       return_str = "At #{update.updated_at.to_s}"
     end
     
-    return_str += content_tag(:br) + h(update.text)
+    return_str +=   tag(:br) + h(update.text)
     return_str.html_safe
   end
   
