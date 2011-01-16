@@ -4,6 +4,7 @@
     -@student.labels.each do |lbl|
       %li
         = link_to lbl.name, "\##{lbl.id}"
+    %li= link_to "starred", "\#starred"
         
 -@student.labels.each do |lbl|
   %a{:name => "#{lbl.id}"}
@@ -24,3 +25,14 @@
             - if idx
               - student_file = @student_files[idx]
               = render :partial => 'jobs/manage_card', :locals => {:job => labeling.job, :student_file => student_file }
+              
+%a{:name => "starred"}
+%b Starred
+%ul
+  -@starred_student_files.each do |sf|
+    -if sf.company_id
+      %li
+        = render :partial => 'companies/manage_card', :locals => {:company => sf.company, :student_file => sf }
+    -elsif sf.job_id
+      %li
+        = render :partial => 'jobs/manage_card', :locals => {:job => sf.job, :student_file => sf }

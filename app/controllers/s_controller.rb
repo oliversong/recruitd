@@ -9,6 +9,8 @@ class SController < ApplicationController
     @student_files = @student.student_files
     @student_files_companies = @student_files.find_all_by_type("StudentFile::StudentFileCompany")
     @student_files_jobs = @student_files.find_all_by_type("StudentFile::StudentFileJob")
+    
+    @starred_student_files = @student_files.select{|student_file| student_file.starred }
   end
   
 
