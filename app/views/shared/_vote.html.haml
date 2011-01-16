@@ -15,10 +15,7 @@
 		
 	= link_to_remote image_tag(up_img_file, :width => 50, :height => 50, :class => "arrow-image", :title => up_title),
 		:update=>"vote",
-		:url => votes_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote=>"for")
-	%div.vote-count
-		VOTES
-		%span=(voteable.vote_cache)
+		:url => vote_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote_for=>"1")
 	= link_to_remote image_tag(down_img_file, :width => 50, :height => 50, :class => "arrow-image", :title => down_title),
 		:update=>"vote", 
-		:url => votes_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote=>"against")
+		:url => vote_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote_for => "0")

@@ -1,0 +1,9 @@
+%span{:id => "tag_#{entity_type}_#{entity_id}", :class => "starbox"}
+  - if starred
+    - tag_file = "/images/add.png"
+    - title = "Click to untag yourself."
+    = link_to image_tag(tag_file, :width => 25, :height => 25, :class => "star-image", :title => title), unstar_path(:entity_id => entity_id, :entity_type => entity_type, :format => :js), :remote => true
+  - else
+    - tag_file = "/images/delete.png"
+    - title = "Click to tag yourself."
+    = link_to image_tag(tag_file, :width => 25, :height => 25, :class => "star-image", :title => title), star_path(:entity_id => entity_id, :entity_type => entity_type, :format => :js), :remote => true

@@ -131,7 +131,7 @@ class SController < ApplicationController
       redirect_to :new_user_session
     end
     
-    idx = params[:id] ? params[:index] : 0
+    idx = params[:id] ? params[:id] : 0
     
     #@student = current_user.entity
     
