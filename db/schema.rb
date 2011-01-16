@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110114033420) do
+ActiveRecord::Schema.define(:version => 20110116062055) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -170,9 +170,7 @@ ActiveRecord::Schema.define(:version => 20110114033420) do
   create_table "job_students", :force => true do |t|
     t.integer  "job_id"
     t.integer  "student_id"
-    t.boolean  "student_follows_job"
-    t.integer  "job_score"
-    t.datetime "job_dismissed_until"
+    t.boolean  "applied"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -193,13 +191,6 @@ ActiveRecord::Schema.define(:version => 20110114033420) do
     t.integer  "owner_id"
     t.string   "owner_type"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "monkeys", :force => true do |t|
-    t.string   "name"
-    t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

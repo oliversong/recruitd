@@ -25,6 +25,7 @@ namespace :db do
       create_student_labels
       create_company_labels
       create_followings
+      create_newsfeed_items
       
       puts "Completed loading recruitd sample data."
     end
@@ -32,6 +33,7 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
+      create_followings
       create_newsfeed_items
       
       puts "Completed adding new sample data"

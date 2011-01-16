@@ -1,0 +1,4 @@
+= form_tag update_file_company_path(company), :method => "get" do 
+  change to
+  = select("student_file_company", "rating", StudentFile::RATINGS, {:include_blank => true})
+  = submit_tag "submit"
