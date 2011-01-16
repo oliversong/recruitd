@@ -7,6 +7,8 @@ class CController < ApplicationController
     @company = current_user.entity.company
     @company_files = @company.company_files
     
+    @starred_company_files = @company_files.select{|company_file| company_file.starred }
+    
   end
   
 
@@ -59,6 +61,14 @@ class CController < ApplicationController
     @recruiter = current_user.entity
     
     @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(idx).limit(1).find(:first)
+    
+    @company_file = CompanyFile.find_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
+    if(@company_file)
+      @starred = @company_file.starred
+    else
+      @starred = false
+    end
+    
   end
   
 end

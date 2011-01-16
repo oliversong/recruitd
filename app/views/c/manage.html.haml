@@ -3,6 +3,7 @@
   -@company.labels.each do |lbl|
     = link_to lbl.name, "\##{lbl.id}"
     |
+  = link_to "Starred", "\#starred"
         
 -@company.labels.each do |lbl|
   %a{:name => "#{lbl.id}"}
@@ -10,24 +11,15 @@
     %b= lbl.name
     %ul
       - lbl.company_labelings.each do |labeling|
-        %li
-          = link_to labeling.student.name, labeling.student
-          | 
-          Labels:
-          - labeling.student.company_labelings.where(:company_id => @company.id).each do |other_lbl|
-            = other_lbl.label.name
-            |
-          - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
-          - if idx
-            - cf = @company_files[idx]
-            |
-            rating: #{cf.rating}
-            -if cf.starred
-              | starred
-            |
-            = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
-            = render :partial => "update_rating", :locals => {:student => labeling.student }
-            .hidden_detail{:id => "company_file_#{cf.id}", :style => "display:none" }
-              = cf.notes
-              %br/
-            %br/
+        - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+        - if idx
+          %li
+            - company_file = @company_files[idx]
+            = render :partial => 'students/manage_card', :locals => {:student => labeling.student, :company_file => company_file }
+            
+%a{:name => "starred"}
+%b Starred
+%ul
+  -@starred_company_files.each do |cf|
+    %li
+      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }    

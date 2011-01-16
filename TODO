@@ -1,7 +1,6 @@
 PROCESS: pick one and work on it, try to divide into very concrete substeps
 
-company listing
-	make update of rating submit to companies/1/rating instead of to student_files
+
 job listing
 	same as company listing
 improve recommendation list for students
@@ -38,16 +37,9 @@ linkedin integration
 facebook integration (read jobs component)
 
 messaging
-playlist mgmt
+playlist mgmt                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 apply/follow button
 
-new label
-add to label
-
-number of people following/bookmarking
-
-on recommendation interface: three links: down, up, bookmark
-on profile page: bookmark, follow(students,recruiters)/apply(companies,jobs)
 
 DONE
 add an award

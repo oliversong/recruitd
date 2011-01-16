@@ -5,8 +5,12 @@ class JobsController < ApplicationController
   
   def show
     @job = Job.find(params[:id])
-    @student = current_user.entity
-    @student_file_job = StudentFile.find_or_initialize_by_student_id_and_job_id(@student.id, @job.id)
+    
+    if current_user.is_student?
+      @student_file_job = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.entity_id, params[:id])
+    end
+    
+    
   end
   
   def new

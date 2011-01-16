@@ -375,7 +375,7 @@ Factory.define :company_feed do |f|
   f.score { rand(100) + 1 }
 end
 
-Factory.define :student_file_company do |f|
+Factory.define :student_file_company, :class => "StudentFile::StudentFileCompany" do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
   f.notes LIPSUM_FULL
@@ -383,7 +383,7 @@ Factory.define :student_file_company do |f|
   f.starred { (rand > 0.5) }
 end
 
-Factory.define :student_file_job do |f|
+Factory.define :student_file_job, :class => "StudentFile::StudentFileJob" do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.job { Job.all.count > 0 ? Job.all.sort_by{rand}.first : Factory.create(:job) }
   f.notes LIPSUM_FULL
