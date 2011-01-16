@@ -19,11 +19,7 @@ class StudentsController < ApplicationController
     @updates = @student.user.updates
     
     if current_user.is_company_entity?
-      @company_file = CompanyFile.find_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
-      if(!@company_file)
-        @company_file = CompanyFile.new(:student_id => params[:id], 
-          :company_id => current_user.entity.company_id)
-      end
+      @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
     end
     
     @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)

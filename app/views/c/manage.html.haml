@@ -3,6 +3,7 @@
   -@company.labels.each do |lbl|
     = link_to lbl.name, "\##{lbl.id}"
     |
+  = link_to "Starred", "\#starred"
         
 -@company.labels.each do |lbl|
   %a{:name => "#{lbl.id}"}
@@ -22,8 +23,7 @@
             - cf = @company_files[idx]
             |
             rating: #{cf.rating}
-            -if cf.starred
-              | starred
+            =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => cf.student_id, :starred => cf.starred}
             |
             = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
             = render :partial => "update_rating", :locals => {:student => labeling.student }
@@ -31,3 +31,19 @@
               = cf.notes
               %br/
             %br/
+            
+%a{:name => "starred"}
+%b Starred
+%ul
+  -@starred_company_files.each do |cf|
+    %li
+      =link_to cf.student.name, cf.student
+      rating: #{cf.rating}
+      =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => cf.student_id, :starred => cf.starred}
+      |
+      = link_to "(+)", "#", {:onClick => "$('\#company_file_#{cf.id}').toggle()"}
+      = render :partial => "update_rating", :locals => {:student => cf.student }
+      .hidden_detail{:id => "company_file_#{cf.id}", :style => "display:none" }
+        = cf.notes
+        %br/
+      %br/

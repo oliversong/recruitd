@@ -1,6 +1,7 @@
 .biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
   = render :partial => "students/summary_card", :locals => {:student => @company_feed.student}
 .buttons{ :style => "text-align:center"}
+  =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @company_feed.student_id, :starred => @starred}
   = link_to "star", star_student_path(@company_feed.student)
   | 
   = link_to "dismiss", dismiss_student_path(@company_feed.student)
