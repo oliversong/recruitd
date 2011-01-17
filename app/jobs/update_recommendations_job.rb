@@ -34,7 +34,7 @@ class UpdateRecommendationsJob < Struct.new(:entity_type, :entity_id)
       student.student_terms.each do |st|
         idx = company.company_terms.index{ |ct| ct.term_id = st.term_id }
         if idx #match
-          sum_term_scores += ct.weight*st.score
+          sum_term_scores += company.company_terms[idx].weight*st.score
         end
       end 
       

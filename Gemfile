@@ -18,7 +18,6 @@ gem 'jquery-rails', '>= 0.2.6'
 #gem 'devise', :git => 'git://github.com/plataformatec/devise', :branch => 'v1.2.rc'
 gem 'devise', '1.2.rc'
 gem 'omniauth'
-#gem 'rspec-rails'
 
 gem 'haml'
 #gem 'formtastic'
@@ -44,5 +43,8 @@ gem 'haml'
 # group :development, :test do
 #   gem 'webrat'
 # end
+group :development, :test do 
+  gem 'rspec-rails'
+end
 
 gem "mocha", :group => :test

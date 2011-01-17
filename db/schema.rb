@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117011727) do
+ActiveRecord::Schema.define(:version => 20110117023252) do
+
+  create_table "career_companies", :force => true do |t|
+    t.integer  "career_id"
+    t.integer  "company_id"
+    t.integer  "weight",     :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -24,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110117011727) do
     t.integer  "student_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",      :default => 0, :null => false
   end
 
   create_table "career_terms", :force => true do |t|
@@ -336,6 +345,7 @@ ActiveRecord::Schema.define(:version => 20110117011727) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",      :default => 0, :null => false
   end
 
   create_table "students", :force => true do |t|
@@ -389,6 +399,8 @@ ActiveRecord::Schema.define(:version => 20110117011727) do
     t.datetime "updated_at"
     t.integer  "entity_id"
     t.string   "entity_type"
+    t.integer  "reference_id"
+    t.string   "reference_type"
   end
 
   create_table "updates", :force => true do |t|
