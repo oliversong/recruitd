@@ -1,3 +1,5 @@
+require 'delayed_job'
+
 class UtilitiesController < ApplicationController
   
   def follow
@@ -34,7 +36,10 @@ class UtilitiesController < ApplicationController
       render :nothing => true and return
     end
     
-    if current_user.is_student? 
+    if current_user.is_student?
+      actor_type = "Student"
+      actor_id = current_user.entity_id
+       
       if (params[:entity_type] == "Company")
         student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:entity_id])
         student_file.starred = true
@@ -50,6 +55,9 @@ class UtilitiesController < ApplicationController
         render :nothing => true and return
       end
     elsif current_user.is_company_entity?
+      actor_type = "Company"
+      actor_id = current_user.entity.company_id
+      
       if (params[:entity_type] == "Student")
         company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.entity.company_id, params[:entity_id])
         company_file.starred = true
@@ -60,6 +68,8 @@ class UtilitiesController < ApplicationController
         render :nothing => true and return
       end
     end
+    
+    Delayed::Job.enqueue ProcessFeedbackJob.new(actor_type, actor_id, params[:entity_type],params[:entity_id],ProcessFeedbackJob::STAR)
     
     @entity_id = params[:entity_id]
     @entity_type = params[:entity_type]
@@ -72,6 +82,9 @@ class UtilitiesController < ApplicationController
     end
     
     if current_user.is_student? 
+      actor_type = "Student"
+      actor_id = current_user.entity_id
+      
       if (params[:entity_type] == "Company")
         student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:entity_id])
         student_file.starred = false
@@ -87,6 +100,9 @@ class UtilitiesController < ApplicationController
         render :nothing => true and return
       end
     elsif current_user.is_company_entity?
+      actor_type = "Company"
+      actor_id = current_user.entity.company_id
+      
       if (params[:entity_type] == "Student")
         company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.entity.company_id, params[:entity_id])
         company_file.starred = false
@@ -97,6 +113,8 @@ class UtilitiesController < ApplicationController
         render :nothing => true and return
       end
     end
+    
+    Delayed::Job.enqueue ProcessFeedbackJob.new(actor_type, actor_id, params[:entity_type],params[:entity_id],ProcessFeedbackJob::UNSTAR)
     
     @entity_id = params[:entity_id]
     @entity_type = params[:entity_type]

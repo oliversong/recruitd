@@ -4,6 +4,7 @@
   = h @student.user.name
   -if current_user.is_company_entity?
     =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
+  (#{@student.baseline_score})
 %h3= h @student.subtitle
 %p
   %b Address:
