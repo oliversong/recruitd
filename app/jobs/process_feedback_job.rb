@@ -33,6 +33,14 @@ class ProcessFeedbackJob < Struct.new(:actor_type, :actor_id, :subject_type, :su
     puts "baseline score for #{student.name} was changed to #{student.baseline_score}"
     
     #update career-specific weights for student
+    company = Company.find(actor_id)
+    company_career_ids = company.careers.map{|c| c.id}
+    
+    student.career_students.each do |cs|
+      if company_career_ids.includes?(cs.career_id)
+        cs.score += POINTS[action]
+      end
+    end
     
     #update tag weights for company
   end

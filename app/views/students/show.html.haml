@@ -7,8 +7,13 @@
   (#{@student.baseline_score})
 %h3= h @student.subtitle
 %p
-  %b Address:
   = h address_block(@student)
+%p
+  %b Career Interests:
+  %ul
+    - for career in @student.careers
+      %li= career_block(career)
+    = render "add_career"
 %p
   %b Gpa:
   = h @student.gpa
@@ -56,12 +61,6 @@
         = link_to award.name, award.becomes(Term)
         %br
     %li= render "add_award"
-%p
-  %b Career Interests:
-  %ul
-    - for career in @student.careers
-      %li= career_block(career)
-    = render "add_career"
 %p
   %b Other Interests:
   %ul

@@ -7,6 +7,11 @@ class CareersController < ApplicationController
     @career = Career.find(params[:id])
   end
   
+  def tags
+    @career = Career.find(params[:id])
+  end
+  
+  
   def new
     @career = Career.new
   end

@@ -48,7 +48,11 @@ Recruitd::Application.routes.draw do
       put 'update_file'
     end
   end
-  resources :careers
+  resources :careers do
+    member do
+      get 'tags'
+    end
+  end
   resources :awards
   resources :schools
   
