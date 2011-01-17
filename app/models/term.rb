@@ -6,9 +6,11 @@ class Term < ActiveRecord::Base
   belongs_to :entity, :polymorphic => true
   
   class Interest < Term
+    scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   end
 
   class Award < Term
+    scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   end
   
 end

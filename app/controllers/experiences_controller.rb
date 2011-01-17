@@ -58,7 +58,7 @@ class ExperiencesController < ApplicationController
     
     if @experience.save
       flash[:notice] = "Successfully created experience."
-      redirect_to @experience.becomes(Experience)
+      redirect_to @experience.student
     else
       render :action => 'new'
     end

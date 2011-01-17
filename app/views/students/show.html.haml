@@ -1,3 +1,31 @@
+-if @owner
+  :javascript  
+    $(document).ready(function(){
+      function addClickToToggle(master_button, sub_button_class, off_text, on_text){
+        $(master_button).click(function(){
+          if($(master_button).html() == off_text){
+            $(sub_button_class).show();
+            $(master_button).html(on_text);
+          }
+          else{
+            $(sub_button_class).hide();
+            $(master_button).html(off_text);
+          }
+        });
+      }
+    
+      addClickToToggle("#careers_edit", ".delete_career_button", "(edit)", "(stop)");
+      addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
+      addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
+      addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
+      addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
+      addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
+    });
+  
+    $(function() {
+      
+    });
+
 -if current_user.is_company_entity?
   = render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
 %h2
@@ -28,10 +56,18 @@
         = f.text_field :address_zip, :size => 5
         = submit_tag "change"
 %p
-  %b Career Interests:
+  %b 
+    Career Interests:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "careers_edit", :onClick => "return false;"}
   %ul
     - for career in @student.careers
-      %li= career_block(career)
+      %li
+        = career_block(career)
+        -if @owner
+          %span.delete_career_button{:style => "display:none"}
+            = link_to "[X]", delete_career_s_path(:id => career.id)
+      
     -if @owner
       = render "add_career"
 %p
@@ -54,7 +90,7 @@
         = submit_tag "change"
 %p
   %b Phone:
-  = h @student.phone
+  = h number_to_phone(@student.phone, :area_code => true)
   -if @owner
     = link_to "(edit)", "#", {:onClick => "$('\#phone').toggle(); return false;"}
     .hidden_detail{:id => "phone", :style => "display:none" }
@@ -75,6 +111,8 @@
       %li= school_block_for_student(school_map)
 %p
   %b Relevant Coursework:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
   %ul
     = render :partial => "course_student", :collection => @student.course_students
     %br
@@ -83,32 +121,56 @@
     
 %p
   %b Experiences:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
   %ul
     - for experience in @student.work_experiences
-      %li= work_experience_block(experience)
+      %li
+        = work_experience_block(experience)
+        %span.edit_work_button{:style => "display:none"}
+          %br/  
+          = link_to "(edit)", edit_experience_path(experience)
     -if @owner
       %li=link_to "Add an experience", new_experience_path
 %p
   %b Activities and Leadership:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
   %ul
     - for experience in @student.club_experiences
-      %li= club_experience_block(experience)
+      %li
+        = club_experience_block(experience)
+        -if @owner
+          %span.edit_activity_button{:style => "display:none"}
+            %br/  
+            = link_to "(edit)", edit_experience_path(experience)
     -if @owner
       %li=link_to "Add an experience", new_experience_path
 %p
   %b Awards:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
   %ul
     - for award in @student.awards
       %li
         = link_to award.name, award.becomes(Term)
-        %br
+        -if @owner
+          %span.delete_award_button{:style => "display:none"}
+            = link_to "[X]", delete_award_s_path(:id => award.id)
     -if @owner
       %li= render "add_award"
 %p
   %b Other Interests:
+  -if @owner
+    = link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
   %ul
     - for interest in @student.interests
-      %li= interest_block(interest)
+      %li
+        = interest_block(interest)
+        -if @owner
+          %span.delete_interest_button{:style => "display:none"}
+            = link_to "[X]", delete_interest_s_path(:id => interest.id)
+      
     -if @owner
       %li= render "add_interest"
 %p

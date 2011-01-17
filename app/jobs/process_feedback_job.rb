@@ -43,6 +43,7 @@ class ProcessFeedbackJob < Struct.new(:actor_type, :actor_id, :subject_type, :su
     end
     
     #update tag weights for company
+    
   end
   
   def perform_student_on_company
