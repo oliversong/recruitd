@@ -17,6 +17,9 @@ class Company < ActiveRecord::Base
   has_many :labels, :as => :owner
   has_many :student_labelings
   
+  has_many :career_companies
+  has_many :careers, :through => :career_companies
+  
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
   

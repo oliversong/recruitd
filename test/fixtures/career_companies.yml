@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  career_id: 1
+  company_id: 1
+  weight: 1
+
+two:
+  career_id: 1
+  company_id: 1
+  weight: 1
