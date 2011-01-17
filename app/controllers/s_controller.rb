@@ -47,6 +47,19 @@ class SController < ApplicationController
     end
     redirect_to @student
   end
+  
+  def delete_career
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    career_student = CareerStudent.find_by_student_id_and_career_id(current_user.entity_id, params[:id])
+    if(career_student)
+      career_student.destroy
+    end
+    
+    redirect_to :back
+  end
 
 
   def add_course
@@ -74,6 +87,19 @@ class SController < ApplicationController
     redirect_to @student
   end
   
+  def delete_course
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    course_student = CourseStudent.find_by_student_id_and_course_id(current_user.entity_id, params[:id])
+    if(course_student)
+      course_student.destroy
+    end
+    
+    redirect_to :back
+  end
+  
   def add_award
     if !current_user.is_student?
       redirect_to :new_user_session
@@ -93,11 +119,24 @@ class SController < ApplicationController
       @award.save
     end
     
-    @student_award = StudentAward.new(:student_id => @student.id, :term_id => @award.id, :details => params[:comments])
+    @student_award = StudentTerm::StudentAward.new(:student_id => @student.id, :term_id => @award.id, :details => params[:comments])
     if @student_award.save
       flash[:notice] = "Successfully added award."
     end
     redirect_to @student
+  end
+  
+  def delete_award
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    student_award = StudentTerm::StudentAward.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
+    if(student_award)
+      student_award.destroy
+    end
+    
+    redirect_to :back
   end
   
   def add_interest
@@ -119,11 +158,24 @@ class SController < ApplicationController
       @interest.save
     end
 
-    @student_interest = StudentInterest.new(:student_id => @student.id, :term_id => @interest.id, :details => params[:comments])
+    @student_interest = StudentTerm::StudentInterest.new(:student_id => @student.id, :term_id => @interest.id, :details => params[:comments])
     if @student_interest.save
       flash[:notice] = "Successfully added interest."
     end
     redirect_to @student
+  end
+  
+  def delete_interest
+    if !current_user.is_student?
+      redirect_to :new_user_session
+    end
+    
+    student_interest = StudentTerm::StudentInterest.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
+    if(student_interest)
+      student_interest.destroy
+    end
+    
+    redirect_to :back
   end
   
   def browse

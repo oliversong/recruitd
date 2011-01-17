@@ -5,9 +5,13 @@ Recruitd::Application.routes.draw do
     get 'browse'
     get 'settings'
     post 'add_career'
+    get 'delete_career'
     post 'add_course'
+    get 'delete_course'
     post 'add_award'
+    get 'delete_award'
     post 'add_interest'
+    get 'delete_interest'
   end
   
   resource :c, :only => [:manage, :home, :settings, :update_settings], :controller => "c" do
