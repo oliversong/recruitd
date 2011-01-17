@@ -1,6 +1,6 @@
 %li
   = link_to course_student.course.name, course_student.course
-  = link_to "(+)", "#", {:onClick => "$('\#course_comment_#{course_student.id}').toggle()"}
+  = link_to "(+)", "#", {:onClick => "$('\#course_comment_#{course_student.id}').toggle(); return false;"}
   %br/
   .hidden_detail{:id => "course_comment_#{course_student.id}", :style => "display:none" }
     = course_student.comments

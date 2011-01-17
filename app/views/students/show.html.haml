@@ -5,24 +5,63 @@
   -if current_user.is_company_entity?
     =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
   (#{@student.baseline_score})
-%h3= h @student.subtitle
+%h3
+  = h @student.subtitle
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#subtitle').toggle(); return false;"}
+    .hidden_detail{:id => "subtitle", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_field :subtitle, :size => 50
+        = submit_tag "change"
 %p
   = h address_block(@student)
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#address').toggle(); return false;"}
+    .hidden_detail{:id => "address", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_field :address_line1, :size => 30
+        %br/
+        = f.text_field :address_line2, :size => 30
+        %br/
+        = f.text_field :address_city, :size => 15
+        = f.text_field :address_state, :size => 5
+        = f.text_field :address_zip, :size => 5
+        = submit_tag "change"
 %p
   %b Career Interests:
   %ul
     - for career in @student.careers
       %li= career_block(career)
-    = render "add_career"
+    -if @owner
+      = render "add_career"
 %p
   %b Gpa:
   = h @student.gpa
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#gpa').toggle(); return false;"}
+    .hidden_detail{:id => "gpa", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_field :gpa, :size => 5
+        = submit_tag "change"
 %p
   %b Hometown:
   = h @student.hometown
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#hometown').toggle(); return false;"}
+    .hidden_detail{:id => "hometown", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_field :hometown, :size => 20
+        = submit_tag "change"
 %p
   %b Phone:
   = h @student.phone
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#phone').toggle(); return false;"}
+    .hidden_detail{:id => "phone", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_field :phone, :size => 20
+        = submit_tag "change"
+  
 %p
   %b Email:
   = h @student.user.email
@@ -39,20 +78,23 @@
   %ul
     = render :partial => "course_student", :collection => @student.course_students
     %br
-    = render "add_course"
+    -if @owner
+      = render "add_course"
     
 %p
   %b Experiences:
   %ul
     - for experience in @student.work_experiences
       %li= work_experience_block(experience)
-    %li=link_to "Add an experience", new_experience_path
+    -if @owner
+      %li=link_to "Add an experience", new_experience_path
 %p
   %b Activities and Leadership:
   %ul
     - for experience in @student.club_experiences
       %li= club_experience_block(experience)
-    %li=link_to "Add an experience", new_experience_path
+    -if @owner
+      %li=link_to "Add an experience", new_experience_path
 %p
   %b Awards:
   %ul
@@ -60,16 +102,24 @@
       %li
         = link_to award.name, award.becomes(Term)
         %br
-    %li= render "add_award"
+    -if @owner
+      %li= render "add_award"
 %p
   %b Other Interests:
   %ul
     - for interest in @student.interests
       %li= interest_block(interest)
-    %li= render "add_interest"
+    -if @owner
+      %li= render "add_interest"
 %p
   %b Fun facts:
   = h @student.fun_facts
+  -if @owner
+    = link_to "(edit)", "#", {:onClick => "$('\#fun_facts').toggle(); return false;"}
+    .hidden_detail{:id => "fun_facts", :style => "display:none" }
+      = form_for @student do |f|
+        = f.text_area :fun_facts
+        = submit_tag "change"
 %p
   %b Updates:
   %ul

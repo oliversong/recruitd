@@ -18,16 +18,13 @@ class StudentsController < ApplicationController
     @student = Student.find(params[:id])
     @updates = @student.user.updates
     
+    @owner = (current_user.is_student? && current_user.entity_id == @student.id)
+    
     if current_user.is_company_entity?
       @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
     end
     
     @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @student }
-    end
   end
 
   # GET /students/new
@@ -66,6 +63,9 @@ class StudentsController < ApplicationController
   # PUT /students/1.xml
   def update
     @student = Student.find(params[:id])
+    if @student.id != current_user.entity_id
+      redirect_to(:back, :notice => 'Not authorized.')
+    end
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
