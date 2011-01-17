@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110116082631) do
+ActiveRecord::Schema.define(:version => 20110117011727) do
 
   create_table "career_jobs", :force => true do |t|
     t.integer  "career_id"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(:version => 20110116082631) do
   create_table "career_students", :force => true do |t|
     t.integer  "career_id"
     t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "career_terms", :force => true do |t|
+    t.integer  "career_id"
+    t.integer  "term_id"
+    t.integer  "weight",     :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,6 +146,22 @@ ActiveRecord::Schema.define(:version => 20110116082631) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -330,6 +354,7 @@ ActiveRecord::Schema.define(:version => 20110116082631) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "address_id"
+    t.integer  "baseline_score", :default => 0, :null => false
   end
 
   create_table "tasks", :force => true do |t|
