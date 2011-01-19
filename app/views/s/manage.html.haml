@@ -14,14 +14,14 @@
       - lbl.student_labelings.each do |labeling|
         - if labeling.company_id
           %li
-            - idx = @student_files_companies.find_index{|item| item.company_id == labeling.company_id }
+            - idx = @student_files.find_index{|item| item.company_id == labeling.company_id }
             - if idx
               - student_file = @student_files[idx]
               = render :partial => 'companies/manage_card', :locals => {:company => labeling.company, :student_file => student_file }
 
         - elsif labeling.job_id
           %li
-            - idx = @student_files_jobs.find_index{|item| item.job_id == labeling.job_id }
+            - idx = @student_files.find_index{|item| item.job_id == labeling.job_id }
             - if idx
               - student_file = @student_files[idx]
               = render :partial => 'jobs/manage_card', :locals => {:job => labeling.job, :student_file => student_file }

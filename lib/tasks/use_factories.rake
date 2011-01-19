@@ -33,8 +33,13 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
+      create_student_files_and_feeds
+      create_company_terms
+      create_student_labels
+      create_company_labels
       create_followings
       create_newsfeed_items
+
       
       puts "Completed adding new sample data"
     end
@@ -238,11 +243,11 @@ end
 def create_student_files_and_feeds
   Student.all.each do |student|
     Company.all.each do |company|
-      Factory(:student_file_company, :student => student, :company => company)
+      Factory(:student_file, :student => student, :company => company)
       Factory(:student_feed, :student => student, :company => company)
     end
     Job.all.each do |job|
-      Factory(:student_file_job, :student => student, :job => job)
+      Factory(:student_file, :student => student, :job => job)
       Factory(:student_feed, :student => student, :job => job)
     end
   end

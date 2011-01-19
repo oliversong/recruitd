@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118071040) do
+ActiveRecord::Schema.define(:version => 20110118045327) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -74,13 +74,13 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.string   "address_state"
     t.string   "address_zip"
     t.string   "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "ownership_category", :default => 0, :null => false
     t.text     "description"
     t.string   "founded"
     t.string   "website"
-    t.integer  "size_category"
-    t.integer  "ownership_category"
+    t.integer  "size_category",      :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "company_feeds", :force => true do |t|
@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.text     "notes"
     t.boolean  "starred",    :default => false, :null => false
     t.boolean  "dismissed",  :default => false, :null => false
+    t.integer  "vote",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "vote",       :default => 0,     :null => false
   end
 
   create_table "company_labelings", :force => true do |t|
@@ -205,9 +205,7 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
   create_table "job_students", :force => true do |t|
     t.integer  "job_id"
     t.integer  "student_id"
-    t.boolean  "student_follows_job"
-    t.integer  "job_score"
-    t.datetime "job_dismissed_until"
+    t.boolean  "applied"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -228,13 +226,6 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.integer  "owner_id"
     t.string   "owner_type"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "monkeys", :force => true do |t|
-    t.string   "name"
-    t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -333,10 +324,9 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.text     "notes"
     t.boolean  "starred",    :default => false, :null => false
     t.boolean  "dismissed",  :default => false, :null => false
-    t.string   "type"
+    t.integer  "vote",       :default => 0,     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "vote",       :default => 0,     :null => false
   end
 
   create_table "student_labelings", :force => true do |t|
@@ -352,10 +342,10 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.string   "details"
     t.integer  "student_id"
     t.integer  "term_id"
+    t.string   "term_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score",      :default => 0, :null => false
-    t.string   "term_type"
   end
 
   create_table "students", :force => true do |t|
@@ -370,10 +360,9 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.string   "address_city"
     t.string   "address_state"
     t.string   "address_zip"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
-    t.integer  "address_id"
     t.integer  "baseline_score", :default => 0, :null => false
   end
 
@@ -405,12 +394,10 @@ ActiveRecord::Schema.define(:version => 20110118071040) do
     t.integer  "category_id"
     t.text     "description"
     t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "entity_id"
-    t.string   "entity_type"
     t.integer  "reference_id"
     t.string   "reference_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "updates", :force => true do |t|

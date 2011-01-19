@@ -6,10 +6,7 @@ class SController < ApplicationController
     
     @student = current_user.entity
     
-    @student_files = @student.student_files
-    @student_files_companies = @student_files.find_all_by_type("::StudentFileCompany")
-    @student_files_jobs = @student_files.find_all_by_type("StudentFile::StudentFileJob")
-    
+    @student_files = @student.student_files    
     @starred_student_files = @student_files.select{|student_file| student_file.starred }
   end
   
