@@ -291,16 +291,16 @@ end
 
 def create_followings
   Student.all.each do |student|
-    Company.all.sort_by{rand}[0..2].each do |company|
-      Factory(:following, :follower => student.user, :followed => company.user)
+    Recruiter.all.sort_by{rand}[0..2].each do |recruiter|
+      Factory(:following, :follower => student.user, :followed => recruiter.user)
     end
   end
   
-  Company.all.each do |company|
-    Student.all.sort_by{rand}[0..2].each do |student|
-      Factory(:following, :follower => company.user, :followed => student.user)
-    end
-  end
+  # Company.all.each do |company|
+  #   Student.all.sort_by{rand}[0..2].each do |student|
+  #     Factory(:following, :follower => company.user, :followed => student.user)
+  #   end
+  # end
 end
 
 def create_updates
@@ -310,11 +310,11 @@ def create_updates
     end
   end
   
-  Company.all.each do |company|
-    3.times do
-      Factory(:update, :user => company.user)
-    end
-  end
+  # Company.all.each do |company|
+  #   3.times do
+  #     Factory(:update, :user => company.user)
+  #   end
+  # end
   puts "Created updates"
 end
 
