@@ -121,7 +121,8 @@ Recruitd::Application.routes.draw do
       get 'public'
     end
   end
-  
+
+  match "home" => "info#home", :as => "home"
   match "public" => "info#public", :as => "public"
   match "manage" => "info#manage", :as => "manage"
   match "browse" => "info#browse", :as => "browse"

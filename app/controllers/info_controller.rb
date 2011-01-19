@@ -143,6 +143,8 @@ class InfoController < ApplicationController
 
   def student_home
     @student = current_user.entity
+    
+    render 's/home'
   end
   
   def student_browse
