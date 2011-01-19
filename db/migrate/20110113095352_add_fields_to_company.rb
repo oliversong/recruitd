@@ -3,7 +3,7 @@ class AddFieldsToCompany < ActiveRecord::Migration
     add_column :companies, :description, :text
     add_column :companies, :founded, :string
     add_column :companies, :website, :string
-    add_column :companies, :size_category, :integer
+    add_column :companies, :size_category, :integer, :null => false, :default => 0
   end
 
   def self.down

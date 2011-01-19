@@ -3,6 +3,11 @@
 
 require 'openid/store/filesystem'
 
+require 'yaml'
+all_app_config = YAML.load_file(File.join(Rails.root, "config", "auth.yml"))
+host = YAML.load_file(File.join(Rails.root, "config", "host.yml"))
+APP_CONFIG = all_app_config[host]
+
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
@@ -136,9 +141,17 @@ Devise.setup do |config|
   
   #config.omniauth :facebook, "APP_ID", "APP_SECRET"
   #config.omniauth :facebook, "129963327027314", "b496e5b2ee1a763ab13aa83e037b0f3f" #real
-  config.omniauth :facebook, "135062956528724", "e8e44775af31ef5512b2bcbb37056128" #localhost
-  config.omniauth :twitter, "fno1nY6Vx8G80mNFXKPukg", "UnTQrcu2nPG5bqTS3KYdRPkQ2wKgSZz4uBC1RRpRD0"
-  config.omniauth :linked_in, "7oTZAR9UMi-x0yDhX1zLCmXYKj6BaqGPvQJa506egi3QJ1puPhQXbmEYh_s4mihc", "TRiY-biLXY9qgadg3PBCS3iZRWtya9eZogg_An-s2TryOtP7-H7-6LWFazftIEaM"
+  #config.omniauth :facebook, "135062956528724", "e8e44775af31ef5512b2bcbb37056128" #localhost
+  
+  config.omniauth :facebook, APP_CONFIG["facebook"]["app_id"], APP_CONFIG["facebook"]["api_secret"]
+  config.omniauth :linked_in, APP_CONFIG["linkedin"]["api_key"], APP_CONFIG["linkedin"]["api_secret"]
+  
+  #config.omniauth :twitter, "fno1nY6Vx8G80mNFXKPukg", "UnTQrcu2nPG5bqTS3KYdRPkQ2wKgSZz4uBC1RRpRD0"
+  
+  # config.omniauth :linked_in, "7oTZAR9UMi-x0yDhX1zLCmXYKj6BaqGPvQJa506egi3QJ1puPhQXbmEYh_s4mihc", "TRiY-biLXY9qgadg3PBCS3iZRWtya9eZogg_An-s2TryOtP7-H7-6LWFazftIEaM" #real
+  # config.omniauth :linked_in, "JyWMuJzTBOd3KQOXSFQBTE2kkGByPD5A7v9BfarHyirmJxBOiNTCf5MPPg_N4l3v", "Wl4SIwAxQVGBqPonx3h2ixrUHF7TQpqf7n2aEQrI-EeNKm-ZB70dxHrlHW7UZrRq" #localhost
+  
+  
   config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
   #
   # config.warden do |manager|

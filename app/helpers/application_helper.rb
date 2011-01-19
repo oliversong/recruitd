@@ -1,11 +1,27 @@
 module ApplicationHelper
   
   def address_block(addressable)
-    return_str = addressable.address_line1 + ", "
+    return_str = ""
+    if(!addressable.address_line1.blank?)
+      return_str += addressable.address_line1 + ", "
+    end
+    
     if(!addressable.address_line2.blank?)
       return_str += addressable.address_line2 + ", "
     end
-    return_str += addressable.address_city + ", " + addressable.address_state + "  " + addressable.address_zip
+    
+    if(!addressable.address_city.blank?)
+      return_str += addressable.address_city + ", " 
+    end
+    
+    if(!addressable.address_state.blank?)
+      return_str += addressable.address_state + "  " 
+    end
+    
+    if(!addressable.address_zip.blank?)
+      return_str += addressable.address_zip
+    end
+    
     return_str
   end
   

@@ -3,12 +3,7 @@ class StudentTerm < ActiveRecord::Base
   belongs_to :student
   belongs_to :term
   
-  class StudentInterest < StudentTerm
-    belongs_to :interest
-  end
-
-  class StudentAward < StudentTerm
-    belongs_to :award
-  end
-
+  scope :only_awards, :conditions => ["term_type = ?", "Award"]
+  scope :only_interests, :conditions => ["term_type = ?", "Interest"]
+    
 end

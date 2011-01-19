@@ -25,6 +25,11 @@ Recruitd::Application.routes.draw do
   match "s/browse/:page" => "s#browse"
   match "c/browse/:page" => "c#browse"
   
+  resource :utilities do
+    get 'authentications'
+    get 'get_profile'
+  end
+  
   match "follow/:user_id" => "utilities#follow", :as => "follow"
   match "unfollow/:user_id" => "utilities#unfollow", :as => "unfollow"
   match "star/:entity_type/:entity_id" => "utilities#star", :as => "star"

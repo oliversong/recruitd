@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+  <id>Ru2MpMP_Q8</id>
+  <first-name>Keone</first-name>
+  <last-name>Hon</last-name>
+  <industry>Computer Software</industry>
+  <headline>Summer Intern - Financial Technology Associates Program at Citadel Investment Group</headline>
+  <location>
+    <name>Greater Boston Area</name>
+  </location>
+  <summary>Computer Science student; focus is on algorithms and software development.  Experienced in C, C++, C#, Java, Python, MySQL, Javascript, HTML/CSS.</summary>
+  <honors>Hispanic Heritage Youth Awards national winner in engineering &amp; mathematics category (2007)
+USA Math Olympiad participant (4 times)
+Intel Science Talent Search semifinalist
+Siemens Competition semifinalist
+National Merit Finalist/Scholarship Recipient
+AP National Scholar
+Research Science Institute participant (2007)</honors>
+  <interests>ultimate frisbee, soccer, Arabic, Spanish, cooking</interests>
+  <positions total="6">
+    <position>
+      <id>123103186</id>
+      <title>Research Assistant</title>
+      <start-date>
+        <year>2010</year>
+      </start-date>
+      <is-current>true</is-current>
+      <company>
+        <name>Center for Digital Business, MIT Sloan School of Management</name>
+        <industry>Computer Software</industry>
+      </company>
+    </position>
+    <position>
+      <id>80158330</id>
+      <title>Summer Intern - Financial Technology Associates Program</title>
+      <summary>C++ software developer for options market-making technology.  Emphasis on software optimization and realtime system performance monitoring.  C++, Javascript, SQL and native UNIX tools for profiling.</summary>
+      <start-date>
+        <year>2009</year>
+        <month>6</month>
+      </start-date>
+      <is-current>true</is-current>
+      <company>
+        <type>Privately Held</type>
+        <name>Citadel Investment Group</name>
+        <industry>Financial Services</industry>
+      </company>
+    </position>
+    <position>
+      <id>61059034</id>
+      <title>Computer Science student</title>
+      <summary></summary>
+      <start-date>
+        <year>2007</year>
+        <month>9</month>
+      </start-date>
+      <is-current>true</is-current>
+      <company>
+        <type>Educational Institution</type>
+        <name>MIT</name>
+        <industry>Higher Education</industry>
+      </company>
+    </position>
+    <position>
+      <id>61058796</id>
+      <title>MIT Campus Ambassador</title>
+      <summary>Trained with Sun technologies (Java, NetBeans, OpenSolaris, mySQL) to make presentations to students.  
+Currently working toward certification as a Sun Certified Programmer for the Java Platform, Standard Edition 6</summary>
+      <start-date>
+        <year>2008</year>
+        <month>10</month>
+      </start-date>
+      <end-date>
+        <year>2009</year>
+        <month>6</month>
+      </end-date>
+      <is-current>false</is-current>
+      <company>
+        <ticker>JAVA</ticker>
+        <type>Public Company</type>
+        <name>Sun Microsystems</name>
+        <industry>Information Technology and Services</industry>
+      </company>
+    </position>
+    <position>
+      <id>61059608</id>
+      <title>Software Development Intern</title>
+      <summary>One-month internship.  Built rules-based web application to help company keep track of various administrative tasks.  SQL, C#, Microsoft Silverlight.</summary>
+      <start-date>
+        <year>2009</year>
+        <month>1</month>
+      </start-date>
+      <end-date>
+        <year>2009</year>
+        <month>1</month>
+      </end-date>
+      <is-current>false</is-current>
+      <company>
+        <type>Privately Held</type>
+        <name>Coatue Management</name>
+        <industry>Investment Management</industry>
+      </company>
+    </position>
+    <position>
+      <id>61058947</id>
+      <title>Undergraduate Researcher, Imaging Platform</title>
+      <summary>Added to MATLAB-based software package to correct and analyze cell images, using the Variational Bayes framework to model probability distributions about classification beliefs.</summary>
+      <start-date>
+        <year>2008</year>
+        <month>6</month>
+      </start-date>
+      <end-date>
+        <year>2008</year>
+        <month>8</month>
+      </end-date>
+      <is-current>false</is-current>
+      <company>
+        <type>Educational Institution</type>
+        <name>Broad Institute</name>
+        <industry>Biotechnology</industry>
+      </company>
+    </position>
+  </positions>
+  <educations total="1">
+    <education>
+      <id>28650617</id>
+      <school-name>Massachusetts Institute of Technology</school-name>
+      <notes></notes>
+      <activities>Steward - Phi Delta Theta Fraternity, President - MIT Association of Student Activities, Treasurer - Harvard-MIT Math Tournament, Undergraduate Association Senate, Mens' Ultimate Frisbee, Associate Advisor, Co-Coordinator - Discover EECS Freshman Pre-Orientation Program</activities>
+      <degree></degree>
+      <field-of-study></field-of-study>
+      <start-date>
+        <year>2007</year>
+      </start-date>
+      <end-date>
+        <year>2011</year>
+      </end-date>
+    </education>
+  </educations>
+  <phone-numbers total="1">
+    <phone-number>
+      <phone-type>home</phone-type>
+      <phone-number>4075366346</phone-number>
+    </phone-number>
+  </phone-numbers>
+  <main-address>97 Bay State Rd,
+Boston, MA  02215</main-address>
+</person>

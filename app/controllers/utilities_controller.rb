@@ -1,6 +1,61 @@
 require 'delayed_job'
 
 class UtilitiesController < ApplicationController
+
+  
+  # authentications_controller.rb
+  def authentications
+    @authentications = current_user.user_tokens if current_user
+  end
+  
+  def get_profile
+      # Exchange your oauth_token and oauth_token_secret for an AccessToken instance.
+
+      def prepare_access_token(oauth_token, oauth_token_secret)
+          consumer = OAuth::Consumer.new(APP_CONFIG["linkedin"]["api_key"], 
+              APP_CONFIG["linkedin"]["api_secret"],
+              { :site => "https://api.linkedin.com/uas/oauth/accessToken"
+              })
+          # now create the access token object from passed values
+          token_hash = { :oauth_token => oauth_token,
+                          :oauth_token_secret => oauth_token_secret
+                       }
+          access_token = OAuth::AccessToken.from_hash(consumer, token_hash )
+          return access_token
+      end
+
+      auth = current_user.user_tokens.find(:first, :conditions => { :provider => 'linked_in' })
+
+      # Exchange our oauth_token and oauth_token secret for the AccessToken instance.
+      access_token = prepare_access_token(auth['token'], auth['secret'])
+
+      # use the access token as an agent to get the home timeline
+      response = access_token.request(:get, "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,headline,location:(name),summary,honors,interests,positions,publications,patents,languages,skills,educations,phone-numbers,main-address)")
+      
+      if current_user.is_student?
+        current_user.entity.import_linkedin_xml(response.body)
+      end
+      
+      render :json => response.body
+  end
+
+  # def create
+  #     auth = request.env["rack.auth"]
+  #     current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
+  #     flash[:notice] = "Authentication successful."
+  #     redirect_to authentications_url
+  #   end
+  # 
+  #   def destroy
+  #     @authentication = current_user.authentications.find(params[:id])
+  #     @authentication.destroy
+  #     flash[:notice] = "Successfully destroyed authentication."
+  #     redirect_to authentications_url
+  #   end
+  #   
+  #   
+  
+  
   
   def follow
     Following.find_or_create_by_follower_id_and_followed_id(current_user.id, params[:user_id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110117035353) do
+ActiveRecord::Schema.define(:version => 20110118071040) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20110117035353) do
     t.string   "founded"
     t.string   "website"
     t.integer  "size_category"
+    t.integer  "ownership_category"
   end
 
   create_table "company_feeds", :force => true do |t|
@@ -204,7 +205,9 @@ ActiveRecord::Schema.define(:version => 20110117035353) do
   create_table "job_students", :force => true do |t|
     t.integer  "job_id"
     t.integer  "student_id"
-    t.boolean  "applied"
+    t.boolean  "student_follows_job"
+    t.integer  "job_score"
+    t.datetime "job_dismissed_until"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -225,6 +228,13 @@ ActiveRecord::Schema.define(:version => 20110117035353) do
     t.integer  "owner_id"
     t.string   "owner_type"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "monkeys", :force => true do |t|
+    t.string   "name"
+    t.text     "desc"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -342,10 +352,10 @@ ActiveRecord::Schema.define(:version => 20110117035353) do
     t.string   "details"
     t.integer  "student_id"
     t.integer  "term_id"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "score",      :default => 0, :null => false
+    t.string   "term_type"
   end
 
   create_table "students", :force => true do |t|
@@ -425,6 +435,8 @@ ActiveRecord::Schema.define(:version => 20110117035353) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
+    t.string   "secret"
   end
 
   create_table "users", :force => true do |t|

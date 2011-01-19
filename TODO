@@ -53,6 +53,45 @@ pull tags from monster --> steal their API
 recommendation engine
 
 
+FRONTEND
+floating X and "like" on hover
+style the edit boxes
+style the updates
+job entry for recruiters
+profile box
+	one with just picture
+	one with picture, school, concentration, career interests, year
+tag page
+	course page has extra widgets for rating
+company profile
+	and company edit page
+job profile
+	and job edit page
+manage page--playlists (telescoping)
+	rating widget (1-5 dots), star widget, apply label widget
+browse page--styled
+settings page
+
+
+BACKEND
+linkedin integration (a bit)
+workflow for signin
+tag creation/autocomplete
+companies--preferences for tags
+tag sets -- from careers, etc.
+	need interface for admins to modify tag sets
+recommendation engine to work
+integrate completed frontend pages
+tagging jobs
+job listing
+search
+jobs vs internships
+update status
+
+
+add other tags
+
+
 DONE
 add an award
 dismiss/star buttons on feed

@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     if current_user.is_student?
-      @student_file_company = StudentFile::StudentFileCompany.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, @company.id)
+      @student_file_company = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, @company.id)
     end
     
     @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @company.user_id)
@@ -94,7 +94,7 @@ class CompaniesController < ApplicationController
   def rate
     @student = current_user.entity
     @company = Company.find(params[:id])
-    student_file = StudentFileCompany.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
+    student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
     student_file.update_attributes(params[:student_file_student_file_company])
     redirect_to :action => :show, :id => @company
   end

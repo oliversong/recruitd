@@ -73,6 +73,14 @@ Factory.sequence :last_name do |n|
   single_unique_fetch('last_names',n).capitalize
 end
 
+Factory.sequence :interest do |n|
+  single_unique_fetch('interests',n)
+end
+
+Factory.sequence :career do |n|
+  single_unique_fetch('careers',n)
+end
+
 Factory.sequence :city do |n|
   single_unique_fetch('cities',n)
 end
@@ -308,14 +316,14 @@ Factory.define :category do |f|
   f.name {"#{Factory.next(:lipsum_word)} category"}
 end
 
-Factory.define :award, :class => "Term::Award" do |f|
+Factory.define :award do |f|
   f.name {"National award for excellence in #{Factory.next(:lipsum_word)}"}
   f.category { Category.all.count > 0 ? Category.all.sort_by{rand}.first : Factory.create(:category) }
   f.url "http://www.google.com"
 end
 
 Factory.define :career do |f|
-  f.name {"#{Factory.next(:lipsum_word)}ing"}
+  f.name {Factory.next(:career)}
   f.term do |s|
     Factory.create(:term, :name => s.name)
   end
@@ -326,8 +334,8 @@ Factory.define :career_student do |f|
   f.career { Career.all.count > 0 ? Career.all.sort_by{rand}.first : Factory.create(:career) }
 end
 
-Factory.define :interest, :class => "Term::Interest" do |f|
-  f.name {"#{Factory.next(:lipsum_word)}ing"}
+Factory.define :interest do |f|
+  f.name {Factory.next(:interest)}
 end
 
 Factory.define :student_term do |f|
@@ -336,10 +344,10 @@ Factory.define :student_term do |f|
   f.type "None"
 end
 
-Factory.define :student_award, :class => :student_award do |f|
+Factory.define :student_award, :class => :student_term do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.term { Award.all.count > 0 ? Award.all.sort_by{rand}.first : Factory.create(:award) }
-  f.type "StudentAward"
+  f.term_type "Award"
 end
 
 Factory.define :job do |f|

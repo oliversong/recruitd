@@ -1,5 +1,6 @@
 class Company < ActiveRecord::Base
-  SIZE_CATEGORIES = [ "1-10 employees",
+  SIZE_CATEGORIES = [ "unknown",
+                      "1-10 employees",
                       "11-50 employees",
                       "51-200 employees",
                       "201-500 employees",
@@ -7,6 +8,11 @@ class Company < ActiveRecord::Base
                       "1001-5000 employees",
                       "5001-10000 employees",
                       "10001+ employees"]
+                      
+  OWNERSHIP_CATEGORIES= ["unknown",
+                         "Privately Held", 
+                         "Public Company", 
+                         "Educational Institution"]
 
   belongs_to :user
   has_many :jobs

@@ -59,7 +59,7 @@ namespace :db do
 end
 
 def create_companies
-  20.times do
+  10.times do
     c = Factory(:company)
     c.user.entity = c
     c.user.save
@@ -93,7 +93,7 @@ def create_students
 end
 
 def create_many_students
-  20.times{ |i|
+  10.times{ |i|
     student = Factory(:student)
     student.user.entity = student
     student.user.save
@@ -165,7 +165,7 @@ def create_awards
   Student.all.each do |student|
     2.times do
       award = Factory(:award)
-      Factory(:student_award, :student => student, :term => award, :type => "StudentAward")
+      Factory(:student_term, :student => student, :term => award, :term_type => "Award")
     end
   end
   puts "Created awards"
@@ -194,7 +194,7 @@ def create_interests
   
   Student.all.each do |student|
     Term::Interest.all.sort_by{rand}[0..2].each do |interest|
-      Factory(:student_term, :student => student, :term => interest, :type => "StudentInterest")
+      Factory(:student_term, :student => student, :term => interest, :term_type => "Interest")
     end
   end
   
