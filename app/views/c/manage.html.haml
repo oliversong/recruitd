@@ -1,3 +1,6 @@
+-if !(defined? @current_tab)
+	- @current_tab = User::TABS["MANAGE"]
+
 %p
   %b Labels:
   -@company.labels.each do |lbl|

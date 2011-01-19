@@ -1,8 +1,8 @@
-%li
-  = link_to course_student.course.name, course_student.course
-  = link_to "(+)", "#", {:onClick => "$('\#course_comment_#{course_student.id}').toggle(); return false;"}
-  %span.delete_course_button{:style => "display:none"}
-    = link_to "[X]", delete_course_s_path(:id => course_student.course_id)
-  %br/
-  .hidden_detail{:id => "course_comment_#{course_student.id}", :style => "display:none" }
-    = course_student.comments
+.hover.tTip{:title => "#{course_student.comments}" }
+	%span
+		= link_to course_student.course.name, course_student.course
+		%span.delete_course_button{:style => "display:none"}
+			= link_to "[X]", delete_course_s_path(:id => course_student.course_id)
+		%br/
+		.hidden_detail{:id => "course_comment_#{course_student.id}", :style => "display:none" }
+			

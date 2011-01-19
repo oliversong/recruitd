@@ -114,11 +114,18 @@ Recruitd::Application.routes.draw do
   resource :info, :controller => 'info' do
     member do
       get 'home'
+      get 'manage'
+      get 'settings'
+      get 'browse'
       get 'updates'
+      get 'public'
     end
   end
   
-
+  match "public" => "info#public", :as => "public"
+  match "manage" => "info#manage", :as => "manage"
+  match "browse" => "info#browse", :as => "browse"
+  match "settings" => "info#settings", :as => "settings"
   
 
   #devise_for :users
@@ -174,11 +181,12 @@ Recruitd::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   #root :to => ""
-  authenticate :user do
-    root :to => "info#home"
-  end
+  # authenticate :user do
+  #   root :to => "info#home"
+  # end
   
-  root :to => "devise/sessions#new"
+  root :to => "info#home"
+  #root :to => "devise/sessions#new"
 
   # See how all your routes lay out with "rake routes"
 

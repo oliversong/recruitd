@@ -1,24 +1,5 @@
 class SController < ApplicationController
-  def manage
-    if !current_user.is_student?
-      redirect_to :new_user_session
-    end
-    
-    @student = current_user.entity
-    
-    @student_files = @student.student_files    
-    @starred_student_files = @student_files.select{|student_file| student_file.starred }
-  end
-  
 
-  def home
-    if !current_user.is_student?
-      redirect_to :new_user_session
-    end
-    
-    @student = current_user.entity
-
-  end
   
   def add_career
     if !current_user.is_student?
@@ -175,28 +156,5 @@ class SController < ApplicationController
     redirect_to :back
   end
   
-  def browse
-    if !current_user.is_student?
-      redirect_to :new_user_session
-    end
-    
-    @page = params[:page] ? [Integer(params[:page]), 0].max : 0
-    
-    #@student = current_user.entity
-    
-    @student_feed = StudentFeed.by_student_id(current_user.entity_id).offset(@page).limit(1).find(:first)
-    
-    if @student_feed.company_id
-      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.entity_id, @student_feed.company_id)
-    elsif @student_feed.job_id
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id( current_user.entity_id, @student_feed.job_id)
-    end
-    
-    
-    
-  end
-  
-  def settings
-  end
+
 end

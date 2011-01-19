@@ -1,6 +1,8 @@
 %p
   %b Name:
   = h @recruiter.user.name
+=render :partial => "shared/follow", :locals => {:user_id => @recruiter.user_id, :followed => @followed}
+
 %p
   %b Phone:
   = h @recruiter.phone

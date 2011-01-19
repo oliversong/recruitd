@@ -1,3 +1,6 @@
+-if !(defined? @current_tab)
+	- @current_tab = User::TABS["SETTINGS"]
+
 %h1 Settings
 
 = form_tag update_settings_c_path, :method => :post do

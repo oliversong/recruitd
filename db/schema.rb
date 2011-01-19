@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118045327) do
+ActiveRecord::Schema.define(:version => 20110119035047) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(:version => 20110118045327) do
     t.string   "address_zip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "website"
   end
 
   create_table "rep_transactions", :force => true do |t|
@@ -364,6 +365,7 @@ ActiveRecord::Schema.define(:version => 20110118045327) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "baseline_score", :default => 0, :null => false
+    t.string   "website"
   end
 
   create_table "tasks", :force => true do |t|

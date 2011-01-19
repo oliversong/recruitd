@@ -740,16 +740,16 @@ top: -93px;
 
 #home, #home div, 
 #about, #about div, 
-#services , #services div, 
-#solutions, #solutions div, 
-#contact,  #contact div {
+#browse , #browse div, 
+#manage, #manage div, 
+#settings,  #settings div {
 	height:80px;
 	position:absolute;
 	width:97px;
 	float:left;
 }
 
-#home, #about, #services, #solutions, #contact{
+#home, #about, #browse, #manage, #settings{
 	background-image: url(../images/nav.png);
 	background-attachment: scroll;
 	background-repeat: no-repeat;
@@ -766,22 +766,22 @@ top: -93px;
 	margin-left:105px;
 }
 
-#services{
+#manage{
 	background-position: -196px -25px;
 	margin-left:204px;
 }
 
-#solutions{
+#browse{
 	background-position: -294px -25px;
 	margin-left:303px;
 }
 
-#contact{
+#settings{
 	background-position: -392px -25px;
 	margin-left:402px;
 }
 
-#home div, #about div, #services div, #solutions div, #contact div {
+#home div, #about div, #manage div, #browse div, #settings div {
 	background-image: url(../images/white.png);
 	background-attachment: scroll;
 	background-repeat: no-repeat;
