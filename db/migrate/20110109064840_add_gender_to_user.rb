@@ -8,6 +8,7 @@ class AddGenderToUser < ActiveRecord::Migration
     add_column :users, :entity_id, :integer
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
+    add_column :users, :admin, :boolean, :null => false, :default => false
   end
 
   def self.down
@@ -19,5 +20,6 @@ class AddGenderToUser < ActiveRecord::Migration
     remove_column :users, :entity_id
     remove_column :users, :first_name
     remove_column :users, :last_name
+    remove_column :users, :admin
   end
 end

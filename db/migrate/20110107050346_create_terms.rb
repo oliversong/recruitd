@@ -9,6 +9,10 @@ class CreateTerms < ActiveRecord::Migration
       t.text :description
       t.string :url
       
+      t.integer :reference_id
+      t.string :reference_type
+      
+      
       t.timestamps
       
       #attributes for type = Career

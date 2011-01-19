@@ -4,7 +4,7 @@ class CreateStudentTerm < ActiveRecord::Migration
       t.string :details
       t.integer :student_id
       t.integer :term_id
-      t.string :type
+      t.string :term_type
 
       t.timestamps
     end

@@ -8,7 +8,8 @@ class CreateStudentFiles < ActiveRecord::Migration
       t.text :notes
       t.boolean :starred, :null => false, :default => false
       t.boolean :dismissed, :null => false, :default => false
-
+      t.integer :vote, :null => false, :default => 0
+      
       t.timestamps
     end
   end

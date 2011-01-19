@@ -8,6 +8,11 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :address_state
       t.string :address_zip
       t.string :user_id
+      t.integer :ownership_category, :null => false, :default => 0
+      t.text :description
+      t.string :founded
+      t.string :website
+      t.integer :size_category, :null => false, :default => 0
 
       t.timestamps
     end
