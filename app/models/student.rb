@@ -31,6 +31,8 @@ class Student < ActiveRecord::Base
   has_many :labels, :as => :owner
   has_many :company_labelings
   
+  after_create :create_user
+  
   # has_many :student_awards, :class_name => "StudentTerm::StudentAward"
   # has_many :awards, :through => :student_awards
   # 
@@ -58,6 +60,15 @@ class Student < ActiveRecord::Base
   
   def showable_student_feeds
     return student_feeds.showable
+  end
+  
+  def create_user
+    if !user_id
+      u = User.new(:first_name => "", :last_name => name)
+      u.entity = self
+      u.save
+      self.user = u
+    end
   end
   
   def import_linkedin_xml(xml)

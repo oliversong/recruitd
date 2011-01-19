@@ -14,7 +14,7 @@ class Company < ActiveRecord::Base
                          "Public Company", 
                          "Educational Institution"]
 
-  belongs_to :user
+  #belongs_to :user
   has_many :jobs
   has_many :recruiters
   has_many :company_files

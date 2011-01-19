@@ -160,8 +160,6 @@ end
 
 Factory.define :company do |f|
   f.name { Factory.next(:company_name) }
-  f.user { |u| Factory.create(:user, :first_name => "", :last_name => u.name) }
-  
 end
 
 # Factory.define :address do |f|
@@ -294,9 +292,9 @@ Factory.define :course do |f|
   f.name { "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}" }
   f.abbrev { "#{rand(24)+1}.#{rand(999)}" }
   f.department_id 1
-  f.term do |s| 
-    Factory.create(:term, :name => s.name)
-  end
+  # f.term do |s| 
+  #   Factory.create(:term, :name => s.name)
+  # enddate
 end
 
 Factory.define :period do |f|

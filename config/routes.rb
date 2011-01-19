@@ -47,6 +47,7 @@ Recruitd::Application.routes.draw do
       get 'career_names'
       get 'award_names'
       get 'interest_names'
+      get 'all_term_names'
     end
   end
   

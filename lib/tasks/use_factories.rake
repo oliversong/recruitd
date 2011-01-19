@@ -66,8 +66,8 @@ end
 def create_companies
   10.times do
     c = Factory(:company)
-    c.user.entity = c
-    c.user.save
+    # c.user.entity = c
+    # c.user.save
   end
   
   puts "Created factory companies"
@@ -81,8 +81,6 @@ def create_students
                   :phone => 6172532226,
                   :user => Factory(:user, :first_name => "Alice", :last_name => "Carroll", :gender_is_male => false)
                   )
-  alice.user.entity = alice
-  alice.user.save
 
   bob = Factory(:student, 
                 :gpa => 3.6, 
@@ -91,8 +89,6 @@ def create_students
                 :phone => 6172532223,
                 :user => Factory(:user, :first_name => "Bob", :last_name => "Smith", :gender_is_male => true)
                 )
-  bob.user.entity = bob
-  bob.user.save
   
   puts "Created factory students"
 end

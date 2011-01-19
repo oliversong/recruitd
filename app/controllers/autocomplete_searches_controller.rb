@@ -42,6 +42,13 @@ class AutocompleteSearchesController < ApplicationController
     end
   end
   
+  def all_term_names
+    @terms = Term.limit(10).search_for_name(params[:term])
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+  
   # #for sphinx
   # def index
   #   @some_models = SomeModel.search params[:term],

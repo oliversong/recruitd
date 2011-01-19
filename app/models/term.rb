@@ -3,6 +3,8 @@ class Term < ActiveRecord::Base
   has_many :student_terms
   has_many :students, :through => :student_terms
   belongs_to :category
-  belongs_to :entity, :polymorphic => true
+  belongs_to :reference, :polymorphic => true
+  
+  scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
 end
