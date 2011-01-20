@@ -11,7 +11,9 @@ class CController < ApplicationController
                             :company_id => company_id,
                             :reference_type => params[:reference_type],
                             :reference_id => params[:reference_id])
-    ch.save
+    puts ch
+    puts ch.save
+    puts ch
     render :nothing => true and return
   end
   
@@ -22,8 +24,10 @@ class CController < ApplicationController
     
     company_id = current_user.entity.company_id
     
-    ch = CompanyHighlighting.find(:all, :conditions => ["student_id = ? AND company_id = ? AND reference_type = '?' AND reference_id = ?", params[:student_id], company_id, params[:reference_type], params[:reference_id] ])
-    ch.destroy
+    chs = CompanyHighlighting.find(:all, :conditions => ["student_id = ? AND company_id = ? AND reference_type = ? AND reference_id = ?", params[:student_id], company_id, params[:reference_type], params[:reference_id] ])
+    chs.each do |ch|
+      ch.destroy
+    end
     render :nothing => true and return
   end
   

@@ -1,5 +1,5 @@
 -if !(defined? @current_tab)
-	- @current_tab = User::TABS["MANAGE"]
+  - @current_tab = User::TABS["MANAGE"]
 
 %p
   %b Labels:
@@ -25,4 +25,4 @@
 %ul
   -@starred_company_files.each do |cf|
     %li
-      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }    
+      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }
