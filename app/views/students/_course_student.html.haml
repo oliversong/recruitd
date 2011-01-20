@@ -1,4 +1,4 @@
-.hover.tTip{:title => "#{course_student.comments}" }
+.hover.tTip{:title => "#{course_student.comments}", :reference_type => "CourseStudent", :reference_id => course_student.id }
 	%span
 		= link_to course_student.course.name, course_student.course
 		%span.delete_course_button{:style => "display:none"}

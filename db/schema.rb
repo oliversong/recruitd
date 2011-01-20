@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110119035047) do
+ActiveRecord::Schema.define(:version => 20110120034836) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -103,6 +103,15 @@ ActiveRecord::Schema.define(:version => 20110119035047) do
     t.boolean  "starred",    :default => false, :null => false
     t.boolean  "dismissed",  :default => false, :null => false
     t.integer  "vote",       :default => 0,     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "company_highlightings", :force => true do |t|
+    t.integer  "company_id"
+    t.integer  "student_id"
+    t.integer  "reference_id"
+    t.string   "reference_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

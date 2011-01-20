@@ -25,6 +25,8 @@ class StudentsController < ApplicationController
     
     if current_user.is_company_entity?
       @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
+      
+      @company_highlightings = CompanyHighlightings.find_all_by_company_id_and_student_id(current_user.entity.company_id, params[:id])
     end
     
     @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)

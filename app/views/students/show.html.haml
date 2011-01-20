@@ -5,6 +5,7 @@
 
 -if @owner
 	:javascript	
+		var student_id = #{@student.id};
 		$(document).ready(function(){
 			function addClickToToggle(master_button, sub_button_class, off_text, on_text){
 				$(master_button).click(function(){
@@ -25,11 +26,33 @@
 			addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
 			addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
 			addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
+			
+			var the_url;
+			
+			$(".hover, .value").click(function(){
+				// highlighting
+				if($(this).hasClass('highlight')){
+					$(this).removeClass("highlight");
+					the_url = "/c/unhighlight"
+				}
+				else{
+					$(this).addClass("highlight");
+					the_url = "/c/highlight"
+				}
+				var reference_type = $(this).attr('reference_type');
+				var reference_id = $(this).attr('reference_id');
+				
+				$.ajax({
+				   type: "POST",
+				   url: the_url,
+				   data: "student_id=" + student_id + "&reference_type=" + reference_type + "&reference_id=" + reference_id
+				 });
+			});
 		});
 	
 		$(function() {
-			
 		});
+		
 
 #leftcolumn
 	#profpic
@@ -40,7 +63,7 @@
 		.sidemiddle
 			%ul#infofields
 				%li.field Hometown
-				%li.value.tTip{:title => "Hello World"}
+				%li.value.tTip{:title => "Hello World", :reference_type => "Hometown"}
 					= h @student.hometown
 					-if @owner
 						= link_to "(edit)", "#", {:onClick => "$('\#hometown').toggle(); return false;"}
@@ -49,19 +72,19 @@
 								= f.text_field :hometown, :size => 20
 								= submit_tag "change"
 				%li.field Sex
-				%li.value.tTip{:title => "Hello World"} 
+				%li.value.tTip{:title => "Hello World", :reference_type => "Sex"} 
 					= @student.user.gender_is_male ? "male" : "female"
 				%li.field Education
-				%li.value.tTip{:title => "Hello World"} 
+				%li.value.tTip{:title => "Hello World", :reference_type => "Education"} 
 					Massachusetts Institute of Technology
 				%li.field Location
-				%li.value.tTip{:title => "Hello World"} Cambridge
+				%li.value.tTip{:title => "Hello World", :reference_type => "Location"} Cambridge
 				%li.field Languages
-				%li.value.tTip{:title => "Hello World"} English, German
+				%li.value.tTip{:title => "Hello World", :reference_type => "Languages"} English, German
 				%li.field Birthday
-				%li.value.tTip{:title => "Hello World"} May 24, 1991
+				%li.value.tTip{:title => "Hello World", :reference_type => "Birthday"} May 24, 1991
 				%li.field GPA
-				%li.value.tTip{:title => "Hello World"} 
+				%li.value.tTip{:title => "Hello World", :reference_type => "GPA"} 
 					= h @student.gpa
 					-if @owner
 						= link_to "(edit)", "#", {:onClick => "$('\#gpa').toggle(); return false;"}
@@ -71,7 +94,7 @@
 								= submit_tag "change"
 				
 				%li.field Phone
-				%li.value.tTip{:title => "Hello World"} 
+				%li.value.tTip{:title => "Hello World", :reference_type => "PhoneNumber"} 
 					= h number_to_phone(@student.phone, :area_code => true)
 					-if @owner
 						= link_to "(edit)", "#", {:onClick => "$('\#phone').toggle(); return false;"}
@@ -81,11 +104,11 @@
 								= submit_tag "change"
 				-if !@student.user.email.blank?
 					%li.field Email
-					%li.value.tTip{:title => "Hello World"}
+					%li.value.tTip{:title => "Hello World", :reference_type => "Email"}
 						= h @student.user.email
 				-if !@student.website.blank?
 					%li.field Website
-					%li.value.tTip{:title => "Hello World"}
+					%li.value.tTip{:title => "Hello World", :reference_type => "Website"}
 						=h @student.website
 		.sidebottom
 	#interests
@@ -99,7 +122,7 @@
 						%li.hover.tTip{:title => "Hello World"}
 							= link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
 					- for interest in @student.interests
-						%li.hover.tTip{:title => "Hello World"}
+						%li.hover.tTip{:title => "Hello World", :reference_type => "Interest", :reference_id => interest.id}
 							= interest_block(interest)
 							-if @owner
 								%span.delete_interest_button{:style => "display:none"}
@@ -112,7 +135,7 @@
 				%span.subheader Fun Facts
 				#funfacts
 					%ul{:style => "position:relative;left:-40px;color:#666;"}
-						%li.hover.tTip{:title => "Hello World"}
+						%li.hover.tTip{:title => "Hello World", :reference_type => "FunFacts"}
 							= h @student.fun_facts
 							-if @owner
 								= link_to "(edit)", "#", {:onClick => "$('\#fun_facts').toggle(); return false;"}
@@ -149,7 +172,7 @@
 					%span
 						= link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
 			- for experience in @student.work_experiences
-				.hover.tTip{:title => "Hello World"}
+				.hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id}
 					%span 
 						= work_experience_block(experience)
 						%span.edit_work_button{:style => "display:none"}
@@ -170,7 +193,7 @@
 				.hover.tTip{:title => "Hello World"}
 					%span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
 			- for experience in @student.club_experiences
-				.hover.tTip{:title => "Hello World"}
+				.hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id}
 					%span= club_experience_block(experience)
 					-if @owner
 						%span.edit_activity_button{:style => "display:none"}
@@ -189,7 +212,7 @@
 				.hover.tTip{:title => "Hello World"}
 					%span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
 			- @student.skills.each do |skill|
-				.hover.tTip{:title => "Hello World"}
+				.hover.tTip{:title => "Hello World", :reference_type => "Skill", :reference_id => skill.id}
 					%span= link_to skill.name, skill.becomes(Term)
 					-if @owner
 						%span.delete_skill_button{:style => "display:none"}
@@ -220,7 +243,7 @@
 				.hover.tTip{:title => "Hello World"}
 					%span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
 			- @student.awards.each do |award|
-				.hover.tTip{:title => "Hello World"}
+				.hover.tTip{:title => "Hello World", :reference_type => "Award", :reference_id => award.id}
 					%span= link_to award.name, award.becomes(Term)
 					-if @owner
 						%span.delete_award_button{:style => "display:none"}
@@ -251,7 +274,8 @@
 		.feedmiddle
 			%ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
 				- for update in @updates
-					%li.hover.tTip{:title => "Hello World"}= print_update_block(update, :show_name => false)
+					%li.hover.tTip{:title => "Hello World", :reference_type => "Update", :reference_id => update.id}
+						= print_update_block(update, :show_name => false)
 		.feedbottom
 #top
 

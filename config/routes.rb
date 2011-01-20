@@ -20,6 +20,8 @@ Recruitd::Application.routes.draw do
     get 'settings'
     get 'browse'
     post 'update_settings'
+    post 'highlight'
+    post 'unhighlight'
   end
   
   match "s/browse/:page" => "s#browse"
