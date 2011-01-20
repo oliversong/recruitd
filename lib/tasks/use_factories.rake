@@ -78,16 +78,14 @@ def create_students
                   :gpa => 4.0, 
                   :hometown => "Bellevue, WA",
                   :subtitle => "MIT student who loves to study.",
-                  :phone => 6172532226,
-                  :user => Factory(:user, :first_name => "Alice", :last_name => "Carroll", :gender_is_male => false)
+                  :phone => 6172532226
                   )
 
   bob = Factory(:student, 
                 :gpa => 3.6, 
                 :hometown => "Houston, TX",
                 :subtitle => "UNIX hacker and nightowl",
-                :phone => 6172532223,
-                :user => Factory(:user, :first_name => "Bob", :last_name => "Smith", :gender_is_male => true)
+                :phone => 6172532223
                 )
   
   puts "Created factory students"

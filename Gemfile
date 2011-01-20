@@ -5,6 +5,7 @@ gem 'rails', '3.0.0'
 gem "factory_girl_rails"
 gem 'delayed_job'
 gem 'cancan'
+gem 'paperclip'
 
 gem "nifty-generators", :group => :development
 

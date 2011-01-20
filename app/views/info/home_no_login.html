@@ -70,6 +70,22 @@ $(document).ready(function(){
     else{ $('#rightControl').show() }
     }
   });
+
+	function submitenter(myfield,e)
+	{
+	var keycode;
+	if (window.event) keycode = window.event.keyCode;
+	else if (e) keycode = e.which;
+	else return true;
+
+	if (keycode == 13)
+	   {
+	   myfield.form.submit();
+	   return false;
+	   }
+	else
+	   return true;
+	}
 </script>
 
 <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />	
@@ -77,7 +93,8 @@ $(document).ready(function(){
 
 <body style="background-color:#FFF">
 		<div style='display:none'>
-			<img src='/images/contact/loading.gif' alt='' />
+			<img src='/images
+			/contact/loading.gif' alt='' />
 		</div>
 <div id="feedback">
 <div id="contact-form">
@@ -91,9 +108,20 @@ $(document).ready(function(){
 <div id="header">
 <a href="http://hiring.recruitd.com"><div id="hiring"></div></a>
 <a href="http://www.recruitd.com"><div id="logo"></div></a>
-<form name="login" action="login.php" method="post">
-<div id="form2"><input class="texta" type="text" name="username" /></div><div id="form1"><input class="texta" type="password" name="password" /></div>
-<a id="login" href="/login.php"><div id="btn"></div></a></form>
+
+
+
+<%= form_for(:user, :url => session_path(:user), :html => {:name => "login_form"}) do |f| %>
+  <div id="form2">
+    <%= f.email_field :email, :class => "texta", :onclick=>"this.value='';", :onfocus => "this.select()", :onblur=>"this.value=!this.value?'e-mail':this.value;", :value=>"e-mail", :onKeyPress=>"return submitenter(this,event)" %>
+  </div>
+  <div id="form1">
+    <%= f.password_field :password, :class => "texta", :onKeyPress=>"return submitenter(this,event)" %>
+  </div>
+  <div id="btn" onclick="document.forms['login_form'].submit();"></div>
+<% end %>
+
+
 <div id="leftbtn"></div>
 <div id="rightbtn"></div>
 </div>

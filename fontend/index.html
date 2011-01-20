@@ -70,6 +70,23 @@ $(document).ready(function(){
     else{ $('#rightControl').show() }
     }
   });
+
+function submitenter(myfield,e)
+{
+var keycode;
+if (window.event) keycode = window.event.keyCode;
+else if (e) keycode = e.which;
+else return true;
+
+if (keycode == 13)
+   {
+   myfield.form.submit();
+   return false;
+   }
+else
+   return true;
+}
+
 </script>
 
 <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />	
@@ -77,7 +94,8 @@ $(document).ready(function(){
 
 <body style="background-color:#FFF">
 		<div style='display:none'>
-			<img src='/images/contact/loading.gif' alt='' />
+			<img src='/images
+			/contact/loading.gif' alt='' />
 		</div>
 <div id="feedback">
 <div id="contact-form">
@@ -91,9 +109,12 @@ $(document).ready(function(){
 <div id="header">
 <a href="http://hiring.recruitd.com"><div id="hiring"></div></a>
 <a href="http://www.recruitd.com"><div id="logo"></div></a>
+
 <form name="login" action="login.php" method="post">
-<div id="form2"><input class="texta" type="text" name="username" /></div><div id="form1"><input class="texta" type="password" name="password" /></div>
+<div id="form2"><input class="texta" type="text" name="username" onKeyPress="return submitenter(this,event)"/></div><div id="form1"><input class="texta" type="password" name="password" onKeyPress="return submitenter(this,event)"/></div>
 <a id="login" href="/login.php"><div id="btn"></div></a></form>
+
+
 <div id="leftbtn"></div>
 <div id="rightbtn"></div>
 </div>
