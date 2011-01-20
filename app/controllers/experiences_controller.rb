@@ -37,7 +37,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = ClubExperience.new(params[:experience])
-      @experience.student_id = current_user.student.id
+      @experience.student_id = current_user.entity_id
       @experience.club = @club
     else
       

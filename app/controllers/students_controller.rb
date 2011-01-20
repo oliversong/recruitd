@@ -19,6 +19,9 @@ class StudentsController < ApplicationController
     @updates = @student.user.updates
     
     @owner = (current_user.is_student? && current_user.entity_id == @student.id)
+    if @owner
+      @current_tab = User::TABS["PUBLIC"]
+    end
     
     if current_user.is_company_entity?
       @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.entity.company_id)

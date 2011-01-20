@@ -12,7 +12,7 @@
 =form_tag(add_course_s_path, :method => "post") do
 	Course name:
 	= text_field_tag "course[name]", params[:term], :class => "auto_search_complete", :size => 30
-	%br
+
 	= hidden_field_tag "course[id]", nil
 	= hidden_field_tag "course[description_changed]", nil, :value => false
 	%div.detail#course_detail{:style => "display:none" }

@@ -47,11 +47,15 @@ class Student < ActiveRecord::Base
   # has_many :jobs, :through => :job_students
   
   def interests
-    return terms.find_all_by_type('Term::Interest')
+    return terms.find_all_by_type('Interest')
   end
   
   def awards
-    return terms.find_all_by_type('Term::Award')
+    return terms.find_all_by_type('Award')
+  end
+  
+  def skills
+    return terms.find_all_by_type('Skill')
   end
   
   def name

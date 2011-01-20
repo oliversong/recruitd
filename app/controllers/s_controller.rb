@@ -97,21 +97,21 @@ class SController < ApplicationController
       @award.save
     end
     
-    @student_award = StudentTerm::StudentAward.new(:student_id => @student.id, :term_id => @award.id, :details => params[:comments])
+    @student_award = StudentTerm.new(:student_id => @student.id, :term_id => @award.id, :details => params[:comments], :term_type => "Award")
     if @student_award.save
       flash[:notice] = "Successfully added award."
     end
     redirect_to @student
   end
   
-  def delete_award
+  def delete_tag
     if !current_user.is_student?
       redirect_to :new_user_session
     end
     
-    student_award = StudentTerm::StudentAward.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
-    if(student_award)
-      student_award.destroy
+    student_term = StudentTerm.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
+    if(student_term)
+      student_term.destroy
     end
     
     redirect_to :back
@@ -136,24 +136,37 @@ class SController < ApplicationController
       @interest.save
     end
 
-    @student_interest = StudentTerm::StudentInterest.new(:student_id => @student.id, :term_id => @interest.id, :details => params[:comments])
+    @student_interest = StudentTerm.new(:student_id => @student.id, :term_id => @interest.id, :details => params[:comments], :term_type => "Interest")
     if @student_interest.save
       flash[:notice] = "Successfully added interest."
     end
     redirect_to @student
   end
   
-  def delete_interest
+  def add_skill
     if !current_user.is_student?
       redirect_to :new_user_session
     end
-    
-    student_interest = StudentTerm::StudentInterest.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
-    if(student_interest)
-      student_interest.destroy
+
+    @student = current_user.entity
+
+    if(params[:skill][:id] && !params[:skill][:id].empty?) #existing club
+      # if(params[:course][:description_changed]) #amend the description
+      #   @course = Course.find(params[:course][:id])
+      #   @course.description = params[:course][:description]
+      #   @course.save
+      # end
+      @skill = Term::Skill.find(params[:skill][:id])
+    else #new club
+      @skill = Term::Skill.new(params[:skill])
+      @skill.save
     end
-    
-    redirect_to :back
+
+    @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @skill.id, :details => params[:comments], :term_type => "Skill")
+    if @student_term.save
+      flash[:notice] = "Successfully added interest."
+    end
+    redirect_to @student
   end
   
 

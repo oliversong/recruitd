@@ -61,21 +61,21 @@
         %a#feedbackicon.contact{:href => "#", :title => "Leave us a comment!"} Constructive Criticism!
       %a#blogicon.contact{:href => "/blog.html", :title => "Check out the Blog!"} Check out the Blog!
     #navigation.container
-      #home.pri-nav.active
+      #home{ :class => "#{(@current_tab == User::TABS["HOME"]) ? "pri-nav.active" : "pri-nav" }" } 
         %div
-          = link_to "Home", home_info_path
-      #public.pri-nav
+          =# link_to "Home", home_info_path
+      #public{ :class => "#{(@current_tab == User::TABS["PUBLIC"]) ? "pri-nav.active" : "pri-nav" }" } 
         %div
-          = link_to "Public", public_info_path
-      #manage.pri-nav
+          =# link_to "Public", public_info_path
+      #manage{ :class => "#{(@current_tab == User::TABS["MANAGE"]) ? "pri-nav.active" : "pri-nav" }" } 
         %div
-          = link_to "Manage", manage_info_path
-      #browse.pri-nav
+          =# link_to "Manage", manage_info_path
+      #browse{ :class => "#{(@current_tab == User::TABS["BROWSE"]) ? "pri-nav.active" : "pri-nav" }" } 
         %div
-          = link_to "Browse", browse_info_path
-      #settings.pri-nav
+          =# link_to "Browse", browse_info_path
+      #settings{ :class => "#{(@current_tab == User::TABS["SETTINGS"]) ? "pri-nav.active" : "pri-nav" }" } 
         %div
-          = link_to "Settings", settings_info_path
+          =# link_to "Settings", settings_info_path
     #header
       #bg2{:style => "height:80px; background-position: 50% 0%;"}
       %a{:href => "http://www.recruitd.com"}

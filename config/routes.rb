@@ -9,9 +9,9 @@ Recruitd::Application.routes.draw do
     post 'add_course'
     get 'delete_course'
     post 'add_award'
-    get 'delete_award'
     post 'add_interest'
-    get 'delete_interest'
+    post 'add_skill'
+    get 'delete_term'
   end
   
   resource :c, :only => [:manage, :home, :settings, :update_settings], :controller => "c" do

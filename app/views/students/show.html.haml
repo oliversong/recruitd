@@ -103,7 +103,7 @@
 							= interest_block(interest)
 							-if @owner
 								%span.delete_interest_button{:style => "display:none"}
-									= link_to "[X]", delete_interest_s_path(:id => interest.id)
+									= link_to "[X]", delete_term_s_path(:id => interest.id)
 					-if @owner
 						%li.hover.tTip{:title => "Hello World"}
 							%li= render "add_interest"
@@ -185,19 +185,20 @@
 		.contenttop
 			%span.headertext Skills
 		.contentmiddle
-			.hover.tTip{:title => "Hello World"}
-				%span 2010 | Software Engineer | Google
-			.hover.tTip{:title => "Hello World"}
-				%span 2009 | Web Designer | Facebook
-			.hover.tTip{:title => "Hello World"}
-				%span 2008 | Garbageman | Cambridge Trash Co.
-			.hover.tTip{:title => "Hello World"}
-				%span 2007 | Stuff | Asdfaasdfasdfasdf
-			.hover.tTip{:title => "Hello World"}
-				%span 2006 | Somethingsomething| Powpowpowpow
-			.hover.tTip{:title => "Hello World"}
-				%span 2005 | Awesomeness | AAAAAAAAWWsome
+			-if @owner
+				.hover.tTip{:title => "Hello World"}
+					%span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
+			- @student.skills.each do |skill|
+				.hover.tTip{:title => "Hello World"}
+					%span= link_to skill.name, skill.becomes(Term)
+					-if @owner
+						%span.delete_skill_button{:style => "display:none"}
+							= link_to "[X]", delete_term_s_path(:id => skill.id)
+			-if @owner
+				.hover.tTip{:title => "Hello World"}
+					%span= render "add_skill"
 		.contentbottom
+		
 	#courses
 		.contenttop
 			%span.headertext Courses
@@ -220,10 +221,10 @@
 					%span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
 			- @student.awards.each do |award|
 				.hover.tTip{:title => "Hello World"}
-					%span = link_to award.name, award.becomes(Term)
+					%span= link_to award.name, award.becomes(Term)
 					-if @owner
 						%span.delete_award_button{:style => "display:none"}
-							= link_to "[X]", delete_award_s_path(:id => award.id)
+							= link_to "[X]", delete_term_s_path(:id => award.id)
 			-if @owner
 				.hover.tTip{:title => "Hello World"}
 					%span= render "add_award"
