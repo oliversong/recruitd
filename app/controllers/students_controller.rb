@@ -31,7 +31,16 @@ class StudentsController < ApplicationController
     end
     
     @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)
+    
+    respond_to do |type|
+      type.html { render 'show' }
+      type.json {render :json => @student}
+    end
+    
+    
   end
+  
+  
 
   # GET /students/new
   # GET /students/new.xml

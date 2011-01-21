@@ -64,6 +64,14 @@ class Student < ActiveRecord::Base
   def showable_student_feeds
     return student_feeds.showable
   end
+  
+  def before_validation_on_create
+      self.phone = phone.gsub(/[^0-9]/, "")
+  end
+  
+  def before_validation_on_update
+      self.phone = phone.gsub(/[^0-9]/, "")
+  end
 
   
   def import_linkedin_xml(xml)

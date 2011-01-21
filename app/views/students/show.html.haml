@@ -1,336 +1,323 @@
 :javascript
-	$(document).ready(function(){
-		$('.tTip').betterTooltip({speed: 150, delay: 300});
-	});
+  $(document).ready(function(){
+    $('.tTip').betterTooltip({speed: 150, delay: 300});
+  });
 
 -if @owner
-	:javascript	
-		$(document).ready(function(){
-			function addClickToToggle(master_button, sub_button_class, off_text, on_text){
-				$(master_button).click(function(){
-					if($(master_button).html() == off_text){
-						$(sub_button_class).show();
-						$(master_button).html(on_text);
-					}
-					else{
-						$(sub_button_class).hide();
-						$(master_button).html(off_text);
-					}
-				});
-			}
-		
-			addClickToToggle("#careers_edit", ".delete_career_button", "(edit)", "(stop)");
-			addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
-			addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
-			addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
-			addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
-			addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
-			
-		});
-	
-		$(function() {
-		});
+  :javascript  
+    $(document).ready(function(){
+      $(".rest_in_place").rest_in_place();
+    });
+  
+    $(document).ready(function(){
+      function addClickToToggle(master_button, sub_button_class, off_text, on_text){
+        $(master_button).click(function(){
+          if($(master_button).html() == off_text){
+            $(sub_button_class).show();
+            $(master_button).html(on_text);
+          }
+          else{
+            $(sub_button_class).hide();
+            $(master_button).html(off_text);
+          }
+        });
+      }
+    
+      addClickToToggle("#careers_edit", ".delete_career_button", "(edit)", "(stop)");
+      addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
+      addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
+      addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
+      addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
+      addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
+      
+    });
+  
+    $(function() {
+    });
 
 -if current_user.is_company_entity?
-	:javascript
-		var student_id = #{@student.id};
-		$(document).ready(function(){
-		
-			// add existing highlightings
-			var chs = #{@company_highlightings.to_json}
-			var i = 0;
-			for(i=0;i<chs.length;i++){
-				if(chs[i][1] == 0){
-					$("#" + chs[i][0]).addClass("highlight");
-				}
-				else{
-					$("#" + chs[i][0] + chs[i][1]).addClass("highlight");
-				}
-			}
-			
-			var the_url;
-			
-			$(".hover, .value").click(function(){
-				// highlighting
-				if($(this).hasClass('highlight')){
-					$(this).removeClass("highlight");
-					the_url = "/c/unhighlight"
-				}
-				else{
-					$(this).addClass("highlight");
-					the_url = "/c/highlight"
-				}
-				var reference_type = $(this).attr('reference_type');
-				var reference_id = $(this).attr('reference_id');
-				//alert(reference_type + " " + reference_id);
-				
-				$.ajax({
-				   type: "POST",
-				   url: the_url,
-				   data: "student_id=" + student_id + "&reference_type=" + reference_type + "&reference_id=" + reference_id
-				 });
-			});
-			
-		})
-		
+  :javascript
+    var student_id = #{@student.id};
+    $(document).ready(function(){
+    
+      // add existing highlightings
+      var chs = #{@company_highlightings.to_json}
+      var i = 0;
+      for(i=0;i<chs.length;i++){
+        if(chs[i][1] == 0){
+          $("#" + chs[i][0]).addClass("highlight");
+        }
+        else{
+          $("#" + chs[i][0] + chs[i][1]).addClass("highlight");
+        }
+      }
+      
+      var the_url;
+      
+      $(".hover, .value").click(function(){
+        // highlighting
+        if($(this).hasClass('highlight')){
+          $(this).removeClass("highlight");
+          the_url = "/c/unhighlight"
+        }
+        else{
+          $(this).addClass("highlight");
+          the_url = "/c/highlight"
+        }
+        var reference_type = $(this).attr('reference_type');
+        var reference_id = $(this).attr('reference_id');
+        //alert(reference_type + " " + reference_id);
+        
+        $.ajax({
+           type: "POST",
+           url: the_url,
+           data: "student_id=" + student_id + "&reference_type=" + reference_type + "&reference_id=" + reference_id
+         });
+      });
+      
+    })
+    
 
 #leftcolumn
-	#profpic
-		%img{:src => @student.user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
-	#basicinfo
-		.sidetop
-			%span.headertext Basic Info
-		.sidemiddle
-			%ul#infofields
-				%li.field Hometown
-				%li.value.tTip{:title => "Hello World", :reference_type => "Hometown"}
-					= h @student.hometown
-					-if @owner
-						= link_to "(edit)", "#", {:onClick => "$('\#hometown').toggle(); return false;"}
-						.hidden_detail{:id => "hometown", :style => "display:none" }
-							= form_for @student do |f|
-								= f.text_field :hometown, :size => 20
-								= submit_tag "change"
-				%li.field Sex
-				%li.value.tTip{:title => "Hello World", :reference_type => "Sex"} 
-					= @student.user.gender_is_male ? "male" : "female"
-				%li.field Education
-				%li.value.tTip{:title => "Hello World", :reference_type => "Education", :id => "Education"} 
-					Massachusetts Institute of Technology
-				%li.field Location
-				%li.value.tTip{:title => "Hello World", :reference_type => "Location", :id => "Location"} Cambridge
-				%li.field Languages
-				%li.value.tTip{:title => "Hello World", :reference_type => "Languages", :id => "Languages"} English, German
-				%li.field Birthday
-				%li.value.tTip{:title => "Hello World", :reference_type => "Birthday", :id => "Birthday"} May 24, 1991
-				%li.field GPA
-				%li.value.tTip{:title => "Hello World", :reference_type => "GPA", :id => "GPA"} 
-					= h @student.gpa
-					-if @owner
-						= link_to "(edit)", "#", {:onClick => "$('\#gpa').toggle(); return false;"}
-						.hidden_detail{:id => "gpa", :style => "display:none" }
-							= form_for @student do |f|
-								= f.text_field :gpa, :size => 5
-								= submit_tag "change"
-				
-				%li.field Phone
-				%li.value.tTip{:title => "Hello World", :reference_type => "PhoneNumber", :id => "PhoneNumber"} 
-					= h number_to_phone(@student.phone, :area_code => true)
-					-if @owner
-						= link_to "(edit)", "#", {:onClick => "$('\#phone').toggle(); return false;"}
-						.hidden_detail{:id => "phone", :style => "display:none" }
-							= form_for @student do |f|
-								= f.text_field :phone, :size => 20
-								= submit_tag "change"
-				-if !@student.user.email.blank?
-					%li.field Email
-					%li.value.tTip{:title => "Hello World", :reference_type => "Email", :id => "Email"}
-						= h @student.user.email
-				-if !@student.website.blank?
-					%li.field Website
-					%li.value.tTip{:title => "Hello World", :reference_type => "Website", :id => "Website"}
-						=h @student.website
-		.sidebottom
-	#interests
-		.sidetop
-			%span.headertext Misc
-		.sidemiddle
-			#intcontent
-				%span.subheader Interests
-				%ul{:style => "position:relative;left:-40px; color:#666;"}
-					-if @owner
-						%li.hover.tTip{:title => "Hello World"}
-							= link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
-					- for interest in @student.interests
-						%li.hover.tTip{:title => "Hello World", :reference_type => "Interest", :reference_id => interest.id, :id => "Interest#{interest.id}"}
-							= interest_block(interest)
-							-if @owner
-								%span.delete_interest_button{:style => "display:none"}
-									= link_to "[X]", delete_term_s_path(:id => interest.id)
-					-if @owner
-						%li.hover.tTip{:title => "Hello World"}
-							%li= render "add_interest"
-							
-			-if !@student.fun_facts.blank?	
-				%span.subheader Fun Facts
-				#funfacts
-					%ul{:style => "position:relative;left:-40px;color:#666;"}
-						%li.hover.tTip{:title => "Hello World", :reference_type => "FunFacts", :id => "FunFacts"}
-							= h @student.fun_facts
-							-if @owner
-								= link_to "(edit)", "#", {:onClick => "$('\#fun_facts').toggle(); return false;"}
-								.hidden_detail{:id => "fun_facts", :style => "display:none" }
-									= form_for @student do |f|
-										= f.text_area :fun_facts
-										= submit_tag "change"
-												
-					
-		.sidebottom
+  #profpic
+    %img{:src => @student.user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+  #basicinfo
+    .sidetop
+      %span.headertext Basic Info
+    .sidemiddle
+      %ul#infofields
+        %li.field Hometown
+        %li.value.tTip{:title => "Hello World", :reference_type => "Hometown"}
+          %span.rest_in_place{"data-attribute" => "hometown", "data-object" => "student", "data-url" => "/students/3"}<
+            = h @student.hometown
+        %li.field Sex
+        %li.value.tTip{:title => "Hello World", :reference_type => "Sex"} 
+          = @student.user.gender_is_male ? "male" : "female"
+        %li.field Education
+        %li.value.tTip{:title => "Hello World", :reference_type => "Education", :id => "Education"} 
+          Massachusetts Institute of Technology
+        %li.field Location
+        %li.value.tTip{:title => "Hello World", :reference_type => "Location", :id => "Location"}
+          %span.rest_in_place{"data-attribute" => "location", "data-object" => "student", "data-url" => "/students/3"}<
+            = h @student.location
+        %li.field Languages
+        %li.value.tTip{:title => "Hello World", :reference_type => "Languages", :id => "Languages"}
+          %span.rest_in_place{"data-attribute" => "languages", "data-object" => "student", "data-url" => "/students/3"}<
+            = h @student.languages
+        %li.field GPA
+        %li.value.tTip{:title => "Hello World", :reference_type => "GPA", :id => "GPA"} 
+          %span.rest_in_place{"data-attribute" => "gpa", "data-object" => "student", "data-url" => "/students/3"}<
+            = h @student.gpa
+        
+        %li.field Phone
+        %li.value.tTip{:title => "Hello World", :reference_type => "PhoneNumber", :id => "PhoneNumber"} 
+          %span.rest_in_place{"data-attribute" => "phone", "data-object" => "student", "data-url" => "/students/3"}<
+            = h number_to_phone(@student.phone, :area_code => true)
+
+        -if !@student.user.email.blank?
+          %li.field Email
+          %li.value.tTip{:title => "Hello World", :reference_type => "Email", :id => "Email"}
+            = h @student.user.email
+        -if !@student.website.blank?
+          %li.field Website
+          %li.value.tTip{:title => "Hello World", :reference_type => "Website", :id => "Website"}
+            =h @student.website
+    .sidebottom
+  #interests
+    .sidetop
+      %span.headertext Misc
+    .sidemiddle
+      #intcontent
+        %span.subheader Interests
+        %ul{:style => "position:relative;left:-40px; color:#666;"}
+          -if @owner
+            %li.hover.tTip{:title => "Hello World"}
+              = link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
+          - for interest in @student.interests
+            %li.hover.tTip{:title => "Hello World", :reference_type => "Interest", :reference_id => interest.id, :id => "Interest#{interest.id}"}
+              = interest_block(interest)
+              -if @owner
+                %span.delete_interest_button{:style => "display:none"}
+                  = link_to "[X]", delete_term_s_path(:id => interest.id)
+          -if @owner
+            %li.hover.tTip{:title => "Hello World"}
+              %li= render "add_interest"
+              
+      -if !@student.fun_facts.blank?  
+        %span.subheader Fun Facts
+        #funfacts
+          %ul{:style => "position:relative;left:-40px;color:#666;"}
+            %li.hover.tTip{:title => "Hello World", :reference_type => "FunFacts", :id => "FunFacts"}
+              = h @student.fun_facts
+              -if @owner
+                = link_to "(edit)", "#", {:onClick => "$('\#fun_facts').toggle(); return false;"}
+                .hidden_detail{:id => "fun_facts", :style => "display:none" }
+                  = form_for @student do |f|
+                    = f.text_area :fun_facts
+                    = submit_tag "change"
+                        
+          
+    .sidebottom
 #middlecolumn
-	#fullname 
-		= h @student.user.name
-		-if current_user.is_company_entity?
-			=render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
-		(#{@student.baseline_score})
-	
-		%h3
-			= h @student.subtitle
-			-if @owner
-				= link_to "(edit)", "#", {:onClick => "$('\#subtitle').toggle(); return false;"}
-				.hidden_detail{:id => "subtitle", :style => "display:none" }
-					= form_for @student do |f|
-						= f.text_field :subtitle, :size => 50
-						= submit_tag "change"
-						
-					
-	#experiences
-		.contenttop
-			%span.headertext Experiences
-		.contentmiddle
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span
-						= link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
-			- for experience in @student.work_experiences
-				.hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
-					%span 
-						= work_experience_block(experience)
-						%span.edit_work_button{:style => "display:none"}
-							%br/	
-							= link_to "(edit)", edit_experience_path(experience)
-				
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span
-						%li=link_to "Add an experience", new_experience_path
+  #fullname 
+    = h @student.user.name
+    -if current_user.is_company_entity?
+      =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
+    (#{@student.baseline_score})
+  
+    %h3
+      %span.rest_in_place{"data-attribute" => "subtitle", "data-object" => "student", "data-url" => "/students/3"}<
+        = @student.subtitle
+            
+          
+  #experiences
+    .contenttop
+      %span.headertext Experiences
+    .contentmiddle
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span
+            = link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
+      - for experience in @student.work_experiences
+        .hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+          %span 
+            = work_experience_block(experience)
+            %span.edit_work_button{:style => "display:none"}
+              %br/  
+              = link_to "(edit)", edit_experience_path(experience)
+        
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span
+            %li=link_to "Add an experience", new_experience_path
 
-		.contentbottom
-	#activities
-		.contenttop
-			%span.headertext Activities
-		.contentmiddle
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
-			- for experience in @student.club_experiences
-				.hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
-					%span= club_experience_block(experience)
-					-if @owner
-						%span.edit_activity_button{:style => "display:none"}
-							%br/	
-							= link_to "(edit)", edit_experience_path(experience)
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span=link_to "Add an experience", new_experience_path
-		.contentbottom
-		
-	#skills
-		.contenttop
-			%span.headertext Skills
-		.contentmiddle
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
-			- @student.skills.each do |skill|
-				.hover.tTip{:title => "Hello World", :reference_type => "Skill", :reference_id => skill.id, :id => "Skill#{skill.id}"}
-					%span= link_to skill.name, skill.becomes(Term)
-					-if @owner
-						%span.delete_skill_button{:style => "display:none"}
-							= link_to "[X]", delete_term_s_path(:id => skill.id)
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= render "add_skill"
-		.contentbottom
-		
-	#courses
-		.contenttop
-			%span.headertext Courses
-		.contentmiddle
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
-			= render :partial => "course_student", :collection => @student.course_students
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= render "add_course"
+    .contentbottom
+  #activities
+    .contenttop
+      %span.headertext Activities
+    .contentmiddle
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
+      - for experience in @student.club_experiences
+        .hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+          %span= club_experience_block(experience)
+          -if @owner
+            %span.edit_activity_button{:style => "display:none"}
+              %br/  
+              = link_to "(edit)", edit_experience_path(experience)
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span=link_to "Add an experience", new_experience_path
+    .contentbottom
+    
+  #skills
+    .contenttop
+      %span.headertext Skills
+    .contentmiddle
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
+      - @student.skills.each do |skill|
+        .hover.tTip{:title => "Hello World", :reference_type => "Skill", :reference_id => skill.id, :id => "Skill#{skill.id}"}
+          %span= link_to skill.name, skill.becomes(Term)
+          -if @owner
+            %span.delete_skill_button{:style => "display:none"}
+              = link_to "[X]", delete_term_s_path(:id => skill.id)
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= render "add_skill"
+    .contentbottom
+    
+  #courses
+    .contenttop
+      %span.headertext Courses
+    .contentmiddle
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
+      = render :partial => "course_student", :collection => @student.course_students
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= render "add_course"
 
-		.contentbottom
-	#awards
-		.contenttop
-			%span.headertext Awards
-		.contentmiddle
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
-			- @student.awards.each do |award|
-				.hover.tTip{:title => "Hello World", :reference_type => "Award", :reference_id => award.id, :id => "Award#{award.id}"}
-					%span= link_to award.name, award.becomes(Term)
-					-if @owner
-						%span.delete_award_button{:style => "display:none"}
-							= link_to "[X]", delete_term_s_path(:id => award.id)
-			-if @owner
-				.hover.tTip{:title => "Hello World"}
-					%span= render "add_award"
-		.contentbottom
-		
-	#footer5
-		%span#copyright Copyright © 2010 Recruitd Inc. All rights reserved.
-		#footerlinks
-			%a{:href => "#"} Home
-			|
-			%a{:href => "#"} Public
-			|
-			%a{:href => "#"} Lists
-			|
-			%a{:href => "#"} Search
-			|
-			%a{:href => "#"} Terms of Service
-			|
-			%a{:href => "#"} Privacy Policy
+    .contentbottom
+  #awards
+    .contenttop
+      %span.headertext Awards
+    .contentmiddle
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
+      - @student.awards.each do |award|
+        .hover.tTip{:title => "Hello World", :reference_type => "Award", :reference_id => award.id, :id => "Award#{award.id}"}
+          %span= link_to award.name, award.becomes(Term)
+          -if @owner
+            %span.delete_award_button{:style => "display:none"}
+              = link_to "[X]", delete_term_s_path(:id => award.id)
+      -if @owner
+        .hover.tTip{:title => "Hello World"}
+          %span= render "add_award"
+    .contentbottom
+    
+  #footer5
+    %span#copyright Copyright © 2010 Recruitd Inc. All rights reserved.
+    #footerlinks
+      %a{:href => "#"} Home
+      |
+      %a{:href => "#"} Public
+      |
+      %a{:href => "#"} Lists
+      |
+      %a{:href => "#"} Search
+      |
+      %a{:href => "#"} Terms of Service
+      |
+      %a{:href => "#"} Privacy Policy
 #rightcolumn
-	#feed
-		.feedtop
-			%span.headertext Feed Updates
-		.feedmiddle
-			%ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-				- for update in @updates
-					%li.hover.tTip{:title => "Hello World", :reference_type => "Update", :reference_id => update.id, :id => "Update#{update.id}"}
-						= print_update_block(update, :show_name => false)
-		.feedbottom
+  #feed
+    .feedtop
+      %span.headertext Feed Updates
+    .feedmiddle
+      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
+        - for update in @updates
+          %li.hover.tTip{:title => "Hello World", :reference_type => "Update", :reference_id => update.id, :id => "Update#{update.id}"}
+            = print_update_block(update, :show_name => false)
+    .feedbottom
 #top
 
 -#
-	-if current_user.is_company_entity?
-		= render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
-	%h2
+  -if current_user.is_company_entity?
+    = render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
+  %h2
 
 
-	%p
-		= h address_block(@student)
-		-if @owner
-			= link_to "(edit)", "#", {:onClick => "$('\#address').toggle(); return false;"}
-			.hidden_detail{:id => "address", :style => "display:none" }
-				= form_for @student do |f|
-					= f.text_field :address_line1, :size => 30
-					%br/
-					= f.text_field :address_line2, :size => 30
-					%br/
-					= f.text_field :address_city, :size => 15
-					= f.text_field :address_state, :size => 5
-					= f.text_field :address_zip, :size => 5
-					= submit_tag "change"
-	%p
-		%b 
-			Career Interests:
-		-if @owner
-			= link_to "(edit)", "#", {:id => "careers_edit", :onClick => "return false;"}
-		%ul
-			- for career in @student.careers
-				%li
-					= career_block(career)
-					-if @owner
-						%span.delete_career_button{:style => "display:none"}
-							= link_to "[X]", delete_career_s_path(:id => career.id)
-			
-			-if @owner
-				= render "add_career"
+  %p
+    = h address_block(@student)
+    -if @owner
+      = link_to "(edit)", "#", {:onClick => "$('\#address').toggle(); return false;"}
+      .hidden_detail{:id => "address", :style => "display:none" }
+        = form_for @student do |f|
+          = f.text_field :address_line1, :size => 30
+          %br/
+          = f.text_field :address_line2, :size => 30
+          %br/
+          = f.text_field :address_city, :size => 15
+          = f.text_field :address_state, :size => 5
+          = f.text_field :address_zip, :size => 5
+          = submit_tag "change"
+  %p
+    %b 
+      Career Interests:
+    -if @owner
+      = link_to "(edit)", "#", {:id => "careers_edit", :onClick => "return false;"}
+    %ul
+      - for career in @student.careers
+        %li
+          = career_block(career)
+          -if @owner
+            %span.delete_career_button{:style => "display:none"}
+              = link_to "[X]", delete_career_s_path(:id => career.id)
+      
+      -if @owner
+        = render "add_career"

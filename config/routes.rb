@@ -107,6 +107,7 @@ Recruitd::Application.routes.draw do
       get 'star'
       get 'dismiss'
       get 'update_file'
+      get 'test'
     end
   end
   
