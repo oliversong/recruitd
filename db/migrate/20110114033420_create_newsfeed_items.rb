@@ -12,6 +12,8 @@ class CreateNewsfeedItems < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :newsfeed_items, :user_id
   end
 
   def self.down

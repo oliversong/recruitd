@@ -1,5 +1,6 @@
 class CreateStudents < ActiveRecord::Migration
   def self.up
+    
     create_table :students do |t|
       t.float :gpa
       t.string :hometown
@@ -13,7 +14,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :address_city
       t.string :address_state
       t.string :address_zip
-      t.integer :user_id
+      #t.integer :user_id
       t.timestamps
     end
   end

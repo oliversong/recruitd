@@ -8,6 +8,10 @@ class CreateStudentTerm < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :student_term, :student_id
+    add_index :student_term, [:student_id, :term_id]
+
   end
 
   def self.down

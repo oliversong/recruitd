@@ -9,7 +9,11 @@ class CreateCompanyTerms < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :company_terms, :company_id
   end
+  
+
 
   def self.down
     drop_table :company_terms

@@ -74,28 +74,32 @@ def create_companies
 end
 
 def create_students
-  alice = Factory(:student,
+  alice = Factory(:user, :first_name => "Alice",
+  :last_name => "Carroll",
+  :entity => Factory(:student,
                   :gpa => 4.0, 
                   :hometown => "Bellevue, WA",
                   :subtitle => "MIT student who loves to study.",
                   :phone => 6172532226
                   )
+  )
 
-  bob = Factory(:student, 
+  bob = Factory(:user, :first_name => "Alice",
+  :last_name => "Carroll",
+  :entity => Factory(:student, 
                 :gpa => 3.6, 
                 :hometown => "Houston, TX",
                 :subtitle => "UNIX hacker and nightowl",
                 :phone => 6172532223
                 )
+  )
   
   puts "Created factory students"
 end
 
 def create_many_students
   10.times{ |i|
-    student = Factory(:student)
-    student.user.entity = student
-    student.user.save
+    student = Factory(:user, :entity => Factory(:student))
     puts "added student #{i} named #{student.name}" 
   }
   

@@ -7,6 +7,9 @@ class CreateCompanyLabelings < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :company_labelings, :company_id
+    add_index :company_labelings, [:company_id, :label_id]
   end
 
   def self.down

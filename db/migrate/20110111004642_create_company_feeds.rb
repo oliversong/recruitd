@@ -11,6 +11,8 @@ class CreateCompanyFeeds < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :company_files, :company_id
   end
 
   def self.down

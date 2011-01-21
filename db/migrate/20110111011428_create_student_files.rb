@@ -12,6 +12,9 @@ class CreateStudentFiles < ActiveRecord::Migration
       
       t.timestamps
     end
+    
+    add_index :student_files, [:student_id, :company_id]
+    add_index :student_files, [:student_id, :job_id]
   end
 
   def self.down

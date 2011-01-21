@@ -8,6 +8,9 @@ class CreateStudentLabelings < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :student_labelings, :student_id
+    add_index :student_labelings, [:student_id, :label_id]
   end
 
   def self.down

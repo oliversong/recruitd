@@ -11,6 +11,8 @@ class CreateJobs < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :jobs, :company_id
   end
 
   def self.down

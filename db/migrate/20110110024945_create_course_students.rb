@@ -8,6 +8,9 @@ class CreateCourseStudents < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :course_students, :student_id
+    add_index :course_students, :course_id
   end
 
   def self.down

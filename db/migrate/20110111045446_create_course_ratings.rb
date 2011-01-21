@@ -8,6 +8,8 @@ class CreateCourseRatings < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :course_ratings, :course_id
   end
 
   def self.down

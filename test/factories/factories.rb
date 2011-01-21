@@ -196,9 +196,6 @@ Factory.define :student do |f|
   #   f.default_schools.sort_by{rand}.slice(0...rand(3))
   # end
   
-  f.user do |s|
-    Factory(:user, :entity_type => "Student") #TODO: fix entity_id => s.id
-  end
   #f.hometown "Boston, MA"
   f.gpa { rand(500)/100.0 }
   f.terms { |terms| [terms.association(:term)]}

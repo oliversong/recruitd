@@ -10,6 +10,9 @@ class CreateJobStudents < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :job_students, :student_id
+    add_index :job_students, :job_id
   end
 
   def self.down

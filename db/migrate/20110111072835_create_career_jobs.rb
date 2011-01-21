@@ -6,6 +6,9 @@ class CreateCareerJobs < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :career_jobs, :job_id
+    add_index :career_jobs, :career_id
   end
 
   def self.down

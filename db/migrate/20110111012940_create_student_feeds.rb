@@ -12,6 +12,9 @@ class CreateStudentFeeds < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :student_feeds, [:student_id, :company_id]
+    add_index :student_feeds, [:student_id, :job_id]
   end
 
   def self.down

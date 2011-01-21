@@ -10,6 +10,8 @@ class CreateCompanyFiles < ActiveRecord::Migration
       t.integer :vote, :null => false, :default => 0
       t.timestamps
     end
+    
+    add_index :company_files, [:company_id, :student_id] 
   end
 
   def self.down

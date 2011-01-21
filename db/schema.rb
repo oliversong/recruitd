@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "career_jobs", ["career_id"], :name => "index_career_jobs_on_career_id"
+  add_index "career_jobs", ["job_id"], :name => "index_career_jobs_on_job_id"
+
   create_table "career_students", :force => true do |t|
     t.integer  "career_id"
     t.integer  "student_id"
@@ -34,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
     t.integer  "score",      :default => 0, :null => false
   end
+
+  add_index "career_students", ["student_id"], :name => "index_career_students_on_student_id"
 
   create_table "career_terms", :force => true do |t|
     t.integer  "career_id"
@@ -107,6 +112,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "company_files", ["company_id", "student_id"], :name => "index_company_files_on_company_id_and_student_id"
+  add_index "company_files", ["company_id"], :name => "index_company_files_on_company_id"
+
   create_table "company_highlightings", :force => true do |t|
     t.integer  "company_id"
     t.integer  "student_id"
@@ -124,6 +132,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "company_labelings", ["company_id", "label_id"], :name => "index_company_labelings_on_company_id_and_label_id"
+  add_index "company_labelings", ["company_id"], :name => "index_company_labelings_on_company_id"
+
   create_table "company_terms", :force => true do |t|
     t.integer  "company_id"
     t.integer  "term_id"
@@ -134,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "company_terms", ["company_id"], :name => "index_company_terms_on_company_id"
+
   create_table "course_ratings", :force => true do |t|
     t.integer  "student_id"
     t.integer  "course_id"
@@ -143,6 +156,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "course_ratings", ["course_id"], :name => "index_course_ratings_on_course_id"
+
   create_table "course_students", :force => true do |t|
     t.integer  "student_id"
     t.integer  "course_id"
@@ -151,6 +166,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "course_students", ["course_id"], :name => "index_course_students_on_course_id"
+  add_index "course_students", ["student_id"], :name => "index_course_students_on_student_id"
 
   create_table "courses", :force => true do |t|
     t.string   "name"
@@ -204,6 +222,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "experiences", ["student_id"], :name => "index_experiences_on_student_id"
+
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
     t.integer  "followed_id"
@@ -219,6 +239,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "job_students", ["job_id"], :name => "index_job_students_on_job_id"
+  add_index "job_students", ["student_id"], :name => "index_job_students_on_student_id"
+
   create_table "jobs", :force => true do |t|
     t.integer  "company_id"
     t.string   "title"
@@ -230,6 +253,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "jobs", ["company_id"], :name => "index_jobs_on_company_id"
 
   create_table "labels", :force => true do |t|
     t.integer  "owner_id"
@@ -251,6 +276,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "newsfeed_items", ["user_id"], :name => "index_newsfeed_items_on_user_id"
 
   create_table "periods", :force => true do |t|
     t.string   "season"
@@ -301,6 +328,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "school_student", ["student_id"], :name => "index_school_student_on_student_id"
+
   create_table "schools", :force => true do |t|
     t.string   "name"
     t.integer  "term_id"
@@ -326,6 +355,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "student_feeds", ["student_id", "company_id"], :name => "index_student_feeds_on_student_id_and_company_id"
+  add_index "student_feeds", ["student_id", "job_id"], :name => "index_student_feeds_on_student_id_and_job_id"
+
   create_table "student_files", :force => true do |t|
     t.integer  "student_id"
     t.integer  "company_id"
@@ -339,6 +371,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "student_files", ["student_id", "company_id"], :name => "index_student_files_on_student_id_and_company_id"
+  add_index "student_files", ["student_id", "job_id"], :name => "index_student_files_on_student_id_and_job_id"
+
   create_table "student_labelings", :force => true do |t|
     t.integer  "student_id"
     t.integer  "label_id"
@@ -347,6 +382,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "student_labelings", ["student_id", "label_id"], :name => "index_student_labelings_on_student_id_and_label_id"
+  add_index "student_labelings", ["student_id"], :name => "index_student_labelings_on_student_id"
 
   create_table "student_term", :force => true do |t|
     t.string   "details"
@@ -357,6 +395,9 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
     t.integer  "score",      :default => 0, :null => false
   end
+
+  add_index "student_term", ["student_id", "term_id"], :name => "index_student_term_on_student_id_and_term_id"
+  add_index "student_term", ["student_id"], :name => "index_student_term_on_student_id"
 
   create_table "students", :force => true do |t|
     t.float    "gpa"
@@ -418,6 +459,8 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
     t.datetime "updated_at"
   end
 
+  add_index "updates", ["user_id"], :name => "index_updates_on_user_id"
+
   create_table "user_tasks", :force => true do |t|
     t.integer  "user_id"
     t.integer  "task_id"
@@ -469,6 +512,7 @@ ActiveRecord::Schema.define(:version => 20110120060410) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["entity_type", "entity_id"], :name => "index_users_on_entity_type_and_entity_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

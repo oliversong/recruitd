@@ -19,6 +19,8 @@ class CreateExperiences < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :experiences, :student_id
   end
 
   def self.down

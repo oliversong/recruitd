@@ -3,7 +3,7 @@ class CreateRecruiters < ActiveRecord::Migration
     create_table :recruiters do |t|
       t.integer :phone
       t.integer :company_id
-      t.integer :user_id
+      #t.integer :user_id
       
       t.string :address_line1
       t.string :address_line2

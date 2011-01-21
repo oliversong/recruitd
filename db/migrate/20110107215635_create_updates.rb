@@ -6,6 +6,8 @@ class CreateUpdates < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :updates, :user_id
   end
 
   def self.down

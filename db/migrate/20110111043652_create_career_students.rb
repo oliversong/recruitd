@@ -6,6 +6,8 @@ class CreateCareerStudents < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :career_students, :student_id
   end
 
   def self.down

@@ -7,7 +7,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :address_city
       t.string :address_state
       t.string :address_zip
-      t.string :user_id
+      #t.string :user_id
       t.integer :ownership_category, :null => false, :default => 0
       t.text :description
       t.string :founded

@@ -13,6 +13,9 @@ class CreateSchoolStudents < ActiveRecord::Migration
 
       t.timestamps
     end
+    
+    add_index :school_student, :student_id
+    
   end
 
   def self.down
