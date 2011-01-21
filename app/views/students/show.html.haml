@@ -289,6 +289,11 @@
             = print_update_block(update, :show_name => false)
     .feedbottom
 #top
+  .scribbles Scribbles
+  %img#divider{:src => "/images/divider.png"}/
+  %form#feedupdate
+    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
+  #update Update
 
 -#
   -if current_user.is_company_entity?

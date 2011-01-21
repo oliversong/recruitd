@@ -99,5 +99,5 @@ function mMouseOut(e)
 function mClick(e)
 {
     //location.href = $(this).children().children().attr("href");
-    location.href = "/" + this.id
+    location.href = "/" + this.id;
 }

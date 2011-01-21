@@ -61,22 +61,30 @@
         %a#feedbackicon.contact{:href => "#", :title => "Leave us a comment!"} Constructive Criticism!
       %a#blogicon.contact{:href => "/blog.html", :title => "Check out the Blog!"} Check out the Blog!
     #navigation.container
-      #home{ :class => "#{(@current_tab == User::TABS["HOME"]) ? "pri-nav.active" : "pri-nav" }" } 
+      #home{ :class => "#{(@current_tab == User::TABS["HOME"]) ? "pri-nav active" : "pri-nav" }" } 
         %div
           =# link_to "Home", home_info_path
-      #public{ :class => "#{(@current_tab == User::TABS["PUBLIC"]) ? "pri-nav.active" : "pri-nav" }" } 
+      #public{ :class => "#{(@current_tab == User::TABS["PUBLIC"]) ? "pri-nav active" : "pri-nav" }" } 
         %div
           =# link_to "Public", public_info_path
-      #manage{ :class => "#{(@current_tab == User::TABS["MANAGE"]) ? "pri-nav.active" : "pri-nav" }" } 
+      #manage{ :class => "#{(@current_tab == User::TABS["MANAGE"]) ? "pri-nav active" : "pri-nav" }" } 
         %div
           =# link_to "Manage", manage_info_path
-      #browse{ :class => "#{(@current_tab == User::TABS["BROWSE"]) ? "pri-nav.active" : "pri-nav" }" } 
+      #browse{ :class => "#{(@current_tab == User::TABS["BROWSE"]) ? "pri-nav active" : "pri-nav" }" } 
         %div
           =# link_to "Browse", browse_info_path
-      #settings{ :class => "#{(@current_tab == User::TABS["SETTINGS"]) ? "pri-nav.active" : "pri-nav" }" } 
+      #settings{ :class => "#{(@current_tab == User::TABS["SETTINGS"]) ? "pri-nav active" : "pri-nav" }" } 
         %div
           =# link_to "Settings", settings_info_path
     #header
+      #searchlogout
+        #searchbox
+          %form
+            %input.differentsearch{:placeholder => "Search", :type => "search"}
+              %input{:style => "display:none;", :type => "submit", :value => "Find"}
+        %a{:href => "logout.php", :style => "position:relative;top:-16px;left:260px;"}
+          %img{:src => "/images/logout.png"}/
+    
       #bg2{:style => "height:80px; background-position: 50% 0%;"}
       %a{:href => "http://www.recruitd.com"}
         #logo{:style => "top:20px;"}
