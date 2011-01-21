@@ -786,7 +786,7 @@ top: -93px;
 	background-attachment: scroll;
 	background-repeat: no-repeat;
 	background-position: 0px -60px;	
-}
+}	
 
 .pri-nav a{
 	display:block;
@@ -867,8 +867,7 @@ width: 513px;
 #leftcolumn{
 	position:absolute;
 	top:200px;
-	left:50%;
-	margin-left:-500px;
+	left:96px;
 }
 #middlecolumn{
 	position:absolute;
@@ -878,8 +877,7 @@ width: 513px;
 }
 #rightcolumn{
 	position:absolute;
-	left:50%;
-	margin-left:237px;
+	left:833px;
 	top:200px;
 }
 
@@ -933,10 +931,6 @@ list-style:none;
 
 .hover:hover{
 background-color:#FF6;	
-}
-
-.highlight{
-	background-color:#FF6;
 }
 
 /******

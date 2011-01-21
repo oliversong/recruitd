@@ -99,7 +99,11 @@
         %li.field Location
         %li.value.tTip{:title => "Hello World", :reference_type => "Location", :id => "Location"}
           %span.rest_in_place{"data-attribute" => "location", "data-object" => "student", "data-url" => "/students/3"}<
-            = h @student.location
+            - if !@student.location.blank?
+              = h @student.location
+            - else
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
         %li.field Languages
         %li.value.tTip{:title => "Hello World", :reference_type => "Languages", :id => "Languages"}
           %span.rest_in_place{"data-attribute" => "languages", "data-object" => "student", "data-url" => "/students/3"}<
