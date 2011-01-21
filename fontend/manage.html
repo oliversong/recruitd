@@ -10,128 +10,39 @@
  
  	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />    
 	<link type='text/css' href='css/contact.css' rel='stylesheet' media='screen' />
+	<link type='text/css' href='css/accordion.css' rel='stylesheet' media='screen' />
+
 	<script type="text/javascript"></script> 
 	<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
 	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/jquery-bp.js" ></script>
 	<script type="text/javascript" src="js/navigation.js" ></script>
     <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />	
-<style type="text/css">
-html {
-	overflow-Y: scroll;
-}
-body {
-	font: 10px normal Arial, Helvetica, sans-serif;
-	margin: 0;
-	padding: 0;
-	line-height: 1.7em;
-}
-*, * focus {
-	outline: none;
-	margin: 0;
-	padding: 0;
-}
 
-.container {
-	position:relative;
-	top:200px;
-	width: 500px;
-	margin: 0 auto;
-}
-h1 {
-	font: 4em normal Georgia, 'Times New Roman', Times, serif;
-	text-align:center;
-	padding: 20px 0;
-	color: #aaa;
-}
-h1 span { color: #666; }
-h1 small{
-	font: 0.3em normal Verdana, Arial, Helvetica, sans-serif;
-	text-transform:uppercase;
-	letter-spacing: 0.5em;
-	display: block;
-	color: #666;
-}
-
-h2.acc_trigger {
-	padding: 0;	margin: 0 0 5px 0;
-	background: url(images/h2_trigger_a.gif) no-repeat;
-	height: 46px;	line-height: 46px;
-	width: 500px;
-	font-size: 2em;
-	font-weight: normal;
-	float: left;
-}
-h2.acc_trigger a {
-	color: #fff;
-	text-decoration: none;
-	display: block;
-	padding: 0 0 0 50px;
-}
-h2.acc_trigger a:hover {
-	color: #ccc;
-}
-h2.active {background-position: left bottom;}
-.acc_container {
-	margin: 0 0 5px; padding: 0;
-	overflow: hidden;
-	font-size: 1.2em;
-	width: 500px;
-	clear: both;
-	background: #f0f0f0;
-	border: 1px solid #d6d6d6;
-	-webkit-border-bottom-right-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-moz-border-radius-bottomright: 5px;
-	-moz-border-radius-bottomleft: 5px;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px; 
-}
-.acc_container .block {
-	padding: 20px;
-}
-.acc_container .block p {
-	padding: 5px 0;
-	margin: 5px 0;
-}
-.acc_container h3 {
-	font: 2.5em normal Georgia, "Times New Roman", Times, serif;
-	margin: 0 0 10px;
-	padding: 0 0 5px 0;
-	border-bottom: 1px dashed #ccc;
-}
-.acc_container img {
-	float: left;
-	margin: 10px 15px 15px 0;
-	padding: 5px;
-	background: #ddd;
-	border: 1px solid #ccc;
-}
-</style>
-<script>
-$(document).ready(function(){
-	
-//Set default open/close settings
-$('.acc_container').hide(); //Hide/close all containers
-$('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
-
-//On Click
-$('.acc_trigger').click(function(){
-	if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
-		$('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
-		$(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
-	}
-	return false; //Prevent the browser jump to the link anchor
-});
-
-});
-</script>
+	<script>
+        $(document).ready(function(){
+            
+        //Set default open/close settings
+        $('.acc_container').hide(); //Hide/close all containers
+        $('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
+        
+        //On Click
+        $('.acc_trigger').click(function(){
+            if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
+                $('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
+                $(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
+            }
+            return false; //Prevent the browser jump to the link anchor
+        });
+        
+        });
+	</script>
 </head>
 
 <body>
-
+<div id="everything">
 <div style='display:none'>
-			<img src='/images/contact/loading.gif' alt='' />
+			<img src='images/contact/loading.gif' alt='' />
 </div>
 <div id="feedback">
 <div id="contact-form">
@@ -142,26 +53,45 @@ $('.acc_trigger').click(function(){
 </div>
 
 <div id="navigation" class="container">
-	<div id="home" class="pri-nav active"><div><a href="#">Home</a></div></div>
+	<div id="home" class="pri-nav"><div><a href="#">Home</a></div></div>
 	<div id="about" class="pri-nav"><div><a href="#">Public</a></div></div>
-	<div id="services" class="pri-nav"><div><a href="#">Lists</a></div></div>
+	<div id="services" class="pri-nav active"><div><a href="#">Lists</a></div></div>
 	<div id="solutions" class="pri-nav"><div><a href="#">Search</a></div></div>
 	<div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
 </div>
 <div id="header">
 
+<div id="searchlogout">
+<div id="searchbox">
+	<form>
+	<input class="differentsearch" type="search" placeholder="Search">
+    <input type = "submit" value="Find" style="display:none;">
+    </form>
+    </div>
+
+    <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
+</div>
+
+
 <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
 
 <a href="http://www.recruitd.com"><div id="logo" style="top:20px;"></div></a>
 </div>
+<div id="sidebartop"></div>
+<div id="sidebar">
+	<ul style="	list-style:none;text-align:center;">
+    <li class="hover2" id="hover1">Job Type 1</li>
+    <li class="hover2" id="hover2">Job Type 1</li>
+    <li class="hover2" id="hover3">Job Type 1</li>
+    </ul>
+</div>
+<div id="sidebarbottom"></div>
 
-
-<div class="container">
-
-	<h2 class="acc_trigger active"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Web Design &amp; Development</a></h2>
+<div id="container1" class="container swapper">
+  <h2 class="acc_trigger active"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #1</a></h2>
 	<div class="acc_container" style="display: block; ">
 		<div class="block">
-			<h3>Need a Website?</h3>
+			<h3>Potential Job Taker #1</h3>
 			<a href="http://www.designbombs.com/community/love-manchester/"><img src="images/img1.gif" alt=""></a>
 			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
 			
@@ -169,10 +99,10 @@ $('.acc_trigger').click(function(){
 		</div>
 	</div>
 	
-	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Logo / Corporate Identity</a></h2>
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #2</a></h2>
 	<div class="acc_container" style="display: none; ">
 		<div class="block">
-			<h3>Need a Logo?</h3>
+			<h3>Potential Job Taker #2</h3>
 			<a href="http://www.designbombs.com/community/precinkt/"><img src="images/img2.gif" alt=""></a>
 			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
 			
@@ -180,10 +110,10 @@ $('.acc_trigger').click(function(){
 		</div>
 	</div>
 	
-	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Seach Engine Optimization</a></h2>
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #3</a></h2>
 	<div class="acc_container" style="display: none; ">
 		<div class="block">
-			<h3>Need to be Heard?</h3>
+			<h3>Potential Job Taker #3</h3>
 			<a href="http://www.designbombs.com/portfolio/dan-vuletici/"><img src="images/img3.gif" alt=""></a>
 			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
 			
@@ -191,10 +121,10 @@ $('.acc_trigger').click(function(){
 		</div>
 	</div>
 	
-	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">eCommerce</a></h2>
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #4</a></h2>
 	<div class="acc_container" style="display: none; ">
 		<div class="block">
-			<h3>Have Product to Sell?</h3>
+			<h3>Potential Job Taker #4</h3>
 			<a href="http://www.designbombs.com/design-firm/full-creative/"><img src="images/img4.gif" alt=""></a>
 			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
 			
@@ -207,8 +137,134 @@ $('.acc_trigger').click(function(){
 
 
 
-<div id="footer5" style="position:absolute; bottom:0px;">
-<span id="copyright">Copyright Â© 2010 Recruitd Inc. All rights reserved.</span>
+
+<div id="container2" class="container swapper">
+  <h2 class="acc_trigger active"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #1</a></h2>
+	<div class="acc_container" style="display: block; ">
+		<div class="block">
+			<h3>Potential Job Taker #1</h3>
+			<a href="http://www.designbombs.com/community/love-manchester/"><img src="images/img1.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #2</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #2</h3>
+			<a href="http://www.designbombs.com/community/precinkt/"><img src="images/img2.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #3</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #3</h3>
+			<a href="http://www.designbombs.com/portfolio/dan-vuletici/"><img src="images/img3.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	
+</div>
+
+
+
+
+
+<div id="container3" class="container swapper">
+  <h2 class="acc_trigger active"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #1</a></h2>
+	<div class="acc_container" style="display: block; ">
+		<div class="block">
+			<h3>Potential Job Taker #1</h3>
+			<a href="http://www.designbombs.com/community/love-manchester/"><img src="images/img1.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #2</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #2</h3>
+			<a href="http://www.designbombs.com/community/precinkt/"><img src="images/img2.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #3</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #3</h3>
+			<a href="http://www.designbombs.com/portfolio/dan-vuletici/"><img src="images/img3.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #4</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #4</h3>
+			<a href="http://www.designbombs.com/design-firm/full-creative/"><img src="images/img4.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+	
+    	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #5</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #5</h3>
+			<a href="http://www.designbombs.com/design-firm/full-creative/"><img src="images/img4.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+        	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #5</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #5</h3>
+			<a href="http://www.designbombs.com/design-firm/full-creative/"><img src="images/img4.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+        	<h2 class="acc_trigger"><a href="http://www.sohtanaka.com/web-design/examples/accordion/#">Potential Job Taker #5</a></h2>
+	<div class="acc_container" style="display: none; ">
+		<div class="block">
+			<h3>Potential Job Taker #5</h3>
+			<a href="http://www.designbombs.com/design-firm/full-creative/"><img src="images/img4.gif" alt=""></a>
+			<p>Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan. </p>
+			
+			<p>Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor. </p>
+		</div>
+	</div>
+    
+    
+    
+</div>
+
+
+
+
+
+<div id="footer" style="position:absolute; bottom:0px;">
+<span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
       <div id="footerlinks">
         <a href="#">Home</a> |
         <a href="#">Public</a> |
@@ -219,9 +275,30 @@ $('.acc_trigger').click(function(){
       </div>
 </div>
 
-<div id="top"></div>
+<div id="top"><div style="padding-top:18px;" class="scribbles"><text style="position:relative;top:-5px;">Scribbles</text></div><img id="divider" src="images/divider.png" />
+	<form id="feedupdate">
+    	<input style="width:730px;" type="search" placeholder="Update your feed!">
+    </form>
+    <div style="top:-73px;" id="update">Update</div>
+</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+	$(".swapper").hide();
+	$("#container1").show();
+});
 
 
+var j=1;
+for(j=1;j<4;j++){
+$('#hover'+j).click(function(){
+	$('.swapper').hide();
+	$('#container'+event.srcElement.id.substr(5)).show();
+							 });
+				   };
+</script>
 
     <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 	<script type='text/javascript' src='js/contact.js'></script>

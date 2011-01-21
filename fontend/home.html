@@ -27,7 +27,7 @@
 
 <body>
 <div style='display:none'>
-			<img src='/images/contact/loading.gif' alt='' />
+			<img src='images/contact/loading.gif' alt='' />
 </div>
 <div id="feedback">
 <div id="contact-form">
@@ -45,6 +45,18 @@
 	<div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
 </div>
 <div id="header">
+
+<div id="searchlogout">
+<div id="searchbox">
+	<form>
+	<input class="differentsearch" type="search" placeholder="Search">
+    <input type = "submit" value="Find" style="display:none;">
+    </form>
+    </div>
+
+    <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
+</div>
+
 
 <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
 
@@ -157,8 +169,12 @@
         </div>
     </div>
     
-<div id="top"></div>
-
+<div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
+	<form id="feedupdate">
+    	<input style="width:730px;" type="search" placeholder="Update your feed!">
+    </form>
+    <div id="update">Update</div>
+</div>
 
 
     <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
