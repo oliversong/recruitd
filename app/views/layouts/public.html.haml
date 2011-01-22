@@ -1,0 +1,44 @@
+!!! Strict
+%html{html_attrs}
+  
+  %head
+    %title
+      = h(yield(:title) || "Recruitd: Job Hunting That Doesn't Suck")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    
+    %link{:href => "/favicon.ico", :rel => "Shortcut Icon", :type => "image/x-icon"}/
+    
+    = stylesheet_link_tag 'style', 'contact', 'signup'
+    =javascript_include_tag 'jquery-1.4.4.min', 'jquery.inputfocus-0.9.min.js', 'signup.js'
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js", :type => "text/javascript"}
+    
+    = csrf_meta_tag
+    
+    = yield(:head)  
+
+  %body{:style=>"background-color:#FFF;"}
+    #bg2{:style => "top:55px;"}
+    %div{:style => "display:none"}
+      %img{:alt => "", :src => "/images/contact/loading.gif"}/
+    #feedback
+      #contact-form
+        %a#feedbackicon.contact{:href => "#", :title => "Leave us a comment!"} Constructive Criticism!
+      %a#blogicon.contact{:href => "/blog.html", :title => "Check out the Blog!"} Check out the Blog!
+    #header
+      %a{:href => "http://hiring.recruitd.com"}
+        #hiring
+      %a{:href => "http://www.recruitd.com"}
+        #logo
+      = form_for(:user, :url => session_path(:user), :html => {:name => "login_form"}) do |f|
+        #form2
+          = f.email_field :email, :class => "texta", :onclick=>"this.value='';", :onfocus => "this.select()", :onblur=>"this.value=!this.value?'e-mail':this.value;", :value=>"e-mail", :onKeyPress=>"return submitenter(this,event)"
+        #form1
+          = f.password_field :password, :class => "texta", :onKeyPress=>"return submitenter(this,event)"
+        #btn{:onclick => "document.forms['login_form'].submit();"}
+    = yield  
+    
+    
+    #footer3
+      %span#copyright Copyright © 2010 Recruitd Inc. All rights reserved.
+    %script{:src => "/javascripts/jquery.simplemodal.js", :type => "text/javascript"}
+    %script{:src => "/javascripts/contact.js", :type => "text/javascript"}

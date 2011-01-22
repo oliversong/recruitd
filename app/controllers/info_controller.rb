@@ -6,11 +6,11 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_home
       else
-        render "info/home_no_login"
+        render "info/home_no_login", :layout => "public"
         #redirect_to "/users/sign_in"
       end
     else
-      render "info/home_no_login", :layout => false
+      render "info/home_no_login", :layout => "public"
     end
   end
   

@@ -129,7 +129,15 @@ $(function(){
 
     $('#submit_fourth').click(function(){
         //send information to server
-        alert('Data sent');
+        //alert('Data sent');
+        $.ajax({
+           type: "POST",
+           url: "/users",
+           data: "user[email]=" + field_values['email'] + "&user[password]=" + field_values['password'] + "&user[password_confirmation]=" + field_values['password'],
+           success: function(msg){
+             alert( "Data Saved: " + msg );
+           }
+         });
     });
 
 });
