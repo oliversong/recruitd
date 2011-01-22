@@ -3,7 +3,7 @@
   
 #leftcolumn
   #profpic
-    %img{:src => "images/profpic.jpg", :style => "position:relative; top:8px; left:12px;"}/
+    %img{:src => @student.user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
       %span.headertext Basic Info

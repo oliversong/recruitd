@@ -21,141 +21,32 @@
 #sidebartop
 #sidebar
   %ul{:style => " list-style:none;text-align:center;"}
-    %li#hover1.hover2 Job Type 1
-    %li#hover2.hover2 Job Type 1
-    %li#hover3.hover2 Job Type 1
+    -@student.labels.each do |lbl|
+      %li.hover2{:id => "hover#{lbl.id}"} 
+        =lbl.name
 #sidebarbottom
-#container1.container.swapper
-  %h2.acc_trigger.active
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #1
-  .acc_container{:style => "display: block; "}
-    .block
-      %h3 Potential Job Taker #1
-      %a{:href => "http://www.designbombs.com/community/love-manchester/"}
-        %img{:alt => "", :src => "/images/img1.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #2
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #2
-      %a{:href => "http://www.designbombs.com/community/precinkt/"}
-        %img{:alt => "", :src => "/images/img2.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #3
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #3
-      %a{:href => "http://www.designbombs.com/portfolio/dan-vuletici/"}
-        %img{:alt => "", :src => "/images/img3.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #4
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #4
-      %a{:href => "http://www.designbombs.com/design-firm/full-creative/"}
-        %img{:alt => "", :src => "/images/img4.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-#container2.container.swapper
-  %h2.acc_trigger.active
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #1
-  .acc_container{:style => "display: block; "}
-    .block
-      %h3 Potential Job Taker #1
-      %a{:href => "http://www.designbombs.com/community/love-manchester/"}
-        %img{:alt => "", :src => "/images/img1.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #2
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #2
-      %a{:href => "http://www.designbombs.com/community/precinkt/"}
-        %img{:alt => "", :src => "/images/img2.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #3
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #3
-      %a{:href => "http://www.designbombs.com/portfolio/dan-vuletici/"}
-        %img{:alt => "", :src => "/images/img3.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-#container3.container.swapper
-  %h2.acc_trigger.active
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #1
-  .acc_container{:style => "display: block; "}
-    .block
-      %h3 Potential Job Taker #1
-      %a{:href => "http://www.designbombs.com/community/love-manchester/"}
-        %img{:alt => "", :src => "/images/img1.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #2
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #2
-      %a{:href => "http://www.designbombs.com/community/precinkt/"}
-        %img{:alt => "", :src => "/images/img2.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #3
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #3
-      %a{:href => "http://www.designbombs.com/portfolio/dan-vuletici/"}
-        %img{:alt => "", :src => "/images/img3.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #4
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #4
-      %a{:href => "http://www.designbombs.com/design-firm/full-creative/"}
-        %img{:alt => "", :src => "/images/img4.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #5
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #5
-      %a{:href => "http://www.designbombs.com/design-firm/full-creative/"}
-        %img{:alt => "", :src => "/images/img4.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #5
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #5
-      %a{:href => "http://www.designbombs.com/design-firm/full-creative/"}
-        %img{:alt => "", :src => "/images/img4.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
-  %h2.acc_trigger
-    %a{:href => "http://www.sohtanaka.com/web-design/examples/accordion/#"} Potential Job Taker #5
-  .acc_container{:style => "display: none; "}
-    .block
-      %h3 Potential Job Taker #5
-      %a{:href => "http://www.designbombs.com/design-firm/full-creative/"}
-        %img{:alt => "", :src => "/images/img4.gif"}/
-      %p Consequat te olim letalis premo ad hos olim odio olim indoles ut venio iusto. Euismod, sagaciter diam neque antehabeo blandit, jumentum transverbero luptatum. Lenis vel diam praemitto molior facilisi facilisi suscipere abico, ludus, at. Wisi suscipere nisl ad capto comis esse, autem genitus. Feugiat immitto ullamcorper hos luptatum gilvus eum. Delenit patria nunc os pneum acsi nulla magna singularis proprius autem exerci accumsan.
-      %p Praesent duis vel similis usitas camur, nostrud eros opes verto epulae feugiat ad. Suscipit modo magna letalis amet et tego accumsan facilisi, meus. Vindico luptatum blandit ulciscor mos caecus praesent sed meus velit si quis lobortis praemitto, uxor.
+
+-@student.labels.each do |lbl|
+  .container.swapper{:id => "container#{lbl.id}" }
+    - lbl.student_labelings.each_with_index do |labeling, i|
+      - if labeling.company_id
+        - idx = @student_files.find_index{|item| item.company_id == labeling.company_id }
+        - if idx
+          - student_file = @student_files[idx]
+          = render :partial => 'companies/manage_card', :locals => {:company => labeling.company, :student_file => student_file, :i => i }
+
+      - elsif labeling.job_id
+        %li
+          - idx = @student_files.find_index{|item| item.job_id == labeling.job_id }
+          - if idx
+            - student_file = @student_files[idx]
+            = render :partial => 'jobs/manage_card', :locals => {:job => labeling.job, :student_file => student_file, :i => i }
+      
+    
+
+
 #footer{:style => "position:absolute; bottom:0px;"}
-  %span#copyright Copyright � 2010 Recruitd Inc. All rights reserved.
+  %span#copyright Copyright 2010 Recruitd Inc. All rights reserved.
   #footerlinks
     %a{:href => "#"} Home
     |

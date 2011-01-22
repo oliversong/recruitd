@@ -1,17 +1,25 @@
-%p
-  %b Name:
-  = h @recruiter.user.name
-=render :partial => "shared/follow", :locals => {:user_id => @recruiter.user_id, :followed => @followed}
+#top
+  .scribbles Scribbles
+  %img#divider{:src => "/images/divider.png"}/
+  %form#feedupdate
+    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
+  #update Update
 
-%p
-  %b Phone:
-  = h @recruiter.phone
-%p
-  %b Email:
-  = h @recruiter.user.email
-%p
-  %b Company:
-  = link_to @recruiter.company.name, @recruiter.company
-= link_to 'Edit', edit_recruiter_path(@recruiter)
-|
-\#{link_to 'Back', recruiters_path}
+#maincontent
+  %p
+    %b Name:
+    = h @recruiter.user.name
+  =render :partial => "shared/follow", :locals => {:user_id => @recruiter.user.id, :followed => @followed}
+  
+  %p
+    %b Phone:
+    = h @recruiter.phone
+  %p
+    %b Email:
+    = h @recruiter.user.email
+  %p
+    %b Company:
+    = link_to @recruiter.company.name, @recruiter.company
+  = link_to 'Edit', edit_recruiter_path(@recruiter)
+  |
+  \#{link_to 'Back', recruiters_path}

@@ -3,37 +3,45 @@
 -if current_user.is_student?
   = render :partial => "student_file", :locals => { :job => @job, :student_file => @student_file }
 
-%p
-  %strong Company:
-  = link_to @job.company.name, @job.company
-%h1
-  =h @job.title
-  -if current_user.is_student?
-    =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @job.id, :starred => @student_file.starred}
-%p
-  %strong Responsibilities:
-  =h @job.responsibilities
-%p
-  %strong Basic Qualifications:
-  =h @job.basic_qualifications
-%p
-  %strong Desired Qualifications:
-  =h @job.desired_qualifications
-%p
-  %strong Other Information:
-  =h @job.other_information
-%p
-  %strong Description:
-  =h @job.description
-%p
-  %strong Careers
-  %ul
-  -@job.careers.each do |career|
-    %li= link_to career.name, career
+#top
+  .scribbles Scribbles
+  %img#divider{:src => "/images/divider.png"}/
+  %form#feedupdate
+    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
+  #update Update
 
-%p
-  = link_to "Edit", edit_job_path(@job)
-  |
-  = link_to "Destroy", @job, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", jobs_path
+#maincontent
+  %p
+    %strong Company:
+    = link_to @job.company.name, @job.company
+  %h1
+    =h @job.title
+    -if current_user.is_student?
+      =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @job.id, :starred => @student_file.starred}
+  %p
+    %strong Responsibilities:
+    =h @job.responsibilities
+  %p
+    %strong Basic Qualifications:
+    =h @job.basic_qualifications
+  %p
+    %strong Desired Qualifications:
+    =h @job.desired_qualifications
+  %p
+    %strong Other Information:
+    =h @job.other_information
+  %p
+    %strong Description:
+    =h @job.description
+  %p
+    %strong Careers
+    %ul
+    -@job.careers.each do |career|
+      %li= link_to career.name, career
+  
+  %p
+    = link_to "Edit", edit_job_path(@job)
+    |
+    = link_to "Destroy", @job, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", jobs_path

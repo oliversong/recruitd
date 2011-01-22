@@ -15,7 +15,11 @@ class RecruitersController < ApplicationController
   def show
     @recruiter = Recruiter.find(params[:id])
     
-    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.user_id)
+    if current_user
+      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.user_id)
+    else
+      @followed = false
+    end
 
     respond_to do |format|
       format.html # show.html.erb
