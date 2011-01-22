@@ -924,9 +924,16 @@ margin-left: 237px;
 top:200px;
 }
 
+#maincontent{
+  position:absolute;
+  left: 50%;
+  margin-left: -500px;
+  top:200px;
+}
+
 #infofields{list-style:none;
 position:relative;
-left:-20px;
+left:20px;
 font-family:Arial, Helvetica, sans-serif;
 font-size:12px;
 }

@@ -131,6 +131,7 @@ Recruitd::Application.routes.draw do
   match "browse" => "info#browse", :as => "browse"
   match "settings" => "info#settings", :as => "settings"
   
+  resources :feedbacks, :only => [:create, :new]
 
   #devise_for :users
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", 
