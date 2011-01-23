@@ -40,11 +40,17 @@ class UpdatesController < ApplicationController
   # POST /updates
   # POST /updates.xml
   def create
+    if !current_user
+      redirect_to :new_user_session and return
+    end
+    
     @update = Update.new(params[:update])
+    @update.user = current_user
 
     respond_to do |format|
       if @update.save
-        format.html { redirect_to(@update, :notice => 'Update was successfully created.') }
+        format.html { redirect_to :back }
+        #redirect_to(@update, :notice => 'Update was successfully created.')
         format.xml  { render :xml => @update, :status => :created, :location => @update }
       else
         format.html { render :action => "new" }
