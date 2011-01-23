@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
   
+  emits_pfeeds :on => [:buy,:sell,:find_friends,:update_attribute] , :for => [:itself , :friends]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
+  receives_pfeed
+  
   #after_create :create_student
   
   def name

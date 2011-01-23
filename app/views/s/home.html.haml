@@ -86,29 +86,8 @@
       %span.headertext Feed Updates
     .feedmiddle
       %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
+        -@student.user.newsfeed_items.each do |newsitem|
+          %li.hover.tTip{:title => "Hello World"} Update!
     .feedbottom
-#top
-  .scribbles Scribbles
-  %img#divider{:src => "images/divider.png"}/
-  %form#feedupdate
-    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-  #update Update
+
+=render :partial => "shared/update"

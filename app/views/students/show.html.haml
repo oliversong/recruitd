@@ -288,12 +288,7 @@
           %li.hover.tTip{:title => "Hello World", :reference_type => "Update", :reference_id => update.id, :id => "Update#{update.id}"}
             = print_update_block(update, :show_name => false)
     .feedbottom
-#top
-  .scribbles Scribbles
-  %img#divider{:src => "/images/divider.png"}/
-  =form_tag "/updates", :id => "feedupdate" do
-    =text_field_tag "update[text]", nil, {:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-    =submit_tag "Update"
+=render :partial => "shared/update"
   
 
 -#
