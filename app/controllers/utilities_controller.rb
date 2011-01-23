@@ -272,4 +272,12 @@ class UtilitiesController < ApplicationController
     
     redirect_to :back
   end
+  
+  def create_label
+    @label = Label.new(:name => params[:label][:name])
+    @label.owner = current_user
+    @label.save
+    
+    redirect_to :back
+  end
 end

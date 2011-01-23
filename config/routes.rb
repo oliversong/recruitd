@@ -31,6 +31,7 @@ Recruitd::Application.routes.draw do
     get 'authentications'
     get 'get_profile'
     post 'apply_label'
+    post 'create_label'
   end
   
   match "follow/:user_id" => "utilities#follow", :as => "follow"

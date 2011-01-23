@@ -40,10 +40,8 @@
         - if idx
           - student_file = @student_files[idx]
           = render :partial => 'jobs/manage_card', :locals => {:labels => @student.labels, :job => labeling.job, :student_file => student_file, :i => i }
-      
-    
 
-
+= render :partial => 'shared/create_label'
 
 
 #top
