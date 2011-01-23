@@ -28,18 +28,7 @@
 
 -@student.labels.each do |lbl|
   .container.swapper{:id => "container#{lbl.id}" }
-    - lbl.student_labelings.each_with_index do |labeling, i|
-      - if labeling.company_id
-        - idx = @student_files.find_index{|item| item.company_id == labeling.company_id }
-        - if idx
-          - student_file = @student_files[idx]
-          = render :partial => 'companies/manage_card', :locals => {:labels => @student.labels, :company => labeling.company, :student_file => student_file, :i => i }
-
-      - elsif labeling.job_id
-        - idx = @student_files.find_index{|item| item.job_id == labeling.job_id }
-        - if idx
-          - student_file = @student_files[idx]
-          = render :partial => 'jobs/manage_card', :locals => {:labels => @student.labels, :job => labeling.job, :student_file => student_file, :i => i }
+    = render :partial => "s/labeling", :collection => @student_labelings, :locals => {:labels => @student.labels}
 
 = render :partial => 'shared/create_label'
 

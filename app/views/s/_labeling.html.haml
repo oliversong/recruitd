@@ -1,0 +1,14 @@
+%h2.acc_trigger{:class => "#{(labeling_counter == 0) ? 'active' : ''}"}
+  = link_to labeling.applyable.name, labeling.applyable
+.acc_container{:style => "display: block; "}
+  .block
+    |
+    rating: #{labeling.student_file.rating}
+    =render :partial => "shared/star", :locals => {:entity => labeling.applyable, :starred => labeling.student_file.starred}
+    |
+    = render :partial => "shared/update_rating", :locals => {:entity => labeling.applyable }
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => labeling.applyable}
+    %br/
+    %b Notes:
+    %br/
+    = labeling.student_file.notes

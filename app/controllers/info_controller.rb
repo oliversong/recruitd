@@ -137,8 +137,7 @@ class InfoController < ApplicationController
   def student_manage
     @student = current_user.becomes(Student)
     
-    @student_files = @student.student_files    
-    @starred_student_files = @student_files.select{|student_file| student_file.starred }
+    @student_labelings = StudentLabeling.find(:all, :conditions => ["student_id = ?", current_user.id], :include => :student_file)
     
     render 's/manage'
   end

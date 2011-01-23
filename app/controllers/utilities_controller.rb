@@ -160,14 +160,14 @@ class UtilitiesController < ApplicationController
     #@voteable = Kernel.const_get(params[:voteable_type]).find(params[:voteable_id])
     
     if current_user.is_student?
-      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:voteable_id], params[:voteable_type])
+      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:entity_id], params[:entity_type])
       student_file.vote = params[:vote]
       student_file.save
       @vote = student_file.vote
 
     elsif current_user.is_company_entity?
-      if (params[:voteable_type] == "Student")
-        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:voteable_id])
+      if (params[:entity_type] == "Student")
+        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:entity_id])
         company_file.vote = params[:vote]
         company_file.save
         @vote = company_file.vote
@@ -251,4 +251,27 @@ class UtilitiesController < ApplicationController
     
     redirect_to :back 
   end
+  
+  def rate
+    if current_user.is_student?
+      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:entity_id], params[:entity_type])
+      student_file.rating = params[:rating]
+      student_file.save
+      @rating = student_file.rating
+
+    elsif current_user.is_company_entity?
+      if (params[:voteable_type] == "Student")
+        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:entity_id])
+        company_file.rating = params[:rating]
+        company_file.save
+        @rating = company_file.rating
+      else
+        #TODO render error
+        render :nothing => true and return
+      end
+    end
+    
+    redirect_to :back
+  end
+  
 end

@@ -370,7 +370,7 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.integer  "student_id"
     t.integer  "label_id"
     t.integer  "applyable_id"
-    t.integer  "applyable_term"
+    t.string   "applyable_type"
     t.integer  "student_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"

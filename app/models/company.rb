@@ -22,7 +22,7 @@ class Company < ActiveRecord::Base
   
   has_many :labels, :as => :owner
   has_many :company_labelings
-  has_many :student_labelings
+  has_many :student_labelings, :as => :applyable
   
   has_many :career_companies
   has_many :careers, :through => :career_companies

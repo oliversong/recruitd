@@ -5,7 +5,7 @@ class CreateStudentLabelings < ActiveRecord::Migration
       t.integer :label_id
       
       t.integer :applyable_id
-      t.integer :applyable_term
+      t.string :applyable_type
       t.integer :student_file_id
 
       t.timestamps

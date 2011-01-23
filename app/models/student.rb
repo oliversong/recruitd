@@ -21,7 +21,11 @@ class Student < User
   
   has_many :student_files, :order => "feed_score DESC"
   
-  has_many :labels, :as => :owner
+  #has_many :labels, :as => :owner
+  
+  has_many :labels, :conditions => ["owner_type = ?", "Student"], 
+                          :foreign_key => "owner_id"
+                          
   has_many :company_labelings
   has_many :student_labelings
   

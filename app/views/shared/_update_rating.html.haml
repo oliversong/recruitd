@@ -1,0 +1,2 @@
+- (1..5).each do |i|
+	= link_to i, rate_path(:entity_type => entity.class.name, :entity_id => entity.id, :rating => i)

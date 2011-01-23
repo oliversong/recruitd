@@ -38,7 +38,8 @@ Recruitd::Application.routes.draw do
   match "unfollow/:user_id" => "utilities#unfollow", :as => "unfollow"
   match "star/:entity_type/:entity_id" => "utilities#star", :as => "star"
   match "unstar/:entity_type/:entity_id" => "utilities#unstar", :as => "unstar"
-  match "vote/:voteable_type/:voteable_id/:vote" => "utilities#vote", :as => "vote"
+  match "vote/:entity_type/:entity_id/:vote" => "utilities#vote", :as => "vote"
+  match "rate/:entity_type/:entity_id/:rating" => "utilities#rate", :as => "rate"
   
   resources :experiences
 
