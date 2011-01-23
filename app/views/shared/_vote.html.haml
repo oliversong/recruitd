@@ -14,8 +14,8 @@
     - down_title = "Click to vote against this item."
     
   = link_to image_tag(down_img_file, :width => 25, :height => 25, :class => "arrow-image", :title => down_title), 
-      vote_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote => "-1"),
+      vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote => "-1"),
       :remote => true
   = link_to image_tag(up_img_file, :width => 25, :height => 25, :class => "arrow-image", :title => up_title),
-      vote_path(:voteable_id=>voteable.id, :voteable_type=>voteable.class.name, :vote=>"1"),
+      vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote=>"1"),
       :remote => true

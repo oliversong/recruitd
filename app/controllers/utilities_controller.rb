@@ -230,11 +230,7 @@ class UtilitiesController < ApplicationController
     end
     
     if current_user.is_student?
-      if(params[:entity_type] == "Company")
-        sl = StudentLabeling.find_or_create_by_student_id_and_label_id_and_company_id( current_user.id, @label.id, params[:entity_id])
-      elsif(params[:entity_type] == "Job")
-        sl = StudentLabeling.find_or_create_by_student_id_and_label_id_and_job_id( current_user.id, @label.id, params[:entity_id])
-      end
+      sl = StudentLabeling.find_or_create_by_student_id_and_label_id_and_applyable_id_and_applyable_type( current_user.id, @label.id, params[:entity_id], params[:entity_type])
     elsif current_user.is_company_entity?
       if(params[:entity_type] == "Student")
         cl = CompanyLabeling.find_or_create_by_company_id_and_label_id_and_student_id(current_user.company_id, @label.id, params[:entity_id])
@@ -260,7 +256,7 @@ class UtilitiesController < ApplicationController
       @rating = student_file.rating
 
     elsif current_user.is_company_entity?
-      if (params[:voteable_type] == "Student")
+      if (params[:entity_type] == "Student")
         company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:entity_id])
         company_file.rating = params[:rating]
         company_file.save
