@@ -9,7 +9,7 @@
   %p
     %b Name:
     = h @recruiter.user.name
-  =render :partial => "shared/follow", :locals => {:user_id => @recruiter.user.id, :followed => @followed}
+  =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
   
   %p
     %b Phone:

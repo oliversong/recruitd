@@ -1,47 +1,92 @@
 -if !(defined? @current_tab)
-	- @current_tab = User::TABS["HOME"]
+  - @current_tab = User::TABS["HOME"]
+  
+#leftcolumn
+  #profpic
+    %img{:src => current_user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+  #basicinfo
+    .sidetop
+      %span.headertext Basic Info
+    .sidemiddle
+      %ul#infofields
+        %li.field.tTip{:title => "Hello World"} Sex
+        %li.value.tTip{:title => "Hello World"} Male
+        %li.field Education
+        %li.value.tTip{:title => "Hello World"} Massachusetts Institute of Technology
+        %li.field Location
+        %li.value.tTip{:title => "Hello World"} Cambridge
+        %li.field Languages
+        %li.value.tTip{:title => "Hello World"} English, German
+        %li.field Birthday
+        %li.value.tTip{:title => "Hello World"} May 24, 1991
+        %li.field Phone
+        %li.value.tTip{:title => "Hello World"} 123-123-1234
+        %li.field Email
+        %li.value.tTip{:title => "Hello World"} daneh@example.com
+        %li.field Website
+        %li.value.tTip{:title => "Hello World"} http://www.daneh.com
+    .sidebottom
+#middlecolumn
+  #fullname=current_user.name
+  %a{:href => "#"}
+    #resbuild.awesomebtn
+  %a{:href => "#"}
+    #search.awesomebtn
+  #experiences
+    .contenttop
+      %span.headertext Challenge Questions
+    .contentmiddle
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
+    .contentbottom
+  #activities
+    .contenttop
+      %span.headertext Friends
+    .contentmiddle
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
+    .contentbottom
+  #footer5
+    %span#copyright Copyright � 2010 Recruitd Inc. All rights reserved.
+    #footerlinks
+      %a{:href => "#"} Home
+      |
+      %a{:href => "#"} Public
+      |
+      %a{:href => "#"} Lists
+      |
+      %a{:href => "#"} Search
+      |
+      %a{:href => "#"} Terms of Service
+      |
+      %a{:href => "#"} Privacy Policy
+#rightcolumn
+  #feed
+    .feedtop
+      %span.headertext Feed Updates
+    .feedmiddle
+      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
+        =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
+    .feedbottom
 
-%h1 #{current_user.name}'s home
-%h2 Company: #{link_to @company.name, @company}
-
-%h2 Recommended to you
-
-(mix of jobs to apply for, companies to research, and tasks to complete)
-
-%h3 Students
-
-- @company.company_feeds.showable.each do |feed|
-	.student
-		= link_to feed.student.name, feed.student
-		(score: #{feed.score})
-		= link_to "star", star_student_path(feed.student)
-		| 
-		= link_to "dismiss", dismiss_student_path(feed.student)
-		%br
-
-
-
-/ %h3 Tasks
-/ 
-/ - current_user.all_tasks.each do |task|
-/ 	.task
-/ 		%b= task.name
-/ 		%br
-/ 		=task.text
-/ 		%br 
-/ 		%br
-
-%h2 Reputation score
-
-%h3 All-time: #{current_user.rep_alltime}
-%h3 This month: #{current_user.rep_month}
-
-/ = link_to "Reputation log", :user
-
-%h2 Updates
-
-- current_user.updates.each do |update|
-	.update
-		= print_update_block(update,:show_name => true)
-		%br
-		%br
+=render :partial => "shared/update"

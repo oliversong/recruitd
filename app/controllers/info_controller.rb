@@ -76,7 +76,7 @@ class InfoController < ApplicationController
   ##############
   
   def company_manage
-    @company = current_user.entity.company
+    @company = current_user.company
     @company_files = @company.company_files
     
     @starred_company_files = @company_files.select{|company_file| company_file.starred }

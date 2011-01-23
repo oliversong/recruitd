@@ -16,7 +16,7 @@ class RecruitersController < ApplicationController
     @recruiter = Recruiter.find(params[:id])
     
     if current_user
-      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.user_id)
+      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.id)
     else
       @followed = false
     end
