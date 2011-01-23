@@ -1,0 +1,28 @@
+-if !(defined? @current_tab)
+  - @current_tab = User::TABS["MANAGE"]
+
+%p
+  %b Labels:
+  -@company.labels.each do |lbl|
+    = link_to lbl.name, "\##{lbl.id}"
+    |
+  = link_to "Starred", "\#starred"
+        
+-@company.labels.each do |lbl|
+  %a{:name => "#{lbl.id}"}
+  %p
+    %b= lbl.name
+    %ul
+      - lbl.company_labelings.each do |labeling|
+        - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+        - if idx
+          %li
+            - company_file = @company_files[idx]
+            = render :partial => 'students/manage_card', :locals => {:student => labeling.student, :company_file => company_file }
+            
+%a{:name => "starred"}
+%b Starred
+%ul
+  -@starred_company_files.each do |cf|
+    %li
+      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }

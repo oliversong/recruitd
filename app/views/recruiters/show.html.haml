@@ -8,7 +8,7 @@
 #maincontent
   %p
     %b Name:
-    = h @recruiter.user.name
+    = h @recruiter.name
   =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
   
   %p
@@ -16,7 +16,7 @@
     = h @recruiter.phone
   %p
     %b Email:
-    = h @recruiter.user.email
+    = h @recruiter.email
   %p
     %b Company:
     = link_to @recruiter.company.name, @recruiter.company

@@ -278,6 +278,6 @@ class UtilitiesController < ApplicationController
     @label.owner = current_user
     @label.save
     
-    redirect_to :back
+    redirect_to :back 
   end
 end

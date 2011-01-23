@@ -62,7 +62,11 @@ class InfoController < ApplicationController
   
   def public
     if current_user
-      redirect_to current_user.becomes(Student)
+      if current_user.is_student?
+        redirect_to current_user.becomes(Student)
+      else
+        redirect_to current_user.becomes(Recruiter)
+      end
     else
       render "info/home_no_login", :layout => false
     end

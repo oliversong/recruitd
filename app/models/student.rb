@@ -29,6 +29,7 @@ class Student < User
   
   has_many :labels, :as => :owner
   has_many :company_labelings
+  has_many :student_labelings
   
   # has_many :student_awards, :class_name => "StudentTerm::StudentAward"
   # has_many :awards, :through => :student_awards

@@ -20,7 +20,9 @@ class Company < ActiveRecord::Base
   has_many :company_files
   has_many :company_feeds, :order => "score DESC"
   has_many :company_terms, :include => ["term"]
+  
   has_many :labels, :as => :owner
+  has_many :company_labelings
   has_many :student_labelings
   
   has_many :career_companies
