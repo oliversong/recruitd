@@ -140,16 +140,6 @@ Factory.define :user do |p|
   # 
 end
 
-Factory.define :photo do |f|
-  f.association :gallery
-  f.association :user
-  f.primary true
-  f.avatar true
-  f.uploaded_data do 
-    photos = Dir.glob("lib/tasks/sample_data/#{gender}_photos/*.jpg").shuffle
-    uploaded_file(photos[i], 'image/jpg')
-  end
-end
 
 # # This will use the User class (Admin would have been guessed)
 # Factory.define :admin, :class => user do |p|
@@ -180,23 +170,30 @@ Factory.define :term do |f|
 end
 
 Factory.define :student do |f|
-  # def f.default_schools
-  #   if !@default_schools
-  #     @default_schools = []
-  #     data_fetch("schools").each do |school|
-  #       school_arr = school.split("\t")
-  #       @default_schools << Factory.build(:school, :name => school_arr[0].strip, :address_city => school_arr[1].strip, :address_state => school_arr[2].strip)
-  #     end
-  #   end
-  #   @default_schools
-  # end
-  # 
-  # #pick a random number of schools between 0 and 2.
-  # f.schools do    
-  #   f.default_schools.sort_by{rand}.slice(0...rand(3))
-  # end
   
-  #f.hometown "Boston, MA"
+  ## GENERAL USER STUFF
+  
+  f.gender_is_male do
+    (rand(2) == 1)
+  end
+  f.first_name do |me|
+    if me.gender_is_male
+      name = Factory.next(:male_first_name)
+    else
+      name = Factory.next(:female_first_name)
+    end
+    name
+  end
+  f.last_name do
+    Factory.next(:last_name)
+  end
+  f.email { |u| "#{u.first_name}#{Factory.next(:simple)}@example.com".downcase }
+  #p.email {|u| "#{Factory.next(:simple)}@example.com"}
+  f.password 'foobar'
+  f.password_confirmation 'foobar'
+  
+  ## SPECIFIC TO STUDENT
+  
   f.gpa { rand(500)/100.0 }
   f.terms { |terms| [terms.association(:term)]}
   f.phone { rand(9999999999) }
@@ -357,10 +354,32 @@ Factory.define :career_job do |f|
   f.job { Job.all.count > 0 ? Job.all.sort_by{rand}.first : Factory.create(:job) }
 end
 
-Factory.define :recruiter do |f|
-  f.phone { rand(9999999999) }
-  f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
-  f.user { Factory.create(:user) }
+Factory.define :recruiter do |p|
+  
+  ## GENERAL USER STUFF
+  
+  p.gender_is_male do
+    (rand(2) == 1)
+  end
+  p.first_name do |me|
+    if me.gender_is_male
+      name = Factory.next(:male_first_name)
+    else
+      name = Factory.next(:female_first_name)
+    end
+    name
+  end
+  p.last_name do
+    Factory.next(:last_name)
+  end
+  p.email { |u| "#{u.first_name}#{Factory.next(:simple)}@example.com".downcase }
+  #p.email {|u| "#{Factory.next(:simple)}@example.com"}
+  p.password 'foobar'
+  p.password_confirmation 'foobar'
+  
+  ## SPECIFIC TO RECRUITER
+  p.phone { rand(9999999999) }
+  p.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
 end
 
 Factory.define :company_file do |f|
@@ -396,10 +415,10 @@ Factory.define :company_term do |f|
   f.weight { rand(100) + 1 }
   f.last_updated_by_user_id do |s|
     if (s.company.recruiters.count > 0)
-      i = s.company.recruiters.first.user_id
+      i = s.company.recruiters.first.id
     else 
       r = Factory.create(:recruiter, :company => s.company)
-      i = r.user_id
+      i = r.id
     end
     i
   end

@@ -25,8 +25,12 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
   
-  emits_pfeeds :on => [:buy,:sell,:find_friends,:update_attribute] , :for => [:itself , :friends]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
-  receives_pfeed
+  # emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
+  #   receives_pfeed
+  
+  def post_update
+    #TODO fill this out
+  end
   
   #after_create :create_student
   
@@ -66,19 +70,19 @@ class User < ActiveRecord::Base
 
   ## Identification helpers
   def is_student?
-      entity_type == "Student"
+      type == "Student"
   end
 
   def is_company?
-      entity_type == "Company"
+      type == "Company"
   end
 
   def is_recruiter?
-      entity_type == "Recruiter"
+      type == "Recruiter"
   end
 
   def is_company_entity?
-      (entity_type == "Company") || (entity_type == "Recruiter")
+      (type == "Company") || (type == "Recruiter")
   end
   
   # def create_student

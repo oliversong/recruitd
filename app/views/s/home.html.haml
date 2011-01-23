@@ -3,7 +3,7 @@
   
 #leftcolumn
   #profpic
-    %img{:src => @student.user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+    %img{:src => current_user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
       %span.headertext Basic Info
@@ -86,7 +86,7 @@
       %span.headertext Feed Updates
     .feedmiddle
       %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-        -@student.user.newsfeed_items.each do |newsitem|
+        -current_user.newsfeed_items.each do |newsitem|
           %li.hover.tTip{:title => "Hello World"} Update!
     .feedbottom
 

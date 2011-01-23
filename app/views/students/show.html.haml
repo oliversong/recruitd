@@ -80,7 +80,7 @@
 
 #leftcolumn
   #profpic
-    %img{:src => @student.user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+    %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
       %span.headertext Basic Info
@@ -92,7 +92,7 @@
             = h @student.hometown
         %li.field Sex
         %li.value.tTip{:title => "Hello World", :reference_type => "Sex"} 
-          = @student.user.gender_is_male ? "male" : "female"
+          = @student.gender_is_male ? "male" : "female"
         %li.field Education
         %li.value.tTip{:title => "The Massachusetts Institute of Technology (MIT) is a private research institute located in Cambridge, Massachusetts. MIT has five schools and one college, containing a total of 32 academic departments, with a strong emphasis on scientific and technological research.  Recruitd students: 314 | courses: 1252", :reference_type => "Education", :id => "Education"} 
           Massachusetts Institute of Technology
@@ -118,10 +118,10 @@
           %span.rest_in_place{"data-attribute" => "phone", "data-object" => "student", "data-url" => "/students/3"}<
             = h number_to_phone(@student.phone, :area_code => true)
 
-        -if !@student.user.email.blank?
+        -if !@student.email.blank?
           %li.field Email
           %li.value.tTip{:title => "Hello World", :reference_type => "Email", :id => "Email"}
-            = h @student.user.email
+            = h @student.email
         -if !@student.website.blank?
           %li.field Website
           %li.value.tTip{:title => "Hello World", :reference_type => "Website", :id => "Website"}
@@ -164,7 +164,7 @@
     .sidebottom
 #middlecolumn
   #fullname 
-    = h @student.user.name
+    = h @student.name
     -if current_user.is_company_entity?
       =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
     (#{@student.baseline_score})

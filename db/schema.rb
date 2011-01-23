@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(:version => 20110123005134) do
     t.string   "address_city"
     t.string   "address_state"
     t.string   "address_zip"
-    t.string   "user_id"
     t.integer  "ownership_category", :default => 0, :null => false
     t.text     "description"
     t.string   "founded"
@@ -307,20 +306,6 @@ ActiveRecord::Schema.define(:version => 20110123005134) do
     t.datetime "updated_at"
   end
 
-  create_table "recruiters", :force => true do |t|
-    t.integer  "phone"
-    t.integer  "company_id"
-    t.integer  "user_id"
-    t.string   "address_line1"
-    t.string   "address_line2"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_zip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "website"
-  end
-
   create_table "rep_transactions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "rep_change"
@@ -419,27 +404,6 @@ ActiveRecord::Schema.define(:version => 20110123005134) do
   add_index "student_term", ["student_id", "term_id"], :name => "index_student_term_on_student_id_and_term_id"
   add_index "student_term", ["student_id"], :name => "index_student_term_on_student_id"
 
-  create_table "students", :force => true do |t|
-    t.float    "gpa"
-    t.string   "hometown"
-    t.text     "subtitle"
-    t.integer  "phone"
-    t.text     "highlights"
-    t.text     "fun_facts"
-    t.string   "address_line1"
-    t.string   "address_line2"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_zip"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "baseline_score", :default => 0, :null => false
-    t.string   "website"
-    t.string   "location"
-    t.string   "languages"
-  end
-
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.text     "text"
@@ -518,15 +482,30 @@ ActiveRecord::Schema.define(:version => 20110123005134) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "rep_alltime"
-    t.integer  "rep_month"
+    t.string   "type"
+    t.float    "gpa"
+    t.string   "hometown"
+    t.text     "subtitle"
+    t.integer  "phone"
     t.boolean  "gender_is_male"
-    t.integer  "ethnicity_id"
-    t.string   "entity_type"
-    t.integer  "entity_id"
+    t.string   "ethnicity"
+    t.text     "highlights"
+    t.text     "fun_facts"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "location"
+    t.string   "languages"
+    t.integer  "baseline_score",                      :default => 0,     :null => false
+    t.integer  "company_id"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin",                               :default => false, :null => false
+    t.string   "website"
+    t.integer  "rep_alltime"
+    t.integer  "rep_month"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -534,7 +513,6 @@ ActiveRecord::Schema.define(:version => 20110123005134) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["entity_type", "entity_id"], :name => "index_users_on_entity_type_and_entity_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

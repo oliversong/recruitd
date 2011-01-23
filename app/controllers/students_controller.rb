@@ -16,21 +16,21 @@ class StudentsController < ApplicationController
   # GET /students/1.xml
   def show
     @student = Student.find(params[:id])
-    @updates = @student.user.updates
+    @updates = @student.updates
     
-    @owner = (current_user.is_student? && current_user.entity_id == @student.id)
+    @owner = (current_user.id == @student.id)
     if @owner
       @current_tab = User::TABS["PUBLIC"]
     end
     
     if current_user.is_company_entity?
-      @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.entity.company_id)
+      @company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(params[:id], current_user.company_id)
       
-      chs = CompanyHighlighting.find_all_by_company_id_and_student_id(current_user.entity.company_id, params[:id])
+      chs = CompanyHighlighting.find_all_by_company_id_and_student_id(current_user.company_id, params[:id])
       @company_highlightings = chs.map{|ch| [ch.reference_type, ch.reference_id]}
     end
     
-    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.user_id)
+    @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student.id)
     
     respond_to do |type|
       type.html { render 'show' }
