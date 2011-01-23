@@ -26,7 +26,7 @@
 
 <body>
 <div id="everything">
-<div style='display:none'>
+<div style='display:none;'>
 			<img src='images/contact/loading.gif' alt='' />
 </div>
 <div id="feedback">
@@ -101,9 +101,9 @@ function showValue(newValue,number)
 	<div id="topform">
 		<div style="font-size: 30px;left: 110px;position: relative;text-align: left;top: 12px;">Tags:</div>
         <div id="tags">
-            <div class="tag" id="tagcontrol0" style="width:270px;" onclick="deletetag2(0)">
+            <div class="tag" id="tagcontrol0" style="width:270px;" onClick="deletetag2(0)">
                 Tag #1
-                <input type="range" min="0" max="10" step="1" value="5" onchange="showValue(this.value,1)">
+                <input type="range" min="0" max="10" step="1" value="5" onChange="showValue(this.value,1)">
                 <span id="range1">5</span> Delete
             </div>
                 <input class="differentsearch moving" type="search" placeholder="Tag yourself!">

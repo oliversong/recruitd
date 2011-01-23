@@ -222,7 +222,7 @@ z-index: 500;
 #description2{
 left: 380px;
 position: relative;
-top: -270px;
+top: -425px;
 width: 350px;
 z-index: 500;}
 
@@ -252,9 +252,9 @@ margin-left:-20px;
 }
 
 #asdf5{
-left: 100px;
+left: -150px;
 position: relative;
-top: 30px;}
+top: -68px;}
 
 #bg1{
 	background-image:url(../images/background.jpg);
@@ -584,6 +584,21 @@ left: -150%;
 position: relative;
 top: 200px;
 width: 450%;
+}
+
+#footerbuilder{
+background-color: #242424;
+background-image: none;
+border-top-color: #454545;
+border-top-style: solid;
+border-top-width: 1px;
+clear: both;
+color: #B0B0B0;
+height: 80px;
+left:0px;
+position: relative;
+width: 100%;
+margin-top:100px;
 }
 
 #copyright{
@@ -1009,7 +1024,7 @@ padding-bottom:80px;
 
 #something2{
 font-size: 30px;
-left: -97px;
+left: 300px;
 list-style: none;
 position: absolute;
 text-align: right;
@@ -1017,10 +1032,10 @@ text-align: right;
 
 #settings{
 font-family: 'Helvetica Ultralight';
-letter-spacing:1px;
-left: 248px;
+left: 203px;
+letter-spacing: 1px;
 position: relative;
-top: 23px;
+top: 19px;
 }
 .textinput{
 	margin-bottom:5px;
@@ -1055,7 +1070,7 @@ top:20px;
 z-index:500;
 }
 .tag:hover{
-background-image:url(../images/xout.png);
+background-image:url(../images/x.png);
 background-position:right;
 background-repeat:no-repeat;
 }
@@ -1105,4 +1120,70 @@ left:50px;
 }
 #bottomform{
 	height:400px;
+}
+#import{
+font-family: 'Helvetica Ultralight';
+font-size:25px;
+left: 50%;
+margin-left: -600px;
+opacity: 0.5;
+padding-left: 400px;
+position: relative;
+top: 200px;
+padding-bottom:70px;
+}
+#basic{
+font-family: 'Helvetica Ultralight';
+left: 50%;
+margin-left: -600px;
+opacity: 0.5;
+padding-left: 400px;
+position: relative;
+top: 160px;
+}
+#tagyourself{
+font-family: 'Helvetica Ultralight';
+left: 50%;
+margin-left: -500px;
+opacity: 0.5;
+padding-left: 300px;
+position: relative;
+top: 110px;
+z-index: 100;
+}
+#optional{
+font-family: 'helvetica ultralight';
+font-size: 20px;
+left: 50%;
+margin-left: -500px;
+opacity: 0.5;
+padding-left: 300px;
+padding-top: 187px;
+position: relative;
+width: 500px;
+}
+.highlight{
+	background-color:#FFF;	
+}
+.highlight:hover{
+	text-shadow:#000 1px 1px 1px;
+	position:relative;
+	top:-2px;
+	border:dotted #CCC 1px;
+}
+		.hoveropacity:hover { opacity:1.0 !important; }
+		
+		.hoveropacity { -webkit-transition-property: opacity; -webkit-transition-duration: 300ms;
+		-moz-transition-property: opacity; -moz-transition-duration: 300ms;}
+		
+fieldset{
+	margin:0px;
+	padding:0px;
+	border:none;
+}
+.basicinput{
+width:250px;
+height:14px;
+font-size:14px;
+padding-bottom:8px;
 }
