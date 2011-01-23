@@ -7,10 +7,4 @@ class Career < ActiveRecord::Base
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
-  def create_term
-    t = Term.new(:name => name)
-    t.reference = self
-    t.save
-    self.term = t
-  end
 end

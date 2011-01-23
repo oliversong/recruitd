@@ -27,13 +27,4 @@ class Course < ActiveRecord::Base
     ret
   end
   
-  def create_term
-    if !term_id
-      t = Term.new(:name => name)
-      t.reference = self
-      t.save
-      self.term = t
-    end
-  end
-  
 end

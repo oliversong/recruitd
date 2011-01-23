@@ -33,6 +33,16 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
+      create_schools_departments_courses
+      create_categories
+      create_awards
+      create_careers
+      create_interests
+      create_jobs
+      create_recruiters
+      create_updates
+      create_company_files_and_feeds
+      create_student_files_and_feeds
       create_company_terms
       create_student_labels
       create_company_labels
