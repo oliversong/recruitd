@@ -49,6 +49,7 @@ class UpdatesController < ApplicationController
 
     respond_to do |format|
       if @update.save
+        current_user.post_update(@update)
         format.html { redirect_to :back }
         #redirect_to(@update, :notice => 'Update was successfully created.')
         format.xml  { render :xml => @update, :status => :created, :location => @update }

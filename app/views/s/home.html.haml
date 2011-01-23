@@ -86,8 +86,7 @@
       %span.headertext Feed Updates
     .feedmiddle
       %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-        -current_user.newsfeed_items.each do |newsitem|
-          %li.hover.tTip{:title => "Hello World"} Update!
+        =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
     .feedbottom
 
 =render :partial => "shared/update"

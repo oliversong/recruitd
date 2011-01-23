@@ -1,9 +1,9 @@
 Recruitd::Application.routes.draw do
   resource :s, :only => [:manage, :home, :settings, :add_career, :add_course, :add_award, :add_interest] do
-    get 'manage'
-    get 'home'
-    get 'browse'
-    get 'settings'
+    # get 'manage'
+    # get 'home'
+    # get 'browse'
+    # get 'settings'
     post 'add_career'
     get 'delete_career'
     post 'add_course'
@@ -15,10 +15,10 @@ Recruitd::Application.routes.draw do
   end
   
   resource :c, :only => [:manage, :home, :settings, :update_settings], :controller => "c" do
-    get 'manage'
-    get 'home'
-    get 'settings'
-    get 'browse'
+    # get 'manage'
+    # get 'home'
+    # get 'settings'
+    # get 'browse'
     post 'update_settings'
     post 'highlight'
     post 'unhighlight'

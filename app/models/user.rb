@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
   
-  def post_update
+  def post_update(update)
     #TODO fill this out
     puts "posted update"
   end

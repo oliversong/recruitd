@@ -1,0 +1,6 @@
+-# pfeed_item.guess_identification(pfeed_item.originator)
+%strong
+  = link_to pfeed_item.data[:originator_identity], :controller => pfeed_item.originator_type.downcase.pluralize, :action => "show", :id => pfeed_item.originator_id
+  posted about #{time_ago_in_words(pfeed_item.created_at)} ago:
+%br
+  = pfeed_item.data[:update]

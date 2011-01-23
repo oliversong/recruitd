@@ -1106,3 +1106,8 @@ left:50px;
 #bottomform{
 	height:400px;
 }
+
+#feedback_link:hover{
+	width:200px;
+	
+}
