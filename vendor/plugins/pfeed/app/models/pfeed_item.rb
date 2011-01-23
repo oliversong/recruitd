@@ -42,11 +42,11 @@ class PfeedItem < ActiveRecord::Base
       p_item.attempt_delivery(ar_obj,ar_obj.pfeed_audience_hash[method_name.to_sym])   # attempting the delivery of the feed
   end  
   
-  @@dj = (defined? Delayed) == "constant" && (instance_methods.include? 'send_later') #this means Delayed_job exists , so make use of asynchronous delivery of pfeed
+  @@dj = (defined? Delayed) == "constant" && (instance_methods.include? :send_later) #this means Delayed_job exists , so make use of asynchronous delivery of pfeed
 
   def attempt_delivery (ar_obj,method_name_arr)
     return if method_name_arr.empty?
-
+    
     if @@dj
       send_later(:deliver,ar_obj,method_name_arr)  
     else  # regular instant delivery

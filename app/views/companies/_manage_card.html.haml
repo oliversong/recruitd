@@ -18,4 +18,5 @@
     = render :partial => "companies/update_rating", :locals => {:company => company }
     .hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
       = student_file.notes
-      %br/
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => company}
+    %br/

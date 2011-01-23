@@ -249,4 +249,27 @@ class UtilitiesController < ApplicationController
     @entity_type = params[:entity_type]
     render "shared/star"
   end
+  
+  def apply_label
+    @label = Label.find(params[:label_id])
+    
+    #check to make sure the current user owns this label
+    if(@label.owner != current_user)
+      redirect_to :back and return
+    end
+    
+    if current_user.is_student?
+      if(params[:entity_type] == "Company")
+        sl = StudentLabeling.find_or_create_by_student_id_and_label_id_and_company_id( current_user.id, @label.id, params[:entity_id])
+      elsif(params[:entity_type] == "Job")
+        sl = StudentLabeling.find_or_create_by_student_id_and_label_id_and_job_id( current_user.id, @label.id, params[:entity_id])
+      end
+    elsif current_user.is_company_entity?
+      if(params[:entity_type] == "Student")
+        cl = CompanyLabeling.find_or_create_by_company_id_and_label_id_and_student_id(current_user.company_id, @label.id, params[:entity_id])
+      end
+    end
+    
+    redirect_to :back
+  end
 end
