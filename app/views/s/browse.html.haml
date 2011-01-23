@@ -1,28 +1,14 @@
 -if !(defined? @current_tab)
 	- @current_tab = User::TABS["BROWSE"]
 
+.biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
+	-if @student_file.applyable_type == "Company"
+		= render :partial => "companies/summary_card", :locals => {:company => @student_file.applyable}
+	-elsif @student_file.applyable_type == "Job"
+		= render :partial => "jobs/summary_card", :locals => {:job => @student_file.applyable}
 
--if @student_feed.company_id
-	.biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
-		= render :partial => "companies/summary_card", :locals => {:company => @student_feed.company, :followed => @followed}
-	.buttons{ :style => "text-align:center"}
-		= link_to "prev", browse_path(:page => @page - 1)
-		= render :partial => "shared/vote", :locals => {:voteable => @student_feed.company, :vote => @student_file.vote}
-		= render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => @student_feed.company_id, :starred => @student_file.starred}
-		= link_to "next", browse_path(:page => @page + 1)
-		-#= link_to "star", star_company_path(@student_feed.company)
-		-#| 
-		-#= link_to "dismiss", dismiss_company_path(@student_feed.company)
--elsif @student_feed.job_id
-	.biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
-		= render :partial => "jobs/summary_card", :locals => {:job => @student_feed.job}
-	.buttons{ :style => "text-align:center"}
-		= link_to "prev", browse_path(:page => @page - 1)
-		= render :partial => "shared/vote", :locals => {:voteable => @student_feed.job, :vote => @student_file.vote}
-		= render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @student_feed.job_id, :starred => @student_file.starred}
-		= link_to "next", browse_path(:page => @page + 1)
-
-
-		-#= link_to "star", star_job_path(@student_feed.job)
-		-#| 
-		-#= link_to "dismiss", dismiss_job_path(@student_feed.job)
+.buttons{ :style => "text-align:center"}
+	= link_to "prev", browse_path(:page => @page - 1)
+	= render :partial => "shared/vote", :locals => {:voteable => @student_file.applyable, :vote => @student_file.vote}
+	= render :partial => "shared/star", :locals => {:entity => @student_file.applyable, :starred => @student_file.starred}
+	= link_to "next", browse_path(:page => @page + 1)

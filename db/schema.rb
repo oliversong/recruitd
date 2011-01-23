@@ -99,26 +99,17 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "updated_at"
   end
 
-  create_table "company_feeds", :force => true do |t|
-    t.integer  "company_id"
-    t.integer  "student_id"
-    t.integer  "score"
-    t.datetime "last_seen"
-    t.datetime "dismissed_until"
-    t.boolean  "dismissed",       :default => false
-    t.boolean  "deleted",         :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "company_files", :force => true do |t|
     t.integer  "company_id"
     t.integer  "student_id"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred",    :default => false, :null => false
-    t.boolean  "dismissed",  :default => false, :null => false
-    t.integer  "vote",       :default => 0,     :null => false
+    t.boolean  "starred",              :default => false, :null => false
+    t.boolean  "dismissed",            :default => false, :null => false
+    t.integer  "vote",                 :default => 0,     :null => false
+    t.integer  "feed_score"
+    t.datetime "feed_last_seen"
+    t.datetime "feed_dismissed_until"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -139,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.integer  "company_id"
     t.integer  "label_id"
     t.integer  "student_id"
+    t.integer  "company_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -356,47 +348,35 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "updated_at"
   end
 
-  create_table "student_feeds", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
-    t.integer  "score"
-    t.datetime "last_seen"
-    t.datetime "dismissed_until"
-    t.boolean  "dismissed",       :default => false
-    t.boolean  "deleted",         :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "student_feeds", ["student_id", "company_id"], :name => "index_student_feeds_on_student_id_and_company_id"
-  add_index "student_feeds", ["student_id", "job_id"], :name => "index_student_feeds_on_student_id_and_job_id"
-
   create_table "student_files", :force => true do |t|
     t.integer  "student_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
+    t.integer  "applyable_id"
+    t.string   "applyable_type"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred",    :default => false, :null => false
-    t.boolean  "dismissed",  :default => false, :null => false
-    t.integer  "vote",       :default => 0,     :null => false
+    t.boolean  "starred",         :default => false, :null => false
+    t.boolean  "dismissed",       :default => false, :null => false
+    t.integer  "vote",            :default => 0,     :null => false
+    t.integer  "feed_score"
+    t.datetime "feed_last_seen"
+    t.datetime "dismissed_until"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "student_files", ["student_id", "company_id"], :name => "index_student_files_on_student_id_and_company_id"
-  add_index "student_files", ["student_id", "job_id"], :name => "index_student_files_on_student_id_and_job_id"
+  add_index "student_files", ["student_id"], :name => "index_student_files_on_student_id"
 
   create_table "student_labelings", :force => true do |t|
     t.integer  "student_id"
     t.integer  "label_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
+    t.integer  "applyable_id"
+    t.integer  "applyable_term"
+    t.integer  "student_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "student_labelings", ["student_file_id"], :name => "index_student_labelings_on_student_file_id"
   add_index "student_labelings", ["student_id", "label_id"], :name => "index_student_labelings_on_student_id_and_label_id"
   add_index "student_labelings", ["student_id"], :name => "index_student_labelings_on_student_id"
 
@@ -446,6 +426,8 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "terms", ["reference_id", "reference_type"], :name => "index_terms_on_reference_id_and_reference_type"
 
   create_table "updates", :force => true do |t|
     t.integer  "user_id"

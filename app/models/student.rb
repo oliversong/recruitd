@@ -19,8 +19,7 @@ class Student < User
   has_many :student_terms
   has_many :terms, :through => :student_terms
   
-  has_many :student_files
-  has_many :student_feeds, :order => "score DESC"
+  has_many :student_files, :order => "feed_score DESC"
   
   has_many :labels, :as => :owner
   has_many :company_labelings

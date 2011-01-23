@@ -95,20 +95,11 @@ class UtilitiesController < ApplicationController
       actor_type = "Student"
       actor_id = current_user.id
        
-      if (params[:entity_type] == "Company")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:entity_id])
-        student_file.starred = true
-        student_file.save
-        @starred = true
-      elsif (params[:entity_type] == "Job")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.id, params[:entity_id])
-        student_file.starred = true
-        student_file.save
-        @starred = true
-      else
-        #TODO render error
-        render :nothing => true and return
-      end
+      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:entity_id], params[:entity_type])
+      student_file.starred = true
+      student_file.save
+      @starred = true
+      
     elsif current_user.is_company_entity?
       actor_type = "Company"
       actor_id = current_user.company_id
@@ -126,8 +117,7 @@ class UtilitiesController < ApplicationController
     
     Delayed::Job.enqueue ProcessFeedbackJob.new(actor_type, actor_id, params[:entity_type],params[:entity_id],ProcessFeedbackJob::STAR)
     
-    @entity_id = params[:entity_id]
-    @entity_type = params[:entity_type]
+    @entity = Kernel.const_get(params[:entity_type]).find(params[:entity_id])
     render "shared/star"
   end
   
@@ -140,20 +130,11 @@ class UtilitiesController < ApplicationController
       actor_type = "Student"
       actor_id = current_user.id
       
-      if (params[:entity_type] == "Company")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:entity_id])
-        student_file.starred = false
-        student_file.save
-        @starred = false
-      elsif (params[:entity_type] == "Job")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.id, params[:entity_id])
-        student_file.starred = false
-        student_file.save
-        @starred = false
-      else
-        #TODO render error
-        render :nothing => true and return
-      end
+      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:entity_id], params[:entity_type])
+      student_file.starred = false
+      student_file.save
+      @starred = false
+      
     elsif current_user.is_company_entity?
       actor_type = "Company"
       actor_id = current_user.company_id
@@ -171,8 +152,7 @@ class UtilitiesController < ApplicationController
     
     Delayed::Job.enqueue ProcessFeedbackJob.new(actor_type, actor_id, params[:entity_type],params[:entity_id],ProcessFeedbackJob::UNSTAR)
     
-    @entity_id = params[:entity_id]
-    @entity_type = params[:entity_type]
+    @entity = Kernel.const_get(params[:entity_type]).find(params[:entity_id])
     render "shared/star"
   end
   
@@ -180,20 +160,11 @@ class UtilitiesController < ApplicationController
     #@voteable = Kernel.const_get(params[:voteable_type]).find(params[:voteable_id])
     
     if current_user.is_student?
-      if (params[:voteable_type] == "Company")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:voteable_id])
-        student_file.vote = params[:vote]
-        student_file.save
-        @vote = student_file.vote
-      elsif (params[:voteable_type] == "Job")
-        student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.id, params[:voteable_id])
-        student_file.vote = params[:vote]
-        student_file.save
-        @vote = student_file.vote
-      else
-        #TODO render error
-        render :nothing => true and return
-      end
+      student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:voteable_id], params[:voteable_type])
+      student_file.vote = params[:vote]
+      student_file.save
+      @vote = student_file.vote
+
     elsif current_user.is_company_entity?
       if (params[:voteable_type] == "Student")
         company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:voteable_id])

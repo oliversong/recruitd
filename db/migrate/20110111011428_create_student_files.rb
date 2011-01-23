@@ -3,7 +3,7 @@ class CreateStudentFiles < ActiveRecord::Migration
     create_table :student_files do |t|
       t.integer :student_id
       t.integer :applyable_id
-      t.integer :applyable_type
+      t.string :applyable_type
       t.integer :rating
       t.text :notes
       

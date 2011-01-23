@@ -124,9 +124,7 @@ class InfoController < ApplicationController
     
     @recruiter = current_user.becomes(Recruiter)
     
-    @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
-    
-    @company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
+    @company_file = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
     
     render 'c/browse'
   end
@@ -157,14 +155,7 @@ class InfoController < ApplicationController
     
     #@student = current_user.entity
     
-    @student_feed = StudentFeed.by_student_id(current_user.id).offset(@page).limit(1).find(:first)
-    
-    if @student_feed.company_id
-      #@followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.id, @student_feed.company_id)
-    elsif @student_feed.job_id
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id( current_user.id, @student_feed.job_id)
-    end
+    @student_file = StudentFile.by_student_id(current_user.id).offset(@page).limit(1).find(:first)
     
     render 's/browse'
   end

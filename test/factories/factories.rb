@@ -387,13 +387,8 @@ Factory.define :company_file do |f|
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
   f.notes LIPSUM_FULL
   f.rating { rand(5) + 1 }
-end
-
-Factory.define :company_feed do |f|
-  f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
-  f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
-  f.last_seen { rand_time(2.months.ago, Time.now ) }
-  f.score { rand(100) + 1 }
+  f.feed_last_seen { rand_time(2.months.ago, Time.now ) }
+  f.feed_score { rand(100) + 1 }
 end
 
 Factory.define :student_file do |f|
@@ -401,13 +396,10 @@ Factory.define :student_file do |f|
   f.notes LIPSUM_FULL
   f.rating { rand(5) + 1 }
   f.starred { (rand > 0.5) }
+  f.feed_last_seen { rand_time(2.months.ago, Time.now ) }
+  f.feed_score { rand(100) + 1 }
 end
 
-Factory.define :student_feed do |f|
-  f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
-  f.last_seen { rand_time(2.months.ago, Time.now ) }
-  f.score { rand(100) + 1 }
-end
 
 Factory.define :company_term do |f|
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
