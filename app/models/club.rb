@@ -1,5 +1,6 @@
 class Club < ActiveRecord::Base
-  belongs_to :term
+  has_one :term, :as => :reference
+  
   belongs_to :added_by_user, :class_name => "User"
   has_many :club_experiences
   has_many :students, :through => :club_experiences

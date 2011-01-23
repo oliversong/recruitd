@@ -8,10 +8,4 @@ class StudentFile < ActiveRecord::Base
   scope :for_company, :conditions => "company_id IS NOT NULL"
   scope :for_job, :conditions => "job_id IS NOT NULL"
   
-  # class StudentFileCompany < StudentFile
-  # end
-  # 
-  # class StudentFileJob < StudentFile
-  # end
-  
 end

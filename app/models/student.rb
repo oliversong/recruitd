@@ -1,8 +1,3 @@
-require_dependency 'experience'
-require_dependency 'term'
-require_dependency 'student_term'
-require_dependency 'student_file'
-
 class Student < User
   has_many :experiences
   

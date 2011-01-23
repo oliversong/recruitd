@@ -50,7 +50,7 @@ class InfoController < ApplicationController
       if current_user.is_student?
         student_settings
       elsif current_user.is_company_entity?
-        company_setting
+        company_settings
       else
         render "info/home_no_login"
         #redirect_to "/users/sign_in"

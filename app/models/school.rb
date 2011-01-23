@@ -1,5 +1,5 @@
 class School < ActiveRecord::Base
-  belongs_to :term
+  has_one :term, :as => :reference
   
   def location
     return "#{address_city}, #{address_state}"

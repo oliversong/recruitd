@@ -44,13 +44,8 @@
 = render :partial => 'shared/create_label'
 
 
-#top
-  .scribbles{:style => "padding-top:18px;"}
-    %text{:style => "position:relative;top:-5px;"} Scribbles
-  %img#divider{:src => "/images/divider.png"}/
-  %form#feedupdate
-    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-  #update{:style => "top:-73px;"} Update
+=render :partial => "shared/update"
+
   
 :javascript
   $(document).ready(function() {

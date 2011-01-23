@@ -3,14 +3,9 @@
 -if current_user.is_student?
   = render :partial => "student_file", :locals => { :job => @job, :student_file => @student_file }
 
-#top
-  .scribbles Scribbles
-  %img#divider{:src => "/images/divider.png"}/
-  %form#feedupdate
-    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-  #update Update
-
+=render :partial => "shared/update"
 #maincontent
+
   %p
     %strong Company:
     = link_to @job.company.name, @job.company
@@ -39,9 +34,8 @@
     -@job.careers.each do |career|
       %li= link_to career.name, career
   
-  %p
-    = link_to "Edit", edit_job_path(@job)
-    |
-    = link_to "Destroy", @job, :confirm => 'Are you sure?', :method => :delete
-    |
-    = link_to "View All", jobs_path
+  -if @job.owned_by?(current_user)
+    %p
+      = link_to "Edit", edit_job_path(@job)
+      |
+      = link_to "Destroy", @job, :confirm => 'Are you sure?', :method => :delete

@@ -51,26 +51,11 @@
           %span#range1 5
           Delete
       %input.differentsearch.moving{:placeholder => "Tag yourself!", :type => "search"}
-  #footer5
-    %span#copyright Copyright � 2010 Recruitd Inc. All rights reserved.
-    #footerlinks
-      %a{:href => "#"} Home
-      |
-      %a{:href => "#"} Public
-      |
-      %a{:href => "#"} Lists
-      |
-      %a{:href => "#"} Search
-      |
-      %a{:href => "#"} Terms of Service
-      |
-      %a{:href => "#"} Privacy Policy
-#top
-  .scribbles Scribbles
-  %img#divider{:src => "images/divider.png"}/
-  %form#feedupdate
-    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-  #update Update
+
+=render :partial => "shared/update"
+#maincontent
+
+
 :javascript
     var i=2
   $('.moving').bind('keydown', function(e) {

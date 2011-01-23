@@ -1,12 +1,6 @@
 - title "Career"
 
-#top
-  .scribbles Scribbles
-  %img#divider{:src => "/images/divider.png"}/
-  %form#feedupdate
-    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-  #update Update
-
+=render :partial => "shared/update"
 #maincontent
   %p
     %strong Name:
@@ -17,12 +11,14 @@
   %p
     %strong Jobs:
     %ul
-    -@career.jobs.each do |job|
-      %li=link_to job.name, job
-  
+      -@career.jobs.each do |job|
+        %li=link_to job.name, job
+  %br/
   %p
-    = link_to "Edit", edit_career_path(@career)
-    |
-    = link_to "Destroy", @career, :confirm => 'Are you sure?', :method => :delete
-    |
-    = link_to "View All", careers_path
+    %strong Students interested in #{@career.name}
+    %ul
+      -@career.students.each do |student|
+        %li=link_to student.name, student
+  %br/  
+  %p
+    = link_to "all careers", careers_path

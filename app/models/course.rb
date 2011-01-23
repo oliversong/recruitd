@@ -1,13 +1,13 @@
 class Course < ActiveRecord::Base
   belongs_to :department
-  belongs_to :term #, :as => :entity
+  
+  has_one :term, :as => :reference
+  
   has_many :course_students
   has_many :students, :through => :course_students
   has_many :course_ratings
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
-  
-  after_create :create_term
   
   def display_usefulness
     if usefulness_count_cache && (usefulness_count_cache > 0)
