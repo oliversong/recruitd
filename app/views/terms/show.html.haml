@@ -22,6 +22,12 @@
 	- @term.students.each do |student|
 		.student
 			%li= link_to student.name, student
+			
+%h2 Comments
+-@comments.each do |comment|
+  %p
+    %h3=comment.title
+    =comment.text
 
 %br
 

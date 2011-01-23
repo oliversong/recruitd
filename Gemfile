@@ -6,6 +6,7 @@ gem "factory_girl_rails"
 gem 'delayed_job'
 gem 'cancan'
 gem 'paperclip'
+gem 'acts_as_commentable'
 
 gem "nifty-generators", :group => :development
 
