@@ -1,6 +1,6 @@
 %h2{:style => "text-align:center"}
   = link_to company.name, company
-  =render :partial => "shared/follow", :locals => {:user_id => company.user_id, :followed => followed}
+  -#render :partial => "shared/follow", :locals => {:user_id => company.user_id, :followed => followed}
   
 %p
   %b Website:
@@ -28,4 +28,4 @@
 
 %b Recruiters
 - company.recruiters.each do |recruiter|
-  = link_to recruiter.user.name, recruiter
+  = link_to recruiter.name, recruiter

@@ -25,11 +25,9 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
   
-  # emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
-  #   receives_pfeed
-  
   def post_update
     #TODO fill this out
+    puts "posted update"
   end
   
   #after_create :create_student
@@ -85,10 +83,7 @@ class User < ActiveRecord::Base
       (type == "Company") || (type == "Recruiter")
   end
   
-  # def create_student
-  #   s = Student.new(:user => self)
-  #   s.save
-  #   self.entity = s
-  #   self.save
-  # end
+  emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
+  receives_pfeed
+  
 end

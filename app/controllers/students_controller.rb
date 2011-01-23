@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  load_and_authorize_resource
   #before_filter :require_user, :only => [:home]
   
   # GET /students

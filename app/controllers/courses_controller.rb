@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     if current_user.is_student?
-      @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.entity_id, params[:id])
+      @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.id, params[:id])
     end
   end
   

@@ -1,4 +1,5 @@
 class InfoController < ApplicationController
+  
   def home
     if current_user
       if current_user.is_student?
@@ -155,7 +156,7 @@ class InfoController < ApplicationController
     @student_feed = StudentFeed.by_student_id(current_user.id).offset(@page).limit(1).find(:first)
     
     if @student_feed.company_id
-      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
+      #@followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
       @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.id, @student_feed.company_id)
     elsif @student_feed.job_id
       @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id( current_user.id, @student_feed.job_id)

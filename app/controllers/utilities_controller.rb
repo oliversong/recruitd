@@ -93,7 +93,7 @@ class UtilitiesController < ApplicationController
     
     if current_user.is_student?
       actor_type = "Student"
-      actor_id = current_user.entity_id
+      actor_id = current_user.id
        
       if (params[:entity_type] == "Company")
         student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.id, params[:entity_id])
@@ -111,7 +111,7 @@ class UtilitiesController < ApplicationController
       end
     elsif current_user.is_company_entity?
       actor_type = "Company"
-      actor_id = current_user.entity.company_id
+      actor_id = current_user.company_id
       
       if (params[:entity_type] == "Student")
         company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.entity.company_id, params[:entity_id])
