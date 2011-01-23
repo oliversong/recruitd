@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110121083056) do
+ActiveRecord::Schema.define(:version => 20110123033844) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
   create_table "careers", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "term_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,13 +62,26 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
   end
 
   create_table "clubs", :force => true do |t|
-    t.integer  "term_id"
     t.string   "name"
     t.text     "description"
     t.integer  "added_by_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -78,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.string   "address_city"
     t.string   "address_state"
     t.string   "address_zip"
-    t.string   "user_id"
     t.integer  "ownership_category", :default => 0, :null => false
     t.text     "description"
     t.string   "founded"
@@ -88,26 +99,17 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.datetime "updated_at"
   end
 
-  create_table "company_feeds", :force => true do |t|
-    t.integer  "company_id"
-    t.integer  "student_id"
-    t.integer  "score"
-    t.datetime "last_seen"
-    t.datetime "dismissed_until"
-    t.boolean  "dismissed",       :default => false
-    t.boolean  "deleted",         :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "company_files", :force => true do |t|
     t.integer  "company_id"
     t.integer  "student_id"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred",    :default => false, :null => false
-    t.boolean  "dismissed",  :default => false, :null => false
-    t.integer  "vote",       :default => 0,     :null => false
+    t.boolean  "starred",              :default => false, :null => false
+    t.boolean  "dismissed",            :default => false, :null => false
+    t.integer  "vote",                 :default => 0,     :null => false
+    t.integer  "feed_score"
+    t.datetime "feed_last_seen"
+    t.datetime "feed_dismissed_until"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,6 +130,7 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.integer  "company_id"
     t.integer  "label_id"
     t.integer  "student_id"
+    t.integer  "company_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -175,7 +178,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.string   "abbrev"
     t.integer  "department_id"
     t.string   "description"
-    t.integer  "term_id"
     t.integer  "difficulty_sum_cache",   :default => 0, :null => false
     t.integer  "difficulty_count_cache", :default => 0, :null => false
     t.integer  "usefulness_sum_cache",   :default => 0, :null => false
@@ -203,7 +205,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.integer  "school_id"
-    t.integer  "term_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -287,18 +288,24 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.datetime "updated_at"
   end
 
-  create_table "recruiters", :force => true do |t|
-    t.integer  "phone"
-    t.integer  "company_id"
-    t.integer  "user_id"
-    t.string   "address_line1"
-    t.string   "address_line2"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_zip"
+  create_table "pfeed_deliveries", :force => true do |t|
+    t.integer  "pfeed_receiver_id"
+    t.string   "pfeed_receiver_type"
+    t.integer  "pfeed_item_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "website"
+  end
+
+  create_table "pfeed_items", :force => true do |t|
+    t.string   "type"
+    t.integer  "originator_id"
+    t.string   "originator_type"
+    t.integer  "participant_id"
+    t.string   "participant_type"
+    t.text     "data"
+    t.datetime "expiry"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rep_transactions", :force => true do |t|
@@ -332,7 +339,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
 
   create_table "schools", :force => true do |t|
     t.string   "name"
-    t.integer  "term_id"
     t.string   "address_line1"
     t.string   "address_line2"
     t.string   "address_city"
@@ -342,47 +348,35 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.datetime "updated_at"
   end
 
-  create_table "student_feeds", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
-    t.integer  "score"
-    t.datetime "last_seen"
-    t.datetime "dismissed_until"
-    t.boolean  "dismissed",       :default => false
-    t.boolean  "deleted",         :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "student_feeds", ["student_id", "company_id"], :name => "index_student_feeds_on_student_id_and_company_id"
-  add_index "student_feeds", ["student_id", "job_id"], :name => "index_student_feeds_on_student_id_and_job_id"
-
   create_table "student_files", :force => true do |t|
     t.integer  "student_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
+    t.integer  "applyable_id"
+    t.string   "applyable_type"
     t.integer  "rating"
     t.text     "notes"
-    t.boolean  "starred",    :default => false, :null => false
-    t.boolean  "dismissed",  :default => false, :null => false
-    t.integer  "vote",       :default => 0,     :null => false
+    t.boolean  "starred",         :default => false, :null => false
+    t.boolean  "dismissed",       :default => false, :null => false
+    t.integer  "vote",            :default => 0,     :null => false
+    t.integer  "feed_score"
+    t.datetime "feed_last_seen"
+    t.datetime "dismissed_until"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "student_files", ["student_id", "company_id"], :name => "index_student_files_on_student_id_and_company_id"
-  add_index "student_files", ["student_id", "job_id"], :name => "index_student_files_on_student_id_and_job_id"
+  add_index "student_files", ["student_id"], :name => "index_student_files_on_student_id"
 
   create_table "student_labelings", :force => true do |t|
     t.integer  "student_id"
     t.integer  "label_id"
-    t.integer  "company_id"
-    t.integer  "job_id"
+    t.integer  "applyable_id"
+    t.integer  "applyable_term"
+    t.integer  "student_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "student_labelings", ["student_file_id"], :name => "index_student_labelings_on_student_file_id"
   add_index "student_labelings", ["student_id", "label_id"], :name => "index_student_labelings_on_student_id_and_label_id"
   add_index "student_labelings", ["student_id"], :name => "index_student_labelings_on_student_id"
 
@@ -398,27 +392,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
 
   add_index "student_term", ["student_id", "term_id"], :name => "index_student_term_on_student_id_and_term_id"
   add_index "student_term", ["student_id"], :name => "index_student_term_on_student_id"
-
-  create_table "students", :force => true do |t|
-    t.float    "gpa"
-    t.string   "hometown"
-    t.text     "subtitle"
-    t.integer  "phone"
-    t.text     "highlights"
-    t.text     "fun_facts"
-    t.string   "address_line1"
-    t.string   "address_line2"
-    t.string   "address_city"
-    t.string   "address_state"
-    t.string   "address_zip"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "baseline_score", :default => 0, :null => false
-    t.string   "website"
-    t.string   "location"
-    t.string   "languages"
-  end
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
@@ -453,6 +426,8 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "terms", ["reference_id", "reference_type"], :name => "index_terms_on_reference_id_and_reference_type"
 
   create_table "updates", :force => true do |t|
     t.integer  "user_id"
@@ -498,15 +473,30 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
     t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "rep_alltime"
-    t.integer  "rep_month"
+    t.string   "type"
+    t.float    "gpa"
+    t.string   "hometown"
+    t.text     "subtitle"
+    t.integer  "phone"
     t.boolean  "gender_is_male"
-    t.integer  "ethnicity_id"
-    t.string   "entity_type"
-    t.integer  "entity_id"
+    t.string   "ethnicity"
+    t.text     "highlights"
+    t.text     "fun_facts"
+    t.string   "address_line1"
+    t.string   "address_line2"
+    t.string   "address_city"
+    t.string   "address_state"
+    t.string   "address_zip"
+    t.string   "location"
+    t.string   "languages"
+    t.integer  "baseline_score",                      :default => 0,     :null => false
+    t.integer  "company_id"
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "admin",                               :default => false, :null => false
+    t.string   "website"
+    t.integer  "rep_alltime"
+    t.integer  "rep_month"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
@@ -514,7 +504,6 @@ ActiveRecord::Schema.define(:version => 20110121083056) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["entity_type", "entity_id"], :name => "index_users_on_entity_type_and_entity_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

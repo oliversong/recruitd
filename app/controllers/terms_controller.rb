@@ -15,6 +15,8 @@ class TermsController < ApplicationController
   def show
     @term = Term.find(params[:id])
     @term_descriptions = @term.term_descriptions
+    
+    @comments = @term.comments.recent.limit(10).all
 
     respond_to do |format|
       format.html # show.html.erb

@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
   
+  def post_update(update)
+    #TODO fill this out
+    puts "posted update"
+  end
+  
   #after_create :create_student
   
   def name
@@ -63,25 +68,22 @@ class User < ActiveRecord::Base
 
   ## Identification helpers
   def is_student?
-      entity_type == "Student"
+      type == "Student"
   end
 
   def is_company?
-      entity_type == "Company"
+      type == "Company"
   end
 
   def is_recruiter?
-      entity_type == "Recruiter"
+      type == "Recruiter"
   end
 
   def is_company_entity?
-      (entity_type == "Company") || (entity_type == "Recruiter")
+      (type == "Company") || (type == "Recruiter")
   end
   
-  # def create_student
-  #   s = Student.new(:user => self)
-  #   s.save
-  #   self.entity = s
-  #   self.save
-  # end
+  emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
+  receives_pfeed
+  
 end

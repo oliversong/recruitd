@@ -1,1 +1,1 @@
-$("#star_<%=@entity_type%>_<%=@entity_id%>").html("<%= escape_javascript(render :partial => 'shared/star', :locals => {:entity_id => @entity_id, :entity_type => @entity_type, :starred => @starred}) %>");
+$("#star_<%=@entity.class.name%>_<%=@entity.id%>").html("<%= escape_javascript(render :partial => 'shared/star', :locals => {:entity => @entity, :starred => @starred}) %>");

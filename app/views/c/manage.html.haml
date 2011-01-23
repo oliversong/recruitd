@@ -1,28 +1,57 @@
--if !(defined? @current_tab)
-  - @current_tab = User::TABS["MANAGE"]
+= stylesheet_link_tag 'accordion'
 
-%p
-  %b Labels:
-  -@company.labels.each do |lbl|
-    = link_to lbl.name, "\##{lbl.id}"
-    |
-  = link_to "Starred", "\#starred"
-        
+:javascript
+  $(document).ready(function(){
+      
+  //Set default open/close settings
+  $('.acc_container').hide(); //Hide/close all containers
+  $('.acc_trigger:first').addClass('active').next().show(); //Add "active" class to first trigger, then show/open the immediate next container
+  
+  //On Click
+  $('.acc_trigger').click(function(){
+      if( $(this).next().is(':hidden') ) { //If immediate next container is closed...
+          $('.acc_trigger').removeClass('active').next().slideUp(); //Remove all .acc_trigger classes and slide up the immediate next container
+          $(this).toggleClass('active').next().slideDown(); //Add .acc_trigger class to clicked trigger and slide down the immediate next container
+      }
+      return false; //Prevent the browser jump to the link anchor
+  });
+  
+  });
+
+#sidebartop
+#sidebar
+  %ul{:style => " list-style:none;text-align:center;"}
+    -@company.labels.each do |lbl|
+      %li.hover2{:id => "hover#{lbl.id}"} 
+        =lbl.name
+#sidebarbottom
+
+
 -@company.labels.each do |lbl|
-  %a{:name => "#{lbl.id}"}
-  %p
-    %b= lbl.name
-    %ul
-      - lbl.company_labelings.each do |labeling|
-        - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
-        - if idx
-          %li
-            - company_file = @company_files[idx]
-            = render :partial => 'students/manage_card', :locals => {:student => labeling.student, :company_file => company_file }
-            
-%a{:name => "starred"}
-%b Starred
-%ul
-  -@starred_company_files.each do |cf|
-    %li
-      = render :partial => 'students/manage_card', :locals => {:student => cf.student, :company_file => cf }
+  .container.swapper{:id => "container#{lbl.id}" }
+    - lbl.company_labelings.each_with_index do |labeling, i|
+      - idx = @company_files.find_index{|item| item.student_id == labeling.student_id }
+      - if idx
+        - company_file = @company_files[idx]
+        = render :partial => 'students/manage_card', :locals => {:labels => @company.labels, :company => @company, :student => labeling.student, :company_file => company_file, :i => i }
+
+= render :partial => 'shared/create_label'
+
+
+=render :partial => "shared/update"
+
+  
+:javascript
+  $(document).ready(function() {
+    $(".swapper").hide();
+    $("#container#{@company.labels.first.id}").show();
+  });
+  
+  var label_ids = #{@company.labels.map{|l| l.id}};
+  
+  for(idx in label_ids){
+    $('#hover'+label_ids[idx]).click(function(){
+      $('.swapper').hide();
+      $('#container'+event.srcElement.id.substr(5)).show();
+     });
+   };

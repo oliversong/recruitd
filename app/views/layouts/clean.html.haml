@@ -1,0 +1,59 @@
+!!! Strict
+%html{html_attrs}
+  
+  %head
+    %title
+      = h(yield(:title) || "Recruitd: Job Hunting That Doesn't Suck")
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = stylesheet_link_tag 'feedback'
+    = javascript_include_tag :defaults, 'jquery-bp', 'navigation', 'jquery.betterTooltip', 'jquery.simplemodal.js', 'contact', 'jquery.rest_in_place', 'jquery.feedback'
+
+    =javascript_include_tag 'jquery-ui-1.8.7.custom.min'
+    / = stylesheet_link_tag :all
+    
+    / %link{:href => "/stylesheets/signup.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+    
+    
+    = csrf_meta_tag
+    
+    / = javascript_include_tag 'recruitd'
+    = yield(:head)
+  
+  %body
+    #container
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+      %p.notice= notice
+      %p.alert= alert
+      
+      
+    %div#everything
+      %div{:style => "display:none"}
+        %img{:alt => "", :src => "/images/contact/loading.gif"}/
+      
+      = feedback_tab(:position => 'left')
+      
+      -#feedback
+        #contact-form
+          %a#feedbackicon.contact{:href => "#", :title => "Leave us a comment!"} Constructive Criticism!
+        %a#blogicon.contact{:href => "/blog.html", :title => "Check out the Blog!"} Check out the Blog!
+      
+      #header
+        #searchlogout
+          #searchbox
+            %form
+              %input.differentsearch{:placeholder => "Search", :type => "search"}
+                %input{:style => "display:none;", :type => "submit", :value => "Find"}
+          %a{:href => "/users/sign_out", :style => "position:relative;top:-16px;left:260px;"}
+            %img{:src => "/images/logout.png"}/
+      
+        #bg2{:style => "height:80px; background-position: 50% 0%;"}
+        %a{:href => "http://www.recruitd.com"}
+          #logo{:style => "top:20px;"}
+      
+      - if show_title?
+        %h1=h yield(:title)
+      
+      / END OF HEADER!
+      
+      = yield

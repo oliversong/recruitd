@@ -1,59 +1,61 @@
 - title "Course"
 
-%p
-	%strong Name:
-	=h @course.name
-%p
-	%strong Abbrev:
-	=h @course.abbrev
-%p
-	%strong Department:
-	=link_to @course.department.name, @course.department
-%p
-	%strong Description:
-	=h @course.description
-%p
-	%strong Term:
-	=h @course.term_id
-
-=form_tag(rate_course_path(@course), :method => "put") do
-	%p
-		%strong Difficulty:
-		%br/
-		- if @course_rating && @course_rating.difficulty
-			Your rating:
-			= @course_rating.difficulty
-		- else
-			Rate:
-			= select("course_rating", "difficulty", CourseRating::RATINGS, {:include_blank => true})
-		%br/
-		Average difficulty: #{@course.display_difficulty}
-	%p
-		%strong Usefulness:
-		%br/
-		- if @course_rating && @course_rating.usefulness
-			Your rating:
-			= @course_rating.usefulness
-		- else
-			Rate:
-			= select("course_rating", "usefulness", CourseRating::RATINGS, {:include_blank => true})
-		%br/
-		Average usefulness: #{@course.display_usefulness}
-	%p
-		=submit_tag "submit ratings"
-	
-%p
-	%strong Students who have taken #{@course.abbrev}:
-	%ul
-	-@course.course_students.each do |course_student|
-		%li
-			=print_student_block(course_student.student, :link => true)
-			%br/
-			=course_student.comments
-
-%p
-	= link_to "Edit", edit_course_path(@course)
-	|
-	= link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
-	|
-	= link_to "View All", courses_path
+=render :partial => "shared/update"
+#maincontent
+  %p
+    %strong Name:
+    =h @course.name
+  %p
+    %strong Abbrev:
+    =h @course.abbrev
+  %p
+    %strong Department:
+    =link_to @course.department.name, @course.department
+  %p
+    %strong Description:
+    =h @course.description
+  %p
+    %strong Term:
+    =h @course.term_id
+  
+  =form_tag(rate_course_path(@course), :method => "put") do
+    %p
+      %strong Difficulty:
+      %br/
+      - if @course_rating && @course_rating.difficulty
+        Your rating:
+        = @course_rating.difficulty
+      - else
+        Rate:
+        = select("course_rating", "difficulty", CourseRating::RATINGS, {:include_blank => true})
+      %br/
+      Average difficulty: #{@course.display_difficulty}
+    %p
+      %strong Usefulness:
+      %br/
+      - if @course_rating && @course_rating.usefulness
+        Your rating:
+        = @course_rating.usefulness
+      - else
+        Rate:
+        = select("course_rating", "usefulness", CourseRating::RATINGS, {:include_blank => true})
+      %br/
+      Average usefulness: #{@course.display_usefulness}
+    %p
+      =submit_tag "submit ratings"
+    
+  %p
+    %strong Students who have taken #{@course.abbrev}:
+    %ul
+    -@course.course_students.each do |course_student|
+      %li
+        =print_student_block(course_student.student, :link => true)
+        %br/
+        =course_student.comments
+  
+  %p
+    = link_to "Edit", edit_course_path(@course)
+    |
+    = link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", courses_path

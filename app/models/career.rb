@@ -1,16 +1,18 @@
 class Career < ActiveRecord::Base
-  belongs_to :term
+  has_one :term, :as => :reference
+  
   has_many :career_jobs
   has_many :jobs, :through => :career_jobs
   
-  after_create :create_term
+  has_many :career_students
+  has_many :students, :through => :career_students
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
+  after_create :create_term
+  
   def create_term
-    t = Term.new(:name => name)
-    t.reference = self
-    t.save
-    self.term = t
+    Term.new(:name => name, :reference => self).save
   end
+  
 end

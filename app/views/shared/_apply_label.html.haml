@@ -1,0 +1,5 @@
+=form_tag apply_label_utilities_path, :method => :post do
+	= select_tag "label_id", options_from_collection_for_select(labels, "id", "name")
+	= hidden_field_tag "entity_type", entity.class.name
+	= hidden_field_tag "entity_id", entity.id
+	= submit_tag "Apply label"

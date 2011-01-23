@@ -1,0 +1,18 @@
+%h1 Feedback
+%p Please leave us feedback, it's really appreciated.
+= form_for :feedback, :as => @feedback, :url => feedbacks_path, :html => {:id => "feedback_form"} do |f|
+  = f.hidden_field 'page'
+  - unless @error_message.blank?
+    %p.error
+      = h @error_message
+  %p
+    = f.label 'subject'
+    = f.select 'subject', ['Problem', 'Suggestion', 'Question', 'Other']
+  %p
+    = f.label 'email'
+    = f.text_field 'email'
+  %p
+    = f.label 'comment'
+    %br/
+    = f.text_area 'comment', :rows => 10, :cols => 30
+  %p= f.submit 'Send'

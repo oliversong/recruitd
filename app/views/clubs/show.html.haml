@@ -1,21 +1,23 @@
 - title "Club"
 
-%p
-  %strong Term:
-  =h @club.term_id
-%p
-  %strong Name:
-  =h @club.name
-%p
-  %strong Description:
-  =h @club.description
-%p
-  %strong Added By User:
-  =h @club.added_by_user_id
-
-%p
-  = link_to "Edit", edit_club_path(@club)
-  |
-  = link_to "Destroy", @club, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", clubs_path
+=render :partial => "shared/update"
+#maincontent
+  %p
+    %strong Term:
+    =h @club.term_id
+  %p
+    %strong Name:
+    =h @club.name
+  %p
+    %strong Description:
+    =h @club.description
+  %p
+    %strong Added By User:
+    =h @club.added_by_user_id
+  
+  %p
+    = link_to "Edit", edit_club_path(@club)
+    |
+    = link_to "Destroy", @club, :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "View All", clubs_path

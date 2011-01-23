@@ -2,7 +2,6 @@ class CreateSchools < ActiveRecord::Migration
   def self.up
     create_table :schools do |t|
       t.string :name
-      t.integer :term_id
       t.string :address_line1
       t.string :address_line2
       t.string :address_city

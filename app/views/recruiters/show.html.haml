@@ -1,17 +1,19 @@
-%p
-  %b Name:
-  = h @recruiter.user.name
-=render :partial => "shared/follow", :locals => {:user_id => @recruiter.user_id, :followed => @followed}
-
-%p
-  %b Phone:
-  = h @recruiter.phone
-%p
-  %b Email:
-  = h @recruiter.user.email
-%p
-  %b Company:
-  = link_to @recruiter.company.name, @recruiter.company
-= link_to 'Edit', edit_recruiter_path(@recruiter)
-|
-\#{link_to 'Back', recruiters_path}
+=render :partial => "shared/update"
+#maincontent
+  %p
+    %b Name:
+    = h @recruiter.name
+  =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
+  
+  %p
+    %b Phone:
+    = h @recruiter.phone
+  %p
+    %b Email:
+    = h @recruiter.email
+  %p
+    %b Company:
+    = link_to @recruiter.company.name, @recruiter.company
+  = link_to 'Edit', edit_recruiter_path(@recruiter)
+  |
+  \#{link_to 'Back', recruiters_path}

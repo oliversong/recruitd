@@ -1,0 +1,9 @@
+Feedback from user:<br><br>
+
+Subject: <%=h @feedback.subject %><br>
+User's email: <%=h @feedback.email %><br>
+Sent at: <%= Time.now %><br>
+From Page: <%= @feedback.page %><br>
+
+Comment: <br>
+<%=h @feedback.comment %>

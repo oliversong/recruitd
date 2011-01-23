@@ -1,0 +1,47 @@
+-if !(defined? @current_tab)
+	- @current_tab = User::TABS["HOME"]
+
+%h1 #{current_user.name}'s home
+%h2 Company: #{link_to @company.name, @company}
+
+%h2 Recommended to you
+
+(mix of jobs to apply for, companies to research, and tasks to complete)
+
+%h3 Students
+
+- @company.company_feeds.showable.each do |feed|
+	.student
+		= link_to feed.student.name, feed.student
+		(score: #{feed.score})
+		= link_to "star", star_student_path(feed.student)
+		| 
+		= link_to "dismiss", dismiss_student_path(feed.student)
+		%br
+
+
+
+/ %h3 Tasks
+/ 
+/ - current_user.all_tasks.each do |task|
+/ 	.task
+/ 		%b= task.name
+/ 		%br
+/ 		=task.text
+/ 		%br 
+/ 		%br
+
+%h2 Reputation score
+
+%h3 All-time: #{current_user.rep_alltime}
+%h3 This month: #{current_user.rep_month}
+
+/ = link_to "Reputation log", :user
+
+%h2 Updates
+
+- current_user.updates.each do |update|
+	.update
+		= print_update_block(update,:show_name => true)
+		%br
+		%br

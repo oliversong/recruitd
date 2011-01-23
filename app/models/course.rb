@@ -1,6 +1,8 @@
 class Course < ActiveRecord::Base
   belongs_to :department
-  belongs_to :term #, :as => :entity
+  
+  has_one :term, :as => :reference
+  
   has_many :course_students
   has_many :students, :through => :course_students
   has_many :course_ratings
@@ -8,6 +10,10 @@ class Course < ActiveRecord::Base
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
   after_create :create_term
+  
+  def create_term
+    Term.new(:name => name, :reference => self).save
+  end
   
   def display_usefulness
     if usefulness_count_cache && (usefulness_count_cache > 0)
@@ -25,15 +31,6 @@ class Course < ActiveRecord::Base
       ret = "no ratings"
     end
     ret
-  end
-  
-  def create_term
-    if !term_id
-      t = Term.new(:name => name)
-      t.reference = self
-      t.save
-      self.term = t
-    end
   end
   
 end

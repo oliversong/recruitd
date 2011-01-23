@@ -1,4 +1,5 @@
 class InfoController < ApplicationController
+  
   def home
     if current_user
       if current_user.is_student?
@@ -6,11 +7,11 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_home
       else
-        render "info/home_no_login"
+        render "info/home_no_login", :layout => "public"
         #redirect_to "/users/sign_in"
       end
     else
-      render "info/home_no_login", :layout => false
+      render "info/home_no_login", :layout => "public"
     end
   end
   
@@ -49,7 +50,7 @@ class InfoController < ApplicationController
       if current_user.is_student?
         student_settings
       elsif current_user.is_company_entity?
-        company_setting
+        company_settings
       else
         render "info/home_no_login"
         #redirect_to "/users/sign_in"
@@ -61,7 +62,11 @@ class InfoController < ApplicationController
   
   def public
     if current_user
-      redirect_to current_user.entity
+      if current_user.is_student?
+        redirect_to current_user.becomes(Student)
+      else
+        redirect_to current_user.becomes(Recruiter)
+      end
     else
       render "info/home_no_login", :layout => false
     end
@@ -75,7 +80,7 @@ class InfoController < ApplicationController
   ##############
   
   def company_manage
-    @company = current_user.entity.company
+    @company = current_user.company
     @company_files = @company.company_files
     
     @starred_company_files = @company_files.select{|company_file| company_file.starred }
@@ -84,21 +89,21 @@ class InfoController < ApplicationController
   
 
   def company_home
-    @recruiter = current_user.entity
+    @recruiter = current_user.becomes(Recruiter)
     @company = @recruiter.company
 
     render "c/home"
   end
   
   def company_settings
-    @recruiter = current_user.entity
+    @recruiter = current_user.becomes(Recruiter)
     @company = @recruiter.company
     
     render "c/settings"
   end
   
   def company_update_settings
-    @recruiter = current_user.entity
+    @recruiter = current_user.becomes(Recruiter)
     company_id = @recruiter.company_id
     
     params[:settings].each do |term_id, value|
@@ -117,11 +122,9 @@ class InfoController < ApplicationController
   def company_browse
     @page = params[:page] ? [Integer(params[:page]), 0].max : 0
     
-    @recruiter = current_user.entity
+    @recruiter = current_user.becomes(Recruiter)
     
-    @company_feed = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
-    
-    @company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(@recruiter.company_id, @company_feed.student_id)
+    @company_file = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
     
     render 'c/browse'
   end
@@ -132,7 +135,7 @@ class InfoController < ApplicationController
   #############
   
   def student_manage
-    @student = current_user.entity
+    @student = current_user.becomes(Student)
     
     @student_files = @student.student_files    
     @starred_student_files = @student_files.select{|student_file| student_file.starred }
@@ -142,7 +145,7 @@ class InfoController < ApplicationController
   
 
   def student_home
-    @student = current_user.entity
+    @student = current_user.becomes(Student)
     
     render 's/home'
   end
@@ -152,14 +155,7 @@ class InfoController < ApplicationController
     
     #@student = current_user.entity
     
-    @student_feed = StudentFeed.by_student_id(current_user.entity_id).offset(@page).limit(1).find(:first)
-    
-    if @student_feed.company_id
-      @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @student_feed.company.user_id)
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_company_id( current_user.entity_id, @student_feed.company_id)
-    elsif @student_feed.job_id
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id( current_user.entity_id, @student_feed.job_id)
-    end
+    @student_file = StudentFile.by_student_id(current_user.id).offset(@page).limit(1).find(:first)
     
     render 's/browse'
   end

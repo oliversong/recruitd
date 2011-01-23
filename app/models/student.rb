@@ -1,11 +1,4 @@
-require_dependency 'experience'
-require_dependency 'term'
-require_dependency 'student_term'
-require_dependency 'student_file'
-
-class Student < ActiveRecord::Base
-  has_one :user, :as => :entity
-  
+class Student < User
   has_many :experiences
   
   has_many :work_experiences
@@ -26,11 +19,11 @@ class Student < ActiveRecord::Base
   has_many :student_terms
   has_many :terms, :through => :student_terms
   
-  has_many :student_files
-  has_many :student_feeds, :order => "score DESC"
+  has_many :student_files, :order => "feed_score DESC"
   
   has_many :labels, :as => :owner
   has_many :company_labelings
+  has_many :student_labelings
   
   # has_many :student_awards, :class_name => "StudentTerm::StudentAward"
   # has_many :awards, :through => :student_awards
@@ -55,10 +48,6 @@ class Student < ActiveRecord::Base
   
   def skills
     return terms.find_all_by_type('Skill')
-  end
-  
-  def name
-    return user.name
   end
   
   def showable_student_feeds
@@ -196,7 +185,7 @@ class Student < ActiveRecord::Base
     
     puts xmlp["main_address"]
     
-    self.user.save
+    self.save
     
   end
   

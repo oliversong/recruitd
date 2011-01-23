@@ -1030,7 +1030,7 @@ position: absolute;
 text-align: right;
 }
 
-#settings{
+#settings1{
 font-family: 'Helvetica Ultralight';
 left: 203px;
 letter-spacing: 1px;
@@ -1121,6 +1121,7 @@ left:50px;
 #bottomform{
 	height:400px;
 }
+<<<<<<< HEAD
 #import{
 font-family: 'Helvetica Ultralight';
 font-size:25px;
@@ -1186,4 +1187,9 @@ width:250px;
 height:14px;
 font-size:14px;
 padding-bottom:8px;
+}
+
+#feedback_link:hover{
+	width:200px;
+	
 }

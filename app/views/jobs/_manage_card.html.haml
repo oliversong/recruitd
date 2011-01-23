@@ -2,17 +2,20 @@
 -# job
 -# student_file
 
-= link_to job.name, job
-| 
-Labels:
-- job.student_labelings.where(:student_id => @student.id).each do |other_lbl|
-  = other_lbl.label.name
-  |
-rating: #{student_file.rating}
-=render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => job.id, :starred => student_file.starred}
-|
-= link_to "(+)", "#", {:onClick => "$('\#student_file_#{student_file.id}').toggle()"}
-= render :partial => "jobs/update_rating", :locals => {:job => job }
-.hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
-  = student_file.notes
-  %br/
+%h2.acc_trigger{:class => "#{(i == 0) ? 'active' : ''}"}
+  = link_to job.name, job
+.acc_container{:style => "display: block; "}
+  .block
+    Labels:
+    - job.student_labelings.where(:student_id => @student.id).each do |other_lbl|
+      = other_lbl.label.name
+      |
+    rating: #{student_file.rating}
+    =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => job.id, :starred => student_file.starred}
+    |
+    = link_to "(+)", "#", {:onClick => "$('\#student_file_#{student_file.id}').toggle()"}
+    = render :partial => "jobs/update_rating", :locals => {:job => job }
+    .hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
+      = student_file.notes
+      %br/
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => job}

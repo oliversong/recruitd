@@ -25,7 +25,7 @@ namespace :db do
       create_student_labels
       create_company_labels
       create_followings
-      create_newsfeed_items
+      # create_newsfeed_items
       
       puts "Completed loading recruitd sample data."
     end
@@ -33,12 +33,9 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
-      create_student_files_and_feeds
-      create_company_terms
       create_student_labels
       create_company_labels
       create_followings
-      create_newsfeed_items
 
       
       puts "Completed adding new sample data"
@@ -74,24 +71,22 @@ def create_companies
 end
 
 def create_students
-  alice = Factory(:user, :first_name => "Alice",
+  alice = Factory(:student, 
+  :first_name => "Alice",
   :last_name => "Carroll",
-  :entity => Factory(:student,
-                  :gpa => 4.0, 
-                  :hometown => "Bellevue, WA",
-                  :subtitle => "MIT student who loves to study.",
-                  :phone => 6172532226
-                  )
+  :gpa => 4.0, 
+  :hometown => "Bellevue, WA",
+  :subtitle => "MIT student who loves to study.",
+  :phone => 6172532226
   )
 
-  bob = Factory(:user, :first_name => "Alice",
-  :last_name => "Carroll",
-  :entity => Factory(:student, 
-                :gpa => 3.6, 
-                :hometown => "Houston, TX",
-                :subtitle => "UNIX hacker and nightowl",
-                :phone => 6172532223
-                )
+  bob = Factory(:student, 
+  :first_name => "Bob",
+  :last_name => "Johnson", 
+  :gpa => 3.6, 
+  :hometown => "Houston, TX",
+  :subtitle => "UNIX hacker and nightowl",
+  :phone => 6172532223
   )
   
   puts "Created factory students"
@@ -99,7 +94,7 @@ end
 
 def create_many_students
   10.times{ |i|
-    student = Factory(:user, :entity => Factory(:student))
+    student = Factory(:student)
     puts "added student #{i} named #{student.name}" 
   }
   
@@ -132,7 +127,7 @@ def create_schools_departments_courses
     3.times { 
       department = Factory(:department, :school => school)
     }
-  }  
+  }
   
   puts "adding courses"
   
@@ -221,8 +216,6 @@ def create_recruiters
   Company.all.each do |company|
     2.times do
       r = Factory(:recruiter, :company => company)
-      r.user.entity = r
-      r.user.save
     end
   end
   puts "Created recruiters"
@@ -232,7 +225,6 @@ def create_company_files_and_feeds
   Company.all.each do |company|
     Student.all.each do |student|
       Factory(:company_file, :student => student, :company => company)
-      Factory(:company_feed, :student => student, :company => company)
     end
   end
   puts "Create company files and feeds"
@@ -241,12 +233,10 @@ end
 def create_student_files_and_feeds
   Student.all.each do |student|
     Company.all.each do |company|
-      Factory(:student_file, :student => student, :company => company)
-      Factory(:student_feed, :student => student, :company => company)
+      Factory(:student_file, :student => student, :applyable => company)
     end
-    Job.all.each do |job|
-      Factory(:student_file, :student => student, :job => job)
-      Factory(:student_feed, :student => student, :job => job)
+    Job.all.sort_by{rand}[0..2].each do |job|
+      Factory(:student_file, :student => student, :applyable => job)
     end
   end
   puts "Created student files/feeds"
@@ -267,11 +257,11 @@ def create_student_labels
       label = Factory(:label, :owner_id => student.id, :owner_type => "Student")
       
       Company.all.sort_by{rand}[1..2].each do |company|
-        Factory(:student_labeling, :student => student, :label => label, :company => company)
+        Factory(:student_labeling, :student => student, :label => label, :applyable => company)
       end
       
       Job.all.sort_by{rand}[1..3].each do |job|
-        Factory(:student_labeling, :student => student, :label => label, :job => job)
+        Factory(:student_labeling, :student => student, :label => label, :applyable => job)
       end
     end
   end
@@ -294,7 +284,7 @@ end
 def create_followings
   Student.all.each do |student|
     Recruiter.all.sort_by{rand}[0..2].each do |recruiter|
-      Factory(:following, :follower => student.user, :followed => recruiter.user)
+      Factory(:following, :follower => student, :followed => recruiter)
     end
   end
   
@@ -308,7 +298,7 @@ end
 def create_updates
   Student.all.each do |student|
     3.times do
-      Factory(:update, :user => student.user)
+      Factory(:update, :user => student)
     end
   end
   
@@ -320,12 +310,12 @@ def create_updates
   puts "Created updates"
 end
 
-def create_newsfeed_items
-  Update.all.each do |update|
-    update.user.followers.each do |follower|
-      Factory(:newsfeed_item_update, :reference => update, :user => follower, :text => update.text, :update_time => update.updated_at, :entity => update.user.entity)
-    end
-  end
-  
-  puts "Created newsfeed items"
-end
+# def create_newsfeed_items
+#   Update.all.each do |update|
+#     update.user.followers.each do |follower|
+#       Factory(:newsfeed_item_update, :reference => update, :user => follower, :text => update.text, :update_time => update.updated_at, :entity => update.user.entity)
+#     end
+#   end
+#   
+#   puts "Created newsfeed items"
+# end

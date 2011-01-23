@@ -1,0 +1,119 @@
+#containersignup
+  %form{:action => "#", :method => "post"}
+    / #first_step
+    #first_step
+      %h1
+        SIGN UP FOR A FREE
+        %span RECRUITD
+        ACCOUNT
+      .form
+        %input#username{:name => "username", :type => "text", :value => "username"}/
+        %label{:for => "username"} At least 4 characters. Uppercase letters, lowercase letters and numbers only.
+        %input#password{:name => "password", :type => "password", :value => "password"}/
+        %label{:for => "password"} At least 4 characters. Use a mix of upper and lowercase for a strong password.
+        %input#cpassword{:name => "cpassword", :type => "password", :value => "password"}/
+        %label{:for => "cpassword"} If your passwords aren’t equal, you won’t be able to continue with signup.
+      / clearfix
+      .clear
+      / /clearfix
+      %input#submit_first.submit{:name => "submit_first", :type => "submit", :value => ""}/
+    / clearfix
+    .clear
+    / /clearfix
+    / #second_step
+    #second_step
+      %h1
+        SIGN UP FOR A FREE
+        %span RECRUITD
+        ACCOUNT
+      .form
+        %input#firstname{:name => "firstname", :type => "text", :value => "first name"}/
+        %label{:for => "firstname"} Your First Name.
+        %input#lastname{:name => "lastname", :type => "text", :value => "last name"}/
+        %label{:for => "lastname"} Your Last Name.
+        %input#email{:name => "email", :type => "text", :value => "email address"}/
+        %label{:for => "email"} Your email address. We send important administration notices to this address.
+      / clearfix
+      .clear
+      / /clearfix
+      %input#submit_second.submit{:name => "submit_second", :type => "submit", :value => ""}/
+    / clearfix
+    .clear
+    / /clearfix
+    / #third_step
+    #third_step
+      %h1
+        SIGN UP FOR A FREE
+        %span RECRUITD
+        ACCOUNT
+      .form
+        %select#age{:name => "age"}
+          %option 0 - 17
+          %option 18 - 25
+          %option 26 - 40
+          %option 40+
+        %label{:for => "age"} Your age range.
+        / clearfix
+        .clear
+        / /clearfix
+        %select#gender{:name => "gender"}
+          %option Male
+          %option Female
+        %label{:for => "gender"} Your Gender.
+        / clearfix
+        .clear
+        / /clearfix
+        %select#country{:name => "country"}
+          %option United States
+          %option United Kingdom
+          %option Canada
+          %option Serbia
+          %option Italy
+        %label{:for => "country"} Your country.
+        / clearfix
+        .clear
+        / /clearfix
+      / clearfix
+      .clear
+      / /clearfix
+      %input#submit_third.submit{:name => "submit_third", :type => "submit", :value => ""}/
+    / clearfix
+    .clear
+    / /clearfix
+    / #fourth_step
+    #fourth_step
+      %h1
+        SIGN UP FOR A FREE
+        %span RECRUITD
+        ACCOUNT
+      .form
+        %h2 Summary
+        %table
+          %tr
+            %td Username
+            %td
+          %tr
+            %td Password
+            %td
+          %tr
+            %td Email
+            %td
+          %tr
+            %td Name
+            %td
+          %tr
+            %td Age
+            %td
+          %tr
+            %td Gender
+            %td
+          %tr
+            %td Country
+            %td
+      / clearfix
+      .clear
+      / /clearfix
+      %input#submit_fourth.send.submit{:name => "submit_fourth", :type => "submit", :value => ""}/
+#progress_bar
+  #progress
+  #progress_text 0% Complete

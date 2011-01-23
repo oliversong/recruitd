@@ -21,49 +21,49 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
 
 .clear { clear: both; }
 
-#container {
+#containersignup {
 /*    background: url('../images/container.png') no-repeat;*/
-    width: 754px;
-    height: 370px;
-    margin: 20px auto;
-    padding: 50px 0;
-    overflow: hidden;
-    position: relative;
-	top:120px;
+height: 450px;
+margin: 20px auto;
+overflow: hidden;
+padding: 50px 0px;
+position: relative;
+top: 120px;
+width: 754px;
 }
-    #container #first_step, #second_step, #third_step, #fourth_step { display: none; }
-    #container #first_step { display: block; }
+    #containersignup #first_step, #second_step, #third_step, #fourth_step { display: none; }
+    #containersignup #first_step { display: block; }
 
-    #container .form { margin: 66px 72px 0 72px; }
+    #containersignup .form { margin: 66px 72px 0 72px; }
     
-    #container h1, #container h2 {
+    #containersignup h1, #container h2 {
         font-size: Cantarell, Verdana, sans-serif;
         text-align: center;
         font-size: 24px;
         text-shadow: 1px 1px 2px #222;
     }
-        #container h1 span { color: #a90329; }
+        #containersignup h1 span { color: #a90329; }
         
-    #container h2 {
+    #containersignup h2 {
         color: #888;
         font-size: 20px;
         text-align: left;
         text-shadow: none;
     }
     
-    #container table {
+    #containersignup table {
         margin: 20px 40px;
         font-size: 14px;
         font-weight: bold;
     }
-        #container table td {
+        #containersignup table td {
             padding: 5px 10px;
         }
-            #container table td:nth-child(2) {
+            #containersignup table td:nth-child(2) {
                 color: #a90329;
             }   
         
-    #container input, #container select {
+    #containersignup input, #containersignup select {
         background: url('../images/input.png') no-repeat;
         color: #888;
         border: 1px solid #ccc;
@@ -80,7 +80,7 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
         -moz-border-radius: 6px;
         -webkit-border-radius: 6px;
     }
-        #container input.submit {
+        #containersignup input.submit {
             background: url('../images/button.png') no-repeat;
             border: none;
             cursor: pointer;
@@ -90,22 +90,22 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
             bottom: 2px;
             left: 655px;
         }
-            #container input.submit:focus { border: none; }
+            #containersignup input.submit:focus { border: none; }
         
-        #container input.send{ background: url('../images/send.png') no-repeat; }
+        #containersignup input.send{ background: url('../images/send.png') no-repeat; }
             
-        #container input.error { border: 1px solid red; }
-        #container input.valid { border: 1px solid #1FFF00; }
+        #containersignup input.error { border: 1px solid red; }
+        #containersignup input.valid { border: 1px solid #1FFF00; }
         
-        #container input:focus, #container select:focus {
+        #containersignup input:focus, #containersignup select:focus {
             border: 1px solid #a90329;
             color: #a90329;
         }
 
-    #container select { padding: 5px 0 5px 25px; }
-        #container option { padding: 0 15px; }
+    #containersignup select { padding: 5px 0 5px 25px; }
+        #containersignup option { padding: 0 15px; }
 
-    #container label {
+    #containersignup label {
         color: #666;
         font-size: 12px;
         font-weight: bold;
@@ -122,7 +122,6 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
     height: 24px;
     margin: 0 auto;
     position: relative;
-	top:100px;
 }
 
 #progress {

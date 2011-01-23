@@ -1,18 +1,22 @@
 -# INPUTS: 
 -# company
 -# student_file
+-# i
 
-= link_to company.name, company
-| 
-Labels:
-- company.student_labelings.where(:student_id => @student.id).each do |other_lbl|
-  = other_lbl.label.name
-  |
-rating: #{student_file.rating}
-=render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => student_file.company_id, :starred => student_file.starred}
-|
-= link_to "(+)", "#", {:onClick => "$('\#student_file_#{student_file.id}').toggle()"}
-= render :partial => "companies/update_rating", :locals => {:company => company }
-.hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
-  = student_file.notes
-  %br/
+%h2.acc_trigger{:class => "#{(i == 0) ? 'active' : ''}"}
+  = link_to company.name, company
+.acc_container{:style => "display: block; "}
+  .block
+    Labels:
+    - company.student_labelings.where(:student_id => @student.id).each do |other_lbl|
+      = other_lbl.label.name
+      |
+    rating: #{student_file.rating}
+    =render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => student_file.company_id, :starred => student_file.starred}
+    |
+    = link_to "(+)", "#", {:onClick => "$('\#student_file_#{student_file.id}').toggle()"}
+    = render :partial => "companies/update_rating", :locals => {:company => company }
+    .hidden_detail{:id => "student_file_#{student_file.id}", :style => "display:none" }
+      = student_file.notes
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => company}
+    %br/

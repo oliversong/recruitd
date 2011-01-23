@@ -1,41 +1,43 @@
--if current_user.is_student?
-  = render :partial => "student_file", :locals => { :company => @company, :student_file_company => @student_file_company }
+=render :partial => "shared/update"
+#maincontent
+  -if current_user.is_student?
+    = render :partial => "student_file", :locals => { :company => @company, :student_file_company => @student_file_company }
 
-%p
-  %h1
-    = @company.name
-    -if current_user.is_student?
-      =render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => @company.id, :starred => @student_file_company.starred}
+  %p
+    %h1
+      = @company.name
+      -if current_user.is_student?
+        =render :partial => "shared/star", :locals => {:entity_type => "Company", :entity_id => @company.id, :starred => @student_file_company.starred}
   
-%p
-  %b Website:
-  = link_to @company.website, @company.website
-%p
-  %b Founded:
-  = h @company.founded
-%p
-  %b Size:
-  = h @company.size_category_text  
-%p
-  =h @company.description
+  %p
+    %b Website:
+    = link_to @company.website, @company.website
+  %p
+    %b Founded:
+    = h @company.founded
+  %p
+    %b Size:
+    = h @company.size_category_text  
+  %p
+    =h @company.description
 
-%h3 Jobs
+  %h3 Jobs
 
-%table
-  %tr
-    %th Title
-    %th Description
-
-  - @company.jobs.each do |job|
+  %table
     %tr
-      %td= link_to job.title, job
-      %td= job.description  
+      %th Title
+      %th Description
 
-%h3 Recruiters
-- @company.recruiters.each do |recruiter|
-  = link_to recruiter.user.name, recruiter
-  %br
+    - @company.jobs.each do |job|
+      %tr
+        %td= link_to job.title, job
+        %td= job.description  
+
+  %h3 Recruiters
+  - @company.recruiters.each do |recruiter|
+    = link_to recruiter.name, recruiter
+    %br
     
--if current_user.entity_id == @company.id
-  %br
-  = link_to 'Edit', edit_company_path(@company)
+  -if @owner
+    %br
+    = link_to 'Edit', edit_company_path(@company)

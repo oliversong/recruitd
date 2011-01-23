@@ -6,7 +6,7 @@
 		= term_description.description
 		.box
 			.author
-				= link_to term_description.user.name, term_description.user.user
+				= link_to term_description.user.name, term_description.user
 				at
 				= term_description.created_at.to_s
 			.editor
@@ -21,7 +21,13 @@
 %ul
 	- @term.students.each do |student|
 		.student
-			%li= link_to student.user.name, student
+			%li= link_to student.name, student
+			
+%h2 Comments
+-@comments.each do |comment|
+  %p
+    %h3=comment.title
+    =comment.text
 
 %br
 

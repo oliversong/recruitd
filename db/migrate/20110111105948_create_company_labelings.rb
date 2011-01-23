@@ -4,6 +4,8 @@ class CreateCompanyLabelings < ActiveRecord::Migration
       t.integer :company_id
       t.integer :label_id
       t.integer :student_id
+      
+      t.integer :company_file_id
 
       t.timestamps
     end

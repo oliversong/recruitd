@@ -1,0 +1,6 @@
+#top
+  .scribbles Scribbles
+  %img#divider{:src => "/images/divider.png"}/
+  =form_tag "/updates", :id => "feedupdate" do
+    =text_field_tag "update[text]", nil, {:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
+    =submit_tag "Update"

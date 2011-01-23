@@ -3,7 +3,6 @@ class CreateDepartments < ActiveRecord::Migration
     create_table :departments do |t|
       t.string :name
       t.integer :school_id
-      t.integer :term_id
 
       t.timestamps
     end

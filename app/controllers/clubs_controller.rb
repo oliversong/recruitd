@@ -5,6 +5,7 @@ class ClubsController < ApplicationController
   
   def show
     @club = Club.find(params[:id])
+    render 'show', :layout => 'clean'
   end
   
   def new
