@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
   create_table "careers", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "term_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
   end
 
   create_table "clubs", :force => true do |t|
-    t.integer  "term_id"
     t.string   "name"
     t.text     "description"
     t.integer  "added_by_user_id"
@@ -188,7 +186,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.string   "abbrev"
     t.integer  "department_id"
     t.string   "description"
-    t.integer  "term_id"
     t.integer  "difficulty_sum_cache",   :default => 0, :null => false
     t.integer  "difficulty_count_cache", :default => 0, :null => false
     t.integer  "usefulness_sum_cache",   :default => 0, :null => false
@@ -216,7 +213,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
   create_table "departments", :force => true do |t|
     t.string   "name"
     t.integer  "school_id"
-    t.integer  "term_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -351,7 +347,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
 
   create_table "schools", :force => true do |t|
     t.string   "name"
-    t.integer  "term_id"
     t.string   "address_line1"
     t.string   "address_line2"
     t.string   "address_city"

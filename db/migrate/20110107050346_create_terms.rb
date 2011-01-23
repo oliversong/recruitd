@@ -21,6 +21,9 @@ class CreateTerms < ActiveRecord::Migration
       #attributes for type = Interest
       #attributes for type = Award
     end
+    
+    add_index :terms, [:reference_id, :reference_type]
+    
   end
 
   def self.down

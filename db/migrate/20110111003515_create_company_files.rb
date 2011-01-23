@@ -5,12 +5,19 @@ class CreateCompanyFiles < ActiveRecord::Migration
       t.integer :student_id
       t.integer :rating
       t.text :notes
+      
       t.boolean :starred, :null => false, :default => false
-      t.boolean :dismissed, :null => false, :default => false
+      t.boolean :dismissed, :null => false, :default => false      
       t.integer :vote, :null => false, :default => 0
+      
+      t.integer :feed_score
+      t.datetime :feed_last_seen
+      t.datetime :feed_dismissed_until
+
       t.timestamps
     end
     
+    add_index :company_files, :company_id
     add_index :company_files, [:company_id, :student_id] 
   end
 

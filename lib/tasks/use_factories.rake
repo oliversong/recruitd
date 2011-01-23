@@ -138,7 +138,7 @@ def create_schools_departments_courses
     3.times { 
       department = Factory(:department, :school => school)
     }
-  }  
+  }
   
   puts "adding courses"
   
