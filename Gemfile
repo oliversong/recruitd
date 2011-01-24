@@ -7,6 +7,8 @@ gem 'delayed_job'
 gem 'cancan'
 gem 'paperclip'
 gem 'acts_as_commentable'
+#gem 'subdomain-fu'
+gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
 
 gem "nifty-generators", :group => :development
 
