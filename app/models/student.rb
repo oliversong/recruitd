@@ -1,17 +1,19 @@
+#require_dependency 'student_term'
+
 class Student < User
-  has_many :experiences
+  # has_many :experiences
   
   has_many :work_experiences
-  has_many :companies, :through => :work_experiences
+  # has_many :companies, :through => :work_experiences
    
   has_many :club_experiences
-  has_many :clubs, :through => :club_experiences
+  # has_many :clubs, :through => :club_experiences
 
   has_many :school_students
   has_many :schools, :through => :school_students
   
-  has_many :course_students
-  has_many :courses, :through => :course_students
+  # has_many :course_students
+  # has_many :courses, :through => :course_students
   
   has_many :career_students
   has_many :careers, :through => :career_students
@@ -42,6 +44,10 @@ class Student < User
   # has_many :job_students, :order => "job_score desc"
   # has_many :jobs, :through => :job_students
   
+  def course_students
+    return student_terms.find_all_by_term_type("Course")
+  end
+  
   def interests
     return terms.find_all_by_type('Interest')
   end
@@ -53,6 +59,19 @@ class Student < User
   def skills
     return terms.find_all_by_type('Skill')
   end
+  
+  def courses
+    return terms.find_all_by_type('Course')
+  end
+  
+  def club
+    return terms.find_all_by_type('Club')
+  end
+  
+  def departments
+    return terms.find_all_by_type('Department')
+  end
+  
   
   def showable_student_feeds
     return student_feeds.showable

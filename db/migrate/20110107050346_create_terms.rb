@@ -9,9 +9,18 @@ class CreateTerms < ActiveRecord::Migration
       t.text :description
       t.string :url
       
-      t.integer :reference_id
-      t.string :reference_type
+      t.integer :added_by_user_id
       
+      ## course stuff
+      t.string :course_abbrev
+      t.integer :course_difficulty_sum_cache, :null => false, :default => 0
+      t.integer :course_difficulty_count_cache, :null => false, :default => 0
+      t.integer :course_usefulness_sum_cache, :null => false, :default => 0
+      t.integer :course_usefulness_count_cache, :null => false, :default => 0
+      
+      ## course and department stuff
+      t.integer :department_id
+      t.integer :school_id
       
       t.timestamps
       
@@ -21,8 +30,6 @@ class CreateTerms < ActiveRecord::Migration
       #attributes for type = Interest
       #attributes for type = Award
     end
-    
-    add_index :terms, [:reference_id, :reference_type]
     
   end
 

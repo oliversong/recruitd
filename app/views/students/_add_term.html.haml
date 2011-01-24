@@ -2,8 +2,8 @@
 
 :javascript
   $(document).ready(function(){
-    $( "#term_name" ).autocomplete({
-      source: "/autocomplete_searches/term_names/#{type}",
+    $( "#term_name_#{term_type}" ).autocomplete({
+      source: "/autocomplete_searches/term_names/#{term_type}",
       focus: function(event, ui) { 
         $("#term_id").val(ui.item.id);
         $("#term_detail").show();
@@ -19,11 +19,11 @@
   });
   
 =form_tag(add_term_s_path, :method => "post") do
-  = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30
+  = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30, :id => "term_name_#{term_type}"
   = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
   %br
   = hidden_field_tag "term[id]", nil
-  = hidden_field_tag "term[type]", nil
+  = hidden_field_tag "term[type]", term_type
   %div.detail#term_detail{:style => "display:none" }
     %em
       %span#term_description_label Description

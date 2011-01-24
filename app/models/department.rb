@@ -1,12 +1,12 @@
-class Department < ActiveRecord::Base
+class Department < Term
   belongs_to :school
   has_many :courses
-  has_one :term, :as => :reference
+  #has_one :term, :as => :reference
   
-  after_create :create_term
-  
-  def create_term
-    Term.new(:name => name, :reference => self).save
-  end
+  # after_create :create_term
+  # 
+  # def create_term
+  #   Term.new(:name => name, :reference => self).save
+  # end
   
 end

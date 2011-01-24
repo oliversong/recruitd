@@ -1,6 +1,6 @@
 class CreateStudentTerm < ActiveRecord::Migration
   def self.up
-    create_table :student_term do |t|
+    create_table :student_terms do |t|
       t.string :details
       t.integer :student_id
       t.integer :term_id
@@ -9,8 +9,8 @@ class CreateStudentTerm < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :student_term, :student_id
-    add_index :student_term, [:student_id, :term_id]
+    add_index :student_terms, :student_id
+    add_index :student_terms, [:student_id, :term_id]
 
   end
 

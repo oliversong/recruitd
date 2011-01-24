@@ -221,9 +221,9 @@ end
 Factory.define :club do |f|
   f.name { "#{Factory.next(:lipsum_word).capitalize} Student Group"}
   f.description "Just another student group"
-  f.term do |s| 
-    Factory.create(:term, :name => s.name)
-  end
+  # f.term do |s| 
+  #   Factory.create(:term, :name => s.name)
+  # end
 end
 
 Factory.define :club_experience, :class => :club_experience do |f|
@@ -252,16 +252,16 @@ end
 Factory.define :department do |f|
   f.name "Department of #{Factory.next(:lipsum_word).capitalize}"
   f.school_id 1
-  f.term do |s| 
-    Factory.create(:term, :name => s.name)
-  end
+  # f.term do |s| 
+  #   Factory.create(:term, :name => s.name)
+  # end
 end
 
 Factory.define :school do |f|
   f.name "#{Factory.next(:lipsum_word).capitalize} University"
-  f.term do |s| 
-    Factory.create(:term, :name => s.name)
-  end
+  # f.term do |s| 
+  #   Factory.create(:term, :name => s.name)
+  # end
   f.address_line1 { "#{rand(1000)} Main St" }
   f.address_line2 ""
   f.address_city "Boston"
@@ -284,7 +284,7 @@ end
 
 Factory.define :course do |f|
   f.name { "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}" }
-  f.abbrev { "#{rand(24)+1}.#{rand(999)}" }
+  f.course_abbrev { "#{rand(24)+1}.#{rand(999)}" }
   f.department_id 1
   # f.term do |s| 
   #   Factory.create(:term, :name => s.name)
@@ -297,12 +297,12 @@ Factory.define :period do |f|
   f.school_id 1
 end
 
-Factory.define :course_student do |f|
-  f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
-  f.course { Course.all.count > 0 ? Course.all.sort_by{rand}.first : Factory.create(:course) }
-  f.period_id 1
-  f.comments "I really liked this course!"
-end
+# Factory.define :course_student do |f|
+#   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
+#   f.course { Course.all.count > 0 ? Course.all.sort_by{rand}.first : Factory.create(:course) }
+#   f.period_id 1
+#   f.comments "I really liked this course!"
+# end
 
 Factory.define :category do |f|
   f.name {"#{Factory.next(:lipsum_word)} category"}
@@ -316,9 +316,9 @@ end
 
 Factory.define :career do |f|
   f.name {Factory.next(:career)}
-  f.term do |s|
-    Factory.create(:term, :name => s.name)
-  end
+  # f.term do |s|
+  #   Factory.create(:term, :name => s.name)
+  # end
 end
 
 Factory.define :career_student do |f|

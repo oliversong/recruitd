@@ -130,15 +130,11 @@ class SController < ApplicationController
           redirect_to :back and return
         when "Course" then
           # make new course
-          course = Course.new(:name => params[:term][:name])
-          course.save
-          @term = Term.new(:name => params[:term][:name], :reference => course)
+          @term = Course.new(:name => params[:term][:name])
           @term.save
         when "Club" then
           # make new club
-          club = Club.new(:name => params[:term][:name])
-          club.save
-          @term = Term.new(:name => params[:term][:name], :reference => club)
+          @term = Club.new(:name => params[:term][:name])
           @term.save
         else
       end
@@ -146,7 +142,7 @@ class SController < ApplicationController
 
     @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => "Skill")
     if @student_term.save
-      flash[:notice] = "Successfully added interest."
+      flash[:notice] = "Successfully added tag."
     end
     redirect_to :back
   end

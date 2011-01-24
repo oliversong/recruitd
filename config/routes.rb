@@ -37,7 +37,7 @@ Recruitd::Application.routes.draw do
   
   resources :experiences
 
-  match "autocomplete_searches/term_names/:type/:term" => "autocomplete_searches#term_names", :as => "autocomplete"
+  match "autocomplete_searches/term_names/:type" => "autocomplete_searches#term_names", :as => "autocomplete"
 
   # resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names, :skill_names] do
   #   collection do

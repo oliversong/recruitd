@@ -33,6 +33,17 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
+      create_schools_departments_courses
+      create_categories
+      create_awards
+      create_careers
+      create_interests
+      create_jobs
+      create_recruiters
+      create_updates
+      create_company_files_and_feeds
+      create_student_files_and_feeds
+      create_company_terms
       create_student_labels
       create_company_labels
       create_followings
@@ -133,8 +144,8 @@ def create_schools_departments_courses
   
   data_fetch('courses').each_with_index do |line, index|
     line = line.split("\t")
-    course = Factory(:course, :abbrev => line[0], :name => line[1], :department => Department.all.sort_by{rand}.first)
-    puts "#{index}: #{course.abbrev}"
+    course = Factory(:course, :course_abbrev => line[0], :name => line[1], :department => Department.all.sort_by{rand}.first)
+    puts "#{index}: #{course.course_abbrev}"
     if(index > 100) #for now
       break
     end
@@ -145,7 +156,7 @@ def create_schools_departments_courses
     Factory(:school_student, :student => student, :department => department, :school => department.school)
     
     department.courses.sort_by{rand}[1..3].each do |course|
-      Factory(:course_student, :student => student, :course => course)
+      Factory(:student_term, :student => student, :term => course, :term_type => "Course")
     end
   end
   puts "Created factory schools, departments, and courses"
@@ -213,6 +224,7 @@ def create_jobs
 end
 
 def create_recruiters
+  Factory.next(:simple) #to eliminate uniqueness email validation
   Company.all.each do |company|
     2.times do
       r = Factory(:recruiter, :company => company)

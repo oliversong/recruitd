@@ -145,7 +145,7 @@
                   = link_to "[X]", delete_term_s_path(:id => interest.id)
           -if @owner
             %li.hover.tTip{:title => "Hello World"}
-              %li= render "add_interest"
+              %li= render :partial => "add_term", :locals => {:term_type => "Interest" }
               
       -if !@student.fun_facts.blank?  
         %span.subheader Fun Facts
@@ -231,7 +231,7 @@
               = link_to "[X]", delete_term_s_path(:id => skill.id)
       -if @owner
         .hover.tTip{:title => "Hello World"}
-          %span= render "add_skill"
+          %span= render :partial => "add_term", :locals => {:term_type => "Skill" }
     .contentbottom
     
   #courses
@@ -244,7 +244,7 @@
       = render :partial => "course_student", :collection => @student.course_students
       -if @owner
         .hover.tTip{:title => "Hello World"}
-          %span= render "add_course"
+          %span= render :partial => "add_term", :locals => {:term_type => "Course" }
 
     .contentbottom
   #awards
@@ -262,7 +262,7 @@
               = link_to "[X]", delete_term_s_path(:id => award.id)
       -if @owner
         .hover.tTip{:title => "Hello World"}
-          %span= render "add_award"
+          %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
     
   #footer5

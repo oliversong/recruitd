@@ -61,14 +61,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "updated_at"
   end
 
-  create_table "clubs", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "added_by_user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "comments", :force => true do |t|
     t.string   "title",            :limit => 50, :default => ""
     t.text     "comment"
@@ -161,31 +153,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
 
   add_index "course_ratings", ["course_id"], :name => "index_course_ratings_on_course_id"
 
-  create_table "course_students", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "course_id"
-    t.integer  "period_id"
-    t.text     "comments"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "course_students", ["course_id"], :name => "index_course_students_on_course_id"
-  add_index "course_students", ["student_id"], :name => "index_course_students_on_student_id"
-
-  create_table "courses", :force => true do |t|
-    t.string   "name"
-    t.string   "abbrev"
-    t.integer  "department_id"
-    t.string   "description"
-    t.integer  "difficulty_sum_cache",   :default => 0, :null => false
-    t.integer  "difficulty_count_cache", :default => 0, :null => false
-    t.integer  "usefulness_sum_cache",   :default => 0, :null => false
-    t.integer  "usefulness_count_cache", :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -201,13 +168,6 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
 
   add_index "delayed_jobs", ["locked_by"], :name => "delayed_jobs_locked_by"
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
-
-  create_table "departments", :force => true do |t|
-    t.string   "name"
-    t.integer  "school_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "experiences", :force => true do |t|
     t.integer  "student_id"
@@ -321,7 +281,7 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.string "name"
   end
 
-  create_table "school_student", :id => false, :force => true do |t|
+  create_table "school_students", :id => false, :force => true do |t|
     t.integer  "school_id"
     t.integer  "student_id"
     t.date     "startdate"
@@ -335,7 +295,7 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "updated_at"
   end
 
-  add_index "school_student", ["student_id"], :name => "index_school_student_on_student_id"
+  add_index "school_students", ["student_id"], :name => "index_school_students_on_student_id"
 
   create_table "schools", :force => true do |t|
     t.string   "name"
@@ -380,7 +340,7 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
   add_index "student_labelings", ["student_id", "label_id"], :name => "index_student_labelings_on_student_id_and_label_id"
   add_index "student_labelings", ["student_id"], :name => "index_student_labelings_on_student_id"
 
-  create_table "student_term", :force => true do |t|
+  create_table "student_terms", :force => true do |t|
     t.string   "details"
     t.integer  "student_id"
     t.integer  "term_id"
@@ -390,8 +350,8 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.integer  "score",      :default => 0, :null => false
   end
 
-  add_index "student_term", ["student_id", "term_id"], :name => "index_student_term_on_student_id_and_term_id"
-  add_index "student_term", ["student_id"], :name => "index_student_term_on_student_id"
+  add_index "student_terms", ["student_id", "term_id"], :name => "index_student_terms_on_student_id_and_term_id"
+  add_index "student_terms", ["student_id"], :name => "index_student_terms_on_student_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
@@ -421,13 +381,17 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.integer  "category_id"
     t.text     "description"
     t.string   "url"
-    t.integer  "reference_id"
-    t.string   "reference_type"
+    t.integer  "added_by_user_id"
+    t.string   "course_abbrev"
+    t.integer  "course_difficulty_sum_cache",   :default => 0, :null => false
+    t.integer  "course_difficulty_count_cache", :default => 0, :null => false
+    t.integer  "course_usefulness_sum_cache",   :default => 0, :null => false
+    t.integer  "course_usefulness_count_cache", :default => 0, :null => false
+    t.integer  "department_id"
+    t.integer  "school_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "terms", ["reference_id", "reference_type"], :name => "index_terms_on_reference_id_and_reference_type"
 
   create_table "updates", :force => true do |t|
     t.integer  "user_id"
