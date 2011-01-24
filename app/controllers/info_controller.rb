@@ -1,11 +1,11 @@
 class InfoController < ApplicationController
   
   def dump
-    if current_subdomain == "hiring"
-      render "info/frontpage_recruiter", :layout => "public"
-    else
+    # if current_subdomain == "hiring"
+    #   render "info/frontpage_recruiter", :layout => "public"
+    # else
       render "info/frontpage_student", :layout => "public"
-    end
+    # end
   end
   
   def home

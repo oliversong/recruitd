@@ -18,11 +18,11 @@ class AuthenticationsController < ApplicationController
       redirect_to new_user_session_path and return
     end
     
-    if current_subdomain == "hiring"
-      user = Recruiter.new(params[:user])
-    else
-      user = Student.new(params[:user])
-    end
+    #if current_subdomain == "hiring"
+      # user = Recruiter.new(params[:user])
+    # else
+          user = Student.new(params[:user])
+    #     end
     
     token = UserToken.find_by_uid(params[:uid])
     
@@ -71,11 +71,11 @@ class AuthenticationsController < ApplicationController
       redirect_to new_user_session_path and return
     end
     
-    if current_subdomain == "hiring"
-      user = Recruiter.new(params[:user])
-    else
+    # if current_subdomain == "hiring"
+    #   user = Recruiter.new(params[:user])
+    # else
       user = Student.new(params[:user])
-    end
+    # end
     
     token = UserToken.find_by_uid(params[:uid])
     

@@ -65,11 +65,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
             user.load_from_facebook(omniauth)
             
-            if current_subdomain == "hiring"
-              user.type = "Recruiter"
-            else
+            # if current_subdomain == "hiring"
+            #   user.type = "Recruiter"
+            # else
               user.type = "Student"
-            end
+            # end
             
           else
             #user = User.new
