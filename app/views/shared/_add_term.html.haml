@@ -1,9 +1,7 @@
--# valid types: award, interest, skill, career, course, all
-
 :javascript
   $(document).ready(function(){
     $( "#term_name" ).autocomplete({
-      source: "/autocomplete_searches/term_names/#{type}",
+      source: "/autocomplete_searches/all_term_names.js",
       focus: function(event, ui) { 
         $("#term_id").val(ui.item.id);
         $("#term_detail").show();
@@ -18,7 +16,7 @@
     })
   });
   
-=form_tag(add_term_s_path, :method => "post") do
+=form_tag(add_term_utilities_path, :method => "post") do
   = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30
   = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
   %br

@@ -66,6 +66,7 @@
       .hover.tTip{:title => "Hello World"}
         %span 2005 | Awesomeness | AAAAAAAAWWsome
     .contentbottom
+
   #footer5
     %span#copyright Copyright � 2010 Recruitd Inc. All rights reserved.
     #footerlinks
@@ -81,6 +82,13 @@
       |
       %a{:href => "#"} Privacy Policy
 #rightcolumn
+  #feed
+    .feedtop
+      %span.headertext Quick Links
+    .feedmiddle
+      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
+        =render :partial => "shared/navigation"
+    .feedbottom
   #feed
     .feedtop
       %span.headertext Feed Updates

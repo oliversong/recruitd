@@ -1,7 +1,7 @@
 :javascript
   $(document).ready(function(){
     $( "#award_name" ).autocomplete({
-      source: "/autocomplete_searches/award_names",
+      source: "/autocomplete_searches/term_names/award",
       focus: function(event, ui) { 
         $("#award_id").val(ui.item.id);
         $("#award_detail").show();

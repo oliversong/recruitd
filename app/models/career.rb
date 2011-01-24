@@ -4,6 +4,9 @@ class Career < ActiveRecord::Base
   has_many :career_jobs
   has_many :jobs, :through => :career_jobs
   
+  has_many :career_terms
+  has_many :relevant_terms, :class_name => "Term", :source => :term, :through => :career_terms
+  
   has_many :career_students
   has_many :students, :through => :career_students
   

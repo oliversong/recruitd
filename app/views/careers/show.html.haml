@@ -2,23 +2,31 @@
 
 =render :partial => "shared/update"
 #maincontent
-  %p
-    %strong Name:
-    =h @career.name
-  %p
+
+  %h2= @career.name.capitalize
+  = link_to "back to all careers", careers_path
+
+  -if !@career.description.blank? 
+    %p
     %strong Description:
+    %br
     =h @career.description
   %p
     %strong Jobs:
     %ul
       -@career.jobs.each do |job|
         %li=link_to job.name, job
-  %br/
   %p
     %strong Students interested in #{@career.name}
     %ul
       -@career.students.each do |student|
         %li=link_to student.name, student
-  %br/  
   %p
-    = link_to "all careers", careers_path
+    %strong Some relevant tags:
+    %ul
+      -@career.relevant_terms.each do |term|
+        %li=link_to term.name, term.reference
+      %li
+        Suggest a term:
+        =render :partial => "shared/add_term"
+

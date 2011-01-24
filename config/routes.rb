@@ -4,13 +4,7 @@ Recruitd::Application.routes.draw do
     # get 'home'
     # get 'browse'
     # get 'settings'
-    post 'add_career'
-    get 'delete_career'
-    post 'add_course'
-    get 'delete_course'
-    post 'add_award'
-    post 'add_interest'
-    post 'add_skill'
+    post 'add_term'
     get 'delete_term'
   end
   
@@ -43,19 +37,20 @@ Recruitd::Application.routes.draw do
   
   resources :experiences
 
+  match "autocomplete_searches/term_names/:type/:term" => "autocomplete_searches#term_names", :as => "autocomplete"
 
-  resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names, :skill_names] do
-    collection do
-      get 'club_names'
-      get 'course_names'
-      get 'company_names'
-      get 'career_names'
-      get 'award_names'
-      get 'skill_names'
-      get 'interest_names'
-      get 'all_term_names'
-    end
-  end
+  # resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names, :skill_names] do
+  #   collection do
+  #     get 'club_names'
+  #     get 'course_names'
+  #     get 'company_names'
+  #     get 'career_names'
+  #     get 'award_names'
+  #     get 'skill_names'
+  #     get 'interest_names'
+  #     get 'all_term_names'
+  #   end
+  # end
   
   resources :jobs do
     member do
