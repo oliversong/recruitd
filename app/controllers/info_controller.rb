@@ -7,7 +7,7 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_home
       else
-        render "info/home_no_login", :layout => "public"
+        render "registrations/newly_created"
         #redirect_to "/users/sign_in"
       end
     else
@@ -161,6 +161,26 @@ class InfoController < ApplicationController
   
   def student_settings
     render 's/settings'
+  end
+  
+  def newly_created
+  end
+  
+  def from_linkedin
+    @uid = params[:uid]
+    @user = User.new(:first_name => params[:first_name], :last_name => params[:last_name])
+  end
+  
+  def finalize_user
+    params[:user][:password] = "waz71tox"
+    params[:user][:password_confirmation] = "waz71tox"
+    user = Student.new(params[:user])
+    user.save
+    token = UserToken.find_by_uid(params[:uid])
+    token.user_id = user.id
+    token.save
+    
+    sign_in_and_redirect(:user, '/home')
   end
   
 end

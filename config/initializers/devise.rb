@@ -152,7 +152,7 @@ Devise.setup do |config|
   # config.omniauth :linked_in, "JyWMuJzTBOd3KQOXSFQBTE2kkGByPD5A7v9BfarHyirmJxBOiNTCf5MPPg_N4l3v", "Wl4SIwAxQVGBqPonx3h2ixrUHF7TQpqf7n2aEQrI-EeNKm-ZB70dxHrlHW7UZrRq" #localhost
   
   
-  config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
+  #config.omniauth :google_apps, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
   #
   # config.warden do |manager|
   #   manager.oauth(:twitter) do |twitter|

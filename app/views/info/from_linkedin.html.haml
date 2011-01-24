@@ -1,0 +1,29 @@
+#top
+  .scribbles Scribbles
+  %img#divider{:src => "/images/divider.png"}/
+  %form#feedupdate
+    %input{:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
+  #update Update
+
+#maincontent
+  %h2
+    You're almost done!  Simply add your email below.
+  = form_for @user, :url => finalize_user_info_path, :html => {:method => :post, :multipart => true} do |f|
+    = hidden_field_tag "uid", @uid
+    %p
+      First name:
+      %br/
+      = f.text_field :first_name
+    %p
+      Last name:
+      %br/
+      = f.text_field :last_name
+    %p
+      Email:
+      %br/
+      = f.email_field :email
+    %p
+      Choose a profile picture (recommended):
+      %br/
+      = file_field_tag "avatar"
+    %p= submit_tag "Update"

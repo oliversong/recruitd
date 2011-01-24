@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
        :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name
 
   belongs_to :entity, :polymorphic => true
   
@@ -24,6 +24,20 @@ class User < ActiveRecord::Base
   has_many :followings_as_followed, :class_name => "Following", :foreign_key => "followed_id"
   has_many :followers, :through => :followings_as_followed, :source => :follower
   has_many :newsfeed_items
+  
+  
+  def self.create_userless_omniauth(omniauth)
+    unless omniauth['credentials'].blank?
+        # user_tokens.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      user_token = UserToken.new(:provider => omniauth['provider'],
+                       :uid => omniauth['uid'],
+                       :token => omniauth['credentials']['token'],
+                       :secret => omniauth['credentials']['secret'])
+    else
+        user_token = UserToken.new(:provider => omniauth['provider'], :uid => omniauth['uid'])
+    end
+    user_token.save
+  end
   
   def post_update(update)
     #TODO fill this out

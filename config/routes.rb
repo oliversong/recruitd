@@ -124,6 +124,9 @@ Recruitd::Application.routes.draw do
       get 'browse'
       get 'updates'
       get 'public'
+      get 'newly_created'
+      get 'from_linkedin'
+      post 'finalize_user'
     end
   end
 
@@ -132,6 +135,7 @@ Recruitd::Application.routes.draw do
   match "manage" => "info#manage", :as => "manage"
   match "browse" => "info#browse", :as => "browse"
   match "settings" => "info#settings", :as => "settings"
+
   
   resources :feedbacks, :only => [:create, :new]
 

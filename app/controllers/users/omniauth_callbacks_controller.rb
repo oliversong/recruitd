@@ -29,7 +29,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # end
   
   def method_missing(provider)
-    puts "the provider is #{provider.to_yaml}\n\n"
     
     if !User.omniauth_providers.index(provider).nil?
       #omniauth = request.env["omniauth.auth"]
@@ -39,8 +38,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     
       if current_user #or User.find_by_email(auth.recursive_find_by_key("email"))
         # current_user.user_tokens.find_or_create_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
-        
-        puts "#{omniauth.to_yaml}"
         
         current_user.apply_omniauth(omniauth)
         flash[:notice] = "Authentication successful"
@@ -62,6 +59,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
           else
             user = User.new
+            User.create_userless_omniauth(omniauth)
+            redirect_to from_linkedin_info_path(:uid => omniauth['uid']) and return
           end
           
           user.apply_omniauth(omniauth)
