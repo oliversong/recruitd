@@ -105,7 +105,7 @@ class UtilitiesController < ApplicationController
       actor_id = current_user.company_id
       
       if (params[:entity_type] == "Student")
-        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.entity.company_id, params[:entity_id])
+        company_file = CompanyFile.find_or_initialize_by_company_id_and_student_id(current_user.company_id, params[:entity_id])
         company_file.starred = true
         company_file.save
         @starred = true
@@ -177,7 +177,7 @@ class UtilitiesController < ApplicationController
       end
     end
     
-    @voteable = Kernel.const_get(params[:voteable_type]).find(params[:voteable_id])
+    @voteable = Kernel.const_get(params[:entity_type]).find(params[:entity_id])
     render "shared/vote"
   end
   

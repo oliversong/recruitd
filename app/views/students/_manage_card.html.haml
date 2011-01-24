@@ -11,7 +11,7 @@
       = other_lbl.label.name
       |
     rating: #{company_file.rating}
-    =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => company_file.student_id, :starred => company_file.starred}
+    =render :partial => "shared/star", :locals => {:entity => company_file.student, :starred => company_file.starred}
     |
     = link_to "(+)", "#", {:onClick => "$('\#company_file_#{company_file.id}').toggle()"}
     = render :partial => "students/update_rating", :locals => {:student => student }

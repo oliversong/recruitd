@@ -110,7 +110,7 @@ class StudentsController < ApplicationController
     if !current_user.is_company_entity?
       redirect_to :new_user_session
     end
-    @company = current_user.entity.company
+    @company = current_user.company
     @student = Student.find(params[:id])
     
     company_file = CompanyFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)

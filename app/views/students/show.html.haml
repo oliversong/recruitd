@@ -166,7 +166,7 @@
   #fullname 
     = h @student.name
     -if current_user.is_company_entity?
-      =render :partial => "shared/star", :locals => {:entity_type => "Student", :entity_id => @student.id, :starred => @company_file.starred}
+      =render :partial => "shared/star", :locals => {:entity => @student, :starred => @company_file.starred}
       =render :partial => "shared/follow", :locals => {:user_id => @student.id, :followed => @followed}
     (#{@student.baseline_score})
   

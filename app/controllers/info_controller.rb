@@ -124,7 +124,7 @@ class InfoController < ApplicationController
     
     @recruiter = current_user.becomes(Recruiter)
     
-    @company_file = CompanyFeed.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
+    @company_file = CompanyFile.by_company_id(@recruiter.company_id).offset(@page).limit(1).find(:first)
     
     render 'c/browse'
   end

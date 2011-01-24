@@ -1,0 +1,17 @@
+=render :partial => "shared/update"
+#maincontent
+  %h1 Listing recruiters
+  %table
+    %tr
+      %th Name
+      %th Phone
+      %th Company
+    - @recruiters.each do |recruiter|
+      %tr
+        %td= link_to recruiter.name, recruiter
+        %td= h recruiter.phone
+        %td= h link_to recruiter.company.name, recruiter.company
+        %td= link_to 'Edit', edit_recruiter_path(recruiter)
+        %td= link_to 'Destroy', recruiter, :confirm => 'Are you sure?', :method => :delete
+  %br/
+  = link_to 'New recruiter', new_recruiter_path
