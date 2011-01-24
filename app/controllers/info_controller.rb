@@ -1,5 +1,13 @@
 class InfoController < ApplicationController
   
+  def dump
+    if current_subdomain == "hiring"
+      render "info/frontpage_recruiter", :layout => "public"
+    else
+      render "info/frontpage_student", :layout => "public"
+    end
+  end
+  
   def home
     if current_user
       if current_user.is_student?
@@ -11,11 +19,7 @@ class InfoController < ApplicationController
         #redirect_to "/users/sign_in"
       end
     else
-      if current_subdomain == "hiring"
-        render "info/frontpage_recruiter", :layout => "public"
-      else
-        render "info/frontpage_student", :layout => "public"
-      end
+      dump
     end
   end
   
@@ -26,11 +30,10 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_browse
       else
-        render "info/home_no_login"
-        #redirect_to "/users/sign_in"
+        dump
       end
     else
-      render "info/home_no_login", :layout => false
+      dump
     end
   end
   
@@ -41,11 +44,11 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_manage
       else
-        render "info/home_no_login"
+        dump
         #redirect_to "/users/sign_in"
       end
     else
-      render "info/home_no_login", :layout => false
+      dump
     end
   end
   
@@ -56,11 +59,11 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_settings
       else
-        render "info/home_no_login"
+        dump
         #redirect_to "/users/sign_in"
       end
     else
-      render "info/home_no_login", :layout => false
+      dump
     end
   end
   
@@ -72,7 +75,7 @@ class InfoController < ApplicationController
         redirect_to current_user.becomes(Recruiter)
       end
     else
-      render "info/home_no_login", :layout => false
+      dump
     end
   end
   

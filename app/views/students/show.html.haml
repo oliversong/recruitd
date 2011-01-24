@@ -80,7 +80,8 @@
 
 #leftcolumn
   #profpic
-    %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+    =link_to edit_registration_path(current_user) do
+      %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
       %span.headertext Basic Info
