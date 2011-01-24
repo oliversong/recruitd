@@ -15,8 +15,6 @@
 	<script type="text/javascript"></script> 
 	<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
 	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery-bp.js" ></script>
-	<script type="text/javascript" src="js/navigation.js" ></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.8.custom.min.js"></script>
 
 
@@ -24,12 +22,11 @@
     
 </head>
 
-<body style="padding:0px;margin:0px;">
+<body>
 
     <div style='display:none'>
                 <img src='images/contact/loading.gif' alt='' />
     </div>
-
     <div id="feedback">
         <div id="contact-form">
             <a id="feedbackicon"  href="#" title="Leave us a comment!" class="contact">Constructive Criticism!</a>
@@ -38,145 +35,92 @@
         <a id="blogicon"   href="/blog.html" title="Check out the Blog!" class="contact">Check out the Blog!</a>
     </div>
 
-    <div id="navigation" class="container">
-        <div id="home" class="pri-nav active"><div><a href="#">Home</a></div></div>
-        <div id="about" class="pri-nav"><div><a href="#">Public</a></div></div>
-        <div id="services" class="pri-nav"><div><a href="#">Lists</a></div></div>
-        <div id="solutions" class="pri-nav"><div><a href="#">Search</a></div></div>
-        <div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
-    </div>
 
     <div id="header">
-    
-        <div id="searchlogout">
-            <div id="searchbox">
+        <a href="http://www.recruitd.com"><div class="reclogo"></div></a>
+		  <div id="searchbox">
                 <form>
                 <input class="differentsearch" type="search" placeholder="Search">
                 <input type = "submit" value="Find" style="display:none;">
                 </form>
             </div>
-            
-            <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
-        </div>
     
-        <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
+	    <div id="navigation">
+              <div class="navigation" id="home"><div><a class="nav" href="#">home</a></div></div>
+              <div class="navigation" id="about"><div><a class="nav" href="#">public</a></div></div>
+              <div class="navigation" id="services"><div><a class="nav" href="#">lists</a></div></div>
+              <div class="navigation" id="solutions"><div><a class="nav" href="#">search</a></div></div>
+              <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
+ href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
+		</div>
         
-        <a href="http://www.recruitd.com"><div id="logo" style="top:20px;"></div></a>
+          
+        
     </div>
+    
+    
+    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
+        <form id="feedupdate">
+            <input id="updatefeed" type="search" placeholder="Update your feed!">
+        </form>
+        <div id="update">Update</div>
+
+
+</div>
+    
+	
 
 <!----------END OF THE TOP -----------------
 ---------------------------
 ---------------------------
 --------------------------->
+	<link type="text/css" href="css/jobentry.css" rel="stylesheet" />	
 <script>
 	$(function() {
 		$( ".datepicker" ).datepicker();
 
 	});
 </script>
-<style>
-#entryform{
-	position:relative;
-	top:200px;
-	left:50%;
-	margin-left:-200px;
-	width:500px;
-}
-#fields{
-list-style:none;
-font-family:Helvetica Ultralight;
-font-size:20px;
-padding:0px;
-margin:0px;
-width:200px;
-text-align:right;
-}
-#formchange{
-position:relative;
-left:230px;
-top:-150px;
-}
-.forminput{
-width:249px;
-height:10px;
-padding-bottom:20px;
-font-size:20px;
-}
-.forminput2{
-padding-bottom:20px;
-font-size:14px;
-}
-.asdfasdf{
-font-family:Helvetica Ultralight;
-font-size:20px;
-position:relative;
-top:-20px;
-}
-td{
-	vertical-align:top;
-	text-align:right;
-	font-family:helvetica ultralight;
-	font-size:20px;
-}
-.wtf{
-	position:relative;
-	top:-25px;
-}
-</style>
-<div style="background-color: #FF6;font-family: Verdana;left: 50%;margin-bottom: 10px;margin-left: -200px;padding-left: 150px;position: relative;top: 200px;width: 352px;">You're posting a new job!</div>
-<div id="entryform" style="border: #CCC dotted 1px;">
+
+
+<div class="newjob">You're posting a new job!</div>
+<div id="entryform" class="jobentryborder">
 	
     <form>
         <table border="0">
             <tr>
-                <td style="padding-top:10px;">Job Title:</td>
-                <td style="text-align:left;"><input class="forminput" type="text" placeholder="Code Monkey" style="font-family:helvetica;"></td>
+                <td class="tablepadding">Job Title:</td>
+                <td class="tablealign"><input class="forminput fontadjust" type="text" placeholder="Code Monkey"></td>
             </tr>
             <tr>
-                <td style="padding-top:10px;">Offer Closing Date:</td>
-                <td style="text-align:left;"><input class="forminput datepicker" type="text" placeholder="Offer expires!" style="font-family:helvetica;"></td>
+                <td class="tablepadding">Offer Closing Date:</td>
+                <td class="tablealign"><input class="forminput datepicker fontadjust" type="text" placeholder="Offer expires!"></td>
             </tr>
             <tr>
-                <td style="padding-top:10px;">Qualifications:</td>
-                <td style="text-align:left;"><textarea rows="10" cols="29" class="forminput2" placeholder="Has to be awesome" style="font-family:helvetica;"></textarea></td>
+                <td class="tablepadding">Qualifications:</td>
+                <td class="tablealign"><textarea rows="10" cols="33" class="forminput2 fontadjust" placeholder="Has to be awesome"></textarea></td>
             </tr>
             <tr>
-                <td style="padding-top:10px;">Details:</td>
-                <td style="text-align:left;"><textarea rows="10" cols="29" class="forminput2" type="textarea" placeholder="Whatever you want to say" style="font-family:helvetica;"></textarea></td>
+                <td class="tablepadding">Details:</td>
+                <td class="tablealign"><textarea rows="10" cols="33" class="forminput2 fontadjust" type="textarea" placeholder="Whatever you want to say" ></textarea></td>
             </tr>
             <tr>
-                <td style="padding-top:10px;">Career Tag:</td>
-                <td style="text-align:left;"><input class="forminput careers" type="text" placeholder="Computer Scientist" style="font-family:helvetica;"></td>
+                <td class="tablepadding">Career Tag:</td>
+                <td class="tablealign"><input class="forminput careers fontadjust" type="text" placeholder="Computer Scientist" ></td>
             </tr>
             <tr>
-                <td style="padding-top:10px;">Other Tags:</td>
+                <td class="tablepadding">Other Tags:</td>
                 <td></td>
             </tr>
             </tr>
         </table>
-        <input class="differentsearch moving" type="search" placeholder="Tag this job" style="font-family:helvetica;left:157px;top:-35px;position:relative;">
+        <input class="differentsearch moving randominput" type="search" placeholder="Tag this job">
 
-        <div class="wtf"><table class="wtf2"><tr ><td style="padding-left:200px;"></td></tr></table></div>
+        <div class="wtf"><table class="wtf2"><tr ><td class="extrapadding"></td></tr></table></div>
 
     </form>
 
 </div>
-
-<style>
-	.ui-autocomplete-category {
-		font-weight:bold;
-		text-decoration:underline;
-		padding: .2em .4em;
-		margin: .8em 0 .2em;
-		line-height: 1.5;
-		z-index:500;
-	}
-	.ui-autocomplete{
-		position:absolute;
-		font-size:14px;
-		z-index:500;
-	}
-	</style>
 	<script>
 	$.widget( "custom.catcomplete", $.ui.autocomplete, {
 		_renderMenu: function( ul, items ) {
@@ -244,16 +188,10 @@ td{
 -----------------------------------------
 ----------------------------------------->
 
-    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
-        <form id="feedupdate">
-            <input style="width:730px;" type="search" placeholder="Update your feed!">
-        </form>
-        <div id="update">Update</div>
-    </div>
 
 <!----------MARGIN OF THE FOOTER CHANGED AGAIN V ----->
 
-	<div id="footerbuilder" style="margin-top:400px;">
+	<div id="footerbuilder" style="margin-top:200px;">
     <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
     <div id="footerlinks">
         <a href="#">Home</a> |

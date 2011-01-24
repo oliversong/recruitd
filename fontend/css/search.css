@@ -1,0 +1,117 @@
+@charset "UTF-8";
+/* CSS Document */
+
+	#leftControl2{
+	background-image:url(../images/leftdown.png);
+	height: 95px;
+	left: 50%;
+	margin-left: -547px;
+	position: absolute;
+	top: 140px;
+	width: 44px;
+	z-index: 0;
+	}
+	
+	#rightControl2{
+		left:50%;
+		margin-left:502px;
+		background-image:url(../images/rightdown.png);
+		position:absolute;
+		width:44px;
+		height:95px;
+		top:140px;
+	  z-index:0;
+	}
+	
+	#leftControl2:hover{
+		background-image:url(../images/lefthover.png);
+		position:absolute;
+		top:139px;
+	}
+	#rightControl2:hover{
+		background-image:url(../images/righthover.png);
+	}
+	#slideshow2 #slidesContainer2 {
+	  margin:0 auto;
+	  width:1000px;
+	  height:600px;
+	  overflow:auto; /* allow scrollbar */
+	  position:relative;
+	  z-index:10;
+	  left:50%;
+	  margin-left:-500px;
+	}
+	
+	#slideshow2 #slidesContainer2 .slide2 {
+	  margin:0 auto;
+	  width:980px; /* reduce by 20 pixels to avoid horizontal scroll */
+	  height:600px;
+		z-index:1;
+	}
+	
+	.control2 {
+	  display:block;
+	  width:50px;
+	  height:97px;
+	  text-indent:-10000px;
+	  position:absolute;
+	  cursor: pointer;
+		z-index:10;
+	}
+	#searchwidgetmid{
+	background-image:url(../images/full.png);
+	background-repeat:repeat-y;
+	width:1024px;
+	height:379px;
+	position:relative;
+	}
+	.itemtitle{
+	position:relative;
+	top:15px;
+	text-align:center;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:20px;
+	z-index:100;
+	}
+	.itemcontent{
+	padding-top:50px;	
+	}
+	.ratingwidget{
+		position:relative;
+		top:290px;
+		left:450px;
+	}
+	#rating{
+	position:relative;	
+	}
+	.star{
+	background-image:url(../images/starbefore.png);
+	width:33px;
+	height:32px;
+	position:relative;
+	left:83px;
+	top:-60px;
+	}
+	.star:hover{
+		background-image:url(../images/starhover.png);
+	}
+	.downlike{
+	background-image:url(../images/votedown.png);
+	width:31px;
+	height:30px;
+	}
+	.downlike:hover{
+	background-image:url(../images/downhover.png);
+	}
+	.uplike{
+	background-image:url(../images/voteup.png);
+	width:31px;
+	height:30px;
+	position:relative;
+	left:40px;
+	top:-30px;
+	}
+	.uplike:hover{
+	background-image:url(../images/uphover.png);
+	}
+	

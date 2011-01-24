@@ -2,7 +2,6 @@
 /* CSS Document */
 
 html {	overflow-Y: scroll;}
-body {	font: 10px normal Arial, Helvetica, sans-serif;	margin: 0;	padding: 0;	line-height: 1.7em;}
 *, * focus {
 	outline: none;
 	margin: 0;
@@ -10,12 +9,13 @@ body {	font: 10px normal Arial, Helvetica, sans-serif;	margin: 0;	padding: 0;	li
 }
 
 .container {
-height: 600px;
+height:800px;
 left: 50%;
 margin-left: -330px;
-position: absolute;
-top: 200px;
+position: relative;
+top: 0px;
 width: 839px;
+float:left;
 }
 h1 {
 	font: 4em normal Georgia, 'Times New Roman', Times, serif;
@@ -82,8 +82,8 @@ h2.active {background-position: left bottom;}
 #sidebartop{
 background-image:url(../images/sidetopedit.png);
 background-repeat:no-repeat;
-position:absolute;
-top:208px;
+position:relative;
+top:200px;
 left:50%;
 margin-left:-500px;
 height:12px;
@@ -93,11 +93,12 @@ width:183px;
 background-image:url(../images/sidebot.png);
 background-repeat:no-repeat;
 position:relative;
-top:220px;
+top:200px;
 left:50%;
 margin-left:-500px;
 height:15px;
 width:183px;
+float:left;
 }
 
 #sidebar{
@@ -106,7 +107,7 @@ font-size: 20px;
 left: 50%;
 margin-left: -500px;
 position: relative;
-top: 220px;
+top: 200px;
 width: 183px;
 background-image:url(../images/sidemid.png);
 background-repeat:repeat-y;
@@ -116,7 +117,4 @@ background-repeat:repeat-y;
 }
 .hover2:hover{
 	background:#FF6;	
-}
-#everything{
-height:800px;	
 }

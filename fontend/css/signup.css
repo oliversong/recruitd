@@ -24,11 +24,11 @@ input[type="submit"]:focus, input[type="button"]:focus { outline : none; }
 #containersignup {
 /*    background: url('../images/container.png') no-repeat;*/
 height: 450px;
-margin: 20px auto;
+margin: 20px auto;	
 overflow: hidden;
 padding: 50px 0px;
 position: relative;
-top: 120px;
+top: 40px;
 width: 754px;
 }
     #containersignup #first_step, #second_step, #third_step, #fourth_step { display: none; }

@@ -22,13 +22,14 @@
     
 </head>
 
-<body>
+<body class="fontadjust">
 
-<div id="everything" style="position:relative;width:100%;left:0px;top:0px;padding:0px;margin:0px;">
+<div id="everything">
     <div style='display:none'>
                 <img src='images/contact/loading.gif' alt='' />
     </div>
-   <div id="feedback">
+
+    <div id="feedback">
         <div id="contact-form">
             <a id="feedbackicon"  href="#" title="Leave us a comment!" class="contact">Constructive Criticism!</a>
         </div>
@@ -54,7 +55,7 @@
               <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
  href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
 		</div>
-        
+    
           
         
     </div>
@@ -67,125 +68,131 @@
         <div id="update">Update</div>
 
 
-</div>
-    
+	</div>   
 
 
 <!----------END OF THE TOP -----------------
 ---------------------------
 ---------------------------
 --------------------------->
-	<link type='text/css' href='css/search.css' rel='stylesheet' media='screen' />
+	<link type="text/css" href="css/jquery.ui.stars.css" rel="stylesheet" />	
 
-    <script>
-$(document).ready(function(){
-  var currentPosition = 0;
-  var slideWidth = 1000;
-  var slides = $('.slide2');
-  var numberOfSlides = slides.length;
-
-  // Remove scrollbar in JS
-  $('#slidesContainer2').css('overflow', 'hidden');
-
-  // Wrap all .slides with #slideInner div
-  slides
-  .wrapAll('<div id="slideInner2"></div>')
-  // Float left to display horizontally, readjust .slides width
-  .css({
-    'float' : 'left',
-    'width' : slideWidth
-  });
-
-  // Set #slideInner width equal to total width of all slides
-  $('#slideInner2').css('width', slideWidth * numberOfSlides);
-
-  // Insert left and right arrow controls in the DOM
-  $('#slideshow2')
-    .prepend('<span class="control2" id="leftControl2">Move left</span>')
-    .append('<span class="control2" id="rightControl2">Move right</span>');
-
-  // Hide left arrow control on first load
-  manageControls(currentPosition);
-
-  // Create event listeners for .controls clicks
-  $('.control2')
-    .bind('click', function(){
-    // Determine new position
-      currentPosition = ($(this).attr('id')=='rightControl2')
-    ? currentPosition+1 : currentPosition-1;
-
-      // Hide / show controls
-      manageControls(currentPosition);
-      // Move slideInner using margin-left
-      $('#slideInner2').animate({
-        'marginLeft' : slideWidth*(-currentPosition),
-      }, 400);
-    });
-
-  // manageControls: Hides and shows controls depending on currentPosition
-  function manageControls(position){
-    // Hide left arrow if position is first slide
-    if(position==0){ $('#leftControl2').hide() }
-    else{ $('#leftControl2').show() }
-    // Hide right arrow if position is last slide
-    if(position==numberOfSlides-1){ $('#rightControl2').hide() }
-    else{ $('#rightControl2').show() }
-    }
-  });
-</script>
-
-<div id="alert"></div>
-    <div id="searchwidget" class="searchstyles">
-		<div id="searchwidgetmid">
-        	<div id="slideshow2">
-                <div id="slidesContainer2">
-                    <div class="slide2">
-                    	<div class="itemtitle">
-                        	Company that you will be working for
-                        </div>
-                        <div class="itemcontent">
-                        	Sample content1
-                        </div>
-                        <div class="ratingwidget">
-                        <a href="/vote/Job/15/-1" data-remote="true"><div class="downlike"></div></a>
-                        <a href="/vote/Job/15/1" data-remote="true"><div class="uplike"></div></a>
-                        <a href="/star/Job/15.js" data-remote="true"><div class="star"></div></a>
-                        </div>
-                    </div>
-                    <div class="slide2">
-                    	<div class="itemtitle">
-                        	Company that you will be working for
-                        </div>
-                        <div class="itemcontent">
-                        	Sample content2
-                        </div>
-                        <div class="ratingwidget">
-                        <a href="/vote/Job/15/-1" data-remote="true"><div class="downlike"></div></a>
-                        <a href="/vote/Job/15/1" data-remote="true"><div class="uplike"></div></a>
-                        <a href="/star/Job/15.js" data-remote="true"><div class="star"></div></a>
-                        </div>
-                    </div>
-                    <div class="slide2">
-                    	<div class="itemtitle">
-                        	Company that you will be working for
-                        </div>
-                        <div class="itemcontent">
-                        	Sample content3
-                        </div>
-						<div class="ratingwidget">
-                        <a href="/vote/Job/15/-1" data-remote="true"><div class="downlike"></div></a>
-                        <a href="/vote/Job/15/1" data-remote="true"><div class="uplike"></div></a>
-                        <a href="/star/Job/15.js" data-remote="true"><div class="star"></div></a>
-                        </div>
-                    </div>
-                </div>
-			</div>
+	<script type="text/javascript" src="js/jquery.ui.stars.js"></script>
+<div id="alert"></div> 
+<div id="big">
+	<div id="toppaneltop"><div class="genericheader"><h1>6.470</h1></div><div class="ratingwidget">
+			<form>
+				<strong>Usefulness:</strong> <span id="stars-cap"></span>
+				<div id="stars-wrapper2">
+                    <select name="selrate">
+                        <option value="1">Very poor</option>
+                        <option value="2">Poor</option>
+                        <option value="3">Okay</option>
+                        <option value="4" >Not Bad</option>
+                        <option value="5">Good</option>
+                        <option value="6"selected="selected">Pretty good</option>
+                        <option value="7">Better</option>
+                        <option value="8">High quality</option>
+                        <option value="9">Awesome</option>
+                        <option value="10">Perfect</option>
+                    </select>
+        		</div>
+			</form>
+		</div>
+        <div class="ratingwidget2">
+			<form >
+				<strong class="movethis">Difficulty:</strong> <span id="stars-cap2" class="movethis"></span>
+				<div id="stars-wrapper3">
+                    <select name="selrate">
+                        <option value="1">Easy Peasy</option>
+                        <option value="2">Still cruisin'</option>
+                        <option value="3">Cram a little</option>
+                        <option value="4">Do homework</option>
+                        <option value="5">Average</option>
+                        <option value="6">Kinda hard</option>
+                        <option value="7">Should try</option>
+                        <option value="8">Work in groups</option>
+                        <option value="9" selected="selected">Oh god</option>
+                        <option value="10">Give up</option>
+                    </select>
+        		</div>
+			</form>
+		</div>
         </div>
-        
-        <div id="rating"></div>
+	<div id="toppanelmid">
+        <div id="classdescription">
+What makes a rock star web programmer? HTML, DOM, CSS, JavaScript, SQL, PHP, JSON, and AJAX. 6.470 teaches all these and more, in-depth and hands-on. Lectures cover all the key topics and technologies. Teams of 1-3 compete to build database-backed web sites; the sites will be judged by a panel of experts, and winners announced at an awards ceremony and demo at the end of IAP, with $30K in prizes! Beginners and experienced web programmers welcome, but previous programming experience recommended.
+        </div>
+        <div id="metadata">
+            <div id="metasub">
+            <ul class="right">
+                <li><strong>Schools Offering:</strong></li>
+                <li><strong>Units/Credits:</strong></li>
+                <li><strong>Average Class Size:</strong></li>
+            </ul>
+            </div>
+            <ul class="answers">
+                <li>Massachusetts Institute of Technology</li>
+                <li>6 units</li>
+                <li>170</li>
+            </ul>
+        </div>
+    
+        <div id="classtags">
+        <div id="classtagstitle">Tags</div>
+                <a href="#">MIT,</a> <a href="#">6.470,</a>
+                <a href="#">IAP,</a> 
+                <a href="#">Computer Science,</a>
+                <a href="#">Course 6,</a>
+                <a href="#">Web Design,</a>
+                <a href="#">Competition,</a>
+                <a href="#">CS,</a>
+                <a href="#">Javascript,</a>
+                <a href="#">HTML,</a>
+                <a href="#">CSS,</a>
+                <a href="#">AJAX,</a>
+                <a href="#">Ruby,</a>
+                <a href="#">Rails,</a>
+                <a href="#">SQL,</a>
+                <a href="#">PHP,</a>
+                <a href="#">JSON,</a>
+                <a href="#">Django,</a>
+                <a href="#">Class,</a>
+                <a href="#">Awesome,</a>
+                <a href="#">1337,</a>
+        </div>
+    
+
     </div>
+    <div id="toppanelbot"></div>
+	<div id="bottomleftpanel">
+        <div id="bottomleftpaneltop"><div class="genericheader2"><h1>Students:</h1></div></div>
+        <div id="bottomleftpanelmid">
+        <br/><br/><br/><br/><br/><br/><br/>
+        </div>
+        <div id="bottomleftpanelbot"></div>
+    </div>
+	<div id="bottomrightpanel">
+        <div id="bottomrightpaneltop"><div class="genericheader2"><h1>Feedback:</h1></div></div>
+        <div id="bottomrightpanelmid">
+        <br/><br/><br/><br/><br/><br/><br/><br/>
+        </div>
+        <div id="bottomrightpanelbot"></div>
+	</div>
+</div>
 
-
+<script>
+$("#stars-wrapper2").stars({
+	inputType: "select",
+	split:2,
+	captionEl: $("#stars-cap")
+});
+$("#stars-wrapper3").stars({
+	inputType: "select",
+	split:2,
+	captionEl: $("#stars-cap2")
+});
+</script>
 <!------------------------START OF BOTTOM
 -----------------------------------------
 -----------------------------------------
@@ -193,9 +200,9 @@ $(document).ready(function(){
 -----------------------------------------
 ----------------------------------------->
 
-<!---------- FOOTER STYLE CHANGED FROM margin-top:300; to margin-top:340!!!!!!!!! ------------------------->
 
-	<div id="footerbuilder" style="margin-top:340px;">
+
+	<div id="footerbuilder">
     <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
     <div id="footerlinks">
         <a href="#">Home</a> |
@@ -205,6 +212,8 @@ $(document).ready(function(){
         <a href="#">Terms of Service</a> |
         <a href="#">Privacy Policy</a>
     </div>
+</div>
+
 </div>
 
 <script>

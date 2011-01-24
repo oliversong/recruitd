@@ -24,7 +24,7 @@
     
 </head>
 
-<body>
+<body style="padding:0px;margin:0px;">
 
 <div id="everything" style="position:relative;width:100%;left:0px;top:0px;padding:0px;margin:0px;">
     <div style='display:none'>
@@ -39,15 +39,14 @@
         <a id="blogicon"   href="/blog.html" title="Check out the Blog!" class="contact">Check out the Blog!</a>
     </div>
 
-	    <div id="navigation">
-              <div class="navigation" id="home"><div><a class="nav" href="#">home</a></div></div>
-              <div class="navigation" id="about"><div><a class="nav" href="#">public</a></div></div>
-              <div class="navigation" id="services"><div><a class="nav" href="#">lists</a></div></div>
-              <div class="navigation" id="solutions"><div><a class="nav" href="#">search</a></div></div>
-              <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
- href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
-		</div>
-    
+    <div id="navigation" class="container">
+        <div id="home" class="pri-nav active"><div><a href="#">Home</a></div></div>
+        <div id="about" class="pri-nav"><div><a href="#">Public</a></div></div>
+        <div id="services" class="pri-nav"><div><a href="#">Lists</a></div></div>
+        <div id="solutions" class="pri-nav"><div><a href="#">Search</a></div></div>
+        <div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
+    </div>
+
     <div id="header">
     
         <div id="searchlogout">
@@ -58,12 +57,12 @@
                 </form>
             </div>
             
-            <a id="logout" href="logout.php"><img src="images/logout.png" /></a>
+            <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
         </div>
     
-        <div id="bg2"></div>
+        <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
         
-        <a href="http://www.recruitd.com"><div class="reclogo"></div></a>
+        <a href="http://www.recruitd.com"><div id="logo" style="top:20px;"></div></a>
     </div>
 
 <!----------END OF THE TOP -----------------
