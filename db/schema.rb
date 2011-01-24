@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110123033844) do
+ActiveRecord::Schema.define(:version => 20110124140432) do
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"
@@ -363,6 +363,18 @@ ActiveRecord::Schema.define(:version => 20110123033844) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "term_attachments", :force => true do |t|
+    t.integer  "term_id"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.integer  "weight",          :default => 0, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "term_attachments", ["attachable_id", "attachable_type"], :name => "index_term_attachments_on_attachable_id_and_attachable_type"
+  add_index "term_attachments", ["term_id"], :name => "index_term_attachments_on_term_id"
 
   create_table "term_descriptions", :force => true do |t|
     t.integer  "user_id"

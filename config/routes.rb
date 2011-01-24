@@ -33,6 +33,7 @@ Recruitd::Application.routes.draw do
     get 'import_linkedin_profile'
     post 'apply_label'
     post 'create_label'
+    post 'add_term'
   end
   
   match "follow/:user_id" => "utilities#follow", :as => "follow"

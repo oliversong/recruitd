@@ -1,7 +1,10 @@
+-# INPUTS:
+-# attachable
+
 :javascript
   $(document).ready(function(){
     $( "#term_name" ).autocomplete({
-      source: "/autocomplete_searches/all_term_names.js",
+      source: "/autocomplete_searches/term_names/All.js",
       focus: function(event, ui) { 
         $("#term_id").val(ui.item.id);
         $("#term_detail").show();
@@ -20,6 +23,8 @@
   = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30
   = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
   %br
+  = hidden_field_tag "attachable[id]", attachable.id
+  = hidden_field_tag "attachable[type]", attachable.class.name
   = hidden_field_tag "term[id]", nil
   = hidden_field_tag "term[type]", nil
   %div.detail#term_detail{:style => "display:none" }

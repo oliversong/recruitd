@@ -263,4 +263,50 @@ class UtilitiesController < ApplicationController
     
     redirect_to :back
   end
+  
+  ## add a term association to another model
+  ## inputs:
+  # params[:attachable][:id]
+  # params[:attachable][:type]
+  # params[:term][:id]
+  # params[:term][:name]
+  # params[:term][:type]
+  
+  def add_term
+    if(params[:term][:id] && !params[:term][:id].empty?) #existing term
+      @term = Term.find(params[:term][:id])
+    else #new item
+      case params[:term][:type]
+        when "Award", "Interest", "Skill" then
+          @term = Term.new(:name => params[:term][:name], :type => params[:term][:type])
+          @term.save
+        when "Career" then
+          #DON'T make new career...
+          flash[:notice] = "You are not authorized to add new careers."
+          redirect_to :back and return
+        when "Course" then
+          # make new course
+          @term = Course.new(:name => params[:term][:name])
+          @term.save
+        when "Club" then
+          # make new club
+          @term = Club.new(:name => params[:term][:name])
+          @term.save
+        else
+      end
+    end
+    
+    # now attach the term
+    term_attachment = TermAttachment.find_or_initialize_by_term_id_and_attachable_id_and_attachable_type(@term.id, params[:attachable][:id], params[:attachable][:type])
+    
+    # @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => "Skill")
+    
+    if term_attachment.save
+      flash[:notice] = "Successfully added tag."
+    else
+      flash[:notice] = "Failed to add tag."
+    end
+    redirect_to :back
+  end
+  
 end

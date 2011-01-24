@@ -4,6 +4,9 @@ class Job < ActiveRecord::Base
   has_many :careers, :through => :career_jobs
   has_many :student_labelings, :as => :applyable
   
+  has_many :term_attachments, :as => :attachable
+  has_many :terms, :through => :term_attachments
+  
   def name
     return title + " at " + company.name
   end

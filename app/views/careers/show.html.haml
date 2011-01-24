@@ -24,9 +24,9 @@
   %p
     %strong Some relevant tags:
     %ul
-      -@career.relevant_terms.each do |term|
-        %li=link_to term.name, term.reference
+      -@career.terms.each do |term|
+        %li=link_to term.name, term.becomes(Term)
       %li
         Suggest a term:
-        =render :partial => "shared/add_term"
+        =render :partial => "shared/add_term", :locals => {:attachable => @career}
 
