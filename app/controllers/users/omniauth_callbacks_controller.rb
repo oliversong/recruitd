@@ -55,8 +55,12 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         else
           puts "did not find authentication"
           #create a new user
+          
+          puts omniauth.to_yaml
+          
           unless omniauth.recursive_find_by_key("email").blank?
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
+            user.load_from_facebook(omniauth)
             
             if current_subdomain == "hiring"
               user.type = "Recruiter"
@@ -75,7 +79,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
           if user.save
             flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider'] 
-            sign_in_and_redirect(:user, user)
+            
+            if(provider == :facebook)
+              sign_in(:user, user)
+              redirect_to from_facebook_authentications_path and return
+            else
+              sign_in_and_redirect(:user, user)
+            end
           else
             session[:omniauth] = omniauth.except('extra')
             redirect_to new_user_registration_url

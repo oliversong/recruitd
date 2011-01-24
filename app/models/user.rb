@@ -97,6 +97,15 @@ class User < ActiveRecord::Base
       (type == "Company") || (type == "Recruiter")
   end
   
+  def load_from_facebook(omniauth)
+    self.first_name = omniauth.recursive_find_by_key("first_name")
+    self.last_name = omniauth.recursive_find_by_key("last_name")
+    begin
+      self.fun_facts = omniauth["extra"]["user_hash"]["bio"]
+    rescue NoMethodError
+    end
+  end
+  
   emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
   receives_pfeed
   
