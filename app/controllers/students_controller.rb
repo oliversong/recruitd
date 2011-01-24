@@ -158,4 +158,9 @@ class StudentsController < ApplicationController
     redirect_to :back  
   end
   
+  def build
+    @student = current_user
+    render 'build'
+  end
+  
 end

@@ -108,6 +108,9 @@ Recruitd::Application.routes.draw do
       get 'update_file'
       get 'test'
     end
+    collection do
+      get 'build'
+    end
   end
   
   
