@@ -110,41 +110,22 @@ class SController < ApplicationController
     end
 
     @student = current_user
+    @term = Term.find_or_create_by_name_and_type(params[:term][:name], params[:term][:type])
 
-    if(params[:term][:id] && !params[:term][:id].empty?) #existing club
-      # if(params[:course][:description_changed]) #amend the description
-      #   @course = Course.find(params[:course][:id])
-      #   @course.description = params[:course][:description]
-      #   @course.save
-      # end
-      @term = Term.find(params[:term][:id])
-    else #new item
-      
-      case params[:term][:type]
-        when "Award", "Interest", "Skill" then
-          @term = Term.new(:name => params[:term][:name], :type => params[:term][:type])
-          @term.save
-        when "Career" then
-          #DON'T make new career...
-          flash[:notice] = "You are not authorized to add new careers."
-          redirect_to :back and return
-        when "Course" then
-          # make new course
-          @term = Course.new(:name => params[:term][:name])
-          @term.save
-        when "Club" then
-          # make new club
-          @term = Club.new(:name => params[:term][:name])
-          @term.save
-        else
-      end
-    end
-
-    @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => "Skill")
+    @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => @term.type)
     if @student_term.save
-      flash[:notice] = "Successfully added tag."
+      respond_to do |format|
+        format.html { 
+          flash[:notice] = "Successfully added tag."
+          redirect_to :back 
+        }
+        format.js { 
+          render :json => ActiveSupport::JSON.encode( { "student_term" => @student_term, "term" => @term} ) and return
+        }
+      end
+    else
+      redirect_to :back
     end
-    redirect_to :back
   end
   
   def delete_term

@@ -6,14 +6,12 @@
   
   $(document).bind('reveal.facebox', function(){
     $(".content #add_term_facebox_name").val(term_name);
-    $(".content #add_term_facebox_id").val(term_id);
     $(".content #add_term_facebox_type").val(term_type);
     $(".content #add_term_facebox_title").html("Add new " + term_type);
     
     $(".content #add_term_facebox_name").change( function(){ //new term
       if(!changedFromSelection){
         $(".content #add_term_facebox_detail").show();
-        $(".content #add_term_facebox_id").val("");
       }
     });
     
@@ -26,31 +24,58 @@
     $( ".content #add_term_facebox_name" ).autocomplete({
       source: "/autocomplete_searches/term_names/" + term_type,
       select: function(event, ui) { 
-        $(".content #add_term_facebox_id").val(ui.item.id);
         $(".content #add_term_facebox_detail").hide();
         changedFromSelection = true;
       }
     });
+    
+    // $( ".content #add_term_facebox_form").submit(function(){
+    //   var name = $(".content #add_term_facebox_name").val();
+    //   var type = $(".content #add_term_facebox_type").val();
+    //   var details = $(".content #add_term_facebox_details").val();
+    //  var description = $(".content #add_term_facebox_description").val();
+    //   
+    //   var dataString = "term[name]=" + name
+    //   dataString += "&term[type]=" + type
+    //   if(details){
+    //     dataString += "&term[details]=" + details;
+    //   }
+    //   if(description){
+    //     dataString += "&term[description]=" + description;
+    //   }  
+    //   
+    //   $.ajax({
+    //     type: "GET",
+    //     url: "/s/add_term.js",
+    //     data: dataString,
+    //     success: function(msg) {
+    //       respondTo(msg);
+    //     }
+    //   });
+    //   return false;
+    // });
   });
+  
+  // function respondTo(msg){
+  // // msg = "student_term":{"student_term":{"created_at":"2011-01-24T19:33:26Z","details":null,"id":84,"score":0,"student_id":33,"term_id":614,"term_type":"Interest","updated_at":"2011-01-24T19:33:26Z"}},"term":{"interest":{"added_by_user_id":null,"category_id":null,"course_abbrev":null,"course_difficulty_count_cache":0,"course_difficulty_sum_cache":0,"course_usefulness_count_cache":0,"course_usefulness_sum_cache":0,"created_at":"2011-01-24T16:06:39Z","department_id":null,"description":null,"id":614,"location":null,"name":"Stamp Collecting","school_id":null,"updated_at":"2011-01-24T16:06:39Z","url":null}}}
+  // }
 
 #add_term{:style => "display:none;"}
   %h2#add_term_facebox_title Add new term
-  =form_tag(add_term_s_path, :method => "post") do
+  =form_tag(add_term_s_path, :method => "post", :id => "add_term_facebox_form") do
     Name: 
     = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 40, :id => "add_term_facebox_name"
     %br/
-    = hidden_field_tag "term[id]", nil, :id => "add_term_facebox_id"
-    Type:
-    = text_field_tag "term[type]", term_type, {:readonly => true, :id => "add_term_facebox_type"}
+    = hidden_field_tag "term[type]", nil, {:readonly => true, :id => "add_term_facebox_type"}
     %div.student_term#student_term
       %em
         %span#term_description_label Describe your experience:
       %br
-      = text_area_tag "details", nil, :cols => 50, :rows => 4
+      = text_area_tag "details", nil, :cols => 50, :rows => 4, :id => "add_term_facebox_details"
     %div.term#add_term_facebox_detail{:style => "display:none" }
       %em
         %span#term_description_label Since this is a new term, please give a brief description:
       %br
-      = text_area_tag "term[description]", nil, :cols => 50, :rows => 4
-    = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
+      = text_area_tag "term[description]", nil, :cols => 50, :rows => 4, :id => "add_term_facebox_description"
+    = submit_tag "add", :name => nil, :class => 'button', :id => "add_term_facebox_submit"
   

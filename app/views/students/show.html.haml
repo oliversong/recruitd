@@ -182,7 +182,7 @@
   #experiences
     .contenttop
       %span.headertext Experiences
-    .contentmiddle
+    .contentmiddle#experiences_list
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span
@@ -204,7 +204,7 @@
   #activities
     .contenttop
       %span.headertext Activities
-    .contentmiddle
+    .contentmiddle#activities_list
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
@@ -223,7 +223,7 @@
   #skills
     .contenttop
       %span.headertext Skills
-    .contentmiddle
+    .contentmiddle#skills_list
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
@@ -241,7 +241,7 @@
   #courses
     .contenttop
       %span.headertext Courses
-    .contentmiddle
+    .contentmiddle#courses_list
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
@@ -254,7 +254,7 @@
   #awards
     .contenttop
       %span.headertext Awards
-    .contentmiddle
+    .contentmiddle#awards_list
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
@@ -266,7 +266,6 @@
               = link_to "[X]", delete_term_s_path(:id => award.id)
       -if @owner
         %span 
-          %a{:href=>"#add_term", :rel=>"facebox"} add term
         .hover.tTip{:title => "Hello World"}
           %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
@@ -324,7 +323,7 @@
       Career Interests:
     -if @owner
       = link_to "(edit)", "#", {:id => "careers_edit", :onClick => "return false;"}
-    %ul
+    %ul#career_list
       - for career in @student.careers
         %li
           = career_block(career)
@@ -337,4 +336,4 @@
 
 #maincontent
   / Facebox stuff
-  =render :partial => "add_term_facebox", :locals => {:term_type => "Award" }
+  =render :partial => "add_term_facebox"
