@@ -1,93 +1,10 @@
-:javascript
-  $(document).ready(function(){
-    $('.tTip').betterTooltip({speed: 150, delay: 300});
-  });
-  var term_id;
-  var term_name;
-  var term_type;
-
--if @owner
-  :javascript  
-    $(document).ready(function(){
-      $(".rest_in_place").rest_in_place();
-    });
-  
-    $(document).ready(function(){
-      function addClickToToggle(master_button, sub_button_class, off_text, on_text){
-        $(master_button).click(function(){
-          if($(master_button).html() == off_text){
-            $(sub_button_class).show();
-            $(master_button).html(on_text);
-          }
-          else{
-            $(sub_button_class).hide();
-            $(master_button).html(off_text);
-          }
-        });
-      }
-    
-      addClickToToggle("#careers_edit", ".delete_career_button", "(edit)", "(stop)");
-      addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
-      addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
-      addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
-      addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
-      addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
-      
-    });
-  
-    $(function() {
-    });
-
--if current_user.is_company_entity?
-  :javascript
-    var student_id = #{@student.id};
-    $(document).ready(function(){
-    
-      // add existing highlightings
-      var chs = #{@company_highlightings.to_json}
-      var i = 0;
-      for(i=0;i<chs.length;i++){
-        if(chs[i][1] == 0){
-          $("#" + chs[i][0]).addClass("highlight");
-        }
-        else{
-          $("#" + chs[i][0] + chs[i][1]).addClass("highlight");
-        }
-      }
-      
-      var the_url;
-      
-      $(".hover, .value").click(function(){
-        // highlighting
-        if($(this).hasClass('highlight')){
-          $(this).removeClass("highlight");
-          the_url = "/c/unhighlight"
-        }
-        else{
-          $(this).addClass("highlight");
-          the_url = "/c/highlight"
-        }
-        var reference_type = $(this).attr('reference_type');
-        var reference_id = $(this).attr('reference_id');
-        //alert(reference_type + " " + reference_id);
-        
-        $.ajax({
-           type: "POST",
-           url: the_url,
-           data: "student_id=" + student_id + "&reference_type=" + reference_type + "&reference_id=" + reference_id
-         });
-      });
-      
-    })
-    
-
 #leftcolumn
   #profpic
     =link_to edit_registration_path(current_user) do
       %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
-      %span.headertext Basic Info
+      %span.headertext3 Basic Info
     .sidemiddle
       %ul#infofields
         %li.field Hometown
@@ -133,11 +50,11 @@
     .sidebottom
   #interests
     .sidetop
-      %span.headertext Misc
+      %span.headertext3 Misc
     .sidemiddle
       #intcontent
         %span.subheader Interests
-        %ul{:style => "position:relative;left:0px; color:#666;"}
+        %ul.specialerul
           -if @owner
             %li.hover.tTip{:title => "Hello World"}
               = link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
@@ -150,11 +67,10 @@
           -if @owner
             %li.hover.tTip{:title => "Hello World"}
               %li= render :partial => "add_term", :locals => {:term_type => "Interest" }
-              
       -if !@student.fun_facts.blank?  
         %span.subheader Fun Facts
         #funfacts
-          %ul{:style => "position:relative;left:-40px;color:#666;"}
+          %ul.specialerul
             %li.hover.tTip{:title => "Hello World", :reference_type => "FunFacts", :id => "FunFacts"}
               = h @student.fun_facts
               -if @owner
@@ -163,26 +79,21 @@
                   = form_for @student do |f|
                     = f.text_area :fun_facts
                     = submit_tag "change"
-                        
-          
     .sidebottom
 #middlecolumn
-  #fullname 
-    = h @student.name
-    -if current_user.is_company_entity?
-      =render :partial => "shared/star", :locals => {:entity => @student, :starred => @company_file.starred}
-      =render :partial => "shared/follow", :locals => {:user_id => @student.id, :followed => @followed}
-    -#(#{@student.baseline_score})
-  
-    %h3
-      %span.rest_in_place{"data-attribute" => "subtitle", "data-object" => "student", "data-url" => "/students/3"}<
-        = @student.subtitle
-            
-          
+  #fullname= h @student.name
+  -if current_user.is_company_entity?
+    =render :partial => "shared/star", :locals => {:entity => @student, :starred => @company_file.starred}
+    =render :partial => "shared/follow", :locals => {:user_id => @student.id, :followed => @followed}
+  -#(#{@student.baseline_score})
+
+  %h3
+    %span.rest_in_place{"data-attribute" => "subtitle", "data-object" => "student", "data-url" => "/students/3"}<
+      = @student.subtitle
   #experiences
     .contenttop
-      %span.headertext Experiences
-    .contentmiddle#experiences_list
+      %span.headertext3 Experiences
+    .contentmiddle
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span
@@ -199,12 +110,12 @@
         .hover.tTip{:title => "Hello World"}
           %span
             %li=link_to "Add an experience", new_experience_path
-
     .contentbottom
+    
   #activities
     .contenttop
-      %span.headertext Activities
-    .contentmiddle#activities_list
+      %span.headertext3 Activities
+    .contentmiddle
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
@@ -222,8 +133,8 @@
     
   #skills
     .contenttop
-      %span.headertext Skills
-    .contentmiddle#skills_list
+      %span.headertext3 Skills
+    .contentmiddle
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
@@ -240,8 +151,8 @@
     
   #courses
     .contenttop
-      %span.headertext Courses
-    .contentmiddle#courses_list
+      %span.headertext3 Courses
+    .contentmiddle
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
@@ -249,12 +160,13 @@
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= render :partial => "add_term", :locals => {:term_type => "Course" }
-
     .contentbottom
+    
+    
   #awards
     .contenttop
-      %span.headertext Awards
-    .contentmiddle#awards_list
+      %span.headertext3 Awards
+    .contentmiddle
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
@@ -270,70 +182,18 @@
           %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
     
-  #footer5
-    %span#copyright Copyright © 2010 Recruitd Inc. All rights reserved.
-    #footerlinks
-      %a{:href => "#"} Home
-      |
-      %a{:href => "#"} Public
-      |
-      %a{:href => "#"} Lists
-      |
-      %a{:href => "#"} Search
-      |
-      %a{:href => "#"} Terms of Service
-      |
-      %a{:href => "#"} Privacy Policy
+    
 #rightcolumn
   #feed
     .feedtop
-      %span.headertext Feed Updates
+      %span.headertext3 Feed Updates
     .feedmiddle
-      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
+      %ul.strangeul
         - for update in @updates
           %li.hover.tTip{:title => "Hello World", :reference_type => "Update", :reference_id => update.id, :id => "Update#{update.id}"}
             = print_update_block(update, :show_name => false)
     .feedbottom
-=render :partial => "shared/update"
-  
-
-
--#
-  -if current_user.is_company_entity?
-    = render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
-  %h2
-
-
-  %p
-    = h address_block(@student)
-    -if @owner
-      = link_to "(edit)", "#", {:onClick => "$('\#address').toggle(); return false;"}
-      .hidden_detail{:id => "address", :style => "display:none" }
-        = form_for @student do |f|
-          = f.text_field :address_line1, :size => 30
-          %br/
-          = f.text_field :address_line2, :size => 30
-          %br/
-          = f.text_field :address_city, :size => 15
-          = f.text_field :address_state, :size => 5
-          = f.text_field :address_zip, :size => 5
-          = submit_tag "change"
-  %p
-    %b 
-      Career Interests:
-    -if @owner
-      = link_to "(edit)", "#", {:id => "careers_edit", :onClick => "return false;"}
-    %ul#career_list
-      - for career in @student.careers
-        %li
-          = career_block(career)
-          -if @owner
-            %span.delete_career_button{:style => "display:none"}
-              = link_to "[X]", delete_career_s_path(:id => career.id)
-      
-      -if @owner
-        = render "add_career"
-
+    
 #maincontent
   / Facebox stuff
   =render :partial => "add_term_facebox"

@@ -10,7 +10,7 @@ Recruitd::Application.routes.draw do
     # get 'home'
     # get 'browse'
     # get 'settings'
-    get 'add_term'
+    post 'add_term'
     get 'delete_term'
     post 'update_file'
   end

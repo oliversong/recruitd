@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" /> 
+	<meta name="author" content="Keone Hon, Oliver Song, and Kevin Li" /> 
+	<meta name="keywords" content="recruitd, recruited, jobs, college, student, tag, profile, search, employment" /> 
+	<meta name="description" content="Monster-Linkedin mashup that doesn't suck." /> 
+	<meta name="robots" content="all" /> 
+	<title>Recruitd: Job Hunting That Doesn't Suck</title> 
+ 
+ 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />    
+	<link type='text/css' href='css/contact.css' rel='stylesheet' media='screen' />
+	<link type="text/css" href="css/cupertino/jquery-ui-1.8.8.custom.css" rel="stylesheet" />	
+
+	<script type="text/javascript"></script> 
+	<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
+	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/jquery-bp.js" ></script>
+	<script type="text/javascript" src="js/navigation.js" ></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.8.custom.min.js"></script>
+
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />	
+    
+</head>
+
+<body style="padding:0px;margin:0px;">
+
+<div id="everything" style="position:relative;width:100%;left:0px;top:0px;padding:0px;margin:0px;">
+    <div style='display:none'>
+                <img src='images/contact/loading.gif' alt='' />
+    </div>
+
+    <div id="feedback">
+        <div id="contact-form">
+            <a id="feedbackicon"  href="#" title="Leave us a comment!" class="contact">Constructive Criticism!</a>
+        </div>
+        
+        <a id="blogicon"   href="/blog.html" title="Check out the Blog!" class="contact">Check out the Blog!</a>
+    </div>
+
+    <div id="navigation" class="container">
+        <div id="home" class="pri-nav active"><div><a href="#">Home</a></div></div>
+        <div id="about" class="pri-nav"><div><a href="#">Public</a></div></div>
+        <div id="services" class="pri-nav"><div><a href="#">Lists</a></div></div>
+        <div id="solutions" class="pri-nav"><div><a href="#">Search</a></div></div>
+        <div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
+    </div>
+
+    <div id="header">
+    
+        <div id="searchlogout">
+            <div id="searchbox">
+                <form>
+                <input class="differentsearch" type="search" placeholder="Search">
+                <input type = "submit" value="Find" style="display:none;">
+                </form>
+            </div>
+            
+            <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
+        </div>
+    
+        <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
+        
+        <a href="http://www.recruitd.com"><div id="logo" style="top:20px;"></div></a>
+    </div>
+
+<!----------END OF THE TOP -----------------
+---------------------------
+---------------------------
+--------------------------->
+
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+
+<!------------------------START OF BOTTOM
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+-----------------------------------------
+----------------------------------------->
+
+    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
+        <form id="feedupdate">
+            <input style="width:730px;" type="search" placeholder="Update your feed!">
+        </form>
+        <div id="update">Update</div>
+    </div>
+
+	<div id="footerbuilder">
+    <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
+    <div id="footerlinks">
+        <a href="#">Home</a> |
+        <a href="#">Public</a> |
+        <a href="#">Lists</a> |
+        <a href="#">Search</a> |
+        <a href="#">Terms of Service</a> |
+        <a href="#">Privacy Policy</a>
+    </div>
+</div>
+
+</div>
+
+<script>
+    var i=2
+	$('.moving').bind('keydown', function(e) {
+        var $self = $(this),
+            dimen = $.extend($self.position(), { 
+            width:  $self.outerWidth(),
+            height: $self.outerHeight()
+        });
+
+        if( e.which === 13 && $.trim(this.value).length ) {
+            $('<div>', {
+                 class: 'someclass',
+				 id: 'tagcontrol'+i,
+				 text: this.value,
+                 css: {
+                     position:   'relative',
+                     width:      '400px',
+                     height:     dimen.height,
+                     left:       dimen.left,
+                     top:        '-30px'
+                 }
+            }).appendTo($self.parent());
+            $('<input type="range" min="0" max="10" step="1" value="5" style="position:relative;top:0px;left:20px;" onchange="showValue(this.value,'+i+')"><text style="position:relative;top:0px;left:25px" id="range'+i+'">5</text><div id="tag'+i+'" class="tag" style="position:relative;top:-20px;left:200px;width:70px;height:14px;" onclick="deletetag('+i+')">Delete</div>').appendTo($('div.someclass:last')) ; i+=1
+            $self.val('').css('position', 'relative').animate({top: '+=30'}, 200);
+        }
+    });
+</script>
+
+<script>
+
+	function deletetag(i){
+								 $('div').remove('#tagcontrol'+i);
+								 $('.moving').css('position','relative').animate({top:'-=30'},200);
+	}
+                                </script>
+<script>
+
+	function deletetag2(i){
+								 $('div').remove('#tagcontrol'+i);
+	}
+</script>
+
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/contact.js'></script>
+
+
+</body>
+</html>

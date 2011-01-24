@@ -1,12 +1,9 @@
--if !(defined? @current_tab)
-  - @current_tab = User::TABS["HOME"]
-  
 #leftcolumn
   #profpic
-    %img{:src => current_user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+    %img.profilepicture{:src => "/images/profpic.jpg"}/
   #basicinfo
     .sidetop
-      %span.headertext Basic Info
+      %span.headertext3 Basic Info
     .sidemiddle
       %ul#infofields
         %li.field.tTip{:title => "Hello World"} Sex
@@ -14,27 +11,27 @@
         %li.field Education
         %li.value.tTip{:title => "Hello World"} Massachusetts Institute of Technology
         %li.field Location
-        %li.value.tTip{:title => "Hello World"}=h current_user.location
+        %li.value.tTip{:title => "Hello World"} Cambridge
         %li.field Languages
         %li.value.tTip{:title => "Hello World"} English, German
         %li.field Birthday
         %li.value.tTip{:title => "Hello World"} May 24, 1991
         %li.field Phone
-        %li.value.tTip{:title => "Hello World"}=h number_to_phone(current_user.phone, :area_code => true)
+        %li.value.tTip{:title => "Hello World"} 123-123-1234
         %li.field Email
-        %li.value.tTip{:title => "Hello World"}=h current_user.email
+        %li.value.tTip{:title => "Hello World"} daneh@example.com
         %li.field Website
-        %li.value.tTip{:title => "Hello World"}=h current_user.website
+        %li.value.tTip{:title => "Hello World"} http://www.daneh.com
     .sidebottom
 #middlecolumn
-  #fullname= current_user.name
-  %a{:href => "/students/build"}
+  #fullname Dane Hammerhead
+  %a{:href => "#"}
     #resbuild.awesomebtn
   %a{:href => "#"}
     #search.awesomebtn
   #experiences
     .contenttop
-      %span.headertext Challenge Questions
+      %span.headertext3 Challenge Questions
     .contentmiddle
       .hover.tTip{:title => "Hello World"}
         %span 2010 | Software Engineer | Google
@@ -51,7 +48,7 @@
     .contentbottom
   #activities
     .contenttop
-      %span.headertext Friends
+      %span.headertext3 Friends
     .contentmiddle
       .hover.tTip{:title => "Hello World"}
         %span 2010 | Software Engineer | Google
@@ -65,36 +62,109 @@
         %span 2006 | Somethingsomething| Powpowpowpow
       .hover.tTip{:title => "Hello World"}
         %span 2005 | Awesomeness | AAAAAAAAWWsome
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
+      .hover.tTip{:title => "Hello World"}
+        %span 2010 | Software Engineer | Google
+      .hover.tTip{:title => "Hello World"}
+        %span 2009 | Web Designer | Facebook
+      .hover.tTip{:title => "Hello World"}
+        %span 2008 | Garbageman | Cambridge Trash Co.
+      .hover.tTip{:title => "Hello World"}
+        %span 2007 | Stuff | Asdfaasdfasdfasdf
+      .hover.tTip{:title => "Hello World"}
+        %span 2006 | Somethingsomething| Powpowpowpow
+      .hover.tTip{:title => "Hello World"}
+        %span 2005 | Awesomeness | AAAAAAAAWWsome
     .contentbottom
-
-  #footer5
-    %span#copyright Copyright 2011 Recruitd Inc. All rights reserved.
-    #footerlinks
-      %a{:href => "#"} Home
-      |
-      %a{:href => "#"} Public
-      |
-      %a{:href => "#"} Lists
-      |
-      %a{:href => "#"} Search
-      |
-      %a{:href => "#"} Terms of Service
-      |
-      %a{:href => "#"} Privacy Policy
 #rightcolumn
   #feed
     .feedtop
-      %span.headertext Quick Links
+      %span.headertext3 Feed Updates
     .feedmiddle
-      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-        =render :partial => "shared/navigation"
+      %ul.strangeul
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
+        %li.hover.tTip{:title => "Hello World"} Update!
     .feedbottom
-  #feed
-    .feedtop
-      %span.headertext Feed Updates
-    .feedmiddle
-      %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
-        =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
-    .feedbottom
-
-=render :partial => "shared/update"

@@ -15,8 +15,6 @@
 	<script type="text/javascript"></script> 
 	<script src="js/jquery-1.4.4.min.js" type="text/javascript"></script>
 	<script src="js/jquery.easing.min.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/jquery-bp.js" ></script>
-	<script type="text/javascript" src="js/navigation.js" ></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.8.custom.min.js"></script>
 
 
@@ -24,9 +22,9 @@
     
 </head>
 
-<body style="padding:0px;margin:0px;">
+<body>
 
-<div id="everything" style="position:relative;width:100%;left:0px;top:0px;padding:0px;margin:0px;">
+<div id="everything">
     <div style='display:none'>
                 <img src='images/contact/loading.gif' alt='' />
     </div>
@@ -39,31 +37,40 @@
         <a id="blogicon"   href="/blog.html" title="Check out the Blog!" class="contact">Check out the Blog!</a>
     </div>
 
-    <div id="navigation" class="container">
-        <div id="home" class="pri-nav active"><div><a href="#">Home</a></div></div>
-        <div id="about" class="pri-nav"><div><a href="#">Public</a></div></div>
-        <div id="services" class="pri-nav"><div><a href="#">Lists</a></div></div>
-        <div id="solutions" class="pri-nav"><div><a href="#">Search</a></div></div>
-        <div id="contact" class="pri-nav"><div><a href="#">Settings</a></div></div>
-    </div>
 
     <div id="header">
-    
-        <div id="searchlogout">
-            <div id="searchbox">
+        <a href="http://www.recruitd.com"><div class="reclogo"></div></a>
+		  <div id="searchbox">
                 <form>
                 <input class="differentsearch" type="search" placeholder="Search">
                 <input type = "submit" value="Find" style="display:none;">
                 </form>
             </div>
-            
-            <a style="position:relative;top:-16px;left:260px;" href="logout.php"><img src="images/logout.png" /></a>
-        </div>
     
-        <div id="bg2" style="height:80px; background-position: 50% 0%;"></div>
+	    <div id="navigation">
+              <div class="navigation" id="home"><div><a class="nav" href="#">home</a></div></div>
+              <div class="navigation" id="about"><div><a class="nav" href="#">public</a></div></div>
+              <div class="navigation" id="services"><div><a class="nav" href="#">lists</a></div></div>
+              <div class="navigation" id="solutions"><div><a class="nav" href="#">search</a></div></div>
+              <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
+ href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
+		</div>
+    
+          
         
-        <a href="http://www.recruitd.com"><div id="logo" style="top:20px;"></div></a>
     </div>
+    
+    
+    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
+        <form id="feedupdate">
+            <input id="updatefeed" type="search" placeholder="Update your feed!">
+        </form>
+        <div id="update">Update</div>
+
+
+	</div>   
+
+
 
 <!----------END OF THE TOP -----------------
 ---------------------------
@@ -82,12 +89,13 @@
         $("#picker1").birthdaypicker();
 							   });
     </script>
+<div id="alert"></div> 
 
-	<div id="import" class="hoveropacity">Step 0: Import!<a style="position:relative;top:8px;left:20px;" href="linkedinimport"><img src="images/linkedinimport.png" /></a></div>
+	<div id="import" class="hoveropacity">Step 0: Import!<a class="linkedinimport" href="linkedinimport"><img src="images/linkedinimport.png" /></a></div>
 
-    <div class="hoveropacity" id="basic"><text style="font-size:25px;">Step 1: Basic Info</text>
+    <div class="hoveropacity" id="basic"><text class="headertext">Step 1: Basic Info</text>
         <div id="bottomform">
-                <ul id="something2" style="font-size:20px;left:411px;">
+                <ul class="something2">
                     <li class="lililili">Sex:</li>
                     <li class="lililili">Birthday:</li>
                     <li class="lililili">Location:</li>
@@ -99,17 +107,17 @@
                     <li class="lililili">Website:</li>
                 </ul>
             <form id="settings">
-                <div style="padding-bottom:10px;">
+                <div class="builderpadding">
                     <select name="gender">
                         <option value="placeholder">Gender:</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select><br/>
                 </div>
-                <div style="padding-bottom:10px;"id="picker1"></div>
+                <div class="builderpadding" id="picker1"></div>
                 <input class="basicinput" type="text" placeholder="Your Current Location"><br />
                 <input type="text" class="basicinput schools" placeholder="Massachusetts Institute of Awesome"><br />
-                <input class="basicinput" style="width:80px;"  type="text" placeholder="3.8">on a <input class="basicinput" style="width:80px;" type="text" placeholder="4.0">scale<br/>
+                <input class="basicinput otherbasicinput"  type="text" placeholder="3.8">on a <input class="basicinput otherbasicinput" type="text" placeholder="4.0">scale<br/>
                 <input type="text" class="basicinput languages" placeholder="Languages you speak"><br/>
                 <input class="basicinput" type="text" placeholder="000-000-0000"><br/>
                 <input class="basicinput" type="text" placeholder="Email"><br/>
@@ -127,27 +135,24 @@
                 document.getElementById("range"+number).innerHTML=newValue;
             }
             </script>
-        <div style="font-size: 25px;left: 0px;width:500px;position: relative;text-align: left;top: 3px;">Step 2: Tag yourself</div>
-            <div id="tags" style="left: 120px;position: relative;top: 25px;">
-                <div id="tagcontrol0" style="width:270px;">
-                    Tag #1
-                    <input type="range" min="0" max="10" step="1" value="5" onChange="showValue(this.value,1)">
-                    <span id="range1">5</span> <div class='tag' style="width:70px;position:absolute;left:200px;top:4px;"onClick="deletetag2(0)">Delete</div>
-                </div>
-                    <input class="differentsearch moving" type="search" placeholder="Tag yourself!">
+        <div class="headertext2">Step 2: Tag yourself</div>
+            <div id="tags" class="othertag">
+    		    <input class="differentsearch moving" type="search" placeholder="Tag this job" style="font-family:helvetica;left:20px;top:-10px;position:relative;">
+
+		        <div class="wtf buildertable"><table class="wtf2"><tr><td></td></tr></table></div>
             </div>
     </div>
 
     <div class="hoveropacity"  id="optional">
-    	<span style="font-size:25px;">Step 3: Other info</span><br/><span style="font-size:12px;letter-spacing:1px;">This part is OPTIONAL. We understand you have better things to do than fill out forms.</span>
+    	<span class="headertext">Step 3: Other info</span><br/><span class="sidenote">This part is OPTIONAL. We understand you have better things to do than fill out forms.</span>
     
         <div id="builderexp">
             <span class="highlight" id="highlight1">  Experience </span>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter expinputter" id="inputter1">
+            <div class="inputter expinputter borderthing" id="inputter1">
                 Who did you work for?
                 <input type="text"><br/>
                 What type of experience?
-                <form action="">
+                <form>
                     <select name="jobtypes">
                         <option value="job">Job</option>
                         <option value="internship">Internship</option>
@@ -161,13 +166,13 @@
                 End day:
                 <input type="text" class="datepicker"><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br />
+                <input type="text" class="specialtext"><br />
                 <button class="another" onClick="another()">Another one!</button><button class="nevermind" onClick="nevermindalt()">Nevermind</button>
             </div>
         </div>
 		<div id="builderact">
         	<span class="highlight" id="highlight2">Activities:</span><br/>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter actinputter" id="inputter2">
+            <div class="inputter actinputter borderthing" id="inputter2">
                 What's it called?
                 <input type="text"><br/>
                 When to when?<br />
@@ -176,14 +181,14 @@
                 End day:
                 <input type="text" class="datepicker"><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br />
+                <input type="text" class="specialtext"><br />
                                 <button class="actanother" onClick="actanother()">Another one!</button><button class="actnevermind" onClick="actnevermindalt()">Nevermind</button>
 
             </div>
 	    </div>
 		<div id="builderski">
     		<span class="highlight" id="highlight3">Skills</span><br/>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter skiinputter" id="inputter3">
+            <div class="inputter skiinputter borderthing" id="inputter3">
             	What's it called?
                 <input type="text"><br />
                 Skill level?
@@ -200,14 +205,14 @@
                     </select>
                 </form><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br/>
+                <input type="text" class="specialtext"><br/>
                                 <button class="skianother" onClick="skianother()">Another one!</button><button class="skinevermind" onClick="skinevermindalt()">Nevermind</button>
 
             </div>
         </div>
 		<div id="buildercou">
            	<span class="highlight" id="highlight4">Courses:</span><br/>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter couinputter" id="inputter4">
+            <div class="inputter couinputter borderthing" id="inputter4">
             	What's it called?
                 <input type="text"><br />
                 Start day:
@@ -215,50 +220,50 @@
                 End day:
                 <input type="text" class="datepicker"><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br/>
+                <input type="text" class="specialtext"><br/>
                                 <button class="couanother" onClick="couanother()">Another one!</button><button class="cournevermind" onClick="counevermindalt()">Nevermind</button>
 
             </div>
         </div>
 		<div id="builderawa">
 		    <span class="highlight" id="highlight5"> Awards:</span><br/>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter awainputter" id="inputter5">
+            <div class="inputter borderthing awainputter" id="inputter5">
             	What's it called?
                 <input type="text"><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br/>
+                <input type="text" class="specialtext"><br/>
                                 <button class="awaanother" onClick="awaanother()">Another one!</button><button class="awanevermind" onClick="awanevermindalt()">Nevermind</button>
 
             </div>
         </div>
         <div id="builderint">
 		    <span class="highlight" id="highlight6"> Interests:</span><br/>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter intinputter" id="inputter6">
+            <div class="inputter borderthing intinputter" id="inputter6">
             	What's it called?
                 <input type="text"><br />
                 Description:
-                <input type="text" style="width:200px;height:100px;"><br/>
+                <input type="text" class="specialtext"><br/>
                                 <button class="intanother" onClick="intanother()">Another one!</button><button class="intnevermind" onClick="intnevermindalt()">Nevermind</button>
 
             </div>
         </div>
         <div id="builderfun">
 		    <span class="highlight" id="highlight7">Fun facts:</span>
-            <div style="border:dotted #CCC 1px;padding-left:50px;" class="inputter funinputter" id="inputter7">
+            <div class="inputter borderthing funinputter" id="inputter7">
             	Could be anything!
-                <input type="text" style="width:200px;height:100px;"><br/>
+                <input type="text" class="specialtext"><br/>
                                 <button class="funanother" onClick="funanother()">Another one!</button><button class="funnevermind" onClick="funnevermindalt()">Nevermind</button>
 
             </div>
         </div>
     </div>
-	<button style="left:50%;margin-left:-200px;position:relative;top:50px;height:50px;width:100px;">Submit!</button>
+	<button class="button">Submit!</button>
 
 
 <script>
 var q=1
 function another(){
-	$('<div class="inputter expinputter" id="expinputter'+q+'">Who did you work for?<input type="text"><br/>What type of experience?<form><select name="jobtypes"><option value="job">Job</option><option value="internship">Internship</option><option value="externship">Externship</option><option value="service">Service</option></select></form>When to when?<br />Start day:<input type="text" class="datepicker"><br/>End day:<input type="text" class="datepicker"><br />Description:<input type="text" style="width:200px;height:100px;"><br /><button class="another" onclick="another()">Another one!</button><button class="nevermind" id="nevermind'+q+'" onclick="nevermind('+q+')">Nevermind</button></div>').appendTo($('.expinputter:last'));q+=1;
+	$('<div class="inputter expinputter" id="expinputter'+q+'">Who did you work for?<input type="text"><br/>What type of experience?<form><select name="jobtypes"><option value="job">Job</option><option value="internship">Internship</option><option value="externship">Externship</option><option value="service">Service</option></select></form>When to when?<br />Start day:<input type="text" class="datepicker"><br/>End day:<input type="text" class="datepicker"><br />Description:<input type="text" class="specialtext"><br /><button class="another" onclick="another()">Another one!</button><button class="nevermind" id="nevermind'+q+'" onclick="nevermind('+q+')">Nevermind</button></div>').appendTo($('.expinputter:last'));q+=1;
 							 }
 
 function nevermind(q){
@@ -271,7 +276,7 @@ function nevermindalt(){
 
 var w=1
 function actanother(){
-	$("<div class='inputter actinputter' id='actinputter"+w+"'>What's it called?<input type='text'><br/>When to when?<br />Start day:<input type='text' class='datepicker'><br/>End day:<input type='text' class='datepicker'><br />Description:<input type='text' style='width:200px;height:100px;'><br /><button class='another' onclick='actanother()'>Another one!</button><button class='nevermind' id='nevermind"+w+"' onclick='actnevermind("+w+")'>Nevermind</button></div>").appendTo($('.actinputter:last'));w+=1;
+	$("<div class='inputter actinputter' id='actinputter"+w+"'>What's it called?<input type='text'><br/>When to when?<br />Start day:<input type='text' class='datepicker'><br/>End day:<input type='text' class='datepicker'><br />Description:<input type='text' class='specialtext'><br /><button class='another' onclick='actanother()'>Another one!</button><button class='nevermind' id='nevermind"+w+"' onclick='actnevermind("+w+")'>Nevermind</button></div>").appendTo($('.actinputter:last'));w+=1;
 							 }
 
 function actnevermind(w){
@@ -284,7 +289,7 @@ function actnevermindalt(){
 
 var r=1
 function skianother(){
-	$("<div class='inputter skiinputter' id='skiinputter"+r+"'>What's it called?<input type='text'><br />Skill level?<form action=''><select name='skilllevels'><option value='baboon'>Baboon</option><option value='baboonwrench'>Baboon with a wrench</option><option value='mediocre'>Mediocre</option><option value='notshabby'>Not too shabby</option><option value='skillful'>Skillful</option><option value='prettygood'>Pretty damn good</option><option value='ninja'>Ninja</option><option value='prodigal'>Prodigal</option></select></form><br />Description:<input type='text' style='width:200px;height:100px;'><br/><button class='another' onclick='skianother()'>Another one!</button><button class='nevermind' id='nevermind"+r+"' onclick='skinevermind("+r+")'>Nevermind</button></div>").appendTo($('.skiinputter:last'));r+=1;
+	$("<div class='inputter skiinputter' id='skiinputter"+r+"'>What's it called?<input type='text'><br />Skill level?<form action=''><select name='skilllevels'><option value='baboon'>Baboon</option><option value='baboonwrench'>Baboon with a wrench</option><option value='mediocre'>Mediocre</option><option value='notshabby'>Not too shabby</option><option value='skillful'>Skillful</option><option value='prettygood'>Pretty damn good</option><option value='ninja'>Ninja</option><option value='prodigal'>Prodigal</option></select></form><br />Description:<input type='text' class='specialtext'><br/><button class='another' onclick='skianother()'>Another one!</button><button class='nevermind' id='nevermind"+r+"' onclick='skinevermind("+r+")'>Nevermind</button></div>").appendTo($('.skiinputter:last'));r+=1;
 							 }
 
 function skinevermind(r){
@@ -297,7 +302,7 @@ function skinevermindalt(){
 
 var t=1
 function couanother(){
-	$("<div class='inputter couinputter' id='couinputter"+t+"'>What's it called?<input type='text'><br />Start day:<input type='text' class='datepicker'><br/>End day:<input type='text' class='datepicker'><br />Description:<input type='text' style='width:200px;height:100px;'><br/><button class='another' onclick='couanother()'>Another one!</button><button class='nevermind' id='nevermind"+t+"'onclick='counevermind("+t+")'>Nevermind</button></div>").appendTo($('.couinputter:last'));t+=1;
+	$("<div class='inputter couinputter' id='couinputter"+t+"'>What's it called?<input type='text'><br />Start day:<input type='text' class='datepicker'><br/>End day:<input type='text' class='datepicker'><br />Description:<input type='text' class='specialtext'><br/><button class='another' onclick='couanother()'>Another one!</button><button class='nevermind' id='nevermind"+t+"'onclick='counevermind("+t+")'>Nevermind</button></div>").appendTo($('.couinputter:last'));t+=1;
 							 }
 
 function counevermind(t){
@@ -310,7 +315,7 @@ function counevermindalt(){
 
 var y=1
 function awaanother(){
-	$("<div class='inputter awainputter' id='awainputter"+y+"'>What's it called?<input type='text'><br />Description:<input type='text' style='width:200px;height:100px;'><br/><button class='another' onclick='awaanother()'>Another one!</button><button class='nevermind' id='nevermind"+y+"'onclick='awanevermind("+y+")'>Nevermind</button></div>").appendTo($('.awainputter:last'));y+=1;
+	$("<div class='inputter awainputter' id='awainputter"+y+"'>What's it called?<input type='text'><br />Description:<input type='text' class='specialtext'><br/><button class='another' onclick='awaanother()'>Another one!</button><button class='nevermind' id='nevermind"+y+"'onclick='awanevermind("+y+")'>Nevermind</button></div>").appendTo($('.awainputter:last'));y+=1;
 							 }
 
 function awanevermind(y){
@@ -323,7 +328,7 @@ function awanevermindalt(){
 
 var u=1
 function intanother(){
-	$("<div class='inputter intinputter' id='intinputter"+u+"'>What's it called?<input type='text'><br />Description:<input type='text' style='width:200px;height:100px;'><br/><button class='another' onclick='intanother()'>Another one!</button><button class='nevermind' id='nevermind"+u+"'onclick='intnevermind("+u+")'>Nevermind</button></div>").appendTo($('.intinputter:last'));u+=1;
+	$("<div class='inputter intinputter' id='intinputter"+u+"'>What's it called?<input type='text'><br />Description:<input type='text' class='specialtext'><br/><button class='another' onclick='intanother()'>Another one!</button><button class='nevermind' id='nevermind"+u+"'onclick='intnevermind("+u+")'>Nevermind</button></div>").appendTo($('.intinputter:last'));u+=1;
 							 }
 
 function intnevermind(u){
@@ -336,7 +341,7 @@ function intnevermindalt(){
 
 var z=1
 function funanother(){
-	$("<div class='inputter funinputter' id='funinputter"+z+"'>Could be anything!<input type='text' style='width:200px;height:100px;'><br/><button class='another' onclick='funanother()'>Another one!</button><button class='nevermind' id='nevermind"+z+"'onclick='funnevermind("+z+")'>Nevermind</button></div>").appendTo($('.funinputter:last'));z+=1;
+	$("<div class='inputter funinputter' id='funinputter"+z+"'>Could be anything!<input type='text' class='specialtext'><br/><button class='another' onclick='funanother()'>Another one!</button><button class='nevermind' id='nevermind"+z+"'onclick='funnevermind("+z+")'>Nevermind</button></div>").appendTo($('.funinputter:last'));z+=1;
 							 }
 
 function funnevermind(z){
@@ -348,23 +353,7 @@ function funnevermindalt(){
 }
 
 </script>
-
-<style>
-	.ui-autocomplete-category {
-		font-weight:bold;
-		text-decoration:underline;
-		padding: .2em .4em;
-		margin: .8em 0 .2em;
-		line-height: 1.5;
-		z-index:500;
-	}
-	.ui-autocomplete{
-		position:absolute;
-		font-size:14px;
-		z-index:500;
-	}
-	</style>
-	<script>
+<script>
 	$.widget( "custom.catcomplete", $.ui.autocomplete, {
 		_renderMenu: function( ul, items ) {
 			var self = this,
@@ -378,7 +367,7 @@ function funnevermindalt(){
 			});
 		}
 	});
-	</script>
+</script>
 	<script>
 	$(function() {
 		var data = [
@@ -454,12 +443,6 @@ $('#highlight'+k).click(function(){
 -----------------------------------------
 ----------------------------------------->
 
-    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
-        <form id="feedupdate">
-            <input style="width:730px;" type="search" placeholder="Update your feed!">
-        </form>
-        <div id="update">Update</div>
-    </div>
 
 	<div id="footerbuilder">
     <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
@@ -476,7 +459,8 @@ $('#highlight'+k).click(function(){
 </div>
 
 <script>
-    var i=2
+    var i=2;
+	var m=0;
 	$('.moving').bind('keydown', function(e) {
         var $self = $(this),
             dimen = $.extend($self.position(), { 
@@ -485,20 +469,8 @@ $('#highlight'+k).click(function(){
         });
 
         if( e.which === 13 && $.trim(this.value).length ) {
-            $('<div>', {
-                 class: 'someclass',
-				 id: 'tagcontrol'+i,
-				 text: this.value,
-                 css: {
-                     position:   'relative',
-                     width:      '400px',
-                     height:     dimen.height,
-                     left:       dimen.left,
-                     top:        '-30px'
-                 }
-            }).appendTo($self.parent());
-            $('<input type="range" min="0" max="10" step="1" value="5" style="position:relative;top:0px;left:20px;" onchange="showValue(this.value,'+i+')"><text style="position:relative;top:0px;left:25px" id="range'+i+'">5</text><div id="tag'+i+'" class="tag" style="position:relative;top:-20px;left:200px;width:70px;height:14px;" onclick="deletetag('+i+')">Delete</div>').appendTo($('div.someclass:last')) ; i+=1
-            $self.val('').css('position', 'relative').animate({top: '+=30'}, 200);
+            $('<tr id="tagcontrol'+i+'"><td class="someclass" style="text-align:right;" id="tagcontrol'+i+'">'+this.value+'</td><td> <input type="range" min="0" max="10" step="1" value="5" onchange="showValue(this.value,'+i+')"></td><td><text id="range'+i+'" style="padding-left:10px;">5</text></td><td><div style="width:100px;text-align:left;" id="tag'+i+'" class="tag" onclick="deletetag('+i+')"><span style="padding-left:10px;">Delete</span></div></td></tr>').appendTo($('.wtf2')) ; i+=1;
+            $self.val('').css('position', 'relative').animate({ top: ((m==0)?"+=0":"+=0") }, 200);m+=1;
         }
     });
 </script>
@@ -506,16 +478,9 @@ $('#highlight'+k).click(function(){
 <script>
 
 	function deletetag(i){
-								 $('div').remove('#tagcontrol'+i);
-								 $('.moving').css('position','relative').animate({top:'-=30'},200);
+								 $('tr').remove('#tagcontrol'+i);
 	}
                                 </script>
-<script>
-
-	function deletetag2(i){
-								 $('div').remove('#tagcontrol'+i);
-	}
-</script>
 
 <script type='text/javascript' src='js/jquery.simplemodal.js'></script>
 <script type='text/javascript' src='js/contact.js'></script>

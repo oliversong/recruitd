@@ -1,0 +1,47 @@
+#entryform{
+	position:relative;
+	top:50px;
+	left:50%;
+	margin-left:-200px;
+	width:500px;
+}
+#fields{
+list-style:none;
+font-family:Helvetica Ultralight;
+font-size:20px;
+padding:0px;
+margin:0px;
+width:200px;
+text-align:right;
+}
+#formchange{
+position:relative;
+left:230px;
+top:-150px;
+}
+.forminput{
+width:249px;
+height:10px;
+padding-bottom:20px;
+font-size:20px;
+}
+.forminput2{
+padding-bottom:20px;
+font-size:14px;
+}
+.asdfasdf{
+font-family:Helvetica Ultralight;
+font-size:20px;
+position:relative;
+top:-20px;
+}
+td{
+	vertical-align:top;
+	text-align:right;
+	font-family:helvetica ultralight;
+	font-size:20px;
+}
+.wtf{
+	position:relative;
+	top:-25px;
+}
