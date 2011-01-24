@@ -9,13 +9,14 @@
     }
   }
 
-= form_for student_file_company, :url => update_file_company_path(company), :html => {:method => :get, :style=> "width: 80%; background: #99CCFF; margin: 1em; padding: 1em;" } do |f|
+= form_for student_file, :url => update_file_s_path(), :html => {:method => :post, :style=> "width: 80%; background: #99CCFF; margin: 1em; padding: 1em;" } do |f|
   =link_to "show file", "#", {:onClick => "toggleFileBox()", :id => "toggle_text" }
   #student_file_box{:style => "display:none"}
     = f.error_messages
     %p
       = f.hidden_field :student_id
-      = f.hidden_field :company_id
+      = f.hidden_field :applyable_id
+      = f.hidden_field :applyable_type
       rating: 
       = f.select :rating, StudentFile::RATINGS, {:include_blank => true}
     %p

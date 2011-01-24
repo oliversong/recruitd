@@ -1,11 +1,18 @@
 Recruitd::Application.routes.draw do
-  resource :s, :only => [:manage, :home, :settings, :add_career, :add_course, :add_award, :add_interest] do
+  # constraints(:subdomain => "hiring") do
+  #   match "/" => "hiring#home", 
+  # end
+  
+  match '/' => 'hiring#home', :constraints => { :subdomain => "hiring" }  
+  
+  resource :s, :only => [:add_term, :delete_term, :update_file] do
     # get 'manage'
     # get 'home'
     # get 'browse'
     # get 'settings'
     post 'add_term'
     get 'delete_term'
+    post 'update_file'
   end
   
   resource :c, :only => [:manage, :home, :settings, :update_settings], :controller => "c" do
@@ -21,9 +28,9 @@ Recruitd::Application.routes.draw do
   match "s/browse/:page" => "s#browse"
   match "c/browse/:page" => "c#browse"
   
-  resource :utilities do
+  resource :utilities, :only => [:import_linkedin_profile] do
     get 'authentications'
-    get 'get_profile'
+    get 'import_linkedin_profile'
     post 'apply_label'
     post 'create_label'
   end
@@ -196,8 +203,9 @@ Recruitd::Application.routes.draw do
   # authenticate :user do
   #   root :to => "info#home"
   # end
+
   
-  root :to => "info#home"
+  root :to => "info#home", 
   #root :to => "devise/sessions#new"
 
   # See how all your routes lay out with "rake routes"

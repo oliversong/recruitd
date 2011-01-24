@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
 
     if current_user.is_student?
-      @student_file_company = StudentFile.find_or_initialize_by_student_id_and_company_id(current_user.entity_id, @company.id)
+      @student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, @company.id, "Company")
       @owner = false
     elsif current_user.is_company_entity?
       @owner = (current_user.company_id == @company.id)
@@ -95,7 +95,7 @@ class CompaniesController < ApplicationController
   end
   
   def rate
-    @student = current_user.entity
+    @student = current_user
     @company = Company.find(params[:id])
     student_file = StudentFile.find_or_initialize_by_student_id_and_company_id(@student.id, @company.id)
     student_file.update_attributes(params[:student_file_student_file_company])
@@ -106,7 +106,7 @@ class CompaniesController < ApplicationController
     if !current_user.is_student?
       redirect_to :new_user_session
     end
-    @student = current_user.entity
+    @student = current_user
     @company = Company.find(params[:id])
     
     student_feed = StudentFeed.find_by_student_id_and_company_id(@student.id, @company.id)
@@ -130,7 +130,7 @@ class CompaniesController < ApplicationController
     if !current_user.is_student?
       redirect_to :new_user_session
     end
-    @student = current_user.entity
+    @student = current_user
     @company = Company.find(params[:id])
     
     student_feed = StudentFeed.find_by_student_id_and_company_id(@student.id, @company.id)

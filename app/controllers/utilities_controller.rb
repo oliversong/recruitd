@@ -2,13 +2,7 @@ require 'delayed_job'
 
 class UtilitiesController < ApplicationController
 
-  
-  # authentications_controller.rb
-  def authentications
-    @authentications = current_user.user_tokens if current_user
-  end
-  
-  def get_profile
+  def import_linkedin_profile
       # Exchange your oauth_token and oauth_token_secret for an AccessToken instance.
 
       def prepare_access_token(oauth_token, oauth_token_secret)
@@ -33,7 +27,7 @@ class UtilitiesController < ApplicationController
       response = access_token.request(:get, "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,headline,location:(name),summary,honors,interests,positions,publications,patents,languages,skills,educations,phone-numbers,main-address)")
       
       if current_user.is_student?
-        current_user.entity.import_linkedin_xml(response.body)
+        current_user.import_linkedin_xml(response.body)
       end
       
       render :json => response.body

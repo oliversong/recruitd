@@ -92,11 +92,11 @@ class Student < User
     xmlp = (Hash.from_xml(xml))["person"]
     
     if xmlp["first_name"]
-      self.user.first_name = xmlp["first_name"]
+      self.first_name = xmlp["first_name"]
     end
     
     if xmlp["last_name"]
-      self.user.last_name = xmlp["last_name"]
+      self.last_name = xmlp["last_name"]
     end
     
     if xmlp["industry"]
