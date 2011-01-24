@@ -29,6 +29,9 @@ Recruitd::Application.configure do
     :password             => 'recruut123',
     :authentication       => :plain,
     :enable_starttls_auto => true  }
+    
+  config.action_mailer.default_url_options = { :host => 'recruitd.localhost:3000' }
+  
   
 
   # Print deprecation notices to the Rails logger

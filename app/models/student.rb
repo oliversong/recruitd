@@ -121,7 +121,7 @@ class Student < User
     if xmlp["interests"]
       xmlp["interests"].split(%r{[\n,]}).map{|elt| elt.strip}.each do |i|
         if !i.blank?
-          interest = Term::Interest.find_or_initialize_by_name(i)
+          interest = Interest.find_or_initialize_by_name(i)
           si = StudentTerm.new(:term => interest, :student => self)
           si.save
         end
@@ -184,12 +184,21 @@ class Student < User
       end
       
       educations.each do |education|
-        puts education["school_name"]
-        puts education["activities"]
-        puts education["degree"]
-        puts education["start_date"]["year"]
-        puts education["end_date"]["year"]
-        puts education["field_of_study"]
+        school = School.find_or_initialize_by_name(education["school_name"])
+        department = Department.find_or_initialize_by_name_and_school_id(education["field_of_study"], school.id)
+        
+        ss = SchoolStudent.new(:student => self, :school => school, :department => department, :degree_name => education["degree"])
+        
+        education["activities"].split(%r{[\n,]}).map{|elt| elt.strip}.each do |i|
+          if !i.blank?
+            club = Club.find_or_initialize_by_name(i)
+            si = ClubExperience.new(:club => club, :student => self)
+            si.save
+          end
+        end
+        # puts 
+        # puts education["start_date"]["year"]
+        # puts education["end_date"]["year"]
       end
     end
     
@@ -200,13 +209,17 @@ class Student < User
         phone_numbers = xmlp["phone_numbers"]["phone_numbers"]
       end
       
-      phone_numbers.each do |phone_number|
-        puts phone_number["phone_type"]
-        puts phone_number["phone_number"]
-      end
+      self.phone = phone_numbers.first["phone_number"]
+      # phone_numbers.each do |phone_number|
+      #   puts phone_number["phone_type"]
+      #   puts phone_number["phone_number"]
+      # end
     end
     
-    puts xmlp["main_address"]
+    # if xmlp["main_address"]
+    #   self.address_line1 =  xmlp["main_address"]
+    # end
+    # puts xmlp["main_address"]
     
     self.save
     

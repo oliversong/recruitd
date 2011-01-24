@@ -30,7 +30,7 @@ class UtilitiesController < ApplicationController
         current_user.import_linkedin_xml(response.body)
       end
       
-      render :json => response.body
+      redirect_to home_path
   end
 
   # def create

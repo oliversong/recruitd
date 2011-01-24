@@ -57,8 +57,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           #create a new user
           unless omniauth.recursive_find_by_key("email").blank?
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
+            
+            if current_subdomain == "hiring"
+              user.type = "Recruiter"
+            else
+              user.type = "Student"
+            end
+            
           else
-            user = User.new
+            #user = User.new
             User.create_userless_omniauth(omniauth)
             redirect_to from_linkedin_info_path(:uid => omniauth['uid']) and return
           end

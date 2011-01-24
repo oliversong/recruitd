@@ -168,7 +168,7 @@
     -if current_user.is_company_entity?
       =render :partial => "shared/star", :locals => {:entity => @student, :starred => @company_file.starred}
       =render :partial => "shared/follow", :locals => {:user_id => @student.id, :followed => @followed}
-    (#{@student.baseline_score})
+    -#(#{@student.baseline_score})
   
     %h3
       %span.rest_in_place{"data-attribute" => "subtitle", "data-object" => "student", "data-url" => "/students/3"}<

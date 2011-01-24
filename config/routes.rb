@@ -3,7 +3,7 @@ Recruitd::Application.routes.draw do
   #   match "/" => "hiring#home", 
   # end
   
-  match '/' => 'hiring#home', :constraints => { :subdomain => "hiring" }  
+  # match '/' => 'hiring#home', :constraints => { :subdomain => "hiring" }  
   
   resource :s, :only => [:add_term, :delete_term, :update_file] do
     # get 'manage'

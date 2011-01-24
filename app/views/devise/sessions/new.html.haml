@@ -1,10 +1,10 @@
 %h2 Sign in
 
 %b Sample student email:
-= Student.first.user.email
+= Student.first.email
 %br
 %b Sample recruiter email:
-= Recruiter.first.user.email
+= Recruiter.first.email
 
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
   %p
