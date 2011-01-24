@@ -1,9 +1,13 @@
 %span{:id => "star_#{entity.class.name}_#{entity.id}", :class => "starbox"}
-	- if starred
-		- star_file = "/images/star_full.png"
-		- title = "Click to unbookmark."
-		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), unstar_path(:entity_id => entity.id, :entity_type => entity.class.name, :format => :js), :remote => true
-	- else
-		- star_file = "/images/star_empty.png"
-		- title = "Click to bookmark."
-		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), star_path(:entity_id => entity.id, :entity_type => entity.class.name, :format => :js), :remote => true
+  - if starred
+    -# star_file = "/images/star_full.png"
+    - star_class = "star_selected"
+    - title = "Click to unbookmark."
+    = link_to unstar_path(:entity_id => entity.id, :entity_type => entity.class.name, :format => :js), :remote => true do
+      %div{:class => star_class}
+  - else
+    -# star_file = "/images/star_empty.png"
+    - star_class = "star"
+    - title = "Click to bookmark."
+    = link_to star_path(:entity_id => entity.id, :entity_type => entity.class.name, :format => :js), :remote => true do
+      %div{:class => star_class}

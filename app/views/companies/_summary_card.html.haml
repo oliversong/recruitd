@@ -1,31 +1,23 @@
-%h2{:style => "text-align:center"}
+.itemtitle
   = link_to company.name, company
-  -#render :partial => "shared/follow", :locals => {:user_id => company.user_id, :followed => followed}
-  
-%p
-  %b Website:
-  = link_to company.website, company.website
-%p
-  %b Founded:
-  = h company.founded
-%p
-  %b Size:
-  = h company.size_category_text  
-%p
-  =h company.description
+.itemcontent  
+  %p
+    %b Website:
+    = link_to company.website, company.website
+  %p
+    %b Founded:
+    = h company.founded
+  %p
+    %b Size:
+    = h company.size_category_text  
+  %p
+    =h company.description
 
-%h3 Jobs
-
-%table
-  %tr
-    %th Title
-    %th Description
-
-  - company.jobs.each do |job|
-    %tr
+  %p
+    %b Jobs:
+    - company.jobs.each do |job|
       %td= link_to job.title, job
-      %td= job.description  
-
-%b Recruiters
-- company.recruiters.each do |recruiter|
-  = link_to recruiter.name, recruiter
+  %p
+    %b Recruiters
+    - company.recruiters.each do |recruiter|
+      = link_to recruiter.name, recruiter

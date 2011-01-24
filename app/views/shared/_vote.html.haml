@@ -1,21 +1,21 @@
 %span{:id => "votes-#{voteable.class}-#{voteable.id}", :class => "votebox"}
-  - up_img_file = "/images/up-gray.png"
-  - down_img_file = "/images/down-gray.png"
   - if vote && (vote==1)
-    - up_img_file = "/images/up.png"
+    - up_class_name = "uplike_selected"
     - up_title = "You voted for this item."
+    - down_class_name = "downlike"
     - down_title = "Click to cancel upvote for this item."
   -elsif vote && (vote==-1)
-    - down_img_file = "/images/down.png"
+    - up_class_name = "uplike"
+    - down_class_name = "downlike_selected"
     - up_title = "Click to cancel downvote for this item."
     - down_title = "You voted against this item."
   -else
+    - up_class_name = "uplike"
+    - down_class_name = "downlike"
     - up_title = "Click to vote for this item."
     - down_title = "Click to vote against this item."
     
-  = link_to image_tag(down_img_file, :width => 25, :height => 25, :class => "arrow-image", :title => down_title), 
-      vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote => "-1"),
-      :remote => true
-  = link_to image_tag(up_img_file, :width => 25, :height => 25, :class => "arrow-image", :title => up_title),
-      vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote=>"1"),
-      :remote => true
+  = link_to vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote => "-1"), :remote => true do
+    %div{:class => down_class_name}
+  = link_to vote_path(:entity_id=>voteable.id, :entity_type=>voteable.class.name, :vote=>"1"), :remote => true do
+    %div{:class => up_class_name}

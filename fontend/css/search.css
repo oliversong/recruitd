@@ -84,34 +84,5 @@
 	#rating{
 	position:relative;	
 	}
-	.star{
-	background-image:url(../images/starbefore.png);
-	width:33px;
-	height:32px;
-	position:relative;
-	left:83px;
-	top:-60px;
-	}
-	.star:hover{
-		background-image:url(../images/starhover.png);
-	}
-	.downlike{
-	background-image:url(../images/votedown.png);
-	width:31px;
-	height:30px;
-	}
-	.downlike:hover{
-	background-image:url(../images/downhover.png);
-	}
-	.uplike{
-	background-image:url(../images/voteup.png);
-	width:31px;
-	height:30px;
-	position:relative;
-	left:40px;
-	top:-30px;
-	}
-	.uplike:hover{
-	background-image:url(../images/uphover.png);
-	}
+	
 	
