@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-      (!persisted? || user_tokens.empty? || !password.blank?) && super
+      (user_tokens.empty? || !password.blank?) && super
   end
 
   ## Identification helpers
@@ -98,11 +98,12 @@ class User < ActiveRecord::Base
   end
   
   def load_from_facebook(omniauth)
-    self.first_name = omniauth.recursive_find_by_key("first_name")
-    self.last_name = omniauth.recursive_find_by_key("last_name")
     begin
+      self.first_name = omniauth.recursive_find_by_key("first_name")
+      self.last_name = omniauth.recursive_find_by_key("last_name")
       self.fun_facts = omniauth["extra"]["user_hash"]["bio"]
-    rescue NoMethodError
+    rescue #StandardError
+      puts "!!!!! ERROR !!!!!"
     end
   end
   

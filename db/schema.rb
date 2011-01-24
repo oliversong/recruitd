@@ -471,6 +471,7 @@ ActiveRecord::Schema.define(:version => 20110124140432) do
     t.string   "last_name"
     t.boolean  "admin",                               :default => false, :null => false
     t.string   "website"
+    t.string   "username"
     t.integer  "rep_alltime"
     t.integer  "rep_month"
     t.string   "avatar_file_name"
@@ -481,6 +482,7 @@ ActiveRecord::Schema.define(:version => 20110124140432) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["username"], :name => "index_users_on_username"
 
   create_table "users_roles", :id => false, :force => true do |t|
     t.integer "role_id"

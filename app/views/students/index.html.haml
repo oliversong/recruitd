@@ -1,0 +1,7 @@
+=render :partial => "shared/update"
+#maincontent
+  %h1 Listing students
+  %ul
+    - @students.each do |student|
+      %li
+        =link_to student.name, student

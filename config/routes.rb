@@ -122,10 +122,13 @@ Recruitd::Application.routes.draw do
   end
   
   resources :authentications, :only => [:from_linkedin, :from_facebook] do
-    get 'newly_created'
-    get 'from_linkedin'
-    get 'from_facebook'
-    post 'finalize_user'
+    collection do
+      get 'newly_created'
+      get 'from_linkedin'
+      get 'from_facebook'
+      post 'finalize_linkedin'
+      post 'finalize_facebook'
+    end
   end
   
   resources :categories

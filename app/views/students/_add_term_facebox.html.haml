@@ -1,0 +1,37 @@
+-# valid types: award, interest, skill, career, course, all
+
+:javascript
+  $(document).ready(function(){
+    $( "#term_name" ).autocomplete({
+      source: "/autocomplete_searches/term_names/#{term_type}",
+      focus: function(event, ui) { 
+        $("#term_id").val(ui.item.id);
+        $("#term_detail").show();
+        $("#term_description_box").val(ui.item.description);
+      }
+    });
+  });
+  
+  $(function() {
+    $("#description_box").change( function() {
+    })
+  });
+
+#add_term{:style => "display:none;"}
+  =form_tag(add_term_s_path, :method => "post") do
+    = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30, :id => "term_name"
+    = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
+    %br
+    = hidden_field_tag "term[id]", nil
+    = text_field_tag "term[type]", term_type, {:readonly => true}
+    %div.student_term#student_term
+      %em
+        %span#term_description_label Describe your experience:
+      %br
+      = text_area_tag "details", nil, :cols => 50, :rows => 4
+    %div.term#term_detail{:style => "display:none" }
+      %em
+        %span#term_description_label Since this is a new term, please give a brief description:
+      %br
+      = text_area_tag "term[description]", nil, :cols => 50, :rows => 4
+  

@@ -25,6 +25,7 @@ namespace :db do
       create_student_labels
       create_company_labels
       create_followings
+      create_skills
       # create_newsfeed_items
       
       puts "Completed loading recruitd sample data."
@@ -33,20 +34,7 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
-      create_schools_departments_courses
-      create_categories
-      create_awards
-      create_careers
-      create_interests
-      create_jobs
-      create_recruiters
-      create_updates
-      create_company_files_and_feeds
-      create_student_files_and_feeds
-      create_company_terms
-      create_student_labels
-      create_company_labels
-      create_followings
+      create_skills
 
       
       puts "Completed adding new sample data"
@@ -123,7 +111,7 @@ def create_clubs
   data_fetch('clubs').each_with_index do |line, index|
     line = line.strip
     club = Factory(:club, :name => line)
-    puts "#{index}: #{club.line}"
+    puts "#{index}: #{line}"
     if(index > 100) #for now
       break
     end
@@ -143,7 +131,7 @@ def create_schools_departments_courses
   
   puts "adding courses and departments"
   
-  data_fetch('courses').each_with_index do |line, index|
+  data_fetch('courses_and_departments').each_with_index do |line, index|
     line = line.split("\t")
     if line[0] == "===="
       if line[1] != "none"
@@ -156,7 +144,9 @@ def create_schools_departments_courses
       
     else
       course = Factory(:course, :course_abbrev => line[0], :name => line[1], :department => department)
-    puts "#{index}: #{course.course_abbrev}"
+      puts "#{index}: #{course.course_abbrev}"
+    end
+    
     if(index > 300) #for now
       break
     end
@@ -166,7 +156,7 @@ def create_schools_departments_courses
     department = Department.all.sort_by{rand}.first
     Factory(:school_student, :student => student, :department => department, :school => department.school)
     
-    department.courses.sort_by{rand}[1..3].each do |course|
+    department.courses.sort_by{rand}[0..2].each do |course|
       Factory(:student_term, :student => student, :term => course, :term_type => "Course")
     end
   end
@@ -331,6 +321,17 @@ def create_updates
   #   end
   # end
   puts "Created updates"
+end
+
+def create_skills
+  data_fetch('skills').each_with_index do |line, index|
+    line = line.strip
+    club = Factory(:skill, :name => line)
+    puts "adding skill #{index}: #{line}"
+    if(index > 100) #for now
+      break
+    end
+  end
 end
 
 # def create_newsfeed_items

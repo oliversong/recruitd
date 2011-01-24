@@ -7,7 +7,6 @@
       focus: function(event, ui) { 
         $("#term_id").val(ui.item.id);
         $("#term_detail").show();
-        $("#term_description_label").html("Description in our database; modify below if you feel this needs amendment:");
         $("#term_description_box").val(ui.item.description);
       }
     });
@@ -26,6 +25,6 @@
   = hidden_field_tag "term[type]", term_type
   %div.detail#term_detail{:style => "display:none" }
     %em
-      %span#term_description_label Description
+      %span#term_description_label Describe the #{term_type}:
     %br
     = text_area_tag "comments", nil, :cols => 50, :rows => 4

@@ -85,12 +85,16 @@ Factory.sequence :city do |n|
   single_unique_fetch('cities',n)
 end
 
-Factory.sequence :club_job_titles do |n|
+Factory.sequence :club_job_title do |n|
   single_unique_fetch('club_job_titles',n)
 end
 
-Factory.sequence :club_job_descriptions do |n|
+Factory.sequence :club_job_description do |n|
   single_unique_fetch('club_job_descriptions',n)
+end
+
+Factory.sequence :award do |n|
+  single_unique_fetch('awards',n)
 end
 
 Factory.sequence :phone do |n|
@@ -239,8 +243,8 @@ Factory.define :club_experience, :class => :club_experience do |f|
   f.club { Club.all.count > 0 ? Club.all.sort_by{rand}.first : Factory.create(:club) }
   f.startdate { 2.years.ago }
   f.enddate { 2.years.ago + 3.months }
-  f.job_title "President"
-  f.description "Head of awesome student group"
+  f.job_title { Factory.next(:club_job_title) }
+  f.description { Factory.next(:club_job_description) }
   f.location "Cambridge, MA"
 end
 
@@ -317,7 +321,7 @@ Factory.define :category do |f|
 end
 
 Factory.define :award do |f|
-  f.name {"National award for excellence in #{Factory.next(:lipsum_word)}"}
+  f.name {Factory.next(:award)}
   f.category { Category.all.count > 0 ? Category.all.sort_by{rand}.first : Factory.create(:category) }
   f.url "http://www.google.com"
 end
@@ -423,6 +427,11 @@ Factory.define :company_term do |f|
     i
   end
 end
+
+Factory.define :skill do |f|
+  f.name {"#{Factory.next(:lipsum_word)}ing"}
+end
+
 
 Factory.define :label do |f|
   f.name {"#{Factory.next(:lipsum_word)}"}

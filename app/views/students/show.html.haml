@@ -262,6 +262,8 @@
             %span.delete_award_button{:style => "display:none"}
               = link_to "[X]", delete_term_s_path(:id => award.id)
       -if @owner
+        %span 
+          %a{:href=>"#add_term", :rel=>"facebox"} add term
         .hover.tTip{:title => "Hello World"}
           %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
@@ -328,3 +330,7 @@
       
       -if @owner
         = render "add_career"
+
+
+/ Facebox stuff
+=render :partial => "add_term_facebox", :locals => {:term_type => "Award" }

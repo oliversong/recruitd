@@ -50,13 +50,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           puts "found authentication"
           
           flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider']
-          sign_in_and_redirect(:user, authentication.user)
+          puts authentication.to_yaml
+          
+          sign_in(authentication.user)
+          redirect_to home_path
           #sign_in_and_redirect(authentication.user, :event => :authentication)
         else
           puts "did not find authentication"
           #create a new user
           
-          puts omniauth.to_yaml
+          # puts omniauth.to_yaml
           
           unless omniauth.recursive_find_by_key("email").blank?
             user = User.find_or_initialize_by_email(:email => omniauth.recursive_find_by_key("email"))
@@ -71,13 +74,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
           else
             #user = User.new
             User.create_userless_omniauth(omniauth)
-            redirect_to from_linkedin_info_path(:uid => omniauth['uid']) and return
+            redirect_to from_linkedin_authentications_path(:uid => omniauth['uid']) and return
           end
           
           user.apply_omniauth(omniauth)
           #user.confirm! #unless user.email.blank?
-
+          
           if user.save
+            puts "user successfully saved"
             flash[:notice] = I18n.t "devise.omniauth_callbacks.success", :kind => omniauth['provider'] 
             
             if(provider == :facebook)
