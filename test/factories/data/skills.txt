@@ -1,0 +1,54 @@
+C#
+C
+C++
+Java
+Pascal
+Basic
+ASP
+PHP
+.NET
+PHP
+Javascript
+Python
+Perl
+Ruby
+Tcl
+Lua
+Cobol
+Scheme
+Lisp
+Haskell
+Prolog
+SQL
+Smalltalk
+Scala
+XML
+HTML
+CSS
+Flex
+Photoshop
+Dreamweaver
+Ruby on Rails
+Django
+Kohana
+CakePHP
+MySQL
+PostgreSQL
+Linux
+Unix
+Apache
+Web design
+Graphic design
+MATLAB
+Mathematica
+Maple
+Git
+SVN
+CVS
+Microsoft Office
+Microsoft Powerpoint
+Microsoft Excel
+Microsoft Word
+VBA
+Database design
+Blogging

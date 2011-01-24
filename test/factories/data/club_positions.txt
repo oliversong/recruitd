@@ -1,0 +1,11 @@
+president
+treasurer
+executive board member
+secretary
+social chair
+publicity chair
+historian
+webmaster
+vice-president
+director of internal relations
+director of corporate relations

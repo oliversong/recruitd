@@ -7,7 +7,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     
     if current_user.is_student?
-      @student_file = StudentFile.find_or_initialize_by_student_id_and_job_id(current_user.id, params[:id])
+      @student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:id], "Job")
     end
     
     

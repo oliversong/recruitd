@@ -1,7 +1,7 @@
 - title "Job"
 
 -if current_user.is_student?
-  = render :partial => "student_file", :locals => { :job => @job, :student_file => @student_file }
+  = render :partial => "shared/student_file", :locals => { :job => @job, :student_file => @student_file }
 
 =render :partial => "shared/update"
 #maincontent
@@ -12,7 +12,7 @@
   %h1
     =h @job.title
     -if current_user.is_student?
-      =render :partial => "shared/star", :locals => {:entity_type => "Job", :entity_id => @job.id, :starred => @student_file.starred}
+      =render :partial => "shared/star", :locals => {:entity => @job, :starred => @student_file.starred}
   %p
     %strong Responsibilities:
     =h @job.responsibilities
@@ -33,6 +33,11 @@
     %ul
     -@job.careers.each do |career|
       %li= link_to career.name, career
+  %p
+    %strong Terms
+    %ul
+    -@job.terms.each do |term|
+      %li= link_to term.name, term
   
   -if @job.owned_by?(current_user)
     %p

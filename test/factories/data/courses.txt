@@ -3886,15 +3886,15 @@ STS.487	Ethics and the Law on the Electronic Frontier
 STS.800	Teaching Science, Technology and Society
 STS.910	Advanced Topics in Science, Technology, and Society
 STS.THG	Graduate Thesis
-SWE.001	<p><h3>  Inventions and Patents
-SWE.002	<p><h3>  Management in Engineering
-SWE.003	<p><h3>  Engineering Risk-Benefit Analysis
-SWE.004	<p><h3>  Engineering Systems Analysis for Design
-SWE.005	<p><h3>  Applications of Technology in Energy and the Environment
-SWE.007	<p><h3>  UPOP Summer Practice Experience
-SWE.008	<p><h3>  UPOP Reflective Learning Experience
-SWE.009	<p><h3>  Innovation Teams
-SWE.010	<p><h3>  Introduction to Modeling and Simulation
+SWE.001	  Inventions and Patents
+SWE.002	  Management in Engineering
+SWE.003	  Engineering Risk-Benefit Analysis
+SWE.004	  Engineering Systems Analysis for Design
+SWE.005	  Applications of Technology in Energy and the Environment
+SWE.007	  UPOP Summer Practice Experience
+SWE.008	  UPOP Reflective Learning Experience
+SWE.009	  Innovation Teams
+SWE.010	  Introduction to Modeling and Simulation
 SP.100	Interphase
 SEM.XL1	Program XL: You Can Be a Success at MIT
 SEM.XL2	Program XL: You Can Be a Success at MIT

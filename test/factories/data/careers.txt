@@ -1,17 +1,22 @@
 accounting
-programming
+biotech
+research
+retail
+finance
+banking
+business
+consulting
+design
+education
 engineering
 healthcare
-research
-marketing
-retail
-consulting
-finance
-biotech
-management
+hospitality
+human resources
+information technology
 legal
 medical
+advertising/public relations
+programming
+project management
+marketing
 sales
-education
-design
-banking

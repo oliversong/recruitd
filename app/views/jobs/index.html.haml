@@ -1,25 +1,27 @@
 - title "Jobs"
 
-%table
-  %tr
-    %th Company
-    %th Title
-    %th Responsibilities
-    %th Basic qualifications
-    %th Desired qualifications
-    %th Other information
-    %th Description
-  - for job in @jobs
+=render :partial => "shared/update"
+#maincontent
+  %table
     %tr
-      %td= h job.company_id
-      %td= h job.title
-      %td= h job.responsibilities
-      %td= h job.basic_qualifications
-      %td= h job.desired_qualifications
-      %td= h job.other_information
-      %td= h job.description
-      %td= link_to 'Show', job
-      %td= link_to 'Edit', edit_job_path(job)
-      %td= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
+      %th Company
+      %th Title
+      %th Responsibilities
+      %th Basic qualifications
+      %th Desired qualifications
+      %th Other information
+      %th Description
+    - for job in @jobs
+      %tr
+        %td= h job.company_id
+        %td= h job.title
+        %td= h job.responsibilities
+        %td= h job.basic_qualifications
+        %td= h job.desired_qualifications
+        %td= h job.other_information
+        %td= h job.description
+        %td= link_to 'Show', job
+        %td= link_to 'Edit', edit_job_path(job)
+        %td= link_to 'Destroy', job, :confirm => 'Are you sure?', :method => :delete
 
 %p= link_to "New Job", new_job_path

@@ -31,6 +31,11 @@ class AddStudentsAndRecruitersToUser < ActiveRecord::Migration
     add_column :users, :admin, :boolean, :null => false, :default => false
     add_column :users, :website, :string
     
+    #permalinking
+    add_column :users, :username, :string
+    
+    add_index :users, :username
+    
   end
 
   def self.down
