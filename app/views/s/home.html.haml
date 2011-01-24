@@ -25,9 +25,9 @@
     .sidebottom
 #middlecolumn
   #fullname Dane Hammerhead
-  %a{:href => "#"}
+  %a{:href => "/students/build"}
     #resbuild.awesomebtn
-  %a{:href => "#"}
+  %a{:href => "/search"}
     #search.awesomebtn
   #experiences
     .contenttop
@@ -112,59 +112,17 @@
         %span 2005 | Awesomeness | AAAAAAAAWWsome
     .contentbottom
 #rightcolumn
+  #quicklinks
+    .feedtop
+      %span.headertext3 Quick Links
+    .feedmiddle
+      %ul.strangeul
+        =render :partial => "shared/navigation"
+    .feedbottom
   #feed
     .feedtop
       %span.headertext3 Feed Updates
     .feedmiddle
       %ul.strangeul
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
-        %li.hover.tTip{:title => "Hello World"} Update!
+        =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
     .feedbottom

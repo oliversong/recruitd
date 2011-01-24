@@ -1,32 +1,155 @@
 - title "Career"
 
-=render :partial => "shared/update"
-#maincontent
 
-  %h2= @career.name.capitalize
-  = link_to "back to all careers", careers_path
+%link{:href => "/stylesheets/jquery.ui.stars.css", :rel => "stylesheet", :type => "text/css"}/
+%script{:src => "/javascripts/jquery.ui.stars.js", :type => "text/javascript"}
+#alert
+#big
+  #toppaneltop
+    .genericheader
+      %h1 6.470
+    .ratingwidget
+      %form
+        %strong Usefulness:
+        %span#stars-cap
+        #stars-wrapper2
+          %select{:name => "selrate"}
+            %option{:value => "1"} Very poor
+            %option{:value => "2"} Poor
+            %option{:value => "3"} Okay
+            %option{:value => "4"} Not Bad
+            %option{:value => "5"} Good
+            %option{:selected => "selected", :value => "6"} Pretty good
+            %option{:value => "7"} Better
+            %option{:value => "8"} High quality
+            %option{:value => "9"} Awesome
+            %option{:value => "10"} Perfect
+    .ratingwidget2
+      %form
+        %strong.movethis Difficulty:
+        %span#stars-cap2.movethis
+        #stars-wrapper3
+          %select{:name => "selrate"}
+            %option{:value => "1"} Easy Peasy
+            %option{:value => "2"} Still cruisin'
+            %option{:value => "3"} Cram a little
+            %option{:value => "4"} Do homework
+            %option{:value => "5"} Average
+            %option{:value => "6"} Kinda hard
+            %option{:value => "7"} Should try
+            %option{:value => "8"} Work in groups
+            %option{:selected => "selected", :value => "9"} Oh god
+            %option{:value => "10"} Give up
+  #toppanelmid
+    #classdescription
 
-  -if !@career.description.blank? 
-    %p
-    %strong Description:
-    %br
-    =h @career.description
-  %p
-    %strong Jobs:
-    %ul
-      -@career.jobs.each do |job|
-        %li=link_to job.name, job
-  %p
-    %strong Students interested in #{@career.name}
-    %ul
-      -@career.students.each do |student|
-        %li=link_to student.name, student
-  %p
-    %strong Some relevant tags:
-    %ul
-      -@career.terms.each do |term|
-        %li=link_to term.name, term.becomes(Term)
-      %li
-        Suggest a term:
-        =render :partial => "shared/add_term", :locals => {:attachable => @career}
+      
+    #metadata
+      #metasub
+        %ul.right
+          %li
+            %strong Schools Offering:
+          %li
+            %strong Units/Credits:
+          %li
+            %strong Average Class Size:
+      %ul.answers
+        %li Massachusetts Institute of Technology
+        %li 6 units
+        %li 170
+    #classtags
+      #classtagstitle Tags
+      %a{:href => "#"} MIT,
+      %a{:href => "#"} 6.470,
+      %a{:href => "#"} IAP,
+      %a{:href => "#"} Computer Science,
+      %a{:href => "#"} Course 6,
+      %a{:href => "#"} Web Design,
+      %a{:href => "#"} Competition,
+      %a{:href => "#"} CS,
+      %a{:href => "#"} Javascript,
+      %a{:href => "#"} HTML,
+      %a{:href => "#"} CSS,
+      %a{:href => "#"} AJAX,
+      %a{:href => "#"} Ruby,
+      %a{:href => "#"} Rails,
+      %a{:href => "#"} SQL,
+      %a{:href => "#"} PHP,
+      %a{:href => "#"} JSON,
+      %a{:href => "#"} Django,
+      %a{:href => "#"} Class,
+      %a{:href => "#"} Awesome,
+      %a{:href => "#"} 1337,
+  #toppanelbot
+  #bottomleftpanel
+    #bottomleftpaneltop
+      .genericheader2
+        %h1 Students:
+    #bottomleftpanelmid
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+    #bottomleftpanelbot
+  #bottomrightpanel
+    #bottomrightpaneltop
+      .genericheader2
+        %h1 Feedback:
+    #bottomrightpanelmid
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+      %br/
+    #bottomrightpanelbot
+:javascript
+  $("#stars-wrapper2").stars({
+    inputType: "select",
+    split:2,
+    captionEl: $("#stars-cap")
+  });
+  $("#stars-wrapper3").stars({
+    inputType: "select",
+    split:2,
+    captionEl: $("#stars-cap2")
+  });
+:javascript
+  var i=2
+  $('.moving').bind('keydown', function(e) {
+        var $self = $(this),
+            dimen = $.extend($self.position(), { 
+            width:  $self.outerWidth(),
+            height: $self.outerHeight()
+        });
 
+        if( e.which === 13 && $.trim(this.value).length ) {
+            $('', {
+                 class: 'someclass',
+         id: 'tagcontrol'+i,
+         text: this.value,
+                 css: {
+                     position:   'relative',
+                     width:      '400px',
+                     height:     dimen.height,
+                     left:       dimen.left,
+                     top:        '-30px'
+                 }
+            }).appendTo($self.parent());
+            $('5Delete').appendTo($('div.someclass:last')) ; i+=1
+            $self.val('').css('position', 'relative').animate({top: '+=30'}, 200);
+        }
+    });
+:javascript
+  function deletetag(i){
+                 $('div').remove('#tagcontrol'+i);
+                 $('.moving').css('position','relative').animate({top:'-=30'},200);
+  }
+  function deletetag2(i){
+                 $('div').remove('#tagcontrol'+i);
+  }
