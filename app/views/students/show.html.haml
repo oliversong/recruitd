@@ -2,6 +2,9 @@
   $(document).ready(function(){
     $('.tTip').betterTooltip({speed: 150, delay: 300});
   });
+  var term_id;
+  var term_name;
+  var term_type;
 
 -if @owner
   :javascript  
@@ -295,6 +298,7 @@
 =render :partial => "shared/update"
   
 
+
 -#
   -if current_user.is_company_entity?
     = render :partial => "company_file", :locals => { :student => @student, :company_file => @company_file } 
@@ -331,6 +335,6 @@
       -if @owner
         = render "add_career"
 
-
-/ Facebox stuff
-=render :partial => "add_term_facebox", :locals => {:term_type => "Award" }
+#maincontent
+  / Facebox stuff
+  =render :partial => "add_term_facebox", :locals => {:term_type => "Award" }

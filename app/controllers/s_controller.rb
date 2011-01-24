@@ -165,7 +165,7 @@ class SController < ApplicationController
       redirect_to :new_user_session
     end
     
-    student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:student_file][:applyable_id], params[:student_file][:applyable_type]))
+    student_file = StudentFile.find_or_initialize_by_student_id_and_applyable_id_and_applyable_type(current_user.id, params[:student_file][:applyable_id], params[:student_file][:applyable_type])
     student_file.update_attributes(params[:student_file])
     redirect_to :back
   end

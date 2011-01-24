@@ -1,37 +1,56 @@
 -# valid types: award, interest, skill, career, course, all
 
 :javascript
-  $(document).ready(function(){
-    $( "#term_name" ).autocomplete({
-      source: "/autocomplete_searches/term_names/#{term_type}",
-      focus: function(event, ui) { 
-        $("#term_id").val(ui.item.id);
-        $("#term_detail").show();
-        $("#term_description_box").val(ui.item.description);
+  //$(document).ready(function(){
+  var changedFromSelection;
+  
+  $(document).bind('reveal.facebox', function(){
+    $(".content #add_term_facebox_name").val(term_name);
+    $(".content #add_term_facebox_id").val(term_id);
+    $(".content #add_term_facebox_type").val(term_type);
+    $(".content #add_term_facebox_title").html("Add new " + term_type);
+    
+    $(".content #add_term_facebox_name").change( function(){ //new term
+      if(!changedFromSelection){
+        $(".content #add_term_facebox_detail").show();
+        $(".content #add_term_facebox_id").val("");
+      }
+    });
+    
+    $('.content #add_term_facebox_name').keypress(function(event) {
+      if (event.which != '13') {
+         changedFromSelection = false;
+       }
+    });
+    
+    $( ".content #add_term_facebox_name" ).autocomplete({
+      source: "/autocomplete_searches/term_names/" + term_type,
+      select: function(event, ui) { 
+        $(".content #add_term_facebox_id").val(ui.item.id);
+        $(".content #add_term_facebox_detail").hide();
+        changedFromSelection = true;
       }
     });
   });
-  
-  $(function() {
-    $("#description_box").change( function() {
-    })
-  });
 
 #add_term{:style => "display:none;"}
+  %h2#add_term_facebox_title Add new term
   =form_tag(add_term_s_path, :method => "post") do
-    = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30, :id => "term_name"
-    = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
-    %br
-    = hidden_field_tag "term[id]", nil
-    = text_field_tag "term[type]", term_type, {:readonly => true}
+    Name: 
+    = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 40, :id => "add_term_facebox_name"
+    %br/
+    = hidden_field_tag "term[id]", nil, :id => "add_term_facebox_id"
+    Type:
+    = text_field_tag "term[type]", term_type, {:readonly => true, :id => "add_term_facebox_type"}
     %div.student_term#student_term
       %em
         %span#term_description_label Describe your experience:
       %br
       = text_area_tag "details", nil, :cols => 50, :rows => 4
-    %div.term#term_detail{:style => "display:none" }
+    %div.term#add_term_facebox_detail{:style => "display:none" }
       %em
         %span#term_description_label Since this is a new term, please give a brief description:
       %br
       = text_area_tag "term[description]", nil, :cols => 50, :rows => 4
+    = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
   
