@@ -206,7 +206,7 @@
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
       - for experience in @student.club_experiences
-        .hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+        .hover.tTip{:title => "<li>Hello</li><li>World</li>", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
           %span= club_experience_block(experience)
           -if @owner
             %span.edit_activity_button{:style => "display:none"}

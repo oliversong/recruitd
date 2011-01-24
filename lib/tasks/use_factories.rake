@@ -120,9 +120,15 @@ def create_work_experiences
 end
 
 def create_clubs
-  10.times {
-    Factory(:club)    
-  }
+  data_fetch('clubs').each_with_index do |line, index|
+    line = line.strip
+    club = Factory(:club, :name => line)
+    puts "#{index}: #{club.line}"
+    if(index > 100) #for now
+      break
+    end
+  end
+  
   Student.all.each do |student|
     clubs = Club.all.sort_by{rand}[1..2]
     clubs.each do |club|
@@ -133,20 +139,25 @@ def create_clubs
 end
 
 def create_schools_departments_courses
-  2.times{
-    school = Factory(:school)
-    3.times { 
-      department = Factory(:department, :school => school)
-    }
-  }
+  mit = Factory(:school, :name => "Massachusetts Institute of Technology")
   
-  puts "adding courses"
+  puts "adding courses and departments"
   
   data_fetch('courses').each_with_index do |line, index|
     line = line.split("\t")
-    course = Factory(:course, :course_abbrev => line[0], :name => line[1], :department => Department.all.sort_by{rand}.first)
+    if line[0] == "===="
+      if line[1] != "none"
+      #new department
+        department = Factory(:department, :school => mit, :name => line[1].strip)
+        puts "NEW DEPARTMENT: #{department.name}"
+      else
+        department = nil
+      end
+      
+    else
+      course = Factory(:course, :course_abbrev => line[0], :name => line[1], :department => department)
     puts "#{index}: #{course.course_abbrev}"
-    if(index > 100) #for now
+    if(index > 300) #for now
       break
     end
   end

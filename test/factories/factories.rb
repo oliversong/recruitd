@@ -85,6 +85,14 @@ Factory.sequence :city do |n|
   single_unique_fetch('cities',n)
 end
 
+Factory.sequence :club_job_titles do |n|
+  single_unique_fetch('club_job_titles',n)
+end
+
+Factory.sequence :club_job_descriptions do |n|
+  single_unique_fetch('club_job_descriptions',n)
+end
+
 Factory.sequence :phone do |n|
   rand(9999999999)
 end

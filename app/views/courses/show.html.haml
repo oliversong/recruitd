@@ -14,9 +14,6 @@
   %p
     %strong Description:
     =h @course.description
-  %p
-    %strong Term:
-    =h @course.term_id
   
   =form_tag(rate_course_path(@course), :method => "put") do
     %p
@@ -45,13 +42,13 @@
       =submit_tag "submit ratings"
     
   %p
-    %strong Students who have taken #{@course.abbrev}:
+    %strong Students who have taken #{@course.course_abbrev}:
     %ul
-    -@course.course_students.each do |course_student|
+    -@course.student_terms.each do |course_student|
       %li
         =print_student_block(course_student.student, :link => true)
         %br/
-        =course_student.comments
+        =course_student.details
   
   %p
     = link_to "Edit", edit_course_path(@course)

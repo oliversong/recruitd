@@ -1,0 +1,4 @@
+Worked towards creating planning algorithms that learn and adapt against intelligent adversaries' intents.
+Helped develop the novel Bayes-Adaptive Interactive POMDP (BA-IPOMDP) probabilistic framework
+Adapted state-of-the-art particle filtering approximation algorithms to solve BA-IPOMDPs
+Designed and implemented a C++ simulation to study the BA-IPOMDP!s and the algorithms! performance

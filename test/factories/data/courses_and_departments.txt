@@ -1,3 +1,4 @@
+====	Civil and Environmental Engineering
 1.00	Introduction to Computers and Engineering Problem Solving
 1.001	Introduction to Computers and Engineering Problem Solving
 1.010	Uncertainty in Engineering
@@ -159,6 +160,7 @@
 1.THU	Undergraduate Thesis
 1.UR	Research in Civil and Environmental Engineering
 1.URG	Research in Civil and Environmental Engineering
+====	Mechanical Engineering
 2.00A	Fundamentals of Engineering Design: Explore Space, Sea and Earth
 2.00B	Toy Product Design
 2.001	Mechanics and Materials I
@@ -347,6 +349,7 @@
 2.THU	Undergraduate Thesis
 2.UR	Undergraduate Research in Mechanical Engineering
 2.URG	Undergraduate Research in Mechanical Engineering
+====	Materials Science and Engineering
 3.003	Principles of Engineering Practice
 3.012	Fundamentals of Materials Science and Engineering
 3.014	Materials Laboratory
@@ -457,6 +460,7 @@
 3.THU	Undergraduate Thesis
 3.UR	Undergraduate Research
 3.URG	Undergraduate Research
+====	Architecture
 4.001	CityScope
 4.102	Drawing for Architects
 4.103	Freehand Drawing
@@ -660,6 +664,7 @@
 4.THU	Undergraduate Thesis
 4.UR	Undergraduate Research in Architecture
 4.URG	Undergraduate Research in Architecture
+====	Chemistry
 5.00	Applications of Technology in Energy and the Environment
 5.03	Principles of Inorganic Chemistry I
 5.04	Principles of Inorganic Chemistry II
@@ -734,6 +739,7 @@
 5.THU	Undergraduate Thesis
 5.UR	Undergraduate Research
 5.URG	Undergraduate Research
+====	Electrical Engineering and Computer Science
 6.00	Introduction to Computer Science and Programming
 6.01	Introduction to EECS I
 6.02	Introduction to EECS II
@@ -968,6 +974,7 @@
 6.THG	Graduate Thesis
 6.THM	Master of Engineering Program Thesis
 6.UR	Undergraduate Research in Electrical Engineering and Computer Science
+====	Biology
 7.012	Introductory Biology
 7.013	Introductory Biology
 7.014	Introductory Biology
@@ -1067,6 +1074,7 @@
 7.98	Neural Plasticity in Learning and Memory
 7.99	Current Discoveries in Biology
 7.THG	Graduate Biology Thesis
+====	Physics
 8.01	Physics I
 8.011	Physics I
 8.012	Physics I
@@ -1168,6 +1176,7 @@
 8.971	Astrophysics Seminar
 8.981	Selected Topics in Astrophysics
 8.THG	Graduate Physics Thesis
+====	Brain and Cognitive Sciences
 9.00	Introduction to Psychology
 9.01	Introduction to Neuroscience
 9.011	Systems Neuroscience
@@ -1248,6 +1257,7 @@
 9.THG	Graduate Thesis
 9.UR	Undergraduate Research
 9.URG	Undergraduate Research
+====	Chemical Engineering
 10.04	A Philosophical History of Energy
 10.10	Introduction to Chemical Engineering
 10.191	Projects in Energy
@@ -1377,6 +1387,7 @@
 10.THU	Undergraduate Thesis
 10.UR	Undergraduate Research
 10.URG	Undergraduate Research
+====	Urban Studies and Planning
 11.001	Introduction to Urban Design and Development
 11.002	Making Public Policy
 11.003	Methods of Policy Analysis
@@ -1585,6 +1596,7 @@
 11.983	SPURS Seminar
 11.985	Summer Thesis Writing
 11.THG	Graduate Thesis
+====	Earth, Atmospheric, and Planetary Sciences
 12.UR	Undergraduate Research
 12.URG	Undergraduate Research
 12.TIP	Thesis and Independent Study Preparation
@@ -1766,6 +1778,7 @@
 12.865	Inference from Models and Data---Inverse and State Estimation Methods
 12.866	Theory of the General Circulation of the Ocean
 12.870	Air-Sea Interaction: Boundary Layers
+====	Economics
 14.003	Microeconomic Theory and Public Policy
 14.01	Principles of Microeconomics
 14.02	Principles of Macroeconomics
@@ -1871,6 +1884,7 @@
 14.THU	Thesis
 14.UR	Undergraduate Research
 14.URG	Undergraduate Research
+====	Management
 15.002	Sloan Innovation Period Requirement
 15.010	Economic Analysis for Business Decisions
 15.011	Economic Analysis for Business Decisions
@@ -2118,6 +2132,7 @@
 15.994	Special Seminars in Management
 15.999	Curricular Practical Training (CPT)
 15.THG	Graduate Thesis
+====	Aeronautics and Astronautics
 16.00A	Fundamentals of Engineering Design: Explore Space, Sea and Earth
 16.00	Introduction to Aerospace and Design
 16.001	Unified Engineering I
@@ -2247,6 +2262,7 @@
 16.984	Seminar
 16.985	Proseminar in Manufacturing
 16.999	Teaching Fellows Seminar
+====	Political Science
 17.000	Political Philosophy
 17.006	Feminist Political Thought
 17.007	Feminist Political Thought
@@ -2391,6 +2407,7 @@
 17.THG	Graduate Political Science Thesis
 17.THT	Thesis Research Design Seminar
 17.THU	Undergraduate Political Science Thesis
+====	Mathematics
 18.01	Calculus
 18.01A	Calculus
 18.014	Calculus with Theory
@@ -2550,6 +2567,7 @@
 18.UR	Undergraduate Research
 18.THG	Graduate Thesis
 18.CME	Study at Cambridge University
+====	Biological Engineering
 20.020	Introduction to Biological Engineering Design
 20.102	Macroepidemiology and Population Genetics
 20.104	Environmental Risks for Common Disease
@@ -2621,6 +2639,7 @@
 20.UR	Undergraduate Research Opportunities
 20.URG	Undergraduate Research Opportunities
 20.URN	Undergraduate Research
+====	Anthropology
 21A.100	Introduction to Anthropology
 21A.109	How Culture Works
 21A.113	The Supernatural in Music, Literature and Culture
@@ -2668,6 +2687,7 @@
 21A.830	History and Anthropology of Medicine and Biology
 21A.861	Methods for Graduate Research in the Social Sciences
 21A.900	Monitoring the Rights of Native Peoples
+====	Foreign Languages and Literatures
 21F.011	Topics in Indian Popular Culture
 21F.019	Communicating Across Cultures
 21F.021	Communicating Across Cultures
@@ -2831,6 +2851,7 @@
 21F.783	Spanish II (Study Abroad)
 21F.910	Special Topics in Foreign Languages and Literatures
 21F.911	Special Topics in Foreign Languages and Literatures
+====	History
 21H.001	How to Stage a Revolution
 21H.007	Empire: Introduction to Ancient and Medieval Studies
 21H.101	American History to 1865
@@ -2907,6 +2928,7 @@
 21H.993	Advanced Topics in History
 21H.995	Advanced Topics in History
 21H.996	Advanced Topics in History
+====	Literature
 21L.000	Writing About Literature
 21L.001	Foundations of Western Culture: Homer to Dante
 21L.002	Foundations of Western Culture: The Making of the Modern World
@@ -2982,6 +3004,7 @@
 21L.THU	Literature Thesis
 21L.UR	Undergraduate Research
 21L.URG	Undergraduate Research
+====	Music and Theater Arts
 21M.011	Introduction to Western Music
 21M.013	The Supernatural in Music, Literature and Culture
 21M.030	Introduction to World Music
@@ -3102,6 +3125,7 @@
 21M.THU	Undergraduate Thesis in Music
 21M.UR	Research in Music
 21M.URG	Research in Music
+====	Writing and Humanistic Studies
 21W.730	Writing on Contemporary Issues
 21W.731	Writing and Experience
 21W.732	Science Writing and New Media
@@ -3162,6 +3186,7 @@
 21W.898	Special Graduate Elective in Science Writing
 21W.899	Special Graduate Elective in Science Writing
 21W.THG	Graduate Thesis
+====	Nuclear Science and Engineering
 22.00	Introduction to Modeling and Simulation
 22.002	Communicating About Technology:  Colossal Failures in Engineering
 22.01	Introduction to Ionizing Radiation
@@ -3234,6 +3259,7 @@
 22.94	Research in Nuclear Science and Engineering
 22.96	Quantum Mechanics for Nuclear Engineers
 22.THG	Graduate Thesis
+====	Linguistics and Philosophy
 24.00	Problems of Philosophy
 24.01	Classics of Western Philosophy
 24.02	Moral Problems and the Good Life
@@ -3338,6 +3364,7 @@
 24.992	Survey of General Linguistics
 24.993	Tutorial in Linguistics and Related Fields
 24.THG	Graduate Thesis
+====	Comparative Media Studies
 CMS.100	Introduction to Media Studies
 CMS.300	Introduction to Videogame Studies
 CMS.309	Transmedia Storytelling: Modern Science Fiction
@@ -3412,10 +3439,12 @@ CMS.996	Topics in Comparative Media Studies
 CMS.997	Topics in Comparative Media
 CMS.998	Topics in Comparative Media
 CMS.999	Topics in Comparative Media
+====	Computational and Systems Biology
 CSB.100	Topics in Computational and Systems Biology
 CSB.110	Research Rotations in Computational and Systems Biology
 CSB.190	Research Problems in Computational and Systems Biology
 CSB.THG	Graduate Thesis
+====	Engineering Systems Division
 ESD.01	Engineering System Design
 ESD.018	Project Management
 ESD.032	Communicating About Technology:  Colossal Failures in Engineering
@@ -3558,6 +3587,7 @@ ESD.955	Special Undergraduate Studies in Engineering Systems Division
 ESD.956	Special Undergraduate Studies in Engineering Systems Division
 ESD.THG	ESD Graduate Thesis
 ESD.URG	Undergraduate Research
+====	Health Sciences and Technology
 HST.010	Human Functional Anatomy
 HST.020	Musculoskeletal Pathophysiology
 HST.030	Human Pathology
@@ -3689,6 +3719,7 @@ HST.S11	The Art and Science of Medicine
 HST.THG	Graduate Thesis
 HST.UR	Undergraduate Research in Health Sciences and Technology
 HST.URG	Undergraduate Research in Health Sciences and Technology
+====	Media Arts and Sciences
 MAS.110	Fundamentals of Computational Media Design
 MAS.111	Introduction to Doing Research in Media Arts & Sciences
 MAS.131	Computational Camera and Photography
@@ -3749,62 +3780,7 @@ MAS.950	Preparation for Ph.D. Thesis
 MAS.960	Special Topics in Media Technology
 MAS.969	Special Topics in Media Technology
 MAS.THG	Graduate Thesis
-PBS.100	Fundamentals of Engineering Design: Explore Space, Sea and Earth
-PBS.120	Toy Product Design
-PBS.160	Principles of Engineering Practice
-PBS.200	CityScope
-PBS.300	Projects in Energy
-PBS.400	Projects in Microscale Engineering for the Life Sciences
-PBS.600	CityScope
-PBS.650	Solving Complex Problems
-PBS.690	Introduction to Aerospace and Design
-PBS.700	Fundamentals of Engineering Design: Explore Space, Sea and Earth
-PBS.750	Introduction to Biological Engineering Design
-PBS.800	Projects in Microscale Engineering for the Life Sciences
-AS.101	The Foundations of the United States Air Force
-AS.102	The Foundations of the United States Air Force
-AS.111	Leadership Laboratory
-AS.112	Leadership Laboratory
-AS.201	The Evolution of USAF Air and Space Power
-AS.202	The Evolution of USAF Air and Space Power
-AS.211	Leadership Laboratory
-AS.212	Leadership Laboratory
-AS.301	Air Force Leadership Studies
-AS.302	Air Force Leadership Studies
-AS.311	Leadership Laboratory
-AS.312	Leadership Laboratory
-AS.401	National Security Affairs/Preparation for Active Duty
-AS.402	National Security Affairs/Preparation for Active Duty
-AS.411	Leadership Laboratory
-AS.412	Leadership Laboratory
-AS.511	Leadership Laboratory
-AS.512	Leadership Laboratory
-MS.101	Leadership and Personal Development
-MS.102	Introduction to Tactical Leadership
-MS.201	Innovative Team Leadership
-MS.202	Foundations of Tactical Leadership
-MS.301	Adaptive Team Leadership
-MS.302	Leadership in Changing Environments
-MS.311	Leadership Laboratory I
-MS.312	Leadership Laboratory II
-MS.401	Developing Adaptive Leaders
-MS.402	Leadership in a Complex World
-MS.411	Advanced Leadership Laboratory I
-MS.412	Advanced Leadership Laboratory  II
-NS.100	Naval Science Leadership Seminar
-NS.101	Introduction to Naval Science
-NS.102	Naval Ships Systems
-NS.200	Naval Science Leadership Seminar
-NS.201	Naval Weapons Systems
-NS.202	Seapower and Maritime Affairs
-NS.300	Naval Science Leadership Seminar
-NS.301	Coastal Piloting and Celestial Navigation
-NS.302	Navigation and Naval Operations
-NS.310	Evolution of Warfare
-NS.400	Naval Science Leadership Seminar
-NS.401	Leadership and Management I
-NS.402	Leadership and Ethics
-NS.410	Evolution of Expeditionary Doctrine
+====	Science, Technology, and Society
 STS.001	Technology in American History
 STS.003	The Rise of Modern Science
 STS.005	Disease and Society in America
@@ -3886,6 +3862,7 @@ STS.487	Ethics and the Law on the Electronic Frontier
 STS.800	Teaching Science, Technology and Society
 STS.910	Advanced Topics in Science, Technology, and Society
 STS.THG	Graduate Thesis
+====	none		
 SWE.001	  Inventions and Patents
 SWE.002	  Management in Engineering
 SWE.003	  Engineering Risk-Benefit Analysis
@@ -3895,9 +3872,18 @@ SWE.007	  UPOP Summer Practice Experience
 SWE.008	  UPOP Reflective Learning Experience
 SWE.009	  Innovation Teams
 SWE.010	  Introduction to Modeling and Simulation
-SP.100	Interphase
-SEM.XL1	Program XL: You Can Be a Success at MIT
-SEM.XL2	Program XL: You Can Be a Success at MIT
+PBS.100	Fundamentals of Engineering Design: Explore Space, Sea and Earth
+PBS.120	Toy Product Design
+PBS.160	Principles of Engineering Practice
+PBS.200	CityScope
+PBS.300	Projects in Energy
+PBS.400	Projects in Microscale Engineering for the Life Sciences
+PBS.600	CityScope
+PBS.650	Solving Complex Problems
+PBS.690	Introduction to Aerospace and Design
+PBS.700	Fundamentals of Engineering Design: Explore Space, Sea and Earth
+PBS.750	Introduction to Biological Engineering Design
+PBS.800	Projects in Microscale Engineering for the Life Sciences
 SP.211	ESG (Experimental Study Group)
 SP.212	ESG (Experimental Study Group)
 SP.221	ESG (Experimental Study Group)
