@@ -1,28 +1,26 @@
 - title "Award"
 
 
-=render :partial => "shared/update"
-#maincontent
-  %p
-    %strong Name:
-    =h @award.name
-  %p
-    %strong Description:
-    =h @award.description
-  %p
-    %strong Url:
-    =h @award.url
-  %p
-    %strong Category:
-    =h @award.category_id
-  %p
-    %strong Term:
-    =h @award.term_id
+%p
+  %strong Name:
+  =h @award.name
+%p
+  %strong Description:
+  =h @award.description
+%p
+  %strong Url:
+  =h @award.url
+%p
+  %strong Category:
+  =h @award.category_id
+%p
+  %strong Term:
+  =h @award.term_id
+
+%p
+  = link_to "Edit", edit_award_path(@award)
+  |
+  = link_to "Destroy", @award, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", awards_path
   
-  %p
-    = link_to "Edit", edit_award_path(@award)
-    |
-    = link_to "Destroy", @award, :confirm => 'Are you sure?', :method => :delete
-    |
-    = link_to "View All", awards_path
-    
