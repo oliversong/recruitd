@@ -46,28 +46,62 @@
                 </form>
             </div>
     
+    <!-------- VERY IMPORTANT NAVIGATION CHANGED MARGIN LEFT CHANGED TO PADDING LEFT!!!!!!!---->
 	    <div id="navigation">
               <div class="navigation" id="home"><div><a class="nav" href="#">home</a></div></div>
               <div class="navigation" id="about"><div><a class="nav" href="#">public</a></div></div>
               <div class="navigation" id="services"><div><a class="nav" href="#">lists</a></div></div>
               <div class="navigation" id="solutions"><div><a class="nav" href="#">search</a></div></div>
               <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
- href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
+ href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;padding-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
 		</div>
-        
           
         
     </div>
     
     
-    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
-        <form id="feedupdate">
-            <input id="updatefeed" type="search" placeholder="Update your feed!">
-        </form>
-        <div id="update">Update</div>
+<!----------
+----------
+----------NEW
+----------
+------------>
+<script type="text/javascript">
+ 
+$(function() 
+{
+$(".expandable").focus(function()
+{
+$(this).animate({"height": "120px",}, "fast" );
+$("#button_block").slideDown("fast");
+return false;
+});
+$("#cancel").click(function()
+{
+$(".expandable").animate({"height": "30px",}, "fast" );
+$("#button_block").slideUp("fast");
+return false;
+});
 
+	
 
+});
+</script>
+    
+    <div id="top">
+    <div id="toptop"></div>
+    <div id="topmid">
+            <textarea class="expandable" placeholder="Update your feed!"></textarea>
+            <div id="button_block">
+            <button class="movingbutton" >Share</button><button id="cancel" class="movingbutton">Cancel</button>
+			</div>
+	</div>
+    <div id="topbot"></div>
 </div>
+    <!----------
+----------
+----------NEW
+----------
+------------>
     
 
 

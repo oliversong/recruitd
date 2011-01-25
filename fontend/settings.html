@@ -45,13 +45,14 @@
                 </form>
             </div>
     
+    <!-------- VERY IMPORTANT NAVIGATION CHANGED MARGIN LEFT CHANGED TO PADDING LEFT!!!!!!!---->
 	    <div id="navigation">
               <div class="navigation" id="home"><div><a class="nav" href="#">home</a></div></div>
               <div class="navigation" id="about"><div><a class="nav" href="#">public</a></div></div>
               <div class="navigation" id="services"><div><a class="nav" href="#">lists</a></div></div>
               <div class="navigation" id="solutions"><div><a class="nav" href="#">search</a></div></div>
               <div class="navigation" id="contact"><div>account</div><strong><a style="color:#000;margin-right:5px;text-decoration:none;"
- href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;margin-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
+ href="#">settings	</a>|<a href="#" style="padding-top:25px;color:#000;padding-left:5px;letter-spacing:1px;text-decoration:none;">logout</a></strong></div>
 		</div>
         
           
@@ -59,16 +60,129 @@
     </div>
     
     
-    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
-        <form id="feedupdate">
-            <input id="updatefeed" type="search" placeholder="Update your feed!">
-        </form>
-        <div id="update">Update</div>
+<!----------
+----------
+----------NEW
+----------
+------------>
+<script type="text/javascript">
+ 
+$(function() 
+{
+$(".expandable").focus(function()
+{
+$(this).animate({"height": "120px",}, "fast" );
+$("#button_block").slideDown("fast");
+return false;
+});
+$("#cancel").click(function()
+{
+$(".expandable").animate({"height": "30px",}, "fast" );
+$("#button_block").slideUp("fast");
+return false;
+});
 
+	
 
+});
+</script>
+    
+    <div id="top">
+    <div id="toptop"></div>
+    <div id="topmid">
+            <textarea class="expandable" placeholder="Update your feed!"></textarea>
+            <div id="button_block">
+            <button class="movingbutton" >Share</button><button id="cancel" class="movingbutton">Cancel</button>
+			</div>
+	</div>
+    <div id="topbot"></div>
 </div>
+    <!----------
+----------
+----------NEW
+----------
+------------>
     
 	<div id="alert"></div>
+<div class="wrapper">
+<table class="movethis3">
+	<tr>
+    	<td class="fields">Name:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="Your Name">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Username:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="Your Username">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Email:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="New Email">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Old Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">New Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Repeat New Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td rowspan="5" class="fields">Email Notifications:
+        </td>
+    	<td>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">Recruitd newsletter emails?</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When you get followed</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When you are updated on a job offering</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When companies you follow update their feeds</td>
+            </tr>
+        </td>
+    </tr>
+
+</table>
+
+<script type="text/javascript">
+function showValue(newValue,number)
+{
+	document.getElementById("range"+number).innerHTML=newValue;
+}
+</script>
+
+	<div id="topform">
+		<div class="settingstag">Tags:</div>
+        <div id="tags">
+    		    <input class="differentsearch moving" type="search" placeholder="Edit or add to your tags" style="font-family:helvetica;left:20px;top:-10px;position:relative;">
+
+		        <div class="wtf buildertable"><table class="wtf2"><tr id="tagcontrol0"><td style="float:right;padding-top:8px;">Tag#1</td><td style="padding-top:6px;"> <input type="range" min="0" max="10" step="1" value="5" onChange="showValue(this.value,1)"></td><td><span id="range1" style="float:left;padding-top:3px;padding-left:10px;">5</span></td><td> <div style="padding-left:10px;width:80px;text-align:left;" class="tag" onClick="deletetag2(0)">Delete</div></td></tr></table></div>
+        </div>
+
+	</div>
+    	<button class="button2">Submit!</button>
+
+</div>
+<!--
 <div id="nottags">
 	<div id="bottomform">
 	    <ul id="something3">
@@ -91,7 +205,6 @@
         <input type="checkbox">When you get followed<br/>
         <input type="checkbox">When you are updated on a job offering<br/>
         <input type="checkbox">When companies you follow update their feeds<br/>
-	<button>Update</button>
 
     </form>
     
@@ -113,7 +226,7 @@ function showValue(newValue,number)
         </div>
 	</div>
     	<button class="button2">Submit!</button>
-
+-->
 <div id="footer5">
 <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>
       <div id="footerlinks">
