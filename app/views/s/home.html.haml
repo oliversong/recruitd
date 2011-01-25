@@ -29,7 +29,7 @@
     #resbuild.awesomebtn
   %a{:href => "/browse"}
     #search.awesomebtn
-  #experiences
+  -#experiences
     .contenttop
       %span.headertext3 Challenge Questions
     .contentmiddle
@@ -47,72 +47,71 @@
         %span 2005 | Awesomeness | AAAAAAAAWWsome
     .contentbottom
   #activities
-    .contenttop
+    .contenttop.floatleft
       %span.headertext3 Friends
-    .contentmiddle
-      .hover.tTip{:title => "Hello World"}
-        %span 2010 | Software Engineer | Google
-      .hover.tTip{:title => "Hello World"}
-        %span 2009 | Web Designer | Facebook
-      .hover.tTip{:title => "Hello World"}
-        %span 2008 | Garbageman | Cambridge Trash Co.
-      .hover.tTip{:title => "Hello World"}
-        %span 2007 | Stuff | Asdfaasdfasdfasdf
-      .hover.tTip{:title => "Hello World"}
-        %span 2006 | Somethingsomething| Powpowpowpow
-      .hover.tTip{:title => "Hello World"}
-        %span 2005 | Awesomeness | AAAAAAAAWWsome
-      .hover.tTip{:title => "Hello World"}
-        %span 2010 | Software Engineer | Google
-      .hover.tTip{:title => "Hello World"}
-        %span 2009 | Web Designer | Facebook
-      .hover.tTip{:title => "Hello World"}
-        %span 2008 | Garbageman | Cambridge Trash Co.
-      .hover.tTip{:title => "Hello World"}
-        %span 2007 | Stuff | Asdfaasdfasdfasdf
-      .hover.tTip{:title => "Hello World"}
-        %span 2006 | Somethingsomething| Powpowpowpow
-      .hover.tTip{:title => "Hello World"}
-        %span 2005 | Awesomeness | AAAAAAAAWWsome
-      .hover.tTip{:title => "Hello World"}
-        %span 2010 | Software Engineer | Google
-      .hover.tTip{:title => "Hello World"}
-        %span 2009 | Web Designer | Facebook
-      .hover.tTip{:title => "Hello World"}
-        %span 2008 | Garbageman | Cambridge Trash Co.
-      .hover.tTip{:title => "Hello World"}
-        %span 2007 | Stuff | Asdfaasdfasdfasdf
-      .hover.tTip{:title => "Hello World"}
-        %span 2006 | Somethingsomething| Powpowpowpow
-      .hover.tTip{:title => "Hello World"}
-        %span 2005 | Awesomeness | AAAAAAAAWWsome
-      .hover.tTip{:title => "Hello World"}
-        %span 2010 | Software Engineer | Google
-      .hover.tTip{:title => "Hello World"}
-        %span 2009 | Web Designer | Facebook
-      .hover.tTip{:title => "Hello World"}
-        %span 2008 | Garbageman | Cambridge Trash Co.
-      .hover.tTip{:title => "Hello World"}
-        %span 2007 | Stuff | Asdfaasdfasdfasdf
-      .hover.tTip{:title => "Hello World"}
-        %span 2006 | Somethingsomething| Powpowpowpow
-      .hover.tTip{:title => "Hello World"}
-        %span 2005 | Awesomeness | AAAAAAAAWWsome
-      .hover.tTip{:title => "Hello World"}
-        %span 2010 | Software Engineer | Google
-      .hover.tTip{:title => "Hello World"}
-        %span 2009 | Web Designer | Facebook
-      .hover.tTip{:title => "Hello World"}
-        %span 2008 | Garbageman | Cambridge Trash Co.
-      .hover.tTip{:title => "Hello World"}
-        %span 2007 | Stuff | Asdfaasdfasdfasdf
-      .hover.tTip{:title => "Hello World"}
-        %span 2006 | Somethingsomething| Powpowpowpow
-      .hover.tTip{:title => "Hello World"}
-        %span 2005 | Awesomeness | AAAAAAAAWWsome
-    .contentbottom
+    .contentmiddle.floatleft
+      .friendgrid
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+        .friendpoint
+    .contentbottom.floatleft  
 #rightcolumn
-  #quicklinks
+  -#quicklinks
     .feedtop
       %span.headertext3 Quick Links
     .feedmiddle
@@ -123,6 +122,18 @@
     .feedtop
       %span.headertext3 Feed Updates
     .feedmiddle
+      .feeditem
+        .profpicsmall
+          %img{:src => "#"}/
+        .feedcontent2 Doing productive stuff!
+        .feedtime2 Jan 24 @ 12:00 PM
+      .hr3
+      .feeditem
+        .profpicsmall
+          %img{:src => "#"}/
+        .feedcontent2 Doing productive stuff!
+        .feedtime2 Jan 24 @ 12:00 PM
+      .hr3
       %ul.strangeul
         =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
     .feedbottom

@@ -1,0 +1,44 @@
+.star_selected{
+background-image:url(/images/starhover.png);
+width:33px;
+height:32px;
+position:relative;
+left:83px;
+top:-60px;
+}
+.star_selected:hover{
+	background-image:url(/images/starbefore.png);
+}
+
+.downlike_selected{
+	background-image:url(/images/downhover.png);
+	width:31px;
+	height:30px;
+}
+.downlike_selected:hover{
+	background-image:url(/images/votedown.png);
+}
+.uplike_selected{
+	background-image:url(/images/uphover.png);
+	width:31px;
+	height:30px;
+	position:relative;
+	left:40px;
+	top:-30px;
+}
+.uplike_selected:hover{
+	background-image:url(/images/voteup.png);
+}
+
+
+#maincontent{
+  position:relative;
+  left: 50%;
+  margin-left: -500px;
+	padding-top: 20px;
+	width: 1005px;
+}
+
+.highlight{
+background-color:#FF6;
+}
