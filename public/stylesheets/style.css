@@ -954,10 +954,11 @@ margin-left: -500px;
 }
 
 #maincontent{
-  position:absolute;
+  position:relative;
   left: 50%;
   margin-left: -500px;
-  top:200px;
+	padding-top: 20px;
+	width: 1005px;
 }
 
 #infofields{list-style:none;
@@ -1447,6 +1448,7 @@ top:-60px;
 .star:hover{
 	background-image:url(/images/starhover.png);
 }
+
 .star_selected{
 background-image:url(/images/starhover.png);
 width:33px;
@@ -1458,6 +1460,7 @@ top:-60px;
 .star_selected:hover{
 	background-image:url(/images/starbefore.png);
 }
+
 .downlike{
 background-image:url(/images/votedown.png);
 width:31px;

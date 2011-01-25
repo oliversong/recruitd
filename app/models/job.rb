@@ -7,6 +7,9 @@ class Job < ActiveRecord::Base
   has_many :term_attachments, :as => :attachable
   has_many :terms, :through => :term_attachments
   
+  has_many :career_attachments
+  has_many :careers, :through => :career_attachments, :as => :attachable
+  
   def name
     return title + " at " + company.name
   end

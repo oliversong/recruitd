@@ -1,8 +1,8 @@
 class Career < ActiveRecord::Base
   # has_one :term, :as => :reference
   
-  has_many :career_jobs
-  has_many :jobs, :through => :career_jobs
+  has_many :career_attachments
+  has_many :attachables, :through => :career_attachments
   
   has_many :term_attachments, :as => :attachable
   has_many :terms, :through => :term_attachments
@@ -11,6 +11,8 @@ class Career < ActiveRecord::Base
   has_many :students, :through => :career_students
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
+  
+  acts_as_commentable
   
   # after_create :create_term
   # 

@@ -15,7 +15,7 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_home
       else
-        render "newly_created"
+        render "authentications/from_email"
         #redirect_to "/users/sign_in"
       end
     else
@@ -160,7 +160,7 @@ class InfoController < ApplicationController
     
     #@student = current_user.entity
     
-    @student_file = StudentFile.by_student_id(current_user.id).offset(@page).limit(1).find(:first)
+    @student_files = StudentFile.by_student_id(current_user.id).offset(@page).limit(10).find(:all)
     
     render 's/browse'
   end

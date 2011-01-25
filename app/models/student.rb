@@ -15,8 +15,8 @@ class Student < User
   # has_many :course_students
   # has_many :courses, :through => :course_students
   
-  has_many :career_students
-  has_many :careers, :through => :career_students
+  has_many :career_attachments, :as => :attachable
+  has_many :careers, :through => :career_attachments
   
   has_many :student_terms
   has_many :terms, :through => :student_terms

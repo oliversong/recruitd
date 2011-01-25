@@ -1,0 +1,31 @@
+-content_for :footer_style do
+  top: 0px
+
+#maincontent
+  %h2
+    You're almost done!  Please fill in some details to help us customize your account:
+  = form_for current_user, :url => finalize_authentications_path, :html => {:method => :post, :multipart => true} do |f|
+    %p
+      First name:
+      %br/
+      = f.text_field :first_name
+    %p
+      Last name:
+      %br/
+      = f.text_field :last_name
+    %p
+      Email:
+      %br/
+      = f.email_field :email
+    %p
+      Careers you are interested in:
+      %br
+      - @careers.each do |career|
+        = check_box_tag "careers[#{career.id}]", "1", false
+        = career.name
+        %br/
+    %p
+      Choose a profile picture (recommended):
+      %br/
+      = f.file_field "avatar"
+    %p= submit_tag "Update"

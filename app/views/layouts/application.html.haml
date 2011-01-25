@@ -74,7 +74,12 @@
       
     #alert
     = yield
-    #footerbuilder{:style => "top:200px;"}
+    - if content_for?(:footer_style)
+      -footer_style = yield(:footer_style)
+    -else
+      -footer_style = "top:200px;"
+    
+    #footerbuilder{:style => footer_style}
       %span#copyright Copyright © 2010 Recruitd Inc. All rights reserved.
       #footerlinks
         %a{:href => "#"} Home

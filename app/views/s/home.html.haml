@@ -1,6 +1,6 @@
 #leftcolumn
-  #profpic
-    %img.profilepicture{:src => "/images/profpic.jpg"}/
+  =link_to edit_registration_path(current_user) do
+    %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
       %span.headertext3 Basic Info
@@ -11,17 +11,17 @@
         %li.field Education
         %li.value.tTip{:title => "Hello World"} Massachusetts Institute of Technology
         %li.field Location
-        %li.value.tTip{:title => "Hello World"} Cambridge
+        %li.value.tTip{:title => "Hello World"}=h current_user.location
         %li.field Languages
         %li.value.tTip{:title => "Hello World"} English, German
         %li.field Birthday
         %li.value.tTip{:title => "Hello World"} May 24, 1991
         %li.field Phone
-        %li.value.tTip{:title => "Hello World"} 123-123-1234
+        %li.value.tTip{:title => "Hello World"}=h number_to_phone(current_user.phone, :area_code => true)
         %li.field Email
-        %li.value.tTip{:title => "Hello World"} daneh@example.com
+        %li.value.tTip{:title => "Hello World"}=h current_user.email
         %li.field Website
-        %li.value.tTip{:title => "Hello World"} http://www.daneh.com
+        %li.value.tTip{:title => "Hello World"}=h current_user.website
     .sidebottom
 #middlecolumn
   #fullname Dane Hammerhead

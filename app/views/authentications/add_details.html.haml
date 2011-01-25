@@ -8,7 +8,7 @@
 #maincontent
   %h2
     You're almost done!  Confirm your details below:  
-  = form_for @user.becomes(User), :url => finalize_facebook_authentications_path, :html => {:method => :post, :multipart => true} do |f|
+  = form_for current_user.becomes(User), :url => finalize_authentications_path, :html => {:method => :post, :multipart => true} do |f|
     = hidden_field_tag "uid", @uid
     %p
       First name:
@@ -27,9 +27,16 @@
       %br/
       = f.select :gender_is_male, [['male', 1], ['female', 0]], { :include_blank => true }
     %p
+      Careers you are interested in:
+      %br
+      - @careers.each do |career|
+        = check_box_tag "careers[#{career.id}]", "1", false
+        = career.name
+        %br/
+    %p
       Profile picture: none
       %br
       Choose a profile picture (recommended):
       %br/
-      = file_field_tag "avatar"
+      = f.file_field "avatar"
     %p= submit_tag "Update"

@@ -62,48 +62,17 @@
   #searchwidgetmid
     #slideshow2
       #slidesContainer2
-        .slide2
-          -if @student_file.applyable_type == "Company"
-            = render :partial => "companies/summary_card", :locals => {:company => @student_file.applyable}
-          -elsif @student_file.applyable_type == "Job"
-            = render :partial => "jobs/summary_card", :locals => {:job => @student_file.applyable}
+        -@student_files.each do |student_file|
+          .slide2
+            -if student_file.applyable_type == "Company"
+              = render :partial => "companies/summary_card", :locals => {:company => student_file.applyable}
+            -elsif student_file.applyable_type == "Job"
+              = render :partial => "jobs/summary_card", :locals => {:job => student_file.applyable}
           
-          .ratingwidget
-            = render :partial => "shared/vote", :locals => {:voteable => @student_file.applyable, :vote => @student_file.vote}
-            = render :partial => "shared/star", :locals => {:entity => @student_file.applyable, :starred => @student_file.starred}
+            .ratingwidget
+              = render :partial => "shared/vote", :locals => {:voteable => student_file.applyable, :vote => student_file.vote}
+              = render :partial => "shared/star", :locals => {:entity => student_file.applyable, :starred => student_file.starred}
 
-
-          -#.ratingwidget
-            %a{"data-remote" => "true", :href => "/vote/Job/15/-1"}
-              .downlike
-            %a{"data-remote" => "true", :href => "/vote/Job/15/1"}
-              .uplike
-            %a{"data-remote" => "true", :href => "/star/Job/15.js"}
-              .star
-        .slide2
-          .itemtitle
-            Company that you will be working for
-          .itemcontent
-            Sample content2
-          .ratingwidget
-            %a{"data-remote" => "true", :href => "/vote/Job/15/-1"}
-              .downlike
-            %a{"data-remote" => "true", :href => "/vote/Job/15/1"}
-              .uplike
-            %a{"data-remote" => "true", :href => "/star/Job/15.js"}
-              .star
-        .slide2
-          .itemtitle
-            Company that you will be working for
-          .itemcontent
-            Sample content3
-          .ratingwidget
-            %a{"data-remote" => "true", :href => "/vote/Job/15/-1"}
-              .downlike
-            %a{"data-remote" => "true", :href => "/vote/Job/15/1"}
-              .uplike
-            %a{"data-remote" => "true", :href => "/star/Job/15.js"}
-              .star
   #rating
 
 

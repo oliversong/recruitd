@@ -18,6 +18,11 @@
     - company.jobs.each do |job|
       %td= link_to job.title, job
   %p
-    %b Recruiters
+    %b Recruiters:
     - company.recruiters.each do |recruiter|
       = link_to recruiter.name, recruiter
+  %p
+    %b Relevant tags:
+    - company.terms.each do |term|
+      =link_to term.name, term.becomes(Term)
+      ,

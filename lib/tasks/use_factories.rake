@@ -188,8 +188,17 @@ def create_careers
   end  
   
   Student.all.each do |student|
-    Career.all.sort_by{rand}[1..2].each do |career|
-      Factory(:career_student, :student => student, :career => career)
+    Career.all.sort_by{rand}[0..1].each do |career|
+      Factory(:career_attachment, :attachable => student, :career => career)
+    end
+  end
+  
+  Company.all.each do |c|
+    Career.all.sort_by{rand}[0..1].each do |career|
+      Factory(:career_attachment, :attachable => c, :career => career)
+      c.jobs.each do |j|
+        Factory(:career_attachment, :attachable => j, :career => career)
+      end
     end
   end
   

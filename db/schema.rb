@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124140432) do
+ActiveRecord::Schema.define(:version => 20110125030122) do
+
+  create_table "career_attachments", :force => true do |t|
+    t.integer  "career_id"
+    t.integer  "attachable_id"
+    t.integer  "attachable_type"
+    t.integer  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "career_attachments", ["attachable_id", "attachable_type"], :name => "index_career_attachments_on_attachable_id_and_attachable_type"
+  add_index "career_attachments", ["career_id"], :name => "index_career_attachments_on_career_id"
 
   create_table "career_companies", :force => true do |t|
     t.integer  "career_id"

@@ -19,13 +19,14 @@ class Company < ActiveRecord::Base
   has_many :recruiters
   has_many :company_files, :order => "feed_score DESC"
   has_many :company_terms, :include => ["term"]
+  has_many :terms, :through => :company_terms
   
   has_many :labels, :as => :owner
   has_many :company_labelings
   has_many :student_labelings, :as => :applyable
   
-  has_many :career_companies
-  has_many :careers, :through => :career_companies
+  has_many :career_attachments, :as => :attachable
+  has_many :careers, :through => :career_attachments
   
   scope :search_for_name, lambda { |term| {:conditions => ['lower(name) LIKE ?', "%#{term.downcase}%" ]} }
   
