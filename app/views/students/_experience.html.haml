@@ -1,0 +1,14 @@
+-if !experience.description.blank?
+  .hover.tTip{ :name => experience.description, :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+    %span= experience_block(experience, term_type)
+    -if @owner
+      %span{:style => "display:none", :class => "edit_#{term_type}_button"}
+        %br/  
+        = link_to "(edit)", edit_experience_path(experience)
+-else
+  .hover{ :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+    %span= experience_block(experience, term_type)
+    -if @owner
+      %span{:style => "display:none", :class => "edit_#{term_type}_button"}
+        %br/  
+        = link_to "(edit)", edit_experience_path(experience)

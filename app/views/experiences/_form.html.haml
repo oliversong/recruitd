@@ -11,7 +11,7 @@
   
   function toggleSourceToClub(){
     $( "#tags" ).autocomplete({
-      source: "/autocomplete_searches/club_names",
+      source: "/autocomplete_searches/term_names/Club.js",
       focus: function(event, ui) { 
         $("#id_box").val(ui.item.id);
         $("#detail_box").show();
@@ -24,7 +24,7 @@
   }
   function toggleSourceToCompany(){
     $( "#tags" ).autocomplete({
-      source: "/autocomplete_searches/company_names",
+      source: "/autocomplete_searches/company_names.js",
       focus: function(event, ui) { 
         $("#id_box").val(ui.item.id);
         $("#detail_box").show();
@@ -45,7 +45,7 @@
     
   });
 
-- form_for @experience do |f|
+- form_for @experience.becomes(Experience) do |f|
   = f.error_messages
   %p
     = f.label :startdate
@@ -77,8 +77,8 @@
       =radio_button_tag "experience_type", "company", false
       Company
     %br
-    = text_field_tag "club[name]", params[:term], :class => "auto_search_complete", :id => "tags", :size => 50
-    = submit_tag "add", :name => nil, :class => 'button', :id => "add_btn"
+    = text_field_tag "club[name]", params[:term], :class => "auto_search_complete", :id => "tags_ac", :size => 50
+    = submit_tag "add", :name => nil, :id => "add_btn"
     %br
     = hidden_field_tag "club[id]", nil, :id => "id_box"
     = hidden_field_tag "club[description_changed]", nil, :id => "description_changed", :value => false

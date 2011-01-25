@@ -13,7 +13,7 @@ class ExperiencesController < ApplicationController
     if !current_user.is_student?
       redirect_to :new_user_session
     end
-    @student = current_user.entity
+    @student = current_user
     @experience = Experience.new
   end
   
@@ -37,7 +37,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = ClubExperience.new(params[:experience])
-      @experience.student_id = current_user.entity_id
+      @experience.student_id = current_user.id
       @experience.club = @club
     else
       
@@ -51,7 +51,7 @@ class ExperiencesController < ApplicationController
       
       #NOW MODIFY EXPEIRENCE
       @experience = WorkExperience.new(params[:experience])
-      @experience.student_id = current_user.entity_id
+      @experience.student_id = current_user.id
       @experience.company = @company
     end
     

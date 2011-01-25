@@ -20,6 +20,14 @@ module StudentsHelper
     return_str
   end
   
+  def experience_block(experience, term_type)
+    if term_type == "WorkExperience"
+      return work_experience_block(experience)
+    else
+      return club_experience_block(experience)
+    end
+  end
+  
   def work_experience_block(experience)
     return_str = link_to( experience.company.name, experience.company) + ", " + h(experience.location) + tag(:br)
     return_str += h(experience.job_title) + tag(:br)

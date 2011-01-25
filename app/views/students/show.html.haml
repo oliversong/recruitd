@@ -24,8 +24,8 @@
       }
     
       addClickToToggle("#careers_edit", ".delete_career_button", "(edit)", "(stop)");
-      addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
-      addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
+      addClickToToggle("#activities_edit", ".edit_ClubExperience_button", "(edit)", "(stop)");
+      addClickToToggle("#work_edit", ".edit_WorkExperience_button", "(edit)", "(stop)");
       addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
       addClickToToggle("#skills_edit", ".delete_skill_button", "(edit)", "(stop)");
       addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
@@ -128,7 +128,7 @@
             = h @student.email
         -if !@student.website.blank?
           %li.field Website
-          %li.value.tTip{:title => "Hello World", :reference_type => "Website", :id => "Website"}
+          %li.value{ :reference_type => "Website", :id => "Website"}
             =h @student.website
     .sidebottom
     
@@ -174,17 +174,10 @@
       %span.headertext3 Experiences
     .contentmiddle
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover
           %span
             = link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
-      - for experience in @student.work_experiences
-        .hover.tTip{:title => experience.description, :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
-          %span 
-            = work_experience_block(experience)
-            %span.edit_work_button{:style => "display:none"}
-              %br/  
-              = link_to "(edit)", edit_experience_path(experience)
-        
+      = render :partial => "experience", :collection => @student.work_experiences, :locals => {:term_type => "WorkExperience"}
       -if @owner
         .hover
           %span
@@ -195,15 +188,9 @@
       %span.headertext3 Activities
     .contentmiddle
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover
           %span= link_to "(edit)", "#", {:id => "activities_edit", :onClick => "return false;"}
-      - for experience in @student.club_experiences
-        .hover.tTip{:title => "<li>Hello</li><li>World</li>", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
-          %span= club_experience_block(experience)
-          -if @owner
-            %span.edit_activity_button{:style => "display:none"}
-              %br/  
-              = link_to "(edit)", edit_experience_path(experience)
+      = render :partial => "experience", :collection => @student.club_experiences, :locals => {:term_type => "ClubExperience"}
       -if @owner
         .hover
           %span=link_to "Add an experience", new_experience_path
