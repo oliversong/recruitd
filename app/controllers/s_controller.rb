@@ -112,7 +112,7 @@ class SController < ApplicationController
     @student = current_user
     @term = Term.find_or_create_by_name_and_type(params[:term][:name], params[:term][:type])
 
-    @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => @term.type)
+    @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:details], :term_type => @term.type)
     if @student_term.save
       respond_to do |format|
         format.html { 
@@ -133,7 +133,7 @@ class SController < ApplicationController
       redirect_to :new_user_session
     end
     
-    student_term = StudentTerm.find_by_student_id_and_term_id(current_user.entity_id, params[:id])
+    student_term = StudentTerm.find_by_student_id_and_term_id(current_user.id, params[:id])
     if(student_term)
       student_term.destroy
     end

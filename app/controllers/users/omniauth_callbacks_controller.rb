@@ -86,7 +86,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
             
             if(provider == :facebook)
               sign_in(:user, user)
-              redirect_to from_facebook_authentications_path and return
+              redirect_to add_data_authentications_path and return
             else
               sign_in_and_redirect(:user, user)
             end

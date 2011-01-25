@@ -24,10 +24,10 @@
         %li.value.tTip{:title => "Hello World"}=h current_user.website
     .sidebottom
 #middlecolumn
-  #fullname Dane Hammerhead
+  #fullname=current_user.name
   %a{:href => "/students/build"}
     #resbuild.awesomebtn
-  %a{:href => "/search"}
+  %a{:href => "/browse"}
     #search.awesomebtn
   #experiences
     .contenttop

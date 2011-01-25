@@ -48,6 +48,19 @@ class Student < User
     return student_terms.find_all_by_term_type("Course")
   end
   
+  def student_awards
+    return student_terms.find_all_by_term_type("Award")
+  end
+  
+  def student_interests
+    return student_terms.find_all_by_term_type("Interest")
+  end
+  
+  def student_skills
+    return student_terms.find_all_by_term_type("Skill")
+  end
+  
+  
   def interests
     return terms.find_all_by_type('Interest')
   end

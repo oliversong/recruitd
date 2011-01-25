@@ -79,7 +79,7 @@ class StudentsController < ApplicationController
   # PUT /students/1.xml
   def update
     @student = Student.find(params[:id])
-    if @student.id != current_user.entity_id
+    if @student != current_user
       redirect_to(:back, :notice => 'Not authorized.')
     end
 

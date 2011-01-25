@@ -6,6 +6,8 @@ class CreateStudentTerm < ActiveRecord::Migration
       t.integer :term_id
       t.string :term_type
 
+      t.integer :score, :null => false, :default => 0
+      
       t.timestamps
     end
     

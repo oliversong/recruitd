@@ -1500,3 +1500,13 @@ background-image:url(/images/uphover.png);
 .uplike_selected:hover{
 	background-image:url(/images/voteup.png);
 }
+
+.hoverer{
+background-image:url(../images/x.png);
+background-position: 0 0;
+width:15px;
+height:15px;
+}
+.hoverer:hover{
+background-position: 0 15px;
+}

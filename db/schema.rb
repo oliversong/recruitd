@@ -24,34 +24,6 @@ ActiveRecord::Schema.define(:version => 20110125030122) do
   add_index "career_attachments", ["attachable_id", "attachable_type"], :name => "index_career_attachments_on_attachable_id_and_attachable_type"
   add_index "career_attachments", ["career_id"], :name => "index_career_attachments_on_career_id"
 
-  create_table "career_companies", :force => true do |t|
-    t.integer  "career_id"
-    t.integer  "company_id"
-    t.integer  "weight",     :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "career_jobs", :force => true do |t|
-    t.integer  "career_id"
-    t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "career_jobs", ["career_id"], :name => "index_career_jobs_on_career_id"
-  add_index "career_jobs", ["job_id"], :name => "index_career_jobs_on_job_id"
-
-  create_table "career_students", :force => true do |t|
-    t.integer  "career_id"
-    t.integer  "student_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "score",      :default => 0, :null => false
-  end
-
-  add_index "career_students", ["student_id"], :name => "index_career_students_on_student_id"
-
   create_table "career_terms", :force => true do |t|
     t.integer  "career_id"
     t.integer  "term_id"
@@ -357,9 +329,9 @@ ActiveRecord::Schema.define(:version => 20110125030122) do
     t.integer  "student_id"
     t.integer  "term_id"
     t.string   "term_type"
+    t.integer  "score",      :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "score",      :default => 0, :null => false
   end
 
   add_index "student_terms", ["student_id", "term_id"], :name => "index_student_terms_on_student_id_and_term_id"

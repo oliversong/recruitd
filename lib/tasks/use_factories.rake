@@ -14,9 +14,9 @@ namespace :db do
       create_schools_departments_courses
       create_categories
       create_awards
+      create_jobs
       create_careers
       create_interests
-      create_jobs
       create_recruiters
       create_updates
       create_company_files_and_feeds
@@ -228,9 +228,6 @@ def create_jobs
   Company.all.each do |company|
     2.times do
       job = Factory(:job, :company => company)
-      Career.all.sort_by{rand}[0..1].each do |career|
-        Factory(:career_job, :career => career, :job => job)
-      end
     end
   end
   puts "Created jobs"

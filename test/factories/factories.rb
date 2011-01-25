@@ -332,8 +332,8 @@ Factory.define :career do |f|
   # end
 end
 
-Factory.define :career_student do |f|
-  f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
+Factory.define :career_attachment do |f|
+  f.attachable { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.career { Career.all.count > 0 ? Career.all.sort_by{rand}.first : Factory.create(:career) }
 end
 
@@ -358,11 +358,6 @@ Factory.define :job do |f|
   f.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
   f.basic_qualifications "We are looking for a stellar candidate with relevant Wall Street experience (e.g., an investment banking financial analyst or equity research associate).  The candidate should have a passion for stocks.  The candidate must be an excellent writer and possess modeling and valuation skills. Intellectual curiosity, a strong work ethic and a team player mentality are desired attributes."
   #f.target_start "We would like the candidate to start as soon as possible."
-end
-
-Factory.define :career_job do |f|
-  f.career { Career.all.count > 0 ? Career.all.sort_by{rand}.first : Factory.create(:career) }
-  f.job { Job.all.count > 0 ? Job.all.sort_by{rand}.first : Factory.create(:job) }
 end
 
 Factory.define :recruiter do |p|

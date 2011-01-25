@@ -1,5 +1,4 @@
--# valid types: award, interest, skill, career, course, all
-
+-#params: term_type (valid types: award, interest, skill, career, course, all)
 :javascript
   var selectedId;
   $(document).ready(function(){
@@ -24,5 +23,9 @@
   }
   
 =form_tag(add_term_s_path, :method => "post", :onsubmit => "showBox(); return false;") do
-  = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :size => 30, :id => "term_name_#{term_type}"
-  = submit_tag "add", :name => nil, :class => 'button', :id => "term_add"
+  -if term_type == "Interest"
+    = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :id => "term_name_#{term_type}", :size => 23, :style => "margin-left:20px" 
+    = submit_tag "add", :name => nil, :id => "term_add", :style => "margin-left:20px" 
+  -else
+    = text_field_tag "term[name]", params[:term], :class => "auto_search_complete", :id => "term_name_#{term_type}", :size => 35
+    = submit_tag "add", :name => nil, :id => "term_add"

@@ -1,0 +1,14 @@
+-if !student_term.details.blank?
+  .hover.tTip{:title => "#{student_term.details}", :reference_type => term_type, :reference_id => student_term.id, :id => "#{term_type}#{student_term.id}"}
+    %span= link_to student_term.term.name, student_term.term.becomes(Term)
+    -if @owner
+      %span{:style => "display:none", :class => "delete_#{term_type.downcase}_button"}
+        = link_to delete_term_s_path(:id => student_term.term_id) do
+          .hoverer{:style => "display:inline-block"}
+-else
+  .hover{:reference_type => term_type, :reference_id => student_term.id, :id => "#{term_type}#{student_term.id}"}
+    %span= link_to student_term.term.name, student_term.term.becomes(Term)
+    -if @owner
+      %span{:style => "display:none", :class => "delete_#{term_type.downcase}_button"}
+        = link_to delete_term_s_path(:id => student_term.term_id) do
+          .hoverer{:style => "display:inline-block"}

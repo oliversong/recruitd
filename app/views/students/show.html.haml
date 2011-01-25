@@ -27,6 +27,7 @@
       addClickToToggle("#activities_edit", ".edit_activity_button", "(edit)", "(stop)");
       addClickToToggle("#work_edit", ".edit_work_button", "(edit)", "(stop)");
       addClickToToggle("#courses_edit", ".delete_course_button", "(edit)", "(stop)");
+      addClickToToggle("#skills_edit", ".delete_skill_button", "(edit)", "(stop)");
       addClickToToggle("#awards_edit", ".delete_award_button", "(edit)", "(stop)");
       addClickToToggle("#interests_edit", ".delete_interest_button", "(edit)", "(stop)");
       
@@ -87,17 +88,17 @@
     .sidemiddle
       %ul#infofields
         %li.field Hometown
-        %li.value.tTip{:title => "Hello World", :reference_type => "Hometown"}
+        %li.value{:reference_type => "Hometown"}
           %span.rest_in_place{"data-attribute" => "hometown", "data-object" => "student", "data-url" => "/students/3"}<
             = h @student.hometown
         %li.field Sex
-        %li.value.tTip{:title => "Hello World", :reference_type => "Sex"} 
+        %li.value{:reference_type => "Sex"} 
           = @student.gender_is_male ? "male" : "female"
         %li.field Education
-        %li.value.tTip{:title => "The Massachusetts Institute of Technology (MIT) is a private research institute located in Cambridge, Massachusetts. MIT has five schools and one college, containing a total of 32 academic departments, with a strong emphasis on scientific and technological research.  Recruitd students: 314 | courses: 1252", :reference_type => "Education", :id => "Education"} 
+        %li.value{:reference_type => "Education", :id => "Education"} 
           Massachusetts Institute of Technology
         %li.field Location
-        %li.value.tTip{:title => "Hello World", :reference_type => "Location", :id => "Location"}
+        %li.value{:reference_type => "Location", :id => "Location"}
           %span.rest_in_place{"data-attribute" => "location", "data-object" => "student", "data-url" => "/students/3"}<
             - if !@student.location.blank?
               = h @student.location
@@ -105,22 +106,22 @@
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
         %li.field Languages
-        %li.value.tTip{:title => "Hello World", :reference_type => "Languages", :id => "Languages"}
+        %li.value{:reference_type => "Languages", :id => "Languages"}
           %span.rest_in_place{"data-attribute" => "languages", "data-object" => "student", "data-url" => "/students/3"}<
             = h @student.languages
         %li.field GPA
-        %li.value.tTip{:title => "Hello World", :reference_type => "GPA", :id => "GPA"} 
+        %li.value{:reference_type => "GPA", :id => "GPA"} 
           %span.rest_in_place{"data-attribute" => "gpa", "data-object" => "student", "data-url" => "/students/3"}<
             = h @student.gpa
         
         %li.field Phone
-        %li.value.tTip{:title => "Hello World", :reference_type => "PhoneNumber", :id => "PhoneNumber"} 
+        %li.value{:reference_type => "PhoneNumber", :id => "PhoneNumber"} 
           %span.rest_in_place{"data-attribute" => "phone", "data-object" => "student", "data-url" => "/students/3"}<
             = h number_to_phone(@student.phone, :area_code => true)
 
         -if !@student.email.blank?
           %li.field Email
-          %li.value.tTip{:title => "Hello World", :reference_type => "Email", :id => "Email"}
+          %li.value{:reference_type => "Email", :id => "Email"}
             = h @student.email
         -if !@student.website.blank?
           %li.field Website
@@ -136,21 +137,16 @@
         %span.subheader Interests
         %ul.specialerul
           -if @owner
-            %li.hover.tTip{:title => "Hello World"}
+            %li.hover.tTip{:title => "Click to toggle editing mode."}
               = link_to "(edit)", "#", {:id => "interests_edit", :onClick => "return false;"}
-          - for interest in @student.interests
-            %li.hover.tTip{:title => "Hello World", :reference_type => "Interest", :reference_id => interest.id, :id => "Interest#{interest.id}"}
-              = interest_block(interest)
-              -if @owner
-                %span.delete_interest_button{:style => "display:none"}
-                  = link_to "[X]", delete_term_s_path(:id => interest.id)
+          = render :partial => "student_term", :collection => @student.student_interests, :locals => {:term_type => "Interest"}
           -if @owner
-            %li.hover.tTip{:title => "Hello World"}
+            %li.hover.tTip{:title => "Start typing the name of an interest..."}
               %li= render :partial => "add_term", :locals => {:term_type => "Interest" }
       %span.subheader Fun Facts
       #funfacts
         %ul.specialerul
-          %li.hover.tTip{:title => "Hello World", :reference_type => "FunFacts", :id => "FunFacts"}
+          %li.hover{:reference_type => "FunFacts", :id => "FunFacts"}
             = h @student.fun_facts
             -if @owner
               = link_to "(edit)", "#", {:onClick => "$('\#fun_facts').toggle(); return false;"}
@@ -216,14 +212,9 @@
       -if @owner
         .hover  
           %span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
-      - @student.skills.each do |skill|
-        .hover.tTip{:title => "Hello World", :reference_type => "Skill", :reference_id => skill.id, :id => "Skill#{skill.id}"}
-          %span= link_to skill.name, skill.becomes(Term)
-          -if @owner
-            %span.delete_skill_button{:style => "display:none"}
-              = link_to "[X]", delete_term_s_path(:id => skill.id)
+      = render :partial => "student_term", :collection => @student.student_skills, :locals => {:term_type => "Skill"}
       -if @owner
-        .hover  
+        .hover.tTip{:title => "Start typing the name of a skill..."}
           %span= render :partial => "add_term", :locals => {:term_type => "Skill" }
     .contentbottom
   #courses
@@ -233,7 +224,7 @@
       -if @owner
         .hover  
           %span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
-      = render :partial => "course_student", :collection => @student.course_students
+      = render :partial => "student_term", :collection => @student.course_students, :locals => {:term_type => "Course"}
       -if @owner
         .hover.tTip{:title => "Start typing the name of a course..."}
           %span= render :partial => "add_term", :locals => {:term_type => "Course" }
@@ -245,15 +236,10 @@
       -if @owner
         .hover.tTip{:title => "Hello World"}
           %span= link_to "(edit)", "#", {:id => "awards_edit", :onClick => "return false;"}
-      - @student.awards.each do |award|
-        .hover.tTip{:title => "Hello World", :reference_type => "Award", :reference_id => award.id, :id => "Award#{award.id}"}
-          %span= link_to award.name, award.becomes(Term)
-          -if @owner
-            %span.delete_award_button{:style => "display:none"}
-              = link_to "[X]", delete_term_s_path(:id => award.id)
+      = render :partial => "student_term", :collection => @student.student_awards, :locals => {:term_type => "Award"}
       -if @owner
         %span 
-        .hover.tTip{:title => "Hello World"}
+        .hover.tTip{:title => "Start typing the name of an award..."}
           %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
 #rightcolumn
