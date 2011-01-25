@@ -20,6 +20,7 @@
 			$('.tTip').betterTooltip({speed: 150, delay: 300});
 		});
 	</script>
+    
     <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico" />	
 </head> 
 
@@ -58,17 +59,48 @@
           
         
     </div>
-    
-    
-    <div id="top"><div class="scribbles">Scribbles</div><img id="divider" src="images/divider.png" />
-        <form id="feedupdate">
-            <input id="updatefeed" type="search" placeholder="Update your feed!">
-        </form>
-        <div id="update">Update</div>
+<!----------
+----------
+----------NEW
+----------
+------------>
+<script type="text/javascript">
+ 
+$(function() 
+{
+$(".expandable").focus(function()
+{
+$(this).animate({"height": "120px",}, "fast" );
+$("#button_block").slideDown("fast");
+return false;
+});
+$("#cancel").click(function()
+{
+$(".expandable").animate({"height": "30px",}, "fast" );
+$("#button_block").slideUp("fast");
+return false;
+});
 
+	
 
+});
+</script>
+    
+    <div id="top">
+    <div id="toptop"></div>
+    <div id="topmid">
+            <textarea class="expandable" placeholder="Update your feed!"></textarea>
+            <div id="button_block">
+            <button class="movingbutton" >Share</button><button id="cancel" class="movingbutton">Cancel</button>
+			</div>
+	</div>
+    <div id="topbot"></div>
 </div>
-    
+    <!----------
+----------
+----------NEW
+----------
+------------>
 	<div id="alert"></div>    
   <div id="leftcolumn">        
 <div id="profpic"><img class="profilepicture"  src="images/profpic.jpg" /></div>
@@ -80,11 +112,11 @@
                 <li class="field tTip" title="Hello World">Sex</li>
                 <li class="value tTip" title="Hello World">Male</li>
                 <li class="field">Education</li>
-                <li class="value tTip" title="Hello World">Massachusetts Institute of Technology</li>
+                <li class="value tTip" title="Hello World">Massachusetts Institute of Technology<img style="padding-left:4px;padding-top:2px;" src="images/info.gif"/></li>
                 <li class="field">Location</li>
                 <li class="value tTip" title="Hello World">Cambridge</li>
                 <li class="field">Languages</li>
-                <li class="value tTip" title="Hello World">English, German</li>
+                <li class="value tTip" title="Hello World">English, German<img style="padding-top:2px;padding-left:4px;padding-right:4px;" src="images/info.gif"/></li>
                 <li class="field">Birthday</li>
                 <li class="value tTip" title="Hello World">May 24, 1991</li>
                 <li class="field">Phone</li>
@@ -103,7 +135,7 @@
     
 	<div id="middlecolumn">
 
-        <div id="fullname">Dane Hammerhead</div>
+        <div id="fullname">Dane Hammerhead </div>
         <a href="#"><div class="awesomebtn" id="resbuild"></div></a>
         <a href="#"><div class="awesomebtn" id="search"></div></a>
         <div id="activities">

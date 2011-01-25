@@ -13,7 +13,7 @@ height:800px;
 left: 50%;
 margin-left: -330px;
 position: relative;
-top: 0px;
+top: 100px;
 width: 839px;
 float:left;
 }
@@ -39,7 +39,6 @@ h2.acc_trigger {
 	width: 839px;
 	font-size: 2em;
 	font-weight: normal;
-	float: left;
 }
 h2.acc_trigger a {
 	color: #8e8e8e;
@@ -83,7 +82,7 @@ h2.active {background-position: left bottom;}
 background-image:url(../images/sidetopedit.png);
 background-repeat:no-repeat;
 position:relative;
-top:200px;
+top:222px;
 left:50%;
 margin-left:-500px;
 height:12px;
@@ -93,7 +92,7 @@ width:183px;
 background-image:url(../images/sidebot.png);
 background-repeat:no-repeat;
 position:relative;
-top:200px;
+top:222px;
 left:50%;
 margin-left:-500px;
 height:15px;
@@ -107,7 +106,7 @@ font-size: 20px;
 left: 50%;
 margin-left: -500px;
 position: relative;
-top: 200px;
+top: 222px;
 width: 183px;
 background-image:url(../images/sidemid.png);
 background-repeat:repeat-y;
