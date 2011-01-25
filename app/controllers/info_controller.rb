@@ -4,7 +4,7 @@ class InfoController < ApplicationController
     # if current_subdomain == "hiring"
     #   render "info/frontpage_recruiter", :layout => "public"
     # else
-      render "info/frontpage_student", :layout => "public"
+      render "info/frontpage_student", :layout => false
     # end
   end
   

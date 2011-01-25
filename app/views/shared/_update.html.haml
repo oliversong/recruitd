@@ -1,6 +1,25 @@
+:javascript
+  $(function() 
+  {
+  $(".expandable").focus(function()
+  {
+  $(this).animate({"height": "120px",}, "fast" );
+  $("#button_block").slideDown("fast");
+  return false;
+  });
+  $("#cancel").click(function()
+  {
+  $(".expandable").animate({"height": "30px",}, "fast" );
+  $("#button_block").slideUp("fast");
+  return false;
+  });
+  });
+  
 #top
-  .scribbles Scribbles
-  %img#divider{:src => "/images/divider.png"}/
-  =form_tag "/updates", :id => "feedupdate" do
-    =text_field_tag "update[text]", nil, {:placeholder => "Update your feed!", :style => "width:730px;", :type => "search"}
-    =submit_tag "Update"
+  #toptop
+  #topmid
+    %textarea.expandable{:placeholder => "Update your feed!"}
+    #button_block
+      %button.movingbutton Share
+      %button#cancel.movingbutton Cancel
+  #topbot
