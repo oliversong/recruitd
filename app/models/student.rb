@@ -168,7 +168,7 @@ class Student < User
           
           if position["company"]["industry"]
             career = Career.find_or_initialize_by_name(position["company"]["industry"])
-            cc = CareerCompany.new(:career => career, :company => company)
+            cc = CareerAttachment.new(:career => career, :attachable => company)
             cc.save
           end
         end

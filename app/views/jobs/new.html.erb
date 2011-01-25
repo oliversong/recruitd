@@ -56,7 +56,7 @@
 	<script>
 
 	$(document).ready(function(){
-  	var idx = 0
+  	var idx = 0;
     $( "#career_tagger" ).autocomplete({
       source: "/autocomplete_searches/career_names.js",
       select: function(event, ui) { 
@@ -66,12 +66,12 @@
         $("#career_tagger").val("");
       }
     });
-
     $( "#other_tagger" ).autocomplete({
       source: "/autocomplete_searches/term_names/All.js",
       select: function(event, ui) { 
         $("#other_tagger_instructions").show();
-        $("#other_tagger").val("");
+        $("#other_tagger").val("");      
+        $('#career_tag_receiver').append("<li><input type='hidden' name='other["+ (i-1) + "]' value='" + ui.item.label + "'>");  
       }
     });
   });
@@ -91,7 +91,9 @@
         });
 
         if( e.which === 13 && $.trim(this.value).length ) {
-            $('<tr id="tagcontrol'+i+'"><td class="someclass" style="text-align:right;" id="tagcontrol'+i+'">'+this.value+'</td><td> <input type="range" min="0" max="10" step="1" value="5" onchange="showValue(this.value,'+i+')"></td><td><text id="range'+i+'" style="padding-left:10px;">5</text></td><td><div style="width:100px;text-align:left;" id="tag'+i+'" class="tag" onclick="deletetag('+i+')"><span style="padding-left:10px;">Delete</span></div></td></tr>').appendTo($('.wtf2')) ; i+=1;
+
+          
+            $('<tr id="tagcontrol'+i+'"><td class="someclass" style="text-align:right;" id="tagcontrol'+i+'">'+this.value+'</td><td> <input type="range" name="other_value[' + i + ']" + min="0" max="10" step="1" value="5" onchange="showValue(this.value,'+i+')"></td><td><text id="range'+i+'" style="padding-left:10px;">5</text></td><td><div style="width:100px;text-align:left;" id="tag'+i+'" class="tag" onclick="deletetag('+i+')"><span style="padding-left:10px;">Delete</span></div></td></tr>').appendTo($('.wtf2')) ; i+=1;
             $self.val('').css('position', 'relative').animate({ top: ((m==0)?"+=0":"+=0") }, 200);m+=1;
         }
     });

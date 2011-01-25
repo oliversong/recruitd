@@ -80,7 +80,7 @@ class StudentsController < ApplicationController
   def update
     @student = Student.find(params[:id])
     if @student != current_user
-      redirect_to(:back, :notice => 'Not authorized.')
+      redirect_to(:back, :notice => 'Not authorized.') and return
     end
 
     respond_to do |format|

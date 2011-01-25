@@ -1828,3 +1828,7 @@ color:#333;
 	margin-bottom:120px;
 	width: 18px;
 }
+
+#other_tagger{
+	z-index:0;
+}

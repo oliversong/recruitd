@@ -35,7 +35,20 @@ class JobsController < ApplicationController
       end
     end
     
-    if @job.save
+    success = @job.save
+    
+    if(params[:other])
+      params[:other].each do |i, other_tag|
+        term = Term.find_by_name(other_tag)
+        if term
+          weight = params[:other_value][i]
+          ta = TermAttachment.new(:term => term, :attachable => @job, :weight => weight)
+          ta.save
+        end
+      end
+    end 
+    
+    if success
       flash[:notice] = "Successfully created job."
       redirect_to @job
     else
