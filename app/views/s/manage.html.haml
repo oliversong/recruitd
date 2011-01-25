@@ -1,4 +1,6 @@
 = stylesheet_link_tag 'accordion'
+%link{:href => "/stylesheets/jquery.ui.stars.css", :rel => "stylesheet", :type => "text/css"}/
+%script{:src => "/javascripts/jquery.ui.stars.js", :type => "text/javascript"}
 
 :javascript
   $(document).ready(function(){
@@ -41,6 +43,11 @@
   $(document).ready(function() {
     $(".swapper").hide();
     $("#container1").show();
+    
+    $(".stars-wrapper3").stars({
+      inputType: "select",
+      split:2,
+    });
   });
   
   var label_ids = #{@student.labels.map{|l| l.id} << "A"};

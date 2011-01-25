@@ -116,6 +116,14 @@ Factory.sequence :internship_job_description do |n|
   single_unique_fetch('internship_job_descriptions',n)
 end
 
+Factory.sequence :company_label do |n|
+  single_unique_fetch('company_labels',n)
+end
+
+Factory.sequence :student_label do |n|
+  single_unique_fetch('student_labels',n)
+end
+
 Factory.sequence :male_avatar do |n|
   include ActionDispatch::TestProcess
   
@@ -500,6 +508,14 @@ end
 
 Factory.define :label do |f|
   f.name {"#{Factory.next(:lipsum_word)}"}
+end
+
+Factory.define :company_label, :class => Label do |f|
+  f.name { Factory.next(:company_label) }
+end
+
+Factory.define :student_label, :class => Label do |f|
+  f.name { Factory.next(:student_label) }
 end
 
 Factory.define :student_labeling do |f|

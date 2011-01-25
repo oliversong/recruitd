@@ -1732,16 +1732,36 @@ background-position:0 15px;
 *****************************
 ***************************** keone's changes
 */
+.star-container{
+	position:relative;
+	left:83px;
+	top:-60px;
+}
+.star{
+	background-image:url(/images/starbefore.png);
+width:33px;
+height:32px;
+}
+.star:hover{
+background-image:url(/images/starhover.png);
+}
+
 .star_selected{
 background-image:url(/images/starhover.png);
 width:33px;
 height:32px;
-position:relative;
-left:83px;
-top:-60px;
 }
 .star_selected:hover{
 	background-image:url(/images/starbefore.png);
+}
+
+.downlike{
+	background-image:url(/images/votedown.png);
+	width:31px;
+	height:30px;
+}
+.downlike:hover{
+	background-image:url(/images/downhover.png);
 }
 
 .downlike_selected{
@@ -1752,13 +1772,26 @@ top:-60px;
 .downlike_selected:hover{
 	background-image:url(/images/votedown.png);
 }
+
+.uplike-container{
+	position:relative;
+	left:40px;
+	top:-30px;
+}
+
+.uplike{
+	background-image:url(/images/voteup.png);
+	width:31px;
+	height:30px;
+}
+.uplike:hover{
+	background-image:url(/images/uphover.png);
+}
+
 .uplike_selected{
 	background-image:url(/images/uphover.png);
 	width:31px;
 	height:30px;
-	position:relative;
-	left:40px;
-	top:-30px;
 }
 .uplike_selected:hover{
 	background-image:url(/images/voteup.png);

@@ -236,7 +236,12 @@ class UtilitiesController < ApplicationController
   
   def create_label
     @label = Label.new(:name => params[:label][:name])
-    @label.owner = current_user
+    
+    if current_user.is_student?
+      @label.owner = current_user
+    elsif current_user.is_company_entity?
+      @label.owner = current_user.company
+    end
     @label.save
     
     redirect_to :back 
@@ -302,6 +307,7 @@ class UtilitiesController < ApplicationController
     # @student_term = StudentTerm.new(:student_id => @student.id, :term_id => @term.id, :details => params[:comments], :term_type => "Skill")
     
     if term_attachment.save
+      current_user.add_tag(@term)
       flash[:notice] = "Successfully added tag."
     else
       flash[:notice] = "Failed to add tag."

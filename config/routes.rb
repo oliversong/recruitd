@@ -77,7 +77,7 @@ Recruitd::Application.routes.draw do
 
   resources :course_students
 
-  resources :courses do
+  resources :courses, :except => [:index] do
     member do
       put 'rate'
     end

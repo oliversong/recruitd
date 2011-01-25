@@ -279,7 +279,7 @@ end
 def create_student_labels
   Student.all.each do |student|
     3.times do
-      label = Factory(:label, :owner_id => student.id, :owner_type => "Student")
+      label = Factory(:student_label, :owner_id => student.id, :owner_type => "Student")
       
       Company.all.sort_by{rand}[1..2].each do |company|
         Factory(:student_labeling, :student => student, :label => label, :applyable => company)
@@ -296,7 +296,7 @@ end
 def create_company_labels
   Company.all.each do |company|
     3.times do
-      label = Factory(:label, :owner_id => company.id, :owner_type => "Company")
+      label = Factory(:company_label, :owner_id => company.id, :owner_type => "Company")
       
       Student.all.sort_by{rand}[0..3].each do |student|
         Factory(:company_labeling, :student => student, :label => label, :company => company)

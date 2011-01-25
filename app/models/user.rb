@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
        :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :avatar, :first_name, :last_name, :profile_summary, :subtitle, :fun_facts, :gpa, :hometown, :location, :languages, :website, :phone, :address_line1, :address_line2, :address_city, :address_state, :address_zip, :about_me, :gender_is_male, :ethnicity
 
   belongs_to :entity, :polymorphic => true
   
@@ -42,6 +42,11 @@ class User < ActiveRecord::Base
   def post_update(update)
     #TODO fill this out
     puts "posted update"
+  end
+  
+  def add_tag(term)
+    puts "added tag"
+    return gender_is_male
   end
   
   #after_create :create_student
@@ -107,7 +112,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  emits_pfeeds :on => [:post_update] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
+  emits_pfeeds :on => [:post_update, :add_tag] , :for => [:itself , :followers]   # Note: if feed needs to be received by all users , you could use :for => [:all_in_its_class]
   receives_pfeed
   
 end

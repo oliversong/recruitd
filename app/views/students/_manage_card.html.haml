@@ -18,15 +18,19 @@
   = link_to student.name, student
 .acc_container.removethis{:style => "display: block; "}
   .block
+    %h3= link_to student.name, student
     Labels:
     - student.company_labelings.where(:company_id => company.id).each do |other_lbl|
       = other_lbl.label.name
-      |
-    rating: #{company_file.rating}
+      ,
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => student}
     =render :partial => "shared/star", :locals => {:entity => company_file.student, :starred => company_file.starred}
-    = render :partial => "students/update_rating", :locals => {:student => student }
+    
+    -#
+      rating: #{company_file.rating}
+      = render :partial => "students/update_rating", :locals => {:student => student }
     %b Your notes:
     = company_file.notes
     %br/
-    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => student}
+
     %br/

@@ -110,7 +110,7 @@ $(document).ready(function(){
 <a href="http://www.recruitd.com"><div id="logo"></div></a>
 <%= form_for(:user, :url => session_path(:user), :html => {:name => "login"}) do |f| %>
   <div id="form2">
-          <%= f.email_field :email, :class => "texta", :onKeyPress=>"return submitenter(this,event)", :placeholder=>"E-mail" %>
+          <%= f.email_field :email, :class => "texta", :placeholder=>"E-mail" %>
         </div>
         <div id="form1">
           <%= f.password_field :password, :class => "texta", :onKeyPress=>"return submitenter(this,event)", :placeholder=>"Password"%>
