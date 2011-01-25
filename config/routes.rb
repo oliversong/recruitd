@@ -1,4 +1,6 @@
 Recruitd::Application.routes.draw do
+  resources :comments
+
   # constraints(:subdomain => "hiring") do
   #   match "/" => "hiring#home", 
   # end
@@ -75,7 +77,7 @@ Recruitd::Application.routes.draw do
   resources :awards
   resources :schools
   
-  resources :departments
+  resources :departments, :only => [:show]
 
   resources :course_students
 

@@ -6,22 +6,22 @@
       %span.headertext3 Basic Info
     .sidemiddle
       %ul#infofields
-        %li.field.tTip{:title => "Hello World"} Sex
-        %li.value.tTip{:title => "Hello World"} Male
+        %li.field Sex
+        %li.value= (current_user.gender_is_male ? "male" : "female")
         %li.field Education
-        %li.value.tTip{:title => "Hello World"} Massachusetts Institute of Technology
+        %li.value Massachusetts Institute of Technology
         %li.field Location
-        %li.value.tTip{:title => "Hello World"}=h current_user.location
+        %li.value=h current_user.location
         %li.field Languages
-        %li.value.tTip{:title => "Hello World"} English, German
-        %li.field Birthday
-        %li.value.tTip{:title => "Hello World"} May 24, 1991
+        %li.value=h current_user.languages
         %li.field Phone
-        %li.value.tTip{:title => "Hello World"}=h number_to_phone(current_user.phone, :area_code => true)
+        %li.value=h number_to_phone(current_user.phone, :area_code => true)
         %li.field Email
-        %li.value.tTip{:title => "Hello World"}=h current_user.email
+        %li.value=h current_user.email
         %li.field Website
-        %li.value.tTip{:title => "Hello World"}=h current_user.website
+        %li.value=h current_user.website
+        %li.field=link_to "Edit profile", edit_student_path(current_user)
+        %li.value
     .sidebottom
 #middlecolumn
   #fullname=current_user.name
@@ -46,16 +46,7 @@
       .hover.tTip{:title => "Hello World"}
         %span 2005 | Awesomeness | AAAAAAAAWWsome
     .contentbottom
-  #activities
-    .contenttop.floatleft
-      %span.headertext3 Friends
-    .contentmiddle.floatleft
-      .friendgrid
-        -current_user.users_followed.each do |user|
-          .friendpoint
-            =link_to user do
-              = image_tag user.avatar.url(:thumb)
-    .contentbottom.floatleft  
+  =render :partial => "shared/friends_box"
 #rightcolumn
   #quicklinks
     .feedtop

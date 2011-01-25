@@ -8,5 +8,9 @@ class CareerAttachment < ActiveRecord::Base
                           :foreign_key => "attachable_id"
   belongs_to :student,  :class_name => "Student",
                           :foreign_key => "attachable_id"
+                          
+  def attachable_type=(sType)
+     super(sType.to_s.classify.constantize.base_class.to_s)
+  end
 
 end

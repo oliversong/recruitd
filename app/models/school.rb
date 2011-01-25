@@ -7,6 +7,8 @@ class School < ActiveRecord::Base
   #   Term.new(:name => name, :reference => self).save
   # end
   
+  has_many :departments
+  
   def location
     return "#{address_city}, #{address_state}"
   end

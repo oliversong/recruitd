@@ -1,56 +1,99 @@
-- title "Course"
+-# inputs:
+-# @course
+-# @companies
+-# @jobs
+-# @careers
+-# @students
+-# @comments
 
-%p
-  %strong Name:
-  =h @course.name
-%p
-  %strong Abbrev:
-  =h @course.course_abbrev
-%p
-  %strong Department:
-  =link_to @course.department.name, @course.department
-%p
-  %strong Description:
-  =h @course.description
+- title @course.name
+      
+%link{:href => "/stylesheets/jquery.ui.stars.css", :rel => "stylesheet", :type => "text/css"}/
+%script{:src => "/javascripts/jquery.ui.stars.js", :type => "text/javascript"}
 
-=form_tag(rate_course_path(@course), :method => "put") do
-  %p
-    %strong Difficulty:
-    %br/
-    - if @course_rating && @course_rating.difficulty
-      Your rating:
-      = @course_rating.difficulty
-    - else
-      Rate:
-      = select("course_rating", "difficulty", CourseRating::RATINGS, {:include_blank => true})
-    %br/
-    Average difficulty: #{@course.display_difficulty}
-  %p
-    %strong Usefulness:
-    %br/
-    - if @course_rating && @course_rating.usefulness
-      Your rating:
-      = @course_rating.usefulness
-    - else
-      Rate:
-      = select("course_rating", "usefulness", CourseRating::RATINGS, {:include_blank => true})
-    %br/
-    Average usefulness: #{@course.display_usefulness}
-  %p
-    =submit_tag "submit ratings"
-  
-%p
-  %strong Students who have taken #{@course.course_abbrev}:
-  %ul
-  -@course.student_terms.each do |course_student|
-    %li
-      =print_student_block(course_student.student, :link => true)
-      %br/
-      =course_student.details
+#big
+  #toppaneltop
+    .genericheader
+      %h1=@course.name
+    .ratingwidget
+      %form
+        %strong Usefulness:
+        %span#stars-cap
+        #stars-wrapper2
+          %select{:name => "selrate"}
+            %option{:value => "1"} Very poor
+            %option{:value => "2"} Poor
+            %option{:value => "3"} Okay
+            %option{:value => "4"} Not Bad
+            %option{:value => "5"} Good
+            %option{:selected => "selected", :value => "6"} Pretty good
+            %option{:value => "7"} Better
+            %option{:value => "8"} High quality
+            %option{:value => "9"} Awesome
+            %option{:value => "10"} Perfect
+    .ratingwidget2
+      %form
+        %strong.movethis Difficulty:
+        %span#stars-cap2.movethis
+        #stars-wrapper3
+          %select{:name => "selrate"}
+            %option{:value => "1"} Easy Peasy
+            %option{:value => "2"} Still cruisin'
+            %option{:value => "3"} Cram a little
+            %option{:value => "4"} Do homework
+            %option{:value => "5"} Average
+            %option{:value => "6"} Kinda hard
+            %option{:value => "7"} Should try
+            %option{:value => "8"} Work in groups
+            %option{:selected => "selected", :value => "9"} Oh god
+            %option{:value => "10"} Give up
+  #toppanelmid
+    #classdescription
+      =@course.description
+    #metadata
+      #metasub
+        %ul.right
+          %li
+            %strong Schools Offering:
+          %li
+            %strong Units/Credits:
+          %li
+            %strong Related careers:
+      %ul.answers
+        %li Massachusetts Institute of Technology
+        %li 6 units
+        %li
+          -@careers.each do |career|
+            #{link_to career.name, career},
+    #classtags
+      #classtagstitle Some related jobs:
+      -@jobs.each do |job|
+        #{link_to job.name, job},
 
-%p
-  = link_to "Edit", edit_course_path(@course)
-  |
-  = link_to "Destroy", @course, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", courses_path
+  #toppanelbot
+  #bottomleftpanel
+    #bottomleftpaneltop
+      .genericheader2
+        %h1 Students:
+    #bottomleftpanelmid
+      = render :partial => "shared/student_profile", :collection => @students
+    #bottomleftpanelbot
+  #bottomrightpanel
+    #bottomrightpaneltop
+      .genericheader2
+        %h1 Feedback:
+    #bottomrightpanelmid
+      = render :partial => "shared/comment", :collection => @comments
+      = render :partial => "shared/new_comment", :locals => {:commentable => @course}
+    #bottomrightpanelbot
+:javascript
+  $("#stars-wrapper2").stars({
+  	inputType: "select",
+  	split:2,
+  	captionEl: $("#stars-cap")
+  });
+  $("#stars-wrapper3").stars({
+  	inputType: "select",
+  	split:2,
+  	captionEl: $("#stars-cap2")
+  });

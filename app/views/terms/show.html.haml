@@ -84,6 +84,7 @@
         %h1 Feedback:
     #bottomrightpanelmid
       = render :partial => "shared/comment", :collection => @comments
+      = render :partial => "shared/new_comment", :locals => {:commentable => @term}
     #bottomrightpanelbot
 :javascript
   $("#stars-wrapper2").stars({

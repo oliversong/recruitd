@@ -5,6 +5,13 @@ class CoursesController < ApplicationController
   
   def show
     @course = Course.find(params[:id])
+    @term_descriptions = @course.term_descriptions
+    
+    @students = @course.students
+    @jobs = @course.jobs
+    @careers = @course.careers
+    @comments = @course.comments.recent.limit(10).all
+    
     if current_user.is_student?
       @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.id, params[:id])
     end

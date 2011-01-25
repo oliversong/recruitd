@@ -80,7 +80,10 @@
 
 
 #leftcolumn
-  =link_to edit_registration_path(current_user) do
+  -if @owner
+    =link_to edit_registration_path(current_user) do
+      %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
+  -else
     %img{:src => @student.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop

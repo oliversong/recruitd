@@ -1,0 +1,10 @@
+#activities
+  .contenttop.floatleft
+    %span.headertext3 Friends
+  .contentmiddle.floatleft
+    .friendgrid
+      -current_user.users_followed.each do |user|
+        .friendpoint
+          =link_to user do
+            = image_tag user.avatar.url(:thumb)
+  .contentbottom.floatleft
