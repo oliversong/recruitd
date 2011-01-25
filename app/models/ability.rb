@@ -33,7 +33,29 @@ class Ability
       if user.admin
         can :manage, :all
       else
-        can :manage, :all
+        
+        #starting point: can read all, cannot update/destroy any
+        can [:create, :read], :all
+        cannot [:destroy, :update], :all
+        
+        # career - can only read
+        cannot :create, Career
+        
+        # club - cannot destroy/update
+        
+        # course - cannot destroy/update
+        
+        # department - can only read
+        cannot :create, Department
+        
+        # experience - can do anything; need to check for ownership
+        can :manage, Experience
+        
+        
+        if user.is_company_entity?
+          # jobs and companies
+          can :manage, Job
+        end
       end
     end
 

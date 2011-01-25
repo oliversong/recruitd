@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20110125030122) do
   create_table "career_attachments", :force => true do |t|
     t.integer  "career_id"
     t.integer  "attachable_id"
-    t.integer  "attachable_type"
+    t.string   "attachable_type"
     t.integer  "weight"
     t.datetime "created_at"
     t.datetime "updated_at"

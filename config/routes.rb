@@ -84,7 +84,7 @@ Recruitd::Application.routes.draw do
       put 'rate'
     end
   end
-
+  
   resources :clubs
 
   resources :rep_transactions

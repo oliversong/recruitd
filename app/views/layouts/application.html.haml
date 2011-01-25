@@ -71,8 +71,11 @@
 
       
     = feedback_tab(:position => 'left')
-      
-    #alert
+    
+    - flash.each do |name, msg|
+      #alert
+        =msg
+    
     = yield
     - if content_for?(:footer_style)
       -footer_style = yield(:footer_style)
