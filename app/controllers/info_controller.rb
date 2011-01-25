@@ -90,7 +90,8 @@ class InfoController < ApplicationController
     @company = current_user.company
     @company_files = @company.company_files
     
-    @starred_company_files = @company_files.select{|company_file| company_file.starred }
+    #@starred_company_files = @company_files.select{|company_file| company_file.starred }
+    @starred_company_files = CompanyFile.find_all_by_company_id_and_starred(@company.id,true)
     render 'c/manage'
   end
   
@@ -145,7 +146,7 @@ class InfoController < ApplicationController
     @student = current_user.becomes(Student)
     
     @student_labelings = StudentLabeling.find(:all, :conditions => ["student_id = ?", current_user.id], :include => [:student_file, :applyable])
-    @starred_student_files = StudentFile.find_all_by_student_id_and_starred(1,true)
+    @starred_student_files = StudentFile.find_all_by_student_id_and_starred(current_user.id,true)
     
     render 's/manage'
   end

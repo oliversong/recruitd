@@ -2,9 +2,21 @@
 -# student
 -# company_file
 
-%h2.acc_trigger{:class => "#{(i == 0) ? '' : ''}"}
+.movethis2.stars-wrapper3
+  %select{:name => "selrate"}
+    %option{:value => "1"}
+    %option{:value => "2"}
+    %option{:value => "3"}
+    %option{:value => "4"}
+    %option{:value => "5"}
+    %option{:value => "6"}
+    %option{:value => "7"}
+    %option{:value => "8"}
+    %option{:selected => "selected", :value => "9"}
+    %option{:value => "10"}
+%h2.acc_trigger.removethis{:class => "#{(i == 0) ? 'active' : ''}"}
   = link_to student.name, student
-.acc_container{:style => "display: block; "}
+.acc_container.removethis{:style => "display: block; "}
   .block
     Labels:
     - student.company_labelings.where(:company_id => company.id).each do |other_lbl|
@@ -12,11 +24,9 @@
       |
     rating: #{company_file.rating}
     =render :partial => "shared/star", :locals => {:entity => company_file.student, :starred => company_file.starred}
-    |
-    = link_to "(+)", "#", {:onClick => "$('\#company_file_#{company_file.id}').toggle()"}
     = render :partial => "students/update_rating", :locals => {:student => student }
-    .hidden_detail{:id => "company_file_#{company_file.id}", :style => "display:none" }
-      = company_file.notes
-      %br/
+    %b Your notes:
+    = company_file.notes
+    %br/
     = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => student}
     %br/
