@@ -37,7 +37,12 @@ opacity:.8;
 	background-image:none;
 }
 #navigation{
-position:relative;top:29px;left:50%;margin-left:-590px;z-index:100;float:left;	
+float: left;
+left: 50%;
+margin-left: -600px;
+position: relative;
+top: 26px;
+z-index: 100;
 }
 .navigation:hover{
 opacity:.8 !important;	
@@ -45,7 +50,7 @@ opacity:.8 !important;
 
 .navigation{
 float:left;
-font-family:Georgia, "Times New Roman", Times, serif;
+font-family:Verdana, Geneva, sans-serif;
 font-size:20px;
 text-decoration:none;
 text-shadow:#000 0 -1px 0;
@@ -57,7 +62,7 @@ color:#FFF;
 .navigation strong{
 position:relative;
 top:5px;
-left:-85px;
+left:-94px;
 font-weight:100;
 opacity:0;
 text-shadow:#999 0 1px 0;
@@ -1104,9 +1109,9 @@ position: relative;
 }
 .textinput{
 	margin-bottom:5px;
-	width:300px;
-	height:35px;
-	font-size:25px;
+	width:250px;
+	height:25px;
+	font-size:23px;
 }
 
 .differentsearch{ -webkit-appearance: textfield;
@@ -1187,13 +1192,14 @@ top: -80px;
 	text-shadow:#FFF 0 -1px 0;
 }
 #tags{
-left: 200px;
+left: 150px;
 position: relative;
-top: -25px;
+top: -10px;
 }
 #topform{
-position:relative;
-left:50px;
+left: 40px;
+position: relative;
+top: 50px;
 }
 #bottomform{
 	height:400px;
@@ -1399,7 +1405,7 @@ width:200px;height:100px;
 	left:50%;margin-left:-200px;position:relative;top:50px;height:50px;width:100px;
 }
 .button2{
-	left:50%;margin-left:-100px;position:relative;height:50px;width:100px;
+	left:50%;position:relative;top:50px;height:50px;width:100px;
 }
 	.ui-autocomplete-category {
 		font-weight:bold;
@@ -1416,7 +1422,7 @@ width:200px;height:100px;
 	}
 .buildertable{
 	position:relative;
-	left:-200px;
+	left:-150px;
 }
 .profilepicture{
 position:relative; top:8px; left:12px;
@@ -1452,7 +1458,7 @@ position:relative;left:-40px;color:#666;
 position:relative;left:50%;margin-left:-504px;top:50px;	
 }
 .settingstag{
-font-size: 30px;left: 110px;position: relative;text-align: left;top: 12px;	
+font-size: 20px;left: 110px;position: relative;text-align: left;top: 12px;	
 }
 .widthadjust{
 width:270px;	
@@ -1800,4 +1806,20 @@ font-size:20px;
 font-family:Verdana, Geneva, sans-serif;
 margin-left:10px;
 color:#333;
+}
+.wrapper{
+	font-family:Helvetica Ultralight;
+	font-size:20px;
+	width:500px;
+	left:50%;
+	margin-left:-250px;
+	position:relative;
+	border:1px #999 dotted;
+	top:50px;
+}
+.fields{
+	text-align:right;	
+}
+.fields2{
+	font-size:15px;	
 }
