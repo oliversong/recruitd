@@ -1,0 +1,106 @@
+	<link type="text/css" href="/stylesheets/jobentry.css" rel="stylesheet" />	
+<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+
+	});
+</script>
+
+
+<div class="newjob">You're posting a new job!</div>
+<div id="entryform" class="jobentryborder">
+	
+    <%= form_for @job do |f| %>
+        <table border="0">
+            <tr>
+                <td class="tablepadding">Job Title:</td>
+                <td class="tablealign"><%= f.text_field :title, :class => "forminput fontadjust", :type=>"text", :placeholder=>"Code Monkey"%></td>
+            </tr>
+            <tr>
+                <td class="tablepadding">Offer Closing Date:</td>
+                <td class="tablealign"><%= f.text_field :responsibilities, :class => "forminput datepicker fontadjust", :type=>"text", :placeholder=>"Offer expires!"%></td>
+            </tr>
+            <tr>
+                <td class="tablepadding">Qualifications:</td>
+                <td class="tablealign"><%= f.text_area :basic_qualifications, :rows=>"10", :cols=>"33", :class=>"forminput2 fontadjust", :placeholder=>"Has to be awesome"%></td>
+            </tr>
+            <tr>
+                <td class="tablepadding">Details:</td>
+                <td class="tablealign"><%= f.text_area :other_information, :rows=>"10", :cols=>"33", :class=>"forminput2 fontadjust", :placeholder=>"Whatever you want to say."%></td>
+            </tr>
+            <tr>
+                <td class="tablepadding">Career Tag:</td>
+                <td class="tablealign"><input id="career_tagger" class="forminput careers fontadjust" type="text" placeholder="Computer Scientist" ></td>
+            </tr>
+            <tr>
+                <td class="tablepadding">Other Tags:</td>
+                <td></td>
+            </tr>
+            </tr>
+        </table>
+        <input id="other_tagger" class="differentsearch moving randominput" type="search" placeholder="Tag this job">
+        <div id="career_tagger_instructions" style="display:none"><b>Career tags</b><br>(So that students know what to expect from your newly posted job.)</div>
+        <div class="career_tags">
+          <ul id="career_tag_receiver">
+          </ul>
+        </div>
+        <div id="other_tagger_instructions" style="display:none; padding-bottom:30px" ><b>Other tags</b><br>
+          (You may assign a weight from 1 to 10 to vary their effect on the recommendation engine.)</div>
+        <div class="wtf"><table class="wtf2"><tr ><td class="extrapadding"></td></tr></table></div>
+	 	<button class="button2">Submit!</button>
+
+    <% end %>
+
+</div>
+</div>
+	<script>
+
+	$(document).ready(function(){
+  	var idx = 0
+    $( "#career_tagger" ).autocomplete({
+      source: "/autocomplete_searches/career_names.js",
+      select: function(event, ui) { 
+        $('#career_tag_receiver').append("<li><input type='text' name='career["+ idx + "]' value='" + ui.item.label + "' + class='forminput careers fontadjust'></li>");
+        idx++;
+        $("#career_tagger_instructions").show();
+        $("#career_tagger").val("");
+      }
+    });
+
+    $( "#other_tagger" ).autocomplete({
+      source: "/autocomplete_searches/term_names/All.js",
+      select: function(event, ui) { 
+        $("#other_tagger_instructions").show();
+        $("#other_tagger").val("");
+      }
+    });
+  });
+
+  function showValue(newValue,number)
+  {
+      document.getElementById("range"+number).innerHTML=newValue;
+  }
+  
+  var i=2;
+	var m=0;
+	$('.moving').bind('keydown', function(e) {
+        var $self = $(this),
+            dimen = $.extend($self.position(), { 
+            width:  $self.outerWidth(),
+            height: $self.outerHeight()
+        });
+
+        if( e.which === 13 && $.trim(this.value).length ) {
+            $('<tr id="tagcontrol'+i+'"><td class="someclass" style="text-align:right;" id="tagcontrol'+i+'">'+this.value+'</td><td> <input type="range" min="0" max="10" step="1" value="5" onchange="showValue(this.value,'+i+')"></td><td><text id="range'+i+'" style="padding-left:10px;">5</text></td><td><div style="width:100px;text-align:left;" id="tag'+i+'" class="tag" onclick="deletetag('+i+')"><span style="padding-left:10px;">Delete</span></div></td></tr>').appendTo($('.wtf2')) ; i+=1;
+            $self.val('').css('position', 'relative').animate({ top: ((m==0)?"+=0":"+=0") }, 200);m+=1;
+        }
+    });
+</script>
+
+<script>
+
+	function deletetag(i){
+								 $('tr').remove('#tagcontrol'+i);
+	}
+                                </script>
+

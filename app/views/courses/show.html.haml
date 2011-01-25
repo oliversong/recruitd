@@ -50,6 +50,8 @@
   #toppanelmid
     #classdescription
       =@course.description
+      -if current_user.is_company_entity?
+        =render :partial => "shared/follow_term", :locals => {:term_id => @course.id, :followed => @followed}
     #metadata
       #metasub
         %ul.right

@@ -38,6 +38,8 @@ Recruitd::Application.routes.draw do
     post 'add_term'
   end
   
+  match "c/follow_term/:term_id" => "c#follow_term", :as => "follow_term"
+  match "c/unfollow_term/:term_id" => "c#unfollow_term", :as => "unfollow_term"
   match "follow/:user_id" => "utilities#follow", :as => "follow"
   match "unfollow/:user_id" => "utilities#unfollow", :as => "unfollow"
   match "star/:entity_type/:entity_id" => "utilities#star", :as => "star"
@@ -49,18 +51,12 @@ Recruitd::Application.routes.draw do
 
   match "autocomplete_searches/term_names/:type" => "autocomplete_searches#term_names", :as => "autocomplete"
 
-  # resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names, :skill_names] do
-  #   collection do
-  #     get 'club_names'
-  #     get 'course_names'
-  #     get 'company_names'
-  #     get 'career_names'
-  #     get 'award_names'
-  #     get 'skill_names'
-  #     get 'interest_names'
-  #     get 'all_term_names'
-  #   end
-  # end
+  resources :autocomplete_searches, :only => [:club_names, :course_names, :company_names, :career_names, :skill_names] do
+    collection do
+      get 'company_names'
+      get 'career_names'
+    end
+  end
   
   resources :jobs do
     member do

@@ -1,0 +1,12 @@
+-#INPUTS:
+-#term_id
+-#followed
+%span{:id => "follow_term_#{term_id}", :class => "starbox"}
+	- if followed
+		- star_file = "/images/delete.png"
+		- title = "Click to unfollow."
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), unfollow_term_path(:term_id=>term_id, :format => :js), :remote => true
+	- else
+		- star_file = "/images/add.png"
+		- title = "Click to follow."
+		= link_to image_tag(star_file, :width => 25, :height => 25, :class => "star-image", :title => title), follow_term_path(:term_id=>term_id, :format => :js), :remote => true

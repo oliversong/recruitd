@@ -15,10 +15,26 @@ class JobsController < ApplicationController
   
   def new
     @job = Job.new
+    render "new"
   end
   
   def create
+    if !current_user.is_company_entity?
+      raise CanCan::AccessDenied
+    end
+    
     @job = Job.new(params[:job])
+    @job.company = current_user.company
+    
+    if(params[:career])
+      params[:career].values.each do |career_name|
+        career = Career.find_by_name(career_name)
+        if career
+          @job.careers << career
+        end
+      end
+    end
+    
     if @job.save
       flash[:notice] = "Successfully created job."
       redirect_to @job

@@ -1,0 +1,1 @@
+$("#follow_term_<%=@term_id%>").html("<%= escape_javascript(render :partial => 'shared/follow_term', :locals => {:term_id => @term_id, :followed => @followed}) %>");

@@ -31,4 +31,39 @@ class CController < ApplicationController
     render :nothing => true and return
   end
   
+  def follow_term
+    if !current_user.is_company_entity?
+      render :nothing => true and return
+    end
+    
+    company_id = current_user.company_id
+    
+    ct = CompanyTerm.find_or_initialize_by_company_id_and_term_id(company_id, params[:term_id])
+    ct.weight = 10
+    ct.save
+    
+    @term_id = params[:term_id]
+    @followed = true
+    render "shared/follow_term"
+    
+  end
+  
+  def unfollow_term
+    if !current_user.is_company_entity?
+      render :nothing => true and return
+    end
+    
+    company_id = current_user.company_id
+    
+    ct = CompanyTerm.find_by_company_id_and_term_id(company_id, params[:term_id])
+    if ct
+      ct.destroy
+    end
+    
+    @term_id = params[:term_id]
+    @followed = false
+    render "shared/follow_term"
+    
+  end
+  
 end

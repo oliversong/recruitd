@@ -12,6 +12,10 @@ class CoursesController < ApplicationController
     @careers = @course.careers
     @comments = @course.comments.recent.limit(10).all
     
+    if current_user.is_company_entity?
+      @followed = !!CompanyTerm.find_by_company_id_and_term_id(current_user.company_id, @course.id)
+    end
+    
     if current_user.is_student?
       @course_rating = CourseRating.find_by_student_id_and_course_id(current_user.id, params[:id])
     end

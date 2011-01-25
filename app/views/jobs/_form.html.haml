@@ -1,32 +1,89 @@
-- form_for @job do |f|
-  = f.error_messages
-  %p
-    = f.label :company_id
-    %br
-    = f.text_field :company_id
-  %p
-    = f.label :title
-    %br
-    = f.text_field :title
-  %p
-    = f.label :responsibilities
-    %br
-    = f.text_area :responsibilities
-  %p
-    = f.label :basic_qualifications
-    %br
-    = f.text_area :basic_qualifications
-  %p
-    = f.label :desired_qualifications
-    %br
-    = f.text_area :desired_qualifications
-  %p
-    = f.label :other_information
-    %br
-    = f.text_area :other_information
-  %p
-    = f.label :description
-    %br
-    = f.text_area :description
-  %p
-    = f.submit
+#entryform.jobentryborder
+%form
+  %table{:border => "0"}
+    %tr
+      %td.tablepadding Job Title:
+      %td.tablealign
+        %input.forminput.fontadjust{:placeholder => "Code Monkey", :type => "text"}/
+    %tr
+      %td.tablepadding Offer Closing Date:
+      %td.tablealign
+        %input.forminput.datepicker.fontadjust{:placeholder => "Offer expires!", :type => "text"}/
+    %tr
+      %td.tablepadding Qualifications:
+      %td.tablealign
+        %textarea.forminput2.fontadjust{:cols => "33", :placeholder => "Has to be awesome", :rows => "10"}
+    %tr
+      %td.tablepadding Details:
+      %td.tablealign
+        %textarea.forminput2.fontadjust{:cols => "33", :placeholder => "Whatever you want to say", :rows => "10", :type => "textarea"}
+    %tr
+      %td.tablepadding Career Tag:
+      %td.tablealign
+        %input.forminput.careers.fontadjust{:placeholder => "Computer Scientist", :type => "text"}/
+    %tr
+      %td.tablepadding Other Tags:
+      %td
+  %input.differentsearch.moving.randominput{:placeholder => "Tag this job", :type => "search"}
+    .wtf
+      %table.wtf2
+        %tr
+          %td.extrapadding
+    %button.button2 Submit!
+:javascript
+  $.widget( "custom.catcomplete", $.ui.autocomplete, {
+  	_renderMenu: function( ul, items ) {
+  		var self = this,
+  			currentCategory = "";
+  		$.each( items, function( index, item ) {
+  			if ( item.category != currentCategory ) {
+  				ul.append( "" + item.category + "" );
+  				currentCategory = item.category;
+  			}
+  			self._renderItem( ul, item );
+  		});
+  	}
+  });
+  :javascript
+  $(function() {
+  	var data = [
+  		{ label: "anders", category: "" },
+  		{ label: "andreas", category: "" },
+  		{ label: "antal", category: "" },
+  		{ label: "annhhx10", category: "Products" },
+  		{ label: "annk K12", category: "Products" },
+  		{ label: "annttop C13", category: "Products" },
+  		{ label: "anders andersson", category: "People" },
+  		{ label: "andreas andersson", category: "People" },
+  		{ label: "andreas johnson", category: "People" }
+  	];
+	
+  	$( ".differentsearch" ).catcomplete({
+  		delay: 0,
+  		source: data
+  	});
+  });
+  $(function() {
+  	var data1 = [
+  		{ label: "monkey", category: "" },
+  		{ label: "chimpanzee", category: "" },
+  		{ label: "orangutan", category: "" },
+  		{ label: "ape", category: "Products" },
+  		{ label: "king kong", category: "Products" },
+  		{ label: "bazooka", category: "Products" },
+  		{ label: "Roar", category: "People" },
+  		{ label: "D:<", category: "People" },
+  		{ label: "Yes.", category: "People" }
+  	];
+	
+  	$( ".careers" ).catcomplete({
+  		delay: 0,
+  		source: data1
+  	});
+  });
+
+:javascript
+  function showValue(newValue,number)
+  {
+      document.getElementById("range"+number).innerHTML=newValue;
+  }

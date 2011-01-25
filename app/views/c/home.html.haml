@@ -6,7 +6,7 @@
     %img{:src => current_user.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   #basicinfo
     .sidetop
-      %span.headertext Basic Info
+      %span.headertext3 Basic Info
     .sidemiddle
       %ul#infofields
         %li.field.tTip{:title => "Hello World"} Sex
@@ -30,11 +30,11 @@
   #fullname=current_user.name
   %a{:href => "#"}
     #resbuild.awesomebtn
-  %a{:href => "#"}
+  %a{:href => "/browse"}
     #search.awesomebtn
-  #experiences
+  -#experiences
     .contenttop
-      %span.headertext Challenge Questions
+      %span.headertext3 Challenge Questions
     .contentmiddle
       .hover.tTip{:title => "Hello World"}
         %span 2010 | Software Engineer | Google
