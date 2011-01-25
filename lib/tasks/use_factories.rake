@@ -34,7 +34,7 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
-      create_skills
+      create_schools_departments_courses
 
       
       puts "Completed adding new sample data"
@@ -131,10 +131,13 @@ def create_schools_departments_courses
   
   puts "adding courses and departments"
   
+  department = Department.new #declare object
   data_fetch('courses_and_departments').each_with_index do |line, index|
     line = line.split("\t")
     if line[0] == "===="
+      puts "line[0] is ===="
       if line[1] != "none"
+        puts "line[1] is not 'none'"
       #new department
         department = Factory(:department, :school => mit, :name => line[1].strip)
         puts "NEW DEPARTMENT: #{department.name}"

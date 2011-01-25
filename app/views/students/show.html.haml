@@ -179,7 +179,7 @@
           %span
             = link_to "(edit)", "#", {:id => "work_edit", :onClick => "return false;"}
       - for experience in @student.work_experiences
-        .hover.tTip{:title => "Hello World", :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
+        .hover.tTip{:title => experience.description, :reference_type => "Experience", :reference_id => experience.id, :id => "Experience#{experience.id}"}
           %span 
             = work_experience_block(experience)
             %span.edit_work_button{:style => "display:none"}
@@ -187,7 +187,7 @@
               = link_to "(edit)", edit_experience_path(experience)
         
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover
           %span
             %li=link_to "Add an experience", new_experience_path
     .contentbottom
@@ -206,7 +206,7 @@
               %br/  
               = link_to "(edit)", edit_experience_path(experience)
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover
           %span=link_to "Add an experience", new_experience_path
     .contentbottom
   #skills
@@ -214,7 +214,7 @@
       %span.headertext3 Skills
     .contentmiddle
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover  
           %span= link_to "(edit)", "#", {:id => "skills_edit", :onClick => "return false;"}
       - @student.skills.each do |skill|
         .hover.tTip{:title => "Hello World", :reference_type => "Skill", :reference_id => skill.id, :id => "Skill#{skill.id}"}
@@ -223,7 +223,7 @@
             %span.delete_skill_button{:style => "display:none"}
               = link_to "[X]", delete_term_s_path(:id => skill.id)
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover  
           %span= render :partial => "add_term", :locals => {:term_type => "Skill" }
     .contentbottom
   #courses
@@ -231,11 +231,11 @@
       %span.headertext3 Courses
     .contentmiddle
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover  
           %span= link_to "(edit)", "#", {:id => "courses_edit", :onClick => "return false;"}
       = render :partial => "course_student", :collection => @student.course_students
       -if @owner
-        .hover.tTip{:title => "Hello World"}
+        .hover.tTip{:title => "Start typing the name of a course..."}
           %span= render :partial => "add_term", :locals => {:term_type => "Course" }
     .contentbottom
   #awards

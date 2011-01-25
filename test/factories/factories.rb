@@ -297,7 +297,6 @@ end
 Factory.define :course do |f|
   f.name { "#{Factory.next(:lipsum_word)} #{Factory.next(:lipsum_word)}" }
   f.course_abbrev { "#{rand(24)+1}.#{rand(999)}" }
-  f.department_id 1
   # f.term do |s| 
   #   Factory.create(:term, :name => s.name)
   # enddate
