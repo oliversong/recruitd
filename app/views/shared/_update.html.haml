@@ -3,23 +3,34 @@
   {
   $(".expandable").focus(function()
   {
-  $(this).animate({"height": "120px",}, "fast" );
-  $("#button_block").slideDown("fast");
-  return false;
+    $(this).animate({"height": "120px",}, "fast" );
+    $("#button_block").slideDown("fast");
+    return false;
   });
   $("#cancel").click(function()
   {
-  $(".expandable").animate({"height": "30px",}, "fast" );
-  $("#button_block").slideUp("fast");
-  return false;
+    $(".expandable").animate({"height": "30px",}, "fast" );
+    $("#button_block").slideUp("fast");
+    return false;
   });
+  $("#share").click(function()
+  {
+    $.ajax({
+      type: "POST",
+      url: '/updates',
+      data: "update[text]=" + $(".expandable").val(),
+      success: function(data) {
+      }
+    });
+    $("#cancel").click();
   });
   
+  });
 #top
   #toptop
   #topmid
     %textarea.expandable{:placeholder => "Update your feed!"}
     #button_block
-      %button.movingbutton Share
+      %button#share.movingbutton Share
       %button#cancel.movingbutton Cancel
   #topbot
