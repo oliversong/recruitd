@@ -101,6 +101,18 @@ Factory.sequence :phone do |n|
   rand(9999999999)
 end
 
+Factory.sequence :job_title do |n|
+  single_unique_fetch('job_titles',n)
+end
+
+Factory.sequence :internship_job_title do |n|
+  single_unique_fetch('internship_job_titles',n)
+end
+
+Factory.sequence :internship_job_description do |n|
+  single_unique_fetch('internship_job_descriptions',n)
+end
+
 
 ###### DEFINITIONS ######
 
@@ -253,9 +265,9 @@ Factory.define :work_experience, :class => :work_experience do |f|
   f.student { Student.all.count > 0 ? Student.all.sort_by{rand}.first : Factory.create(:student) }
   f.startdate { 2.years.ago }
   f.enddate { 2.years.ago + 3.months }
-  f.job_title "Intern"
-  f.description "Intern at this excellent company"
-  f.location "New York, NY"
+  f.job_title { Factory.next(:internship_job_title) }
+  f.description { Factory.next(:internship_job_description) }
+  f.location { Factory.next(:city)}
   f.company { 
     Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company, :name => "ABC Incorporated")   
   }

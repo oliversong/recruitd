@@ -1,0 +1,39 @@
+Contributed to a high-fidelity software simulation of a medium-sized UAV from launch to capture.
+Improved accuracy of Simulink models while increasing efficiency and reducing program size
+Developed unit tests in MATLAB to ensure consistent performance between Perforce code check-ins
+Created an interactive tool for plotting simulation data to validate design of a unique UAV capture system
+Designing and building a 3-unit CubeSat to detect exoplanets transiting across stars
+Creating an attitude control system capable of pointing the camera within 1 arc second of the target star
+Developing a star tracking algorithm to recognize star patterns for estimating satellite attitude
+Studied autonomous control algorithms for distributed satellite systems
+Designed and programmed in C an autonomous and efficient checkout of satellite sensors and actuators
+Modularized a Matlab data analysis program, allowing custom display of data plots
+Used pattern recognition algorithms to find tradable signals in market data. Improved performance of the JAVA-based automated trading platform by 2x.
+Authored Perl and STAF software tools to automate the installation of system drivers on remote test servers. Estimated to save company over $100,000 yearly by reducing manual installations done by QA engineers.
+Developed C# applications for hand gesture and object recognition, serving as the human-computer interface for a pendant-like camera and pico-projector computing platform to display ambient information on everyday surfaces.
+Built testing framework for rebootless updates, packaged product for Fedora, and designed and
+implemented internal infrastructure
+Contributed patches to the Python project
+Produced various improvements on existing theoretical cryptographic protocols as well as inventing and implementing new ones, resulting in techniques usable in practice.
+Internally published a classified technical paper; plans are underway to apply for a patent on results.
+Developed an algorithm for creating and maintaining scale-free networks
+Worked with other employees on improving the performance of an embedded system
+The Omniscope is a revolutionary type of radio telescope that will be capable of imaging the entire sky simultaneously by using modern DSP technology to perform more efficient imaging calculations. My role as FPGA designer involves developing scalable networking solutions and high-bandwidth DSP systems using programmable logic. I also design custom hardware and software drivers (in Python and C++).
+I developed (from the ground up) a graphical ontology editor for the Ontological Web Language (OWL). This product was designed to partially automate the process of translating from system architecture drawings directly to tool-agnostic simulations by unifying the data with OWL. I also developed an XML format OWL/RDF parser/writer, logical reasoner, and API for the C# language.
+Design and SPICE simulation of a 75-150W buck converter under strict specifications.
+Specified power devices, heatsink, passive components for input and output filters; Design of a feedback controller stable under line and load variations and meets static and transient requirements.
+Design of a digital converter that converts photons (modeled as current sources) to a pulse width modulated signal.
+Exposure to CMOS topologies and device sizing, meeting specs (area, clock frequency, load capacitance, time delay).
+Circuit simulation using LTSpice.
+Design, fabrication, and testing of various microwave stripline filters.
+Experimenting effects of doped PDMS as a PCB substrate as a method for tuning microwave filters.
+Modeling using Sonnet EM simulation software; Experience with network analyzer.
+Developed, tested, analyzed and optimized machine learning algorithms based on theories of neocortical information
+processing involving temporally supervised pooling of sparse distributed representations. Applied results to invariant image
+recognition.
+Conceived and developed TopicWeb, a system for automatic document clustering and similarity measurement based on a hybrid vector space and graph document model.
+Developed statistical mechanics simulations in C++ and identified mechanisms of self-organization and structure formation in large-scale networks of microtubule filaments. Wrote efficient algorithms for thermal fluctuation and collision detection in dynamic million particle systems.
+Tailgate: Applied knowledge of HTML, PHP, Javascript and AJAX on the front end and SQL
+on the back end to engineer a web application that allows one user to display URL content on
+the browsers of many subscribers.
+Designed and developed a robust and functional version of a Python application which pulls bus arrival times from a publicly available feed and displays them on an LED sign.
