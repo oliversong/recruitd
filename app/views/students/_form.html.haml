@@ -1,0 +1,72 @@
+- form_for @student, :html => { :method => :put, :multipart => true } do |f|
+  = f.error_messages
+  %table
+    %tr
+      %td
+        %b Managing your presence
+    %tr
+      %td
+        Profile badge contents
+      %td= f.text_area :profile_summary, :rows => 5
+    %tr
+      %td 
+        Tagline
+        %br/
+        %i
+          This appears at the top of your resume.
+          %br/
+          Think of it as your calling card.
+      %td= f.text_field :subtitle
+    %tr
+      %td= f.label :fun_facts
+      %td= f.text_area :fun_facts
+    %tr
+      %td
+        %b Biographical information
+    %tr
+      %td= f.label :gpa
+      %td= f.text_field :gpa
+    %tr
+      %td= f.label :hometown
+      %td= f.text_field :hometown
+    %tr
+      %td= f.label :location
+      %td= f.text_field :location
+    %tr
+      %td= f.label :languages
+      %td= f.text_field :languages
+    %tr
+      %td= f.label :website
+      %td= f.text_field :website, :size => 50
+    %tr
+      %td
+        %b Contact information
+    %tr
+      %td= f.label :phone
+      %td= f.text_field :phone
+    %tr
+      %td 
+        Address (line 1)
+        %br/
+        (line 2)
+        %br/
+        (city, state, zip)
+      %td
+        = f.text_field :address_line1, :size => 30
+        %br/
+        = f.text_field :address_line2, :size => 30
+        %br/
+        = f.text_field :address_city, :size => 13
+        = f.text_field :address_state, :size => 3
+        = f.text_field :address_zip, :size => 6
+    %tr
+      %td
+        %b Other
+    %tr
+      %td Add/change profile picture:
+      %td= f.file_field :avatar
+    %tr
+      %td
+      %td= f.submit 'Update'
+      
+= link_to 'Back to public page', @student

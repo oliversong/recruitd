@@ -24,11 +24,15 @@
       -@student.labels.each do |lbl|
         %li.hover2{:id => "hover#{lbl.id}"} 
           =lbl.name
+      %li.hover2{:id => "hoverA"}
+        starred
   #sidebarbottom
   #container0
     -@student.labels.each do |lbl|
       .container.swapper{:id => "container#{lbl.id}" }
         = render :partial => "s/labeling", :collection => lbl.student_labelings, :locals => {:labels => @student.labels}
+    .container.swapper{:id => "containerA" }
+      = render :partial => "s/starred_file", :collection => @starred_student_files, :locals => {:labels => @student.labels}
 
   = render :partial => 'shared/create_label'
 
@@ -39,11 +43,12 @@
     $("#container1").show();
   });
   
+  var label_ids = #{@student.labels.map{|l| l.id} << "A"};
   
-  var j=1;
-  for(j=1;j<4;j++){
-  $('#hover'+j).click(function(){
-    $('.swapper').hide();
-    $('#container'+event.srcElement.id.substr(5)).show();
-                 });
-             };
+  for(idx in label_ids){
+    $('#hover'+label_ids[idx]).click(function(event){
+      var srcEl = event.srcElement? event.srcElement : event.target; 
+      $('.swapper').hide();
+      $('#container'+srcEl.id.substr(5)).show();
+     });
+   };

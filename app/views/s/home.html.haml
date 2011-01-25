@@ -51,89 +51,21 @@
       %span.headertext3 Friends
     .contentmiddle.floatleft
       .friendgrid
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
-        .friendpoint
+        -current_user.users_followed.each do |user|
+          .friendpoint
+            =link_to user do
+              = image_tag user.avatar.url(:thumb)
     .contentbottom.floatleft  
 #rightcolumn
-  -#quicklinks
+  #quicklinks
     .feedtop
       %span.headertext3 Quick Links
     .feedmiddle
-      %ul.strangeul
-        =render :partial => "shared/navigation"
+      =render :partial => "shared/navigation"
     .feedbottom
   #feed
     .feedtop
       %span.headertext3 Feed Updates
     .feedmiddle
-      .feeditem
-        .profpicsmall
-          %img{:src => "#"}/
-        .feedcontent2 Doing productive stuff!
-        .feedtime2 Jan 24 @ 12:00 PM
-      .hr3
-      .feeditem
-        .profpicsmall
-          %img{:src => "#"}/
-        .feedcontent2 Doing productive stuff!
-        .feedtime2 Jan 24 @ 12:00 PM
-      .hr3
-      %ul.strangeul
-        =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
+      =render :partial => "pfeeds/pfeed_for_home", :collection => current_user.pfeed_inbox
     .feedbottom

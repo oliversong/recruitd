@@ -1,0 +1,6 @@
+.feeditem
+  .profpicsmall
+    =link_to pfeed_for_home.originator do
+      %img{:src => pfeed_for_home.originator.avatar.url(:thumb) }/
+  .feedcontent2= pfeed_content(pfeed_for_home)
+.hr3

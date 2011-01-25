@@ -1,0 +1,10 @@
+.feeditem
+  .profpicsmall
+    %img{:src => student.avatar.url(:thumb) }/
+  .feedcontent2
+    %strong
+      = student.name
+      posted about #{time_ago_in_words(update.created_at)} ago:
+    %br
+      = update.text
+.hr3

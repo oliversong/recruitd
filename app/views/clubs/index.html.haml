@@ -1,19 +1,8 @@
 - title "Clubs"
 
-%table
-  %tr
-    %th Term
-    %th Name
-    %th Description
-    %th Added by user
-  - for club in @clubs
-    %tr
-      %td= h club.term_id
-      %td= h club.name
-      %td= h club.description
-      %td= h club.added_by_user_id
-      %td= link_to 'Show', club
-      %td= link_to 'Edit', edit_club_path(club)
-      %td= link_to 'Destroy', club, :confirm => 'Are you sure?', :method => :delete
-
-%p= link_to "New Club", new_club_path
+#maincontent
+  %h2 Clubs
+  
+  -for club in @clubs
+    %li
+      = link_to club.name, club

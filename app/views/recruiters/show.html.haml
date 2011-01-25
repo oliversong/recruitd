@@ -5,10 +5,11 @@
       = link_to 'Click to edit.', edit_recruiter_path(@recruiter)
   
   %p
-    %h2= h @recruiter.name
-    -if !@owner
-      =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
-  
+    %h2
+      = h @recruiter.name
+      -if !@owner
+        =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
+  %img{:src => @recruiter.avatar.url(:small), :style => "position:relative; top:8px; left:12px;"}/
   %p
     %b Phone:
     = number_to_phone(@recruiter.phone, :area_code => true)

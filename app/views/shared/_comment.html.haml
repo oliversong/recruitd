@@ -1,0 +1,8 @@
+.comment
+  .commentcontent
+    -if comment.title
+      %strong=comment.title
+      %br/
+    =comment.text
+  .commentauthor=link_to comment.user.name, comment.user
+  .hr2

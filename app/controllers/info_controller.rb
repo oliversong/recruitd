@@ -145,6 +145,7 @@ class InfoController < ApplicationController
     @student = current_user.becomes(Student)
     
     @student_labelings = StudentLabeling.find(:all, :conditions => ["student_id = ?", current_user.id], :include => [:student_file, :applyable])
+    @starred_student_files = StudentFile.find_all_by_student_id_and_starred(1,true)
     
     render 's/manage'
   end
@@ -161,7 +162,6 @@ class InfoController < ApplicationController
     #@student = current_user.entity
     
     @student_files = StudentFile.by_student_id(current_user.id).offset(@page).limit(10).find(:all)
-    
     render 's/browse'
   end
   

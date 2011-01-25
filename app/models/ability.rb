@@ -55,7 +55,13 @@ class Ability
         if user.is_company_entity?
           # jobs and companies
           can :manage, Job
+          can :update, Company
         end
+        
+        if user.is_student?
+          can :update, Student
+        end
+        
       end
     end
 

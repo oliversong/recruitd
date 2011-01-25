@@ -1,0 +1,7 @@
+#maincontent
+  %h1
+    = @student.name
+    \- Edit Profile
+  = render :partial => 'form'
+  %p
+    Last updated at #{@student.updated_at.to_s}

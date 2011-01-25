@@ -1,12 +1,5 @@
--# inputs:
--# @term
--# @companies
--# @jobs
--# @careers
--# @students
--# @comments
+- title @club.name
 
-- title @term.name
       
 %link{:href => "/stylesheets/jquery.ui.stars.css", :rel => "stylesheet", :type => "text/css"}/
 %script{:src => "/javascripts/jquery.ui.stars.js", :type => "text/javascript"}
@@ -14,7 +7,7 @@
 #big
   #toppaneltop
     .genericheader
-      %h1=@term.name
+      %h1 6.470
     .ratingwidget
       %form
         %strong Usefulness:
@@ -49,7 +42,7 @@
             %option{:value => "10"} Give up
   #toppanelmid
     #classdescription
-      =@term.description
+      What makes a rock star web programmer? HTML, DOM, CSS, JavaScript, SQL, PHP, JSON, and AJAX. 6.470 teaches all these and more, in-depth and hands-on. Lectures cover all the key topics and technologies. Teams of 1-3 compete to build database-backed web sites; the sites will be judged by a panel of experts, and winners announced at an awards ceremony and demo at the end of IAP, with $30K in prizes! Beginners and experienced web programmers welcome, but previous programming experience recommended.
     #metadata
       #metasub
         %ul.right
@@ -58,18 +51,34 @@
           %li
             %strong Units/Credits:
           %li
-            %strong Related careers:
+            %strong Average Class Size:
       %ul.answers
         %li Massachusetts Institute of Technology
         %li 6 units
-        %li
-          -@careers.each do |career|
-            #{link_to career.name, career},
+        %li 170
     #classtags
-      #classtagstitle Some related jobs:
-      -@jobs.each do |job|
-        #{link_to job.name, job},
-
+      #classtagstitle Tags
+      %a{:href => "#"} MIT,
+      %a{:href => "#"} 6.470,
+      %a{:href => "#"} IAP,
+      %a{:href => "#"} Computer Science,
+      %a{:href => "#"} Course 6,
+      %a{:href => "#"} Web Design,
+      %a{:href => "#"} Competition,
+      %a{:href => "#"} CS,
+      %a{:href => "#"} Javascript,
+      %a{:href => "#"} HTML,
+      %a{:href => "#"} CSS,
+      %a{:href => "#"} AJAX,
+      %a{:href => "#"} Ruby,
+      %a{:href => "#"} Rails,
+      %a{:href => "#"} SQL,
+      %a{:href => "#"} PHP,
+      %a{:href => "#"} JSON,
+      %a{:href => "#"} Django,
+      %a{:href => "#"} Class,
+      %a{:href => "#"} Awesome,
+      %a{:href => "#"} 1337,
   #toppanelbot
   #bottomleftpanel
     #bottomleftpaneltop
@@ -83,7 +92,29 @@
       .genericheader2
         %h1 Feedback:
     #bottomrightpanelmid
-      = render :partial => "shared/comment", :collection => @comments
+      .comment
+        .commentcontent I like chicken.
+        .commentauthor Colin Peterson
+        .hr2
+      .comment
+        .commentcontent They didn't know what a fricken liger is. What the fricken hell this is fricken stupid.
+        .commentauthor Napolean Dynamite
+        .hr2
+      .comment
+        .commentcontent Something something French Blah I'm a short angry dude! I have armies!
+        .commentauthor Napolean Bonaparte
+        .hr2
+      .comment
+        .commentcontent This course taught me how to grow a huge beard. It worked, obviously.
+        .commentauthor Albus Dumbledore
+        .hr2
+      .comment
+        .commentcontent Thank you so much for teaching m-
+        .commentauthor Taylor Swift
+        .hr2
+      .comment
+        .commentcontent I'm real happy for you, ima let you finish, but 6.470 taught me the most of all time. OF ALL TIME.
+        .commentauthor Kanye West
     #bottomrightpanelbot
 :javascript
   $("#stars-wrapper2").stars({

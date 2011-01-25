@@ -1,0 +1,16 @@
+%h2.acc_trigger{:class => "#{(starred_file_counter == 0) ? 'active' : ''}"}
+  = link_to starred_file.applyable.name, starred_file.applyable
+.acc_container{:style => "display: block; "}
+  .block
+    - starred_file.applyable.student_labelings.where(:student_id => @student.id).each do |other_lbl|
+      = other_lbl.label.name
+      |
+    rating: #{starred_file.rating}
+    =render :partial => "shared/star", :locals => {:entity => starred_file.applyable, :starred => starred_file.starred}
+    |
+    = render :partial => "shared/update_rating", :locals => {:entity => starred_file.applyable }
+    = render :partial => "shared/apply_label", :locals => {:labels => labels, :entity => starred_file.applyable}
+    %br/
+    %b Notes:
+    %br/
+    = starred_file.notes

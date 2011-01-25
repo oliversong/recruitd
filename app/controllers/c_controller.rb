@@ -5,7 +5,7 @@ class CController < ApplicationController
       render :nothing => true and return
     end
     
-    company_id = current_user.entity.company_id
+    company_id = current_user.company_id
     
     ch = CompanyHighlighting.new(:student_id => params[:student_id], 
                             :company_id => company_id,
@@ -22,7 +22,7 @@ class CController < ApplicationController
       render :nothing => true and return
     end
     
-    company_id = current_user.entity.company_id
+    company_id = current_user.company_id
     
     chs = CompanyHighlighting.find(:all, :conditions => ["student_id = ? AND company_id = ? AND reference_type = ? AND reference_id = ?", params[:student_id], company_id, params[:reference_type], params[:reference_id] ])
     chs.each do |ch|

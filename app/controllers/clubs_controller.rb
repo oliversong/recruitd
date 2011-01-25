@@ -7,7 +7,10 @@ class ClubsController < ApplicationController
   
   def show
     @club = Club.find(params[:id])
-    render 'show', :layout => 'clean'
+    @students = @club.students
+    @jobs = @club.jobs
+    @careers = @club.careers
+    @comments = @club.comments
   end
   
   def new

@@ -16,6 +16,9 @@ class TermsController < ApplicationController
     @term = Term.find(params[:id])
     @term_descriptions = @term.term_descriptions
     
+    @students = @term.students
+    @jobs = @term.jobs
+    @careers = @term.careers
     @comments = @term.comments.recent.limit(10).all
 
     respond_to do |format|

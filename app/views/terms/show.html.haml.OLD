@@ -1,0 +1,37 @@
+%p
+  %h2=h @term.name
+
+- @term_descriptions.each do |term_description|
+  .description
+    = term_description.description
+    .box
+      .author
+        = link_to term_description.user.name, term_description.user
+        at
+        = term_description.created_at.to_s
+      .editor
+        = link_to 'Edit', edit_term_description_path(term_description)
+        = link_to 'Destroy', term_description, :confirm => 'Are you sure?', :method => :delete
+    %br
+%p= link_to 'Add a new description', new_term_description_path
+    
+%br
+%h2 Students interested in #{@term.name}
+
+%ul
+  - @term.students.each do |student|
+    .student
+      %li= link_to student.name, student
+      
+%h2 Comments
+-@comments.each do |comment|
+  %p
+    %h3=comment.title
+    =comment.text
+
+%br
+
+
+= link_to 'Edit', edit_term_path(@term) 
+| 
+= link_to 'Back', terms_path

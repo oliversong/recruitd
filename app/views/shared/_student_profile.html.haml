@@ -1,0 +1,8 @@
+.student
+  .profpicsmall
+    =link_to student_profile do
+      = image_tag student_profile.avatar.url(:thumb)
+  .studentname= student_profile.name
+  .metadata= student_profile.about_me
+  .hr
+  %br/
