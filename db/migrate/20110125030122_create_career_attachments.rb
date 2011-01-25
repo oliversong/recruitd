@@ -3,7 +3,7 @@ class CreateCareerAttachments < ActiveRecord::Migration
     create_table :career_attachments do |t|
       t.integer :career_id
       t.integer :attachable_id
-      t.integer :attachable_type
+      t.string :attachable_type
       t.integer :weight
 
       t.timestamps

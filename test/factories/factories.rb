@@ -1,3 +1,6 @@
+# "factory_attachment.rb"
+
+
 ###### SEQUENCES ######
 
 FACTORY_DATA_DIRECTORY = File.join(::Rails.root.to_s, "test", "factories", "data")
@@ -113,6 +116,32 @@ Factory.sequence :internship_job_description do |n|
   single_unique_fetch('internship_job_descriptions',n)
 end
 
+Factory.sequence :male_avatar do |n|
+  include ActionDispatch::TestProcess
+  
+  if(!@male_photos)
+    @male_photos = Dir.glob("test/factories/data/male_photos/*.jpg").shuffle
+  end
+  
+  fpath = File.join(RAILS_ROOT, @male_photos[n % @male_photos.length])
+  mtype = "image/jpeg"
+  
+  fixture_file_upload(fpath, mtype)
+end
+
+Factory.sequence :female_avatar do |n|
+  include ActionDispatch::TestProcess
+  
+  if(!@female_photos)
+    @female_photos = Dir.glob("test/factories/data/female_photos/*.jpg").shuffle
+  end
+  
+  fpath = File.join(RAILS_ROOT, @female_photos[n % @female_photos.length])
+  mtype = "image/jpeg"
+  
+  fixture_file_upload(fpath, mtype)
+end
+
 
 ###### DEFINITIONS ######
 
@@ -136,6 +165,15 @@ Factory.define :user do |p|
   #p.email {|u| "#{Factory.next(:simple)}@example.com"}
   p.password 'foobar'
   p.password_confirmation 'foobar'
+  
+  p.avatar do |me|
+    if me.gender_is_male
+      a = Factory.next(:male_avatar)
+    else
+      a = Factory.next(:female_avatar)
+    end 
+    a
+  end
   
   # if p.gender_is_male
   # filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
@@ -239,6 +277,17 @@ Factory.define :student do |f|
     end while n < 10000
     n
   end
+  
+  f.avatar do |me|
+    if me.gender_is_male
+      a = Factory.next(:male_avatar)
+    else
+      a = Factory.next(:female_avatar)
+    end 
+    a
+  end
+  
+  # f.attachment(:avatar, "test/factories/data/male_photos/130630_920.jpg", "image/jpeg")
   
 end
 
@@ -398,6 +447,16 @@ Factory.define :recruiter do |p|
   ## SPECIFIC TO RECRUITER
   p.phone { rand(9999999999) }
   p.company { Company.all.count > 0 ? Company.all.sort_by{rand}.first : Factory.create(:company) }
+  
+  # for all users
+  p.avatar do |me|
+    if me.gender_is_male
+      a = Factory.next(:male_avatar)
+    else
+      a = Factory.next(:female_avatar)
+    end 
+    a
+  end
 end
 
 Factory.define :company_file do |f|
@@ -462,6 +521,10 @@ Factory.define :update do |f|
   f.text LIPSUM_FULL
 end
 
+Factory.define :term_attachment do |f|
+  f.term { Term.all.count > 0 ? Term.all.sort_by{rand}.first : Factory.create(:term) }
+  f.weight { rand(100) + 1 }
+end
 
 Factory.define :following do |f|
 end

@@ -5,6 +5,7 @@ class CareersController < ApplicationController
   
   def show
     @career = Career.find(params[:id])
+    @terms = @career.terms
   end
   
   def tags

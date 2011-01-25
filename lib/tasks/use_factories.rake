@@ -26,6 +26,7 @@ namespace :db do
       create_company_labels
       create_followings
       create_skills
+      create_career_terms
       # create_newsfeed_items
       
       puts "Completed loading recruitd sample data."
@@ -34,8 +35,8 @@ namespace :db do
     desc "Load newly created sample data"
     task :load_new => :environment do |t|
 
-      create_schools_departments_courses
-
+      
+      create_career_terms
       
       puts "Completed adding new sample data"
     end
@@ -342,6 +343,48 @@ def create_skills
     end
   end
 end
+
+def create_career_terms
+  Career.all.each do |career|
+    Term.all.sort_by{rand}[0..2].each do |term|
+      Factory(:term_attachment, :term => term, :attachable => career)
+    end
+  end
+end
+
+# def add_photos
+#   def uploaded_file(filename, content_type)
+#     fpath = File.join(RAILS_ROOT, filename)
+#     fixture_file_upload(fpath, mtype)
+#   end
+#   
+#   
+#   include ActionDispatch::TestProcess
+#   ["male", "female"].each do |gender|
+#     photos = Dir.glob("test/factories/data/#{gender}_photos/*.jpg").shuffle
+#     photo = uploaded_file(photos[i], 'image/jpg')
+#   end
+#   
+# end
+
+
+
+# gender = gender_is_male ? "male" : "female"
+# photos = Dir.glob("test/factories/data/#{gender}_photos/*.jpg").shuffle
+# photo = uploaded_file(photos[i], 'image/jpg')
+# 
+# def uploaded_file(filename, content_type)
+#   t = Tempfile.new(filename.split('/').last)
+#   t.binmode
+#   path = File.join(RAILS_ROOT, filename)
+#   FileUtils.copy_file(path, t.path)
+#   (class << t; self; end).class_eval do
+#     alias local_path path
+#     define_method(:original_filename) {filename}
+#     define_method(:content_type) {content_type}
+#   end
+#   return t
+# end
 
 # def create_newsfeed_items
 #   Update.all.each do |update|

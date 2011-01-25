@@ -243,6 +243,16 @@
           %span= render :partial => "add_term", :locals => {:term_type => "Award" }
     .contentbottom
 #rightcolumn
+  #careers
+    .feedtop
+      %span.headertext3 Careers
+    .feedmiddle
+      %ul.strangeul
+        %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
+          - for career in @student.careers
+            %li.hover.tTip{:title => "Hello World", :reference_type => "Career", :reference_id => career.id, :id => "Career#{career.id}"}
+              = link_to career.name, career
+    .feedbottom
   #feed
     .feedtop
       %span.headertext3 Feed Updates

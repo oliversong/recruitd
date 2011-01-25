@@ -15,7 +15,7 @@ db/schema.rb
 db/schema.sql
 db/*.sqlite3*
 config/database.yml
-public/photos/*
+public/system/avatars/*
 public/thumbnails
 uuid.state
 nbproject*

@@ -7,7 +7,7 @@
 #big
   #toppaneltop
     .genericheader
-      %h1 6.470
+      %h1=@career.name.capitalize
     .ratingwidget
       %form
         %strong Usefulness:
@@ -42,44 +42,30 @@
             %option{:value => "10"} Give up
   #toppanelmid
     #classdescription
-
+      =@career.description
       
     #metadata
       #metasub
         %ul.right
           %li
-            %strong Schools Offering:
+            %strong Some students interested in #{@career.name}:
           %li
             %strong Units/Credits:
           %li
             %strong Average Class Size:
       %ul.answers
-        %li Massachusetts Institute of Technology
+        %li 
+          -@career.students.each do |student|
+            #{link_to student.name, student},
         %li 6 units
         %li 170
     #classtags
       #classtagstitle Tags
-      %a{:href => "#"} MIT,
-      %a{:href => "#"} 6.470,
-      %a{:href => "#"} IAP,
-      %a{:href => "#"} Computer Science,
-      %a{:href => "#"} Course 6,
-      %a{:href => "#"} Web Design,
-      %a{:href => "#"} Competition,
-      %a{:href => "#"} CS,
-      %a{:href => "#"} Javascript,
-      %a{:href => "#"} HTML,
-      %a{:href => "#"} CSS,
-      %a{:href => "#"} AJAX,
-      %a{:href => "#"} Ruby,
-      %a{:href => "#"} Rails,
-      %a{:href => "#"} SQL,
-      %a{:href => "#"} PHP,
-      %a{:href => "#"} JSON,
-      %a{:href => "#"} Django,
-      %a{:href => "#"} Class,
-      %a{:href => "#"} Awesome,
-      %a{:href => "#"} 1337,
+      
+      -@terms.each do |term|
+        #{link_to_term term},
+      
+
   #toppanelbot
   #bottomleftpanel
     #bottomleftpaneltop

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_tokens
   
   #paperclip
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "172x400", :thumb => "100x100>" }
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :small => "172x400", :thumb => "50x50>" }
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
