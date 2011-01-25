@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
+  helper :layout
+  
   rescue_from CanCan::AccessDenied do |exception|
     flash[:alert] = exception.message
-    redirect_to new_user_session_path
+    redirect_to root_path
   end
   
   def stored_location_for(resource)

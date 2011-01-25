@@ -1,0 +1,46 @@
+#maincontent
+  %h1 Editing recruiter
+  - form_for @recruiter, :html => { :method => :put, :multipart => true } do |f|
+    = f.error_messages
+    %table
+      %tr
+        %td= f.label :phone
+        %td= f.text_field :phone
+      %tr
+        %td 
+          Address (line 1)
+          %br/
+          (line 2)
+          %br/
+          (city, state, zip)
+        %td
+          = f.text_field :address_line1, :size => 30
+          %br/
+          = f.text_field :address_line2, :size => 30
+          %br/
+          = f.text_field :address_city, :size => 13
+          = f.text_field :address_state, :size => 3
+          = f.text_field :address_zip, :size => 6
+      %tr
+        %td= f.label :website
+        %td= f.text_field :website, :size => 50
+      %tr
+        %td
+          About me
+          %br/
+          (format with 
+          =link_to "Textile", "http://redcloth.org/hobix.com/textile/"
+          markup
+          )
+          
+        %td= f.text_area :about_me
+      %tr
+
+      %tr
+        %td Add/change profile picture:
+        %td= f.file_field :avatar
+      %tr
+        %td
+        %td= f.submit 'Update'
+        
+  = link_to 'Back to public page', @recruiter

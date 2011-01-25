@@ -77,7 +77,8 @@ def create_students
   :gpa => 4.0, 
   :hometown => "Bellevue, WA",
   :subtitle => "MIT student who loves to study.",
-  :phone => 6172532226
+  :phone => 6172532226,
+  :gender_is_male => false
   )
 
   bob = Factory(:student, 
@@ -86,7 +87,8 @@ def create_students
   :gpa => 3.6, 
   :hometown => "Houston, TX",
   :subtitle => "UNIX hacker and nightowl",
-  :phone => 6172532223
+  :phone => 6172532223,
+  :gender_is_male => true
   )
   
   puts "Created factory students"

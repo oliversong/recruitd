@@ -8,7 +8,7 @@ gem 'cancan'
 gem 'paperclip'
 gem 'acts_as_commentable'
 #gem 'subdomain-fu', :git => "git://github.com/nhowell/subdomain-fu.git"
-gem 'bluecloth'
+gem 'RedCloth'
 gem "nifty-generators", :group => :development
 
 # Bundle edge Rails instead:

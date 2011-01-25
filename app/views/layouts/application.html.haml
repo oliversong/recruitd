@@ -4,7 +4,7 @@
   
   %head
     %title
-      = h(yield(:title) || "Recruitd: Job Hunting That Doesn't Suck")
+      = page_title
     %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
     = stylesheet_link_tag 'style', 'feedback', 'contact', 'facebox'
     = stylesheet_link_tag "/stylesheets/cupertino/jquery-ui-1.8.8.custom.css"
@@ -41,7 +41,7 @@
       %img{:alt => "", :src => "/images/contact/loading.gif"}/
     
     #header
-      %a{:href => "http://www.recruitd.com"}
+      %a{:href => "/"}
         .reclogo
       #searchbox
         %form
@@ -74,7 +74,7 @@
     
     - flash.each do |name, msg|
       #alert
-        =msg
+        =msg  
     
     = yield
     - if content_for?(:footer_style)

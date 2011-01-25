@@ -1,19 +1,27 @@
-=render :partial => "shared/update"
 #maincontent
+  -if @owner
+    #alert
+      This is your public profile page.
+      = link_to 'Click to edit.', edit_recruiter_path(@recruiter)
+  
   %p
-    %b Name:
-    = h @recruiter.name
-  =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
+    %h2= h @recruiter.name
+    -if !@owner
+      =render :partial => "shared/follow", :locals => {:user_id => @recruiter.id, :followed => @followed}
   
   %p
     %b Phone:
-    = h @recruiter.phone
+    = number_to_phone(@recruiter.phone, :area_code => true)
   %p
     %b Email:
     = h @recruiter.email
   %p
     %b Company:
     = link_to @recruiter.company.name, @recruiter.company
-  = link_to 'Edit', edit_recruiter_path(@recruiter)
-  |
-  \#{link_to 'Back', recruiters_path}
+  %p
+    %b About me:
+    -if !@recruiter.about_me.blank?
+      = RedCloth.new(@recruiter.about_me).to_html
+  
+  %br/
+  \#{link_to 'Recruiters listing', recruiters_path}

@@ -17,8 +17,10 @@ class RecruitersController < ApplicationController
     
     if current_user
       @followed = !!Following.find_by_follower_id_and_followed_id( current_user.id, @recruiter.id)
+      @owner = ( current_user == @recruiter )
     else
       @followed = false
+      @owner = false
     end
 
     respond_to do |format|
@@ -40,6 +42,9 @@ class RecruitersController < ApplicationController
 
   # GET /recruiters/1/edit
   def edit
+    if ( current_user != @recruiter )
+      raise CanCan::AccessDenied
+    end
     @recruiter = Recruiter.find(params[:id])
   end
 

@@ -1,4 +1,3 @@
-=render :partial => "shared/update"
 #maincontent
   -if current_user.is_student?
     = render :partial => "student_file", :locals => { :company => @company, :student_file => @student_file }

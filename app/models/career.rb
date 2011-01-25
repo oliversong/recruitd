@@ -13,10 +13,6 @@ class Career < ActiveRecord::Base
   
   acts_as_commentable
   
-  def student_attachments
-    return attachables.find_by_attachable_type("Student")
-  end
-  
   # def terms
   #    return term_attachments.map{|ta| ta.term}
   #  end

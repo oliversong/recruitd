@@ -68,6 +68,13 @@
     .contentbottom
 
 #rightcolumn
+  #quicklinks
+    .feedtop
+      %span.headertext3 Quick Links
+    .feedmiddle
+      %ul.strangeul
+        =render :partial => "shared/navigation"
+    .feedbottom
   #feed
     .feedtop
       %span.headertext Feed Updates
@@ -75,5 +82,3 @@
       %ul{:style => "-webkit-padding-start: 0px; margin:0px; padding-left:10px;"}
         =render :partial => "pfeeds/pfeed", :collection => current_user.pfeed_inbox
     .feedbottom
-
-=render :partial => "shared/update"

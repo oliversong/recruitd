@@ -1,7 +1,6 @@
 -if !(defined? @current_tab)
   - @current_tab = User::TABS["BROWSE"]
 
-=render :partial => "shared/update"
 #maincontent
   .biocard{ :style=> "width: 60%; background: #99CCFF; margin-top: 1em; margin-left: auto; margin-right:auto; padding: 1em;" }
     = render :partial => "students/summary_card", :locals => {:student => @company_file.student}
