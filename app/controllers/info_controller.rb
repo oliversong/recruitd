@@ -15,7 +15,7 @@ class InfoController < ApplicationController
       elsif current_user.is_company_entity?
         company_home
       else
-        render "authentications/from_email"
+        dump
         #redirect_to "/users/sign_in"
       end
     else
@@ -148,7 +148,7 @@ class InfoController < ApplicationController
     @student_labelings = StudentLabeling.find(:all, :conditions => ["student_id = ?", current_user.id], :include => [:student_file, :applyable])
     @starred_student_files = StudentFile.find_all_by_student_id_and_starred(current_user.id,true)
     
-    render 's/manage'
+    render 's/manage', :layout => false
   end
   
 

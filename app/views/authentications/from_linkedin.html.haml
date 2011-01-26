@@ -1,6 +1,6 @@
 #maincontent
   %h2
-    You're almost done!  Simply add your email below.
+    You're almost done!  Please fill out the following fields below:
   = form_for @user, :url => finalize_linkedin_authentications_path, :html => {:method => :post, :multipart => true} do |f|
     = hidden_field_tag "uid", @uid
     %p

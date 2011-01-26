@@ -1,0 +1,166 @@
+<div class="wrapper">
+<table class="movethis3">
+	<tr>
+    	<td class="fields">Name:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="Your Name">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Username:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="Your Username">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Email:
+        </td>
+    	<td><input class="textinput" type="text" placeholder="New Email">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Old Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">New Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td class="fields">Repeat New Password:
+        </td>
+    	<td><input class="textinput" type="password" placeholder="Password">
+        </td>
+    </tr>
+	<tr>
+    	<td rowspan="5" class="fields">Email Notifications:
+        </td>
+    	<td>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">Recruitd newsletter emails?</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When you get followed</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When you are updated on a job offering</td>
+            </tr>
+        	<tr>
+       		<td class="fields2"><input type="checkbox">When companies you follow update their feeds</td>
+            </tr>
+        </td>
+    </tr>
+
+</table>
+
+<script type="text/javascript">
+function showValue(newValue,number)
+{
+	document.getElementById("range"+number).innerHTML=newValue;
+}
+</script>
+
+	<div id="topform">
+		<div class="settingstag">Tags:</div>
+        <div id="tags">
+    		    <input class="differentsearch moving" type="search" placeholder="Edit or add to your tags" style="font-family:helvetica;left:20px;top:-10px;position:relative;">
+
+		        <div class="wtf buildertable"><table class="wtf2"><tr id="tagcontrol0"><td style="float:right;padding-top:8px;">Tag#1</td><td style="padding-top:6px;"> <input type="range" min="0" max="10" step="1" value="5" onChange="showValue(this.value,1)"></td><td><span id="range1" style="float:left;padding-top:3px;padding-left:10px;">5</span></td><td> <div style="padding-left:10px;width:80px;text-align:left;" class="tag" onClick="deletetag2(0)">Delete</div></td></tr></table></div>
+        </div>
+
+	</div>
+    	<button class="button2">Submit!</button>
+
+</div>
+
+
+</div>
+
+
+<script>
+    var i=2;
+	var m=0;
+	$('.moving').bind('keydown', function(e) {
+        var $self = $(this),
+            dimen = $.extend($self.position(), { 
+            width:  $self.outerWidth(),
+            height: $self.outerHeight()
+        });
+
+        if( e.which === 13 && $.trim(this.value).length ) {
+            $('<tr id="tagcontrol'+i+'"><td class="someclass" style="text-align:right;" id="tagcontrol'+i+'">'+this.value+'</td><td> <input type="range" min="0" max="10" step="1" value="5" onchange="showValue(this.value,'+i+')"></td><td><text id="range'+i+'" style="padding-left:10px;width:10px;paddi">5</text></td><td><div style="text-align:left;" id="tag'+i+'" class="tag" onclick="deletetag('+i+')"><span style="padding-left:10px;width:100px;">Delete</span></div></td></tr>').appendTo($('.wtf2')) ; i+=1;
+            $self.val('').css('position', 'relative').animate({ top: ((m==0)?"+=0":"+=0") }, 200);m+=1;
+        }
+    });
+</script>
+
+<script>
+
+	function deletetag(i){
+								 $('tr').remove('#tagcontrol'+i);
+	}
+                                </script>
+<script>
+
+	function deletetag2(i){
+								 $('tr').remove('#tagcontrol'+i);
+	}
+</script>
+
+<script type='text/javascript' src='js/jquery.simplemodal.js'></script>
+<script type='text/javascript' src='js/contact.js'></script>
+
+<style>
+	.ui-autocomplete-category {
+		font-weight:bold;
+		text-decoration:underline;
+		padding: .2em .4em;
+		margin: .8em 0 .2em;
+		line-height: 1.5;
+	}
+	.ui-autocomplete{
+		position:absolute;
+		font-size:14px;
+	}
+	</style>
+	<script>
+	$.widget( "custom.catcomplete", $.ui.autocomplete, {
+		_renderMenu: function( ul, items ) {
+			var self = this,
+				currentCategory = "";
+			$.each( items, function( index, item ) {
+				if ( item.category != currentCategory ) {
+					ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+					currentCategory = item.category;
+				}
+				self._renderItem( ul, item );
+			});
+		}
+	});
+	</script>
+	<script>
+	$(function() {
+		var data = [
+			{ label: "anders", category: "" },
+			{ label: "andreas", category: "" },
+			{ label: "antal", category: "" },
+			{ label: "annhhx10", category: "Products" },
+			{ label: "annk K12", category: "Products" },
+			{ label: "annttop C13", category: "Products" },
+			{ label: "anders andersson", category: "People" },
+			{ label: "andreas andersson", category: "People" },
+			{ label: "andreas johnson", category: "People" }
+		];
+		
+		$( ".differentsearch" ).catcomplete({
+			delay: 0,
+			source: data
+		});
+	});
+	</script>
+</body>
+</html>

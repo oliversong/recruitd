@@ -55,10 +55,40 @@ class AuthenticationsController < ApplicationController
     
       # use the access token as an agent to get the home timeline
       response = access_token.request(:get, "https://api.linkedin.com/v1/people/~:(id,first-name,last-name,industry,headline,location:(name),summary,honors,interests,positions,publications,patents,languages,skills,educations,phone-numbers,main-address)")
-    
-      current_user.import_linkedin_xml(response.body)
+      begin
+        current_user.import_linkedin_xml(response.body)
+      rescue
+      end
       
     end
+    
+    #give 20 friends
+    User.all.sort_by{rand}[0..20].each do |user|
+      Factory(:following, :follower => current_user, :followed => user)
+    end
+    
+    #give some newsfeed items
+    current_user.users_followed.each do |user|
+      if rand > 0.5
+        update = Factory(:update, :user => user)
+        user.post_update(update)
+      end
+    end
+    
+    # give some labels
+    3.times do
+      #add some labels
+      label = Factory(:student_label, :owner => current_user)
+    
+      Company.all.sort_by{rand}[0..3].each do |company|
+        Factory(:student_labeling, :student => student, :label => label, :applyable => company)
+      end
+    
+      Job.all.sort_by{rand}[0..1].each do |job|
+        Factory(:student_labeling, :student => student, :label => label, :applyable => job)
+      end
+    end
+    
     
     redirect_to home_path
     
@@ -69,6 +99,34 @@ class AuthenticationsController < ApplicationController
     current_user.update_attributes(params[:user])
     current_user.type = "Student"
     current_user.save
+    
+    #give 20 friends
+    User.all.sort_by{rand}[0..20].each do |user|
+      Factory(:following, :follower => current_user, :followed => user)
+    end
+    
+    #give some newsfeed items
+    current_user.users_followed.each do |user|
+      if rand > 0.5
+        update = Factory(:update, :user => user)
+        user.post_update(update)
+      end
+    end
+    
+    # give some labels
+    3.times do
+      #add some labels
+      label = Factory(:student_label, :owner => current_user)
+    
+      Company.all.sort_by{rand}[0..3].each do |company|
+        Factory(:student_labeling, :student => student, :label => label, :applyable => company)
+      end
+    
+      Job.all.sort_by{rand}[0..1].each do |job|
+        Factory(:student_labeling, :student => student, :label => label, :applyable => job)
+      end
+    end
+    
     
     redirect_to home_path
     

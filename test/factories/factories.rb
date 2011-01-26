@@ -7,6 +7,8 @@ FACTORY_DATA_DIRECTORY = File.join(::Rails.root.to_s, "test", "factories", "data
 
 LIPSUM_FULL = File.open(File.join(FACTORY_DATA_DIRECTORY, "lipsum.txt")).read
 
+LIPSUM_PARTIAL = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquet ipsum sed dui vehicula cursus. Nullam arcu neque, bibendum eget adipiscing at, venenatis id purus. Duis et nisl non dui interdum consectetur"
+
 Factory.sequence :simple do |n|
   n
 end
@@ -124,6 +126,10 @@ Factory.sequence :student_label do |n|
   single_unique_fetch('student_labels',n)
 end
 
+Factory.sequence :update do |n|
+  single_unique_fetch('updates',n)
+end
+
 Factory.sequence :male_avatar do |n|
   include ActionDispatch::TestProcess
   
@@ -182,6 +188,7 @@ Factory.define :user do |p|
     end 
     a
   end
+  
   
   # if p.gender_is_male
   # filename = File.join(DATA_DIRECTORY, "#{gender}_names.txt")
@@ -294,6 +301,8 @@ Factory.define :student do |f|
     end 
     a
   end
+  
+  f.profile_summary LIPSUM_PARTIAL
   
   # f.attachment(:avatar, "test/factories/data/male_photos/130630_920.jpg", "image/jpeg")
   
@@ -510,11 +519,11 @@ Factory.define :label do |f|
   f.name {"#{Factory.next(:lipsum_word)}"}
 end
 
-Factory.define :company_label, :class => Label do |f|
+Factory.define :company_label, :class => "Label" do |f|
   f.name { Factory.next(:company_label) }
 end
 
-Factory.define :student_label, :class => Label do |f|
+Factory.define :student_label, :class => "Label" do |f|
   f.name { Factory.next(:student_label) }
 end
 
@@ -534,7 +543,7 @@ end
 
 Factory.define :update do |f|
   f.user { User.all.count > 0 ? User.all.sort_by{rand}.first : Factory.create(:user) }
-  f.text LIPSUM_FULL
+  f.text { Factory.next(:update) }
 end
 
 Factory.define :term_attachment do |f|

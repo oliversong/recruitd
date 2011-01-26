@@ -46,12 +46,13 @@ module ApplicationHelper
   end
   
   def link_to_term(term)
-    case term.class.name
-    when "Course", "Club", "Department", "Term" then 
-      return_str = link_to(term.name, term)
-    when "Award", "Interest", "Skill" then
-      return_str = link_to(term.name, term.becomes(Term))
-    end
+    link_to term.name, term.becomes(Term)
+    # case term.class.name
+    #     when "Course", "Club", "Department", "Term" then 
+    #       return_str = link_to(term.name, term)
+    #     when "Award", "Interest", "Skill" then
+    #       return_str = link_to(term.name, term.becomes(Term))
+    #     end
     return_str
   end
       

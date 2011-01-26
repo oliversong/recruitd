@@ -12,6 +12,7 @@ namespace :db do
       create_companies
       create_clubs
       create_schools_departments_courses
+      create_many_student_course_mappings
       create_categories
       create_awards
       create_jobs
@@ -27,6 +28,7 @@ namespace :db do
       create_followings
       create_skills
       create_career_terms
+      create_many_followings
       # create_newsfeed_items
       
       puts "Completed loading recruitd sample data."
@@ -36,7 +38,23 @@ namespace :db do
     task :load_new => :environment do |t|
 
       
+      create_many_student_course_mappings
+      create_categories
+      create_awards
+      create_jobs
+      create_careers
+      create_interests
+      create_recruiters
+      create_updates
+      create_company_files_and_feeds
+      create_student_files_and_feeds
+      create_company_terms
+      create_student_labels
+      create_company_labels
+      create_followings
+      create_skills
       create_career_terms
+      create_many_followings
       
       puts "Completed adding new sample data"
     end
@@ -153,7 +171,7 @@ def create_schools_departments_courses
       puts "#{index}: #{course.course_abbrev}"
     end
     
-    if(index > 300) #for now
+    if(index > 50) #for now
       break
     end
   end
@@ -167,6 +185,19 @@ def create_schools_departments_courses
     end
   end
   puts "Created factory schools, departments, and courses"
+end
+
+def create_many_student_course_mappings
+  studious_students = []
+  10.times do 
+    studious_students << Factory(:student)
+  end
+  
+  Course.all.each do |course|
+    studious_students.each do |student|
+      Factory(:student_term, :student=> student, :term => course)
+    end
+  end
 end
 
 def create_categories
@@ -350,6 +381,17 @@ def create_career_terms
   Career.all.each do |career|
     Term.all.sort_by{rand}[0..2].each do |term|
       Factory(:term_attachment, :term => term, :attachable => career)
+    end
+  end
+end
+
+def create_many_followings
+  User.all.each do |user|
+    User.all.sort_by{rand}[0..10].each do |other_user|
+      Factory(:following, :follower => user, :followed => other_user)
+      if(rand > 0.25)
+        Factory(:following, :follower => other_user, :followed => user)
+      end
     end
   end
 end

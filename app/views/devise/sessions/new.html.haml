@@ -1,24 +1,22 @@
-#maincontent
-  %h2 Sign in
-
-  %b Sample student email:
-  = Student.first.email
-  %br
-  %b Sample recruiter email:
-  = Recruiter.first.email
-
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    %p
-      = f.label :email
-      %br/
-      = f.email_field :email
-    %p
-      = f.label :password
-      %br/
-      = f.password_field :password
-    - if devise_mapping.rememberable?
-      %p
-        = f.check_box :remember_me
-        = f.label :remember_me
-    %p= f.submit "Sign in"
-  = render :partial => "devise/shared/links"
+.contain
+  %h1.big Sign in.
+  %h2.big Signin using either Facebook or Linkedin, or create a new account.
+  %br/
+  %br/
+  %a{:href => "/users/auth/facebook"}
+    #facebooklogin
+  %a{:href => "/users/auth/linked_in"}
+    #linkedinlogin
+  = form_tag session_path(resource_name), :method => :post, :class => "blubbity", :style => "left:550px" do
+    %table
+      %tr
+        %td Email:
+        %td
+          = email_field_tag "user[email]", nil, :class => "signupinput"
+      %tr
+        %td Password:
+        %td
+          = password_field_tag "user[password]", nil, :class => "signupinput"
+      %tr
+        %td
+          =submit_tag "Submit!", :class => "button3"

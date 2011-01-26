@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   
   TABS = {"HOME" => 0, "PUBLIC" => 1, "MANAGE" => 2, "BROWSE" => 3, "SETTINGS" => 4}
 
+  after_save :set_as_student
+
   has_many :user_tokens
   
   #paperclip
@@ -47,6 +49,13 @@ class User < ActiveRecord::Base
   def add_tag(term)
     puts "added tag"
     return gender_is_male
+  end
+  
+  def set_as_student
+    if !type
+      self.type = "Student"
+      self.save
+    end
   end
   
   #after_create :create_student

@@ -114,7 +114,7 @@ class Student < User
     
     if xmlp["industry"]
       career = Career.find_or_initialize_by_name(xmlp["industry"])
-      cs = CareerStudent.new(:career => career, :student => self)
+      cs = CareerAttachment.new(:career => career, :attachable => self)
       cs.save
     end
     

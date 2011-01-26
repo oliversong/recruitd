@@ -16,23 +16,6 @@
 
 
     <script>
-    function submitenter(myfield,e)
-    {
-    var keycode;
-    if (window.event) keycode = window.event.keyCode;
-    else if (e) keycode = e.which;
-    else return true;
-
-    if (keycode == 13)
-       {
-       myfield.form.submit();
-       return false;
-       }
-    else
-       return true;
-    }
-    
-    
 $(document).ready(function(){
   var currentPosition = 0;
   var slideWidth = 2000;
@@ -108,6 +91,8 @@ $(document).ready(function(){
 <div id="headeralt">
 <a href="http://hiring.recruitd.com"><div id="hiring"></div></a>
 <a href="http://www.recruitd.com"><div id="logo"></div></a>
+
+
 <%= form_for(:user, :url => session_path(:user), :html => {:name => "login"}) do |f| %>
   <div id="form2">
           <%= f.email_field :email, :class => "texta", :placeholder=>"E-mail" %>
@@ -117,11 +102,8 @@ $(document).ready(function(){
         </div>
         <a id="login" href="#" onclick="document.forms['login'].submit();"><div id="btn"></div></a><a href="/users/auth/facebook"><div id="btn2"></div></a><a href="/users/auth/linked_in"><div id="btn3"></div></a>
 <%end%>
-​
-
-
 </div>
-<a href="/users/sign_in"><div class="signupbutton"></div></a>
+<a href="/users/sign_up"><div class="signupbutton"></div></a>
 <div class="showcase">
 <div id="slideshow">
   <div id="slidesContainer">
@@ -140,50 +122,38 @@ $(document).ready(function(){
 
 </div>
 
-<div id="counters">
-	<div class="bigtext" id="recruiters">Recruiters<b>:</b></div><div class="bigtext" id="successes">Successes:</div>
-    <div class="counter" id="counterwidget"></div><div class="counter" id="counterwidget2"></div>
-</div>
 <div  class="separator" id="sep1"></div>
 
 <div id="whydiv">
 <div id="why">Why <text id="whytext">Recruitd</text>?</div>
-<div class="description" id="whypar">Imagine an efficient, intuitive, and powerful job engine that gets you results in record<br /> time. All
-while constantly learning and redefining its idea of your dream job, helping you<br />maintain your 
+<div class="description" id="whypar">Imagine an efficient, intuitive, and powerful job engine that gets you results in record time. All
+while constantly learning and redefining its idea of your dream job, helping you maintain your 
 online visibility and keeping you up to date on all the companies you like.</div>
 <div class="bigtext2" id="res">Resume Builder</div>
 <div class="description" id="respar"><p>Tired of reformatting your resume countless
 times? Enter our new resume builder, designed
-to get you off the ground as quickly as possible
-and with flair. Lorem ipsum dolor sit amet,
-consectetur adipiscing elit. Maecenas vel est.</p></div>
+to get you off the ground with gusto.</p></div>
 <div id="resimg"></div>
 <div class="bigtext2" id="int">Intuitive Search</div>
-<div class="description" id="intpar"><p>Constantly evolving AI, Filtered results. Lorem
-ipsum dolor sit amet, consectetur adipiscing
-elit.Maecenas vel est sapien, eget viverra
-sapien. Praesent dictum, est at tempor
-malesuada, mi quam dictum elit, et rutrum.</p></div>
+<div class="description" id="intpar"><p>Recruitd uses a minimalistic approach to getting you what you want, while constantly learning based on your feedback.</p></div>
 <div id="intimg"></div>
-<div class="bigtext2" id="hir">Hiretractivness</div>
-<div class="description" id="hirpar">Manage your online prescence. Lorem ipsum
-dolor sit amet, consectetur adipiscing elit.
-Maecenas vel est sapien, eget viverra sapien.
-Praesent dictum, est at tempor malesuada, mi
-quam dictum elit, et rutrum neque turpis vel arcu.</div>
+<div class="bigtext2" id="hir">Networking</div>
+<div class="description" id="hirpar">While Recruitd helps you find employers, it also helps employers find you. Every element is designed to connect you to as many great opportunities as possible.</div>
 <div id="hirimg"></div>
-<div class="bigtext2" id="hiri">Hirification</div>
-<div class="description" id="hiripar">Matching - Poke. Lorem ipsum dolor sit amet,
-consectetur adipiscing elit. Maecenas vel est
-sapien, eget viverra sapien. Praesent dictum,
-est at tempor malesuada, mi quam dictum elit,
-et rutrum neque turpis vel arcu.</div>
+<div class="bigtext2" id="hiri">Organization</div>
+<div class="description" id="hiripar">Manage your connections once you get them. The job hunt has never been so neatly organized.</div>
 <div id="hiriimg"></div>
+<div class="bigtext2" id="tagx">Tag Everything</div>
+<div class="description" id="tagxpar">Here at Recruitd, we believe that every aspect of your life should be tagged, and every tag should have a page. Information is ubiquitous.</div>
+<div id="tagximg"></div>
+<div class="bigtext2" id="pers">Complete Personalization</div>
+<div class="description" id="perspar">Manage your connections once you get them. The job hunt has never been so neatly organized.</div>
+<div id="persimg"></div>
 </div>
 
 <div class="separator" id="sep2"></div>
 <div id="punchline">Get Recruitd and forget job hunting ever sucked.</div>
-<a href="/signup.html"><div id="signup"></div></a>
+<a href="/users/sign_up"><div id="signup"></div></a>
 
 <div id="footer2">
 <span id="copyright">Copyright © 2010 Recruitd Inc. All rights reserved.</span>

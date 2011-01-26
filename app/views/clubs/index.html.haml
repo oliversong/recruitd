@@ -5,4 +5,4 @@
   
   -for club in @clubs
     %li
-      = link_to club.name, club
+      = link_to club.name, club.becomes(Term)

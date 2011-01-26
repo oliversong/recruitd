@@ -7,10 +7,7 @@ class ClubsController < ApplicationController
   
   def show
     @club = Club.find(params[:id])
-    @students = @club.students
-    @jobs = @club.jobs
-    @careers = @club.careers
-    @comments = @club.comments
+    redirect_to @club.becomes(Term)
   end
   
   def new
