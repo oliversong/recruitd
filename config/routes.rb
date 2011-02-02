@@ -151,8 +151,7 @@ Recruitd::Application.routes.draw do
   resources :feedbacks, :only => [:create, :new]
 
   #devise_for :users
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", 
-            :registrations => "registrations"}
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

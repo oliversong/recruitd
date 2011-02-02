@@ -81,11 +81,11 @@ class AuthenticationsController < ApplicationController
       label = Factory(:student_label, :owner => current_user)
     
       Company.all.sort_by{rand}[0..3].each do |company|
-        Factory(:student_labeling, :student => student, :label => label, :applyable => company)
+        Factory(:student_labeling, :student => current_user, :label => label, :applyable => company)
       end
     
       Job.all.sort_by{rand}[0..1].each do |job|
-        Factory(:student_labeling, :student => student, :label => label, :applyable => job)
+        Factory(:student_labeling, :student => current_user, :label => label, :applyable => job)
       end
     end
     
@@ -119,11 +119,11 @@ class AuthenticationsController < ApplicationController
       label = Factory(:student_label, :owner => current_user)
     
       Company.all.sort_by{rand}[0..3].each do |company|
-        Factory(:student_labeling, :student => student, :label => label, :applyable => company)
+        Factory(:student_labeling, :student => current_user, :label => label, :applyable => company)
       end
     
       Job.all.sort_by{rand}[0..1].each do |job|
-        Factory(:student_labeling, :student => student, :label => label, :applyable => job)
+        Factory(:student_labeling, :student => current_user, :label => label, :applyable => job)
       end
     end
     

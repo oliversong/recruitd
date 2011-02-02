@@ -1,0 +1,18 @@
+- title "Career"
+
+=render :partial => "shared/update"
+#maincontent
+  %h1=link_to @career.name, @career
+  %p
+    %strong Description:
+    =h @career.description
+  %br/
+  %p
+    %strong Terms:
+    %ul
+      -@career_terms.each do |ct|
+        %li=link_to ct.term.name, ct.term
+    
+  %br/  
+  %p
+    = link_to "all careers", careers_path
